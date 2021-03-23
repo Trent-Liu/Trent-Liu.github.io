@@ -16,7 +16,7 @@
 <meta property="og:description" content="static  修饰变量：   *未用static修饰的成员变量**，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”   *使用static修饰的变量，被类的所有实例（对象）共享，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。静态变量是单独的内存单元**，与对象内存分开">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-23T14:07:15.000Z">
-<meta property="article:modified_time" content="2021-03-23T15:24:04.679Z">
+<meta property="article:modified_time" content="2021-03-23T15:27:04.650Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="学习">
@@ -200,6 +200,7 @@
 <li>*使用static修饰的变量<strong>，被类的所有实例（对象）</strong>共享<strong>，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。<br>实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。<br>静态变量是</strong>单独的内存单元**，与对象内存分开，任何对象都可访问。而且此内存单元不需要实例化方法，事先分配。</li>
 </ul>
 <hr>
+<span id="more"></span>
 <ul>
 <li>修饰方法<br><strong>静态方法</strong>：无用static修饰的方法。<br>静态方法只能访问类的静态成员（因为实例成员必须有实例才存在，当通过类名调用静态方法时，可能该类还没有一个实例）<br>静态方法无多态性（无this引用）<br>静态方法，方法名和类名都可以调用<br>每个程序必须有<strong>piblic static void main(String[])</strong> 方法</li>
 </ul>
