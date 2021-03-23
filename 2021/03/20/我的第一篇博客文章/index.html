@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>我的第一篇博客文章 | Pigsty</title>
+  <title>Java学习——对象和类部分知识 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一章内容  ##第二章 内容  ##参考文献 www.Trent-Liu.cn">
+  <meta name="description" content="构造函数 构造函数无返回类型（包括void），名字和类名相同，用于初始化对象。   如果不小心加了返回类型，比如*void className(…)*，则被认为是普通方法。   只会被调用一次，当new的时候。   必须为实例方法，无static ，可以分为公有，保护，私有以及包级权限。   缺省构造函数 如果类没有定义任何构造函数，编译器会自动提供一个不带参数的默认构造函数 如果已自定义构造函数">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇博客文章">
+<meta property="og:title" content="Java学习——对象和类部分知识">
 <meta property="og:url" content="http://example.com/2021/03/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="第一章内容  ##第二章 内容  ##参考文献 www.Trent-Liu.cn">
+<meta property="og:description" content="构造函数 构造函数无返回类型（包括void），名字和类名相同，用于初始化对象。   如果不小心加了返回类型，比如*void className(…)*，则被认为是普通方法。   只会被调用一次，当new的时候。   必须为实例方法，无static ，可以分为公有，保护，私有以及包级权限。   缺省构造函数 如果类没有定义任何构造函数，编译器会自动提供一个不带参数的默认构造函数 如果已自定义构造函数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-20T08:49:05.000Z">
-<meta property="article:modified_time" content="2021-03-20T08:51:34.525Z">
+<meta property="article:modified_time" content="2021-03-23T11:35:57.206Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="分享在HUST中的一些学习经历">
 <meta name="twitter:card" content="summary">
@@ -164,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      我的第一篇博客文章
+      Java学习——对象和类部分知识
     </h1>
   
 
@@ -190,9 +190,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容</p>
+        <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><ul>
+<li>构造函数<strong>无返回类型</strong>（包括void），名字和类名相同，用于初始化对象。  </li>
+<li>如果不小心加了返回类型，比如*void className(…)*，则被认为是普通方法。  </li>
+<li>只会被调用一次，当<strong>new</strong>的时候。  </li>
+<li>必须为实例方法，<strong>无static</strong> ，可以分为公有，保护，私有以及包级权限。  </li>
+<li>缺省构造函数<ul>
+<li>如果类没有定义任何构造函数，编译器会自动提供一个不带参数的默认构造函数</li>
+<li>如果已自定义构造函数，则不会提供默认构造函数<br>要注意的是：如果定义了一个带参数的构造函数，应该自己再定义一个缺省构造函数。</li>
+</ul>
+</li>
+<li>Java没有析构函数（C++要手动调用析构函数），垃圾自动回收之前会自动调用finalize()，可以覆盖定义该函数（程序员无法控制finalize的调用时机）  </li>
+</ul>
+<p>如果程序中既有构造函数，又有普通函数(与类名相同)，则优先调用构造函数。</p>
 <hr>
-<p>##第二章</p>
+<h2 id="访问对象"><a href="#访问对象" class="headerlink" title="访问对象"></a>访问对象</h2><p>  访问对象是通过对象引用访问。JVM维护每个对象的引用计数器</p>
 <p>内容</p>
 <hr>
 <p>##参考文献</p>
@@ -324,7 +336,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.</span> <span class="toc-text">访问对象</span></a></li></ol>
                     </div>
                 </span>
             </div>

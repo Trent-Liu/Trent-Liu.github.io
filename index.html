@@ -164,7 +164,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">我的第一篇博客文章</a>
+      <a class="article-title" href="/2021/03/20/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0/">Java学习——对象和类部分知识</a>
     </h1>
   
 
@@ -182,9 +182,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容</p>
+        <h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><ul>
+<li>构造函数<strong>无返回类型</strong>（包括void），名字和类名相同，用于初始化对象。  </li>
+<li>如果不小心加了返回类型，比如*void className(…)*，则被认为是普通方法。  </li>
+<li>只会被调用一次，当<strong>new</strong>的时候。  </li>
+<li>必须为实例方法，<strong>无static</strong> ，可以分为公有，保护，私有以及包级权限。  </li>
+<li>缺省构造函数<ul>
+<li>如果类没有定义任何构造函数，编译器会自动提供一个不带参数的默认构造函数</li>
+<li>如果已自定义构造函数，则不会提供默认构造函数<br>要注意的是：如果定义了一个带参数的构造函数，应该自己再定义一个缺省构造函数。</li>
+</ul>
+</li>
+<li>Java没有析构函数（C++要手动调用析构函数），垃圾自动回收之前会自动调用finalize()，可以覆盖定义该函数（程序员无法控制finalize的调用时机）  </li>
+</ul>
+<p>如果程序中既有构造函数，又有普通函数(与类名相同)，则优先调用构造函数。</p>
 <hr>
-<p>##第二章</p>
+<h2 id="访问对象"><a href="#访问对象" class="headerlink" title="访问对象"></a>访问对象</h2><p>  访问对象是通过对象引用访问。JVM维护每个对象的引用计数器</p>
 <p>内容</p>
 <hr>
 <p>##参考文献</p>
