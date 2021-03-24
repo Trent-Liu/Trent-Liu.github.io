@@ -5,18 +5,18 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://example.com">
+  <link rel="dns-prefetch" href="https://trent-liu.github.io">
   <title>Java自学——修饰符 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="static  修饰变量：   *未用static修饰的成员变量**，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”   *使用static修饰的变量，被类的所有实例（对象）共享，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。静态变量是单独的内存单元**，与对象内存分开">
+  <meta name="description" content="static  修饰变量：   未用static修饰的成员变量，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”     *使用static修饰的变量，被类的所有实例（对象）共享，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。静态变量是单独的内存单元**，与对象内存分开，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java自学——修饰符">
-<meta property="og:url" content="http://example.com/2021/03/23/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E4%BF%AE%E9%A5%B0%E7%AC%A6/index.html">
+<meta property="og:url" content="https://trent-liu.github.io/2021/03/23/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E4%BF%AE%E9%A5%B0%E7%AC%A6/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="static  修饰变量：   *未用static修饰的成员变量**，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”   *使用static修饰的变量，被类的所有实例（对象）共享，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。静态变量是单独的内存单元**，与对象内存分开">
+<meta property="og:description" content="static  修饰变量：   未用static修饰的成员变量，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”     *使用static修饰的变量，被类的所有实例（对象）共享，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。静态变量是单独的内存单元**，与对象内存分开，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-23T14:07:15.000Z">
-<meta property="article:modified_time" content="2021-03-24T13:11:18.827Z">
+<meta property="article:modified_time" content="2021-03-24T14:54:01.890Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="学习">
@@ -195,14 +195,19 @@
       
         <h2 id="static"><a href="#static" class="headerlink" title="static"></a>static</h2><hr>
 <ul>
-<li>修饰变量：  </li>
-<li>*未用static修饰的成员变量**，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”  </li>
+<li>修饰变量：  <blockquote>
+<p><strong>未用static修饰的成员变量</strong>，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”  </p>
+</blockquote>
+</li>
 <li>*使用static修饰的变量<strong>，被类的所有实例（对象）</strong>共享<strong>，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。<br>实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。<br>静态变量是</strong>单独的内存单元**，与对象内存分开，任何对象都可访问。而且此内存单元不需要实例化方法，事先分配。</li>
 </ul>
 <hr>
 <span id="more"></span>
 <ul>
-<li>修饰方法<br><strong>静态方法</strong>：无用static修饰的方法。<br>静态方法只能访问类的静态成员（因为实例成员必须有实例才存在，当通过类名调用静态方法时，可能该类还没有一个实例）<br>静态方法无多态性（无this引用）<br>静态方法，方法名和类名都可以调用<br>每个程序必须有<strong>piblic static void main(String[])</strong> 方法</li>
+<li>修饰方法  <blockquote>
+<p><strong>静态方法</strong>：无用static修饰的方法。<br>静态方法只能访问类的静态成员（因为实例成员必须有实例才存在，当通过类名调用静态方法时，可能该类还没有一个实例）<br>静态方法无多态性（无this引用）<br>静态方法，方法名和类名都可以调用<br>每个程序必须有<strong>piblic static void main(String[])</strong> 方法</p>
+</blockquote>
+</li>
 </ul>
 <h2 id="final"><a href="#final" class="headerlink" title="final"></a>final</h2><ul>
 <li>实例常量：没有用static修饰的final常量。<br>静态常量：使用static修饰的final常量。<br>如 public static final double PI =3.13315….</li>
@@ -212,12 +217,19 @@
 </ul>
 <hr>
 <h2 id="private"><a href="#private" class="headerlink" title="private"></a>private</h2><ul>
-<li>修饰成员变量<br>被private修饰的变量和方法，只能在自己对象<strong>内部</strong>使用<br>面向对象的<strong>封装性</strong>要求最好把实例成员变量设为私有的或保护的<br>为私有、保护的实例成员变量提供公有的<strong>get</strong>和<strong>set</strong>方法。get和set方法遵循JavaBean的命名规范  DataType为私有成员  </li>
+<li>修饰成员变量  <blockquote>
+<p>被private修饰的变量和方法，只能在自己对象<strong>内部</strong>使用<br>面向对象的<strong>封装性</strong>要求最好把实例成员变量设为私有的或保护的<br>为私有、保护的实例成员变量提供公有的<strong>get</strong>和<strong>set</strong>方法。get和set方法遵循JavaBean的命名规范  </p>
+</blockquote>
+DataType为私有成员  </li>
 <li><em>get获取成员值</em>*  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public DataType getPropertyName()   </span><br><span class="line">&#123;  </span><br><span class="line">    return a;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure></li>
 <li><em>set设置成员值</em>*  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void setPropertyName(DataType value)  </span><br><span class="line">&#123;  </span><br><span class="line">value&#x3D;xx;  </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></li>
 </ul>
-<p>  封装起来，防止程序员写出类似o.radius=-100（radius要求&gt;0）这样的错误值，类是给别人使用的，要防止别人乱写，因此将这个元素封装起来，起控制作用。<br>  可以在上面set中添加if判断条件语句，保证一定设置正值。<br>    另一应用:<strong>计数器</strong><br>    Class Circle{<br>      private static int numberOfObjects=0;<br>      //私有静态变量，用于记录当前内存中被实例化的Circle对象个数<br>      //下面的构造函数中要有numberOfObjects++<br>      …………<br>      …………<br>      @Override<br>      public void finalize() throws Threwable {<br>        numberOfObjects–;<br>        super.finalize();<br>      }<br>      //覆盖从Object继承的finalize方法，该方法在对象被回收时调用，方法里对象计数器-1;<br>      该方法的调用时机不可控制。<br>      //@Override是注解，告诉编译器这里是覆盖父类的方法。</p>
-<h2 id="类的成员访问控制符"><a href="#类的成员访问控制符" class="headerlink" title="类的成员访问控制符"></a>类的成员访问控制符</h2><p>private：只能被当前类定义的函数访问。<br>包级：无修饰符的成员，可以被同一包中的类访问。<br>protected： 子类 ，同一包中的类的函数可以访问。<br>public： 所有类的函数都可以访问。<br>以上访问权限由小到大。<br>后两者可以被子类访问。继承会自动继承除私有成员外的父类成员。<br>子类类体可以访问从父类继承来的protected成员。如果子类和父类不在一个包里，子类不能访问另外的父类实例（非继承）的protected成员。  </p>
+<blockquote>
+<p>封装起来，防止程序员写出类似o.radius=-100（radius要求&gt;0）这样的错误值，类是给别人使用的，要防止别人乱写，因此将这个元素封装起来，起控制作用。<br>  可以在上面set中添加if判断条件语句，保证一定设置正值。<br>    另一应用:<strong>计数器</strong><br>    Class Circle{<br>      private static int numberOfObjects=0;<br>      //私有静态变量，用于记录当前内存中被实例化的Circle对象个数<br>      //下面的构造函数中要有numberOfObjects++<br>      …………<br>      …………<br>      @Override<br>      public void finalize() throws Threwable {<br>        numberOfObjects–;<br>        super.finalize();<br>      }<br>      //覆盖从Object继承的finalize方法，该方法在对象被回收时调用，方法里对象计数器-1;<br>      该方法的调用时机不可控制。<br>      //@Override是注解，告诉编译器这里是覆盖父类的方法。</p>
+</blockquote>
+<h2 id="类的成员访问控制符"><a href="#类的成员访问控制符" class="headerlink" title="类的成员访问控制符"></a>类的成员访问控制符</h2><blockquote>
+<p>private：只能被当前类定义的函数访问。<br>包级：无修饰符的成员，可以被同一包中的类访问。<br>protected： 子类 ，同一包中的类的函数可以访问。<br>public： 所有类的函数都可以访问。<br>以上访问权限由小到大。<br>后两者可以被子类访问。继承会自动继承除私有成员外的父类成员。<br>子类类体可以访问从父类继承来的protected成员。如果子类和父类不在一个包里，子类不能访问另外的父类实例（非继承）的protected成员。  </p>
+</blockquote>
 <h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><ul>
 <li>有一些对象只需要一个，并且可以在需要时才开始创建对象，保证只有一对象被创建。<br>不能在外部创建对象，只能在类的内部<br>可以定义全局变量，但是全局变量会在程序一开始就创建好，如果该对象在程序执行过程中对资源消耗非常大且使用率不高，就非常累赘。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton  </span><br><span class="line">&#123;  </span><br><span class="line">　　　private static Singleton uniqueInstance &#x3D;null;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  &#x2F;&#x2F;其他的实例变量  </span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;构造方法是私有的，所以在类外不能new出多个实例  </span><br><span class="line"> 　　　private singleton()  </span><br><span class="line"> 　　 &#123;  </span><br><span class="line"> 　　 &#125;</span><br><span class="line">　　　public static Singleton getInstance()  </span><br><span class="line">　　 &#123;  </span><br><span class="line"> 　　　　　 if(uniqueInstance &#x3D;&#x3D; null)  </span><br><span class="line"> &#x2F;&#x2F;如果为null，就创建对象，否则不创建，直接在下面返回已经存在的对象  </span><br><span class="line"> 　　　 &#123;  </span><br><span class="line">  　　　　　　　  uniqueInstance &#x3D;&#x3D; new Singleton();  </span><br><span class="line">  　　　 &#125;  </span><br><span class="line">  　　　 return uniqueInstance;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
 调用的时候，我们可以通过</li>
@@ -236,7 +248,7 @@
       
       <br>
       <strong>本文链接：</strong>
-      <a href="http://example.com/2021/03/23/Java自学——修饰符/" title="Java自学——修饰符" target="_blank">http://example.com/2021/03/23/Java自学——修饰符/</a>
+      <a href="https://trent-liu.github.io/2021/03/23/Java自学——修饰符/" title="Java自学——修饰符" target="_blank">https://trent-liu.github.io/2021/03/23/Java自学——修饰符/</a>
       <br>
       <strong>版权声明：</strong>
       本作品采用
@@ -361,7 +373,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.io021/03/23/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E4%BF%AE%E9%A5%B0%E7%AC%A6/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/23/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E4%BF%AE%E9%A5%B0%E7%AC%A6/" alt="微信分享二维码">
     </div>
 </div>
 
