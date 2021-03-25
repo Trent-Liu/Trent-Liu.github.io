@@ -229,7 +229,7 @@
 <li><p>new创建对象  </p>
 <ul>
 <li>与基本数据类型一样，可声明并用new创建对象数组。<br>int[]a=new int[10];//所有元素缺省初值=0  </li>
-<li>当创建对象数组时，数组元素的缺省初值为null。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向null</span><br><span class="line">for(int i &#x3D; 0; i &lt; circleArray.length; i++) &#123;</span><br><span class="line">	circleArray[i] &#x3D; new Circle( );    &#x2F;&#x2F;这时才构造Circle对象，可使用有参构造函数  </span><br><span class="line">&#125;  </span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">* 对象是引用变量，当new出的对象没有变量来引用时，该对象会由JVM自动回收。</span><br><span class="line">* 对象引用，可以</span><br><span class="line">    * 访问实例变量 c2.radius</span><br><span class="line">    * 调用对象的实例方法 c2.rindArea;</span><br><span class="line">    * 实例对象也可以访问静态成员和静态方法，但是很不推荐，静态建议用类名来访问。</span><br><span class="line">* 匿名对象也可访问实例(或静态)成员：</span><br></pre></td></tr></table></figure>
+<li>当创建对象数组时，数组元素的缺省初值为null。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向null</span><br><span class="line">for(int i &#x3D; 0; i &lt; circleArray.length; i++) &#123;</span><br><span class="line">	circleArray[i] &#x3D; new Circle( );    &#x2F;&#x2F;这时才构造Circle对象，可使用有参构造函数  </span><br><span class="line">&#125;  </span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line">* 对象是引用变量，当new出的对象没有变量来引用时，该对象会由JVM自动回收。</span><br><span class="line">* 对象引用，可以</span><br><span class="line">    * 访问实例变量 c2.radius</span><br><span class="line">    * 调用对象的实例方法 c2.rindArea;</span><br><span class="line">    * 实例对象也可以访问静态成员和静态方法，但是很不推荐，静态建议用类名来访问。</span><br><span class="line">* 匿名对象也可访问实例(或静态)成员：</span><br></pre></td></tr></table></figure>
 new Circle( ).radius=2;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*  在实例方法中有个this引用，代表当前对象(引用当前对象：相当于指针)，因此在实例方法里，可以用this引用访问当前对象成员</span><br></pre></td></tr></table></figure>
 public class Circle {<br>double radius = 1.0;</li>
 </ul>
@@ -382,41 +382,10 @@ public class Circle {<br>double radius = 1.0;</li>
 <li><p>必须是实例方法（无static），可为公有、保护、私有和包级权限。</p>
 </li>
 <li><p>类的变量为引用(相当于C指针)，指向实例化好的对象。  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Circle c2&#x3D;new Circle(5.0);&#x2F;&#x2F;调用时必须有括弧,可带参初始化</span><br></pre></td></tr></table></figure></li>
-<li><p>缺省构造函数(同C++)  </p>
-<blockquote>
-<p>如果类未定义任何构造函数，编译器会自动提供一个不带参数的默认构造函数。<br>如果已自定义构造函数，则<strong>不会提供默认构造函数</strong>。<br>因此如果程序员定义了一个带参数的构造函数，最好再定义一个不带参数的构造函数。</p>
-</blockquote>
-</li>
-<li><p>Java没有析构函数，但垃圾自动回收之前会自动调用finalize( ),可以覆盖定义该函数（但是finalize调用时机程序员无法控制，C++则需要手动调用）。  </p>
-</li>
-<li><p>如果定义了构造函数和一个与类名相同的方法</p>
-<pre><code>public class ConstructorTest &#123;
-  //构造函数前面不能有void   
-  public ConstructorTest() &#123;
-       System.out.println(&quot;constructor&quot;);
-  &#125;
-
-  //如果和类名同名函数前面加了void(可返回任何类型), 编译器看成是普通函数，这和C++不一样 
-  public void ConstructorTest() &#123;
-      System.out.println(&quot;normal instance method return void&quot;);
-  &#125;
-  public double ConstructorTest(double d) &#123;
-      System.out.println(&quot;normal method return double&quot;);
-      return d;
-  &#125;
-  public static void main(String ... args)&#123;
-   //先调用构造，再调用void ConstructorTest() 
-      new ConstructorTest().ConstructorTest();
-  &#125;
-&#125;
-</code></pre>
-<p>注意上图中，先调用了构造函数后，紧接着调用普通函数。</p>
-</li>
-<li><p>注意在构造函数中调用构造函数，需要防止递归调用。</p>
-</li>
-</ul>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Circle c2&#x3D;new Circle(5.0);&#x2F;&#x2F;调用时必须有括弧,可带参初始化</span><br></pre></td></tr></table></figure></li></ul>
+        
+          <a class="article-more-a" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/#more">more >></a>
+        
       
            <!-- 添加版权声明 -->
     
@@ -632,16 +601,10 @@ public class Circle {<br>double radius = 1.0;</li>
 </ul>
 </li>
 </ul>
-<h2 id="方法的重载、覆盖、隐藏"><a href="#方法的重载、覆盖、隐藏" class="headerlink" title="方法的重载、覆盖、隐藏"></a>方法的重载、覆盖、隐藏</h2><ul>
-<li>方法重载：同一个类中、或者父类子类中的多个方法具有<strong>相同的名字</strong>，但这些方法具有<strong>不同的参数列表</strong>(不含返回类型，即<strong>无法以返回类型</strong>作为方法重载的区分标准）</li>
-<li>方法覆盖和方法隐藏：发生在<strong>父类和子类</strong>之间，<strong>前提是继承</strong>。子类中定义的方法与父类中的方法具有<strong>相同的方法名字、相同的参数列表、相同的返回类型</strong>（也允许子类中方法的返回类型是父类中方法返回类型的子类。<ul>
-<li>方法覆盖：实例方法</li>
-<li>方法隐藏：静态方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class A &#123;</span><br><span class="line">    public void m(int x, int y) &#123;&#125;</span><br><span class="line">    public void m(double x, double y) &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;下面语句报错m(int,int)已经定义, 重载函数不能通过返回类型区分</span><br><span class="line">&#x2F;&#x2F;    public int m(int x, int y) &#123; return 0;&#125;; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class B extends A&#123; &#x2F;&#x2F;B继承了A</span><br><span class="line">    public void m(float x, float y) &#123; &#125; &#x2F;&#x2F;重载了父类的m(int,int)和m(double,double)</span><br><span class="line">    public void m(int x, int y) &#123;&#125; &#x2F;&#x2F;覆盖了父类的void m(int,int)，注意连返回类型都必须一致</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;注意下面这个语句报错，既不是覆盖（与父类的void m(int,int)返回类型不一样）</span><br><span class="line">    &#x2F;&#x2F; 也不是合法的重载（和父类的m(int,int)参数完全一样，只是返回类型不一致</span><br><span class="line">&#x2F;&#x2F;    public int m(int x, int y) &#123;&#125; &#x2F;&#x2F;错误</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;子类定义了新的重载函数int m()</span><br><span class="line">    public int m()&#123;return 0;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-C++重载会报错，不认为子类定义会覆盖父类。<br>final关键字修饰的方法不可以被覆盖或隐藏。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    public void m1()&#123; &#125;</span><br><span class="line">    public final void m2() &#123; &#125;</span><br><span class="line"></span><br><span class="line">    public static void m3() &#123; &#125;</span><br><span class="line">    public final static void m4() &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A&#123;</span><br><span class="line">    &#x2F;&#x2F;覆盖父类A的void  m1()</span><br><span class="line">    public void m1()&#123; &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;下面语句报错，不能覆盖父类的final 方法</span><br><span class="line">&#x2F;&#x2F;    public void m2()&#123; &#125;</span><br><span class="line"></span><br><span class="line">    public static void m3() &#123; &#125; &#x2F;&#x2F;隐藏了父类的static void m3()</span><br><span class="line">    &#x2F;&#x2F;下面语句报错，父类final 静态方法不能被子类隐藏</span><br><span class="line">&#x2F;&#x2F;    public static void m4() &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-
+<h2 id="方法的重载、覆盖、隐藏"><a href="#方法的重载、覆盖、隐藏" class="headerlink" title="方法的重载、覆盖、隐藏"></a>方法的重载、覆盖、隐藏</h2>
+        
+          <a class="article-more-a" href="/2021/03/23/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/#more">more >></a>
+        
       
            <!-- 添加版权声明 -->
     
