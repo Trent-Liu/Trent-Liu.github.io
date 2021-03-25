@@ -81,7 +81,7 @@
 		</nav>
 		<nav>
 			<br/><br/>
-			总文章数 5
+			总文章数 6
 		</nav>
 	<br/>
 	<br/>
@@ -236,7 +236,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="方法的重载、覆盖、隐藏"><a href="#方法的重载、覆盖、隐藏" class="headerlink" title="方法的重载、覆盖、隐藏"></a>方法的重载、覆盖、隐藏</h2>
+<h2 id="方法的重载、覆盖、隐藏"><a href="#方法的重载、覆盖、隐藏" class="headerlink" title="方法的重载、覆盖、隐藏"></a>方法的重载、覆盖、隐藏</h2><ul>
+<li>方法重载：同一个类中、或者父类子类中的多个方法具有<strong>相同的名字</strong>，但这些方法具有<strong>不同的参数列表</strong>(不含返回类型，即<strong>无法以返回类型</strong>作为方法重载的区分标准）</li></ul>
         
           <a class="article-more-a" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/#more">more >></a>
         
@@ -270,7 +271,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/计算机，Java//" class="article-tag-list-link color4">计算机，Java</a>
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -280,6 +285,113 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    <article id="post-Java自学——继承和多态" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/">Java自学——包以及方法重载、覆盖、隐藏</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="archive-article-date">
+  	<time datetime="2021-03-25T13:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+        
+
+        
+          
+          
+        
+          
+          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li><p>利用继承机制（提供了源代码重用机制，提高了<strong>开发效率</strong>（直接继承已有）同时也提高了软件可靠性：父类的代码如果经过了<strong>可靠性测试，我们通过继承机制可放心直接使用</strong>，只需要关注子类代码的实现）<br>总的来说，不需要重新写，而且父类可靠，继承下来的子类一定也可靠。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Employee &#123;</span><br><span class="line">    public String name;</span><br><span class="line">    public double salary;</span><br><span class="line">    public Date birthDate;</span><br><span class="line">    public String getDetails() &#123;...&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Manager &#123;</span><br><span class="line">    public String name; &#x2F;&#x2F;同名成员</span><br><span class="line">    public double salary; &#x2F;&#x2F;同名成员</span><br><span class="line">    public Date birthDate; &#x2F;&#x2F;同名成员</span><br><span class="line">    public String department;</span><br><span class="line">    public String getDetails() &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul>
+        
+          <a class="article-more-a" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/#more">more >></a>
+        
+      
+           <!-- 添加版权声明 -->
+    
+  
+    <div class="declare" hidden="hidden"></div>
+  
+        <!-- 添加版权声明 -->
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/">展开全文 >></a>
         </p>
       
 
@@ -375,7 +487,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/计算机，Java//" class="article-tag-list-link color4">计算机，Java</a>
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -489,7 +605,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/计算机，Java//" class="article-tag-list-link color4">计算机，Java</a>
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -598,7 +718,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/计算机，Java//" class="article-tag-list-link color4">计算机，Java</a>
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>

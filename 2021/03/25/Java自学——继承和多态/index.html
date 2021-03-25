@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://trent-liu.github.io">
-  <title>Java自学——对象 | Pigsty</title>
+  <title>Java自学——包以及方法重载、覆盖、隐藏 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对象 new创建对象    与基本数据类型一样，可声明并用new创建对象数组。int[]a&#x3D;new int[10];&#x2F;&#x2F;所有元素缺省初值&#x3D;0   当创建对象数组时，数组元素的缺省初值为null。1234Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向n">
+  <meta name="description" content="继承 利用继承机制（提供了源代码重用机制，提高了开发效率（直接继承已有）同时也提高了软件可靠性：父类的代码如果经过了可靠性测试，我们通过继承机制可放心直接使用，只需要关注子类代码的实现）总的来说，不需要重新写，而且父类可靠，继承下来的子类一定也可靠。 1234567891011121314public class Employee &amp;#123;    public String name;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java自学——对象">
-<meta property="og:url" content="https://trent-liu.github.io/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:title" content="Java自学——包以及方法重载、覆盖、隐藏">
+<meta property="og:url" content="https://trent-liu.github.io/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="对象 new创建对象    与基本数据类型一样，可声明并用new创建对象数组。int[]a&#x3D;new int[10];&#x2F;&#x2F;所有元素缺省初值&#x3D;0   当创建对象数组时，数组元素的缺省初值为null。1234Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向n">
+<meta property="og:description" content="继承 利用继承机制（提供了源代码重用机制，提高了开发效率（直接继承已有）同时也提高了软件可靠性：父类的代码如果经过了可靠性测试，我们通过继承机制可放心直接使用，只需要关注子类代码的实现）总的来说，不需要重新写，而且父类可靠，继承下来的子类一定也可靠。 1234567891011121314public class Employee &amp;#123;    public String name;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-25T12:14:15.000Z">
-<meta property="article:modified_time" content="2021-03-25T14:49:56.402Z">
+<meta property="article:published_time" content="2021-03-25T13:27:15.000Z">
+<meta property="article:modified_time" content="2021-03-25T15:18:39.297Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -200,20 +200,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java自学——对象" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java自学——继承和多态" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java自学——对象
+      Java自学——包以及方法重载、覆盖、隐藏
     </h1>
   
 
         
-        <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2021-03-25T12:14:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+        <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="archive-article-date">
+  	<time datetime="2021-03-25T13:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
 </a>
         
 
@@ -231,47 +231,61 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><ul>
-<li><p>new创建对象  </p>
+        <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ul>
+<li><p>利用继承机制（提供了源代码重用机制，提高了<strong>开发效率</strong>（直接继承已有）同时也提高了软件可靠性：父类的代码如果经过了<strong>可靠性测试，我们通过继承机制可放心直接使用</strong>，只需要关注子类代码的实现）<br>总的来说，不需要重新写，而且父类可靠，继承下来的子类一定也可靠。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Employee &#123;</span><br><span class="line">    public String name;</span><br><span class="line">    public double salary;</span><br><span class="line">    public Date birthDate;</span><br><span class="line">    public String getDetails() &#123;...&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class Manager &#123;</span><br><span class="line">    public String name; &#x2F;&#x2F;同名成员</span><br><span class="line">    public double salary; &#x2F;&#x2F;同名成员</span><br><span class="line">    public Date birthDate; &#x2F;&#x2F;同名成员</span><br><span class="line">    public String department;</span><br><span class="line">    public String getDetails() &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>以上两个类，Manager只比Employee多出了一个，其他的都重复定义。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Employee &#123;</span><br><span class="line">    public String name;</span><br><span class="line">    public double salary;</span><br><span class="line">    public Date birthDate;</span><br><span class="line">    public String getDetails() &#123;...&#125;</span><br><span class="line">&#125;</span><br><span class="line">public class Manager extends Employee &#123;</span><br><span class="line">    public String department;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>继承就可以省去很多麻烦。  </p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class ClassName extends Superclass &#123;  </span><br><span class="line">             class body</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>如果父类是Object，则extends部分可省略（前面的示例代码里，每个的父类都是Object)</p>
+</li>
+<li><p>如果class C1 extends C2，则称C1为子类(subclass)，C2为父类(superclass)。</p>
 <ul>
-<li>与基本数据类型一样，可声明并用new创建对象数组。<br>int[]a=new int[10];//所有元素缺省初值=0  </li>
-<li>当创建对象数组时，数组元素的缺省初值为null。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向null</span><br><span class="line">for(int i &#x3D; 0; i &lt; circleArray.length; i++) &#123;</span><br><span class="line">	circleArray[i] &#x3D; new Circle( );    &#x2F;&#x2F;这时才构造Circle对象，可使用有参构造函数  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
-<span id="more"></span></li>
+<li>子类继承了父类中可访问的数据和方法，子类也可添加新的数据和方法，</li>
+<li>子类不继承父类的<strong>构造函数</strong>。</li>
+<li>一个类只能有一个直接父类（Java不支持多重继承，因为Java的设计者认为没有必要）。</li>
 </ul>
 </li>
-<li><p>对象是引用变量，当new出的对象没有变量来引用时，该对象会由JVM自动回收。</p>
-</li>
-<li><p>对象引用，可以</p>
-<ul>
-<li><p>访问实例变量 c2.radius</p>
-</li>
-<li><p>调用对象的实例方法 c2.rindArea;</p>
-</li>
-<li><p>实例对象也可以访问静态成员和静态方法，但是很不推荐，静态建议用类名来访问。</p>
+<li><p>Java的继承都是公有继承，因此被继承的就是父类，继承的类就是子类。因此父类的成员如果被继承到子类，访问权限不变(public还是public，protected还是protected)<br>因此子类和父类是ISA关系：一个子类对象ISA父类对象</p>
 </li>
 </ul>
-</li>
-<li><p>匿名对象也可访问实例(或静态)成员：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Circle( ).radius&#x3D;2;</span><br></pre></td></tr></table></figure></li>
-<li><p> 在实例方法中有个this引用，代表当前对象(引用当前对象：相当于指针)，因此在实例方法里，可以用this引用访问当前对象成员</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Circle &#123;</span><br><span class="line">    double radius &#x3D; 1.0;</span><br><span class="line"></span><br><span class="line">    Circle() &#123;  </span><br><span class="line">	radius &#x3D; 1.0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Circle(double r) &#123;    &#x2F;&#x2F;this可以省略，this就指当前对象</span><br><span class="line">        this.radius &#x3D; r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    double findArea() &#123;</span><br><span class="line">        return radius * radius * Math.PI;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setRadius(double newRadius)&#123;</span><br><span class="line">        this.radius &#x3D; newRadius;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class TestSimpleCircle &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Circle c1 &#x3D; new Circle();</span><br><span class="line">        System.out.println(&quot;Area &#x3D; &quot; + c1.findArea() + </span><br><span class="line">                &quot;, radius &#x3D; &quot; + c1.radius);   &#x2F;&#x2F;c1调用类中方法，当进入c1对象时，this就自动赋值，变成c1</span><br><span class="line"></span><br><span class="line">        Circle c2 &#x3D; new Circle(10.0);</span><br><span class="line">        System.out.println(&quot;Area &#x3D; &quot; + c2.findArea() + </span><br><span class="line">                &quot;, radius &#x3D; &quot; + c2.radius);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;modify radius</span><br><span class="line">        c2.setRadius(20.0);</span><br><span class="line">        System.out.println(&quot;Area &#x3D; &quot; + c2.findArea() + </span><br><span class="line">                &quot;, radius &#x3D; &quot; + c2.radius);  &#x2F;&#x2F;c2调用，进入对象调用值时，this就自动变成c2</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>this引用指向调用某个方法的当前对象</p>
+<h3 id="设计案例"><a href="#设计案例" class="headerlink" title="设计案例"></a>设计案例</h3><blockquote>
+<p>假设要设计模拟几何对象的类，如圆和矩形，考虑的因素有颜色，是否填充，创建日期，圆的半径，矩形的周长等<br>不要直接就定义Class Circle和Class Rectangle,<strong>先分析几何对象的共同属性和行为</strong>。共同的属性和行为有颜色、是否填充，创建时间，以及这些属性的getter和setter行为。而圆的半径、矩形的长宽不是几何图形共有的属性。<br>可以设计<strong>通用类GeometricObject来模拟共有的属性和方法</strong>。而Circle、Rectangle类通过继承GeometricObject获得共同的属性和行为，同时添加自己特有的属性和行为  </p>
+</blockquote>
+<p>  如下设计一个通用类，定义了一些共同属性和方法,如图形的颜色，是否填充等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class GeometricObject &#123; &#x2F;&#x2F;等价于public class GeometricObject extends Object</span><br><span class="line">    private String color &#x3D; &quot;white&quot;;</span><br><span class="line">    private boolean filled;</span><br><span class="line">    private Date dateCreated; &#x2F;&#x2F;java.util.Date是JDK定义的类，表示日期和时间</span><br><span class="line">    public GeometricObject() &#123; dateCreated &#x3D; new Date();&#125;</span><br><span class="line"></span><br><span class="line">    public String getColor() &#123; return color; &#125;</span><br><span class="line">    public void setColor(String color) &#123; this.color &#x3D; color;&#125;</span><br><span class="line">    public boolean isFilled() &#123; return filled; &#125;</span><br><span class="line">    public void setFilled(boolean filled) &#123; this.filled &#x3D; filled;&#125;</span><br><span class="line">    public Date getDateCreated() &#123;return dateCreated;&#125;</span><br><span class="line"></span><br><span class="line">    @Override &#x2F;&#x2F;覆盖Object类的toString()方法</span><br><span class="line">    public String toString( ) &#123; &#x2F;&#x2F;还应考虑equals，clone</span><br><span class="line">	return &quot;created on &quot; + dateCreated + &quot;\n\tcolor: &quot; + color</span><br><span class="line">				+ &quot; and filled: &quot; + filled;</span><br><span class="line">   &#125;&#x2F;&#x2F;toString方法应该返回一个描述当前对象的有意义的字符串</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如下为这个通用类的继承类，只需要添加一些自己特有的东西就可以。比如圆的半径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Circle extends GeometricObject &#123;</span><br><span class="line">	private double radius; &#x2F;&#x2F;新增属性</span><br><span class="line">	public Circle() &#123; &#125;   </span><br><span class="line">	public Circle(double radius) &#123; this.radius &#x3D; radius; &#125; </span><br><span class="line">	public double getRadius() &#123; return radius; &#125;</span><br><span class="line">	public void setRadius (double radius) &#123; this.radius &#x3D; radius; &#125;</span><br><span class="line"></span><br><span class="line">	public double getArea() &#123;</span><br><span class="line">		return radius * radius * Math.PI;</span><br><span class="line">	&#125;</span><br><span class="line">	public double getDiameter() &#123;</span><br><span class="line">		return 2 * radius;</span><br><span class="line">	&#125;</span><br><span class="line">	public double getPerimeter() &#123;</span><br><span class="line">		return 2 * radius * Math.PI;</span><br><span class="line">	&#125;</span><br><span class="line">       &#x2F;&#x2F;还应考虑equals，clone，toString等函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>父类<br>私有属性： color  filled  dateCreated<br>公有方法： getColor  setColor IsFilled setFilled getDataCreated<br>GeometricObject的私有属性在子类中<br>不可见（即不能在子类里直接访问）<br>但可以通过所继承的get和set<br>方法设置和访问</p>
 <ul>
-<li>在实例方法中，实例变量被同名局部变量或方法形参隐藏，可以通过this.instanceVariable访问实例变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Foo&#123;</span><br><span class="line">   int i &#x3D; 5;</span><br><span class="line">   static double k &#x3D; 0.0;</span><br><span class="line">   void setI(int i)&#123;   &#x2F;&#x2F;i为局部变量，若不加下面的this，调用完后上面i的值不变，</span><br><span class="line">                       &#x2F;&#x2F;this.i指的是上面的i,i则是方法的形参i</span><br><span class="line">      this.i&#x3D; i;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   Foo f1 &#x3D;new Foo();</span><br><span class="line">Foo f2 &#x3D; new Foo();</span><br><span class="line"></span><br><span class="line">f1.setI(10);&#x2F;&#x2F;这时this引用f1</span><br><span class="line">f2.setI(45);&#x2F;&#x2F;这时this引用f2</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>调用当前类的其它构造函数，需防止递归调用。</p>
-</li>
-<li><p>对象的参数传递</p>
-<ul>
-<li>基本数据类型传递的是实际值的拷贝，传值后形参和实参不再相关：修改形参的值，不影响实参。</li>
-<li>引用类型变量传递的是对象的引用，通过形参修改对象object，将改变实参引用的对象object。</li>
-<li>Java无类似C++的&amp;或者C#的ref来修饰方法参数，只能靠形参的声明类型来区分是传值还是传引用，因此一定要区分。</li>
-</ul>
-</li>
+<li>初始化模块<ul>
+<li>初始化块是Java类中可以出现的第四种成员（前三种包括属性、方法、构造函数），分为实例初始化块和静态初始化块。</li>
+<li>实例初始化模块（instance initialization block，IIB）是一个用<strong>大括号括住的语句块</strong>，直接<strong>嵌套于类体中</strong>，不在方法内。</li>
+<li>它的作用就像把它放在了类中<strong>每个构造方法的最开始位置</strong>（也是为了省事，不用每个构造函数中都写一遍）。用于初始化对象。<strong>实例初始化块先于构造函数执行</strong>  （相当于C++成员初始化列表）</li>
+<li>作用：如果<strong>多个构造方法共享一段代码</strong>，并且每个构造方法不会调用其他构造方法，那么可以把这段<strong>公共代码</strong>放在初始化模块中。</li>
+<li>一个类可以有多个初始化模块，模块按照<strong>在类中出现的顺序</strong>执行  </li>
 <li></li>
 </ul>
-
+</li>
+<li>作用</li>
+</ul>
+<ol>
+<li>简化代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Book&#123;</span><br><span class="line">  private static int numOfObjects;</span><br><span class="line">  private String title</span><br><span class="line">  private int id;</span><br><span class="line">  </span><br><span class="line">  public Book(String title)&#123;</span><br><span class="line">    numOfObjects++;    &#x2F;&#x2F;一个</span><br><span class="line">    this.title &#x3D; title;</span><br><span class="line">  &#125;</span><br><span class="line">  public Book(int id)&#123;</span><br><span class="line">    numOfObjects++;  &#x2F;&#x2F;两个</span><br><span class="line">    this.id &#x3D; id</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+和如下等价，只需要将构造函数中公共的部分放到块中。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Book&#123;</span><br><span class="line">  private static int numOfObjects;</span><br><span class="line">  private String title</span><br><span class="line">  private int id;</span><br><span class="line">  public Book(String title)&#123;</span><br><span class="line">    this.title &#x3D; title;</span><br><span class="line">  &#125;</span><br><span class="line">  public Book(int id)&#123;</span><br><span class="line">    this.id &#x3D; id</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &#123;</span><br><span class="line">    numOfObjects++;   &#x2F;&#x2F;只需要这一个</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>截获异常<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class A&#123;</span><br><span class="line">    &#x2F;&#x2F;下面数据成员初始化语句可能会抛出异常，所以下面语句不成立</span><br><span class="line">    private InputStream fs &#x3D; new FileInputStream(new File(“C:\\1.txt”));</span><br><span class="line">    private int i &#x3D; 0； &#x2F;&#x2F;InputStream fs是所有输入流的主线类</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class A&#123;</span><br><span class="line">    &#x2F;&#x2F;在实例初始化块里初始化数据成员可以截获异常</span><br><span class="line">    private InputStream fs &#x3D; null;</span><br><span class="line">    &#123;</span><br><span class="line">      try&#123; fs &#x3D; new FileInputStream(new File(“C:\\1.txt”));&#125;  &#x2F;&#x2F;试图执行，若无此文件会异常。</span><br><span class="line">      catch(Exception e)&#123; …&#125;                  &#x2F;&#x2F;解惑异常</span><br><span class="line">    &#125; 	     &#x2F;&#x2F;任何一种面向对象语言都有try和catch</span><br><span class="line">    public A()&#123; … &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>实例初始化模块最重要的作用是当我们需要写一个内部匿名类时：匿名类不可能有构造函数，这时可以用实例初始化块来初始化数据成员<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">interface ISay&#123; public abstract void sayHello(); &#125;</span><br><span class="line">    public class InstanceInitializationBlockTest &#123;    </span><br><span class="line">        public static void main(String[] args)&#123;        </span><br><span class="line">            ISay say &#x3D; new ISay()        </span><br><span class="line">            &#123;   &#x2F;&#x2F;这里定义了一个实现了ISay接口的匿名类            </span><br><span class="line">            &#x2F;&#x2F;final类型变量一般情况下必须马上初始化，一种例外是：final实例变量可以在构造函数里再初始化。            </span><br><span class="line">            &#x2F;&#x2F;但是匿名类又不可能有构造函数，因此只能利用实例初始化块            </span><br><span class="line">            private final int j;  &#x2F;&#x2F;为了演示实例初始化块的作用，这里特意没有初始化常量j            </span><br><span class="line">            &#123;                </span><br><span class="line">                j &#x3D; 0;  &#x2F;&#x2F;在实例初始化块里初始化j     final类型在实例初始化块中可以后赋值。       </span><br><span class="line">            &#125;            </span><br><span class="line">            @Override            </span><br><span class="line">            public void sayHello() &#123; System.out.println(&quot;Hello&quot;);&#125;        </span><br><span class="line">            &#125;;        </span><br><span class="line">            say.sayHello();    </span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>实例初始化模块只有在创建类的实例时才会调用。</li>
+<li><strong>定义并初始化类的实例变量等价于实例初始化块</strong>：private int id = 0；</li>
+<li>一个类可以有多个实例初始化块，对象被实例化时，模块按照在<strong>类中出现的顺序执行</strong>，构造函数最后运行。</li>
+</ul>
+<h2 id="任何类在设计时应考虑覆盖祖先类Object的如下函数：-equal，clone，toString等。"><a href="#任何类在设计时应考虑覆盖祖先类Object的如下函数：-equal，clone，toString等。" class="headerlink" title="任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。"></a>任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。</h2>
       
            <!-- 添加版权声明 -->
     
@@ -283,7 +297,7 @@
       
       <br>
       <strong>本文链接：</strong>
-      <a href="https://trent-liu.github.io/2021/03/25/Java自学——对象/" title="Java自学——对象" target="_blank">https://trent-liu.github.io/2021/03/25/Java自学——对象/</a>
+      <a href="https://trent-liu.github.io/2021/03/25/Java自学——继承和多态/" title="Java自学——包以及方法重载、覆盖、隐藏" target="_blank">https://trent-liu.github.io/2021/03/25/Java自学——继承和多态/</a>
       <br>
       <strong>版权声明：</strong>
       本作品采用
@@ -404,7 +418,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -418,7 +432,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -428,8 +442,8 @@
     </a>
   
   
-    <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java自学——构造函数</div>
+    <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java自学——对象</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -456,7 +470,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">对象</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">设计案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E4%BD%95%E7%B1%BB%E5%9C%A8%E8%AE%BE%E8%AE%A1%E6%97%B6%E5%BA%94%E8%80%83%E8%99%91%E8%A6%86%E7%9B%96%E7%A5%96%E5%85%88%E7%B1%BBObject%E7%9A%84%E5%A6%82%E4%B8%8B%E5%87%BD%E6%95%B0%EF%BC%9A-equal%EF%BC%8Cclone%EF%BC%8CtoString%E7%AD%89%E3%80%82"><span class="toc-number">2.</span> <span class="toc-text">任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。</span></a></li></ol>
                     </div>
                 </span>
             </div>
