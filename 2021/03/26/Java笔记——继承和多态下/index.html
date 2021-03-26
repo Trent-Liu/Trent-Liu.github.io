@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://trent-liu.github.io">
-  <title>Archives: 2021 | Pigsty</title>
+  <title>Java笔记——继承和多态下 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Pigsty">
-<meta property="og:url" content="https://trent-liu.github.io/archives/2021/index.html">
+  <meta name="description" content="实例方法覆盖 如果子类重新定义了从父类中继承的实例方法，称为方法覆盖(method override)。 仅当父类方法在子类里是可访问的，该实例方法才能被子类覆盖，即父类私有实例方法不能被子类覆盖，父类实例私有方法自动视为final的。 静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被隐藏。 覆盖特性：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java笔记——继承和多态下">
+<meta property="og:url" content="https://trent-liu.github.io/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="实例方法覆盖 如果子类重新定义了从父类中继承的实例方法，称为方法覆盖(method override)。 仅当父类方法在子类里是可访问的，该实例方法才能被子类覆盖，即父类私有实例方法不能被子类覆盖，父类实例私有方法自动视为final的。 静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被隐藏。 覆盖特性：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-26T15:00:15.000Z">
+<meta property="article:modified_time" content="2021-03-26T14:40:02.847Z">
 <meta property="article:author" content="Trent-Liu">
-<meta property="article:tag" content="分享在HUST中的一些学习经历">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="实例方法覆盖">
+<meta property="article:tag" content="Object中的方法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Pigsty" type="application/atom+xml">
@@ -198,36 +202,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java笔记——继承和多态下" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/" class="archive-article-date">
-  	<time datetime="2021-03-26T15:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/">Java笔记——继承和多态下</a>
+    <h1 class="article-title" itemprop="name">
+      Java笔记——继承和多态下
     </h1>
   
 
-        <div class="article-info info-on-right">
+        
+        <a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/" class="archive-article-date">
+  	<time datetime="2021-03-26T15:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
+</a>
+        
+
+        
           
+          
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+        
+          
+          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实例方法覆盖"><a href="#实例方法覆盖" class="headerlink" title="实例方法覆盖"></a>实例方法覆盖</h2><ul>
+<li>如果子类<strong>重新定义</strong>了从父类中继承的实例方法，称为方法覆盖(method override)。<ul>
+<li>仅当父类方法在子类里是<strong>可访问的</strong>，该实例方法<strong>才能被子类覆盖</strong>，即父类<strong>私有</strong>实例方法不能被子类覆盖，父类实例私有方法自动视为final的。</li>
+<li>静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被<strong>隐藏</strong>。</li>
+<li><strong>覆盖特性</strong>：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能通过这个父类型引用变量去访问被覆盖的父类方法(即这时被覆盖的父类方法不可再被发现)。因为实例方法具有多态性（晚期绑定）<ul>
+<li>在子类类体函数中可以使用super调用被覆盖的父类方法。</li>
+</ul>
+</li>
+<li>隐藏特性：指父类的变量（实例变量、静态变量）和静态方法在子类被重新定义，但由于<strong>类的变量和静态方法没有多态性</strong>，因此通过<strong>父类型引用变量访问的一定是父类变量、静态方法</strong>(即被隐藏的可再发现)。</li>
+<li>方法覆盖的哲学涵义：子对象当然可以修改父类的行为（生物进化除了遗传，还有变异）  </li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+<span id="more"></span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;               &#x2F;&#x2F;父类</span><br><span class="line">    public void m() &#123;</span><br><span class="line">        System.out.println(&quot;A&#39;s m&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void s() &#123;</span><br><span class="line">        System.out.println(&quot;A&#39;s s&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A&#123;    &#x2F;&#x2F;子类</span><br><span class="line">    &#x2F;&#x2F;覆盖父类实例方法</span><br><span class="line">    public void m() &#123;</span><br><span class="line">        System.out.println(&quot;B&#39;s m&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;隐藏父类静态方法</span><br><span class="line">    public static void s() &#123;</span><br><span class="line">        System.out.println(&quot;B&#39;s s&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class OverrideDemo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        A o &#x3D; new B();  &#x2F;&#x2F;父类型变量引用子类对象</span><br><span class="line">        o.m();  &#x2F;&#x2F;由于父类实例方法m被子类覆盖，o运行时指向B类对象，由于多态性，执行的是B的m</span><br><span class="line">        o.s();    &#x2F;&#x2F;由于s是静态方法，没有多态性，编译器编译时对象o的声明类型是A，所以执行的是A的s</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>父类型变量o引用了子类对象，通过o调用被覆盖的实例方法m时，调用的一定是子类方法，这时不可能调用到父类的方法m(父类函数不能被发现），因为多态特性。<strong>多态性使得根据new 后面的类型决定调用哪个m</strong>，new后是谁，实例方法就是谁的  </p>
+</blockquote>
+<blockquote>
+<p>静态方法和成员变量没有多态性，因此要<strong>根据声明类型决定调用哪个s</strong>，声明是谁，静态方法就是谁。</p>
+</blockquote>
+<p>因此上面的结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">B&#39;s m</span><br><span class="line">A&#39;s s</span><br></pre></td></tr></table></figure>
+<p>A o = new B();<br>o的实例方法是B的，静态方法是A的</p>
+<blockquote>
+<p>引用变量o有二个类型：声明类型A，实际运行时类型B  </p>
+</blockquote>
+<blockquote>
+<p>判断o.s()执行的是哪个函数按照o的<strong>声明类型</strong>，因为静态函数s<strong>没有多态性</strong>，<br>函数入口地址在<strong>编译时</strong>就确定（早期绑定），而编译时所有变量的类型都按声明类型。  </p>
+</blockquote>
+<blockquote>
+<p>判断o.m()执行的是哪个函数按照o的<strong>实际运行类型</strong>，在<strong>运行时</strong>按照o指向<br>的实际类型B来<strong>重新计算函数入口地址</strong>（晚期绑定。多态性），因此调用的是B的m</p>
+</blockquote>
+<blockquote>
+<p>因此一旦引用变量o指向了B类型对象（A o = new B()），o.m()调用的永远是B的m，再也无法通过o调用A的m，哪怕强制转换都不行： ((A)o).m();调用的还是B的m这就是前面PPT所说的不能再发现。</p>
+</blockquote>
+<p>对上面AB两个类，如果这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> B o &#x3D; new B();</span><br><span class="line"> o.s(); &#x2F;&#x2F;调用B的s，将父类A的s隐藏，即通过B类型的引用变量o是不可能调用A的s</span><br><span class="line">((A)o).s(); &#x2F;&#x2F;通过强制类型转换，可以调用A的s，可以找回。也可以通过类名调用来找回:A.s( );</span><br></pre></td></tr></table></figure>
+<p>这就是被隐藏的变量和静态方法可以再发现</p>
+<p>实例方法覆盖的一个应用：在子类里覆盖父类方法  (父类的toString可以打印颜色，填充等)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  public String toString() &#123;</span><br><span class="line">	return &quot;A circle &quot; + super.toString() </span><br><span class="line">        + &quot;\n\tradius: &quot; + radius;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这样做的好处是Circle对象的基本属性,如color，filled，dateCreated由父类方法打印，Circle对象只负责打印新的属性值  </p>
+</blockquote>
+<h2 id="Object中的方法"><a href="#Object中的方法" class="headerlink" title="Object中的方法"></a>Object中的方法</h2><blockquote>
+<p>任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。</p>
+</blockquote>
+<ul>
+<li>java.lang.Object类是<strong>所有类的祖先类</strong>。如果一个类在声明时没有指定父类，那么这个类的<strong>父类是Object类</strong>。<ul>
+<li>它提供方法如<strong>toString</strong>、<strong>equals</strong>、<strong>getClass</strong>、<em>clone</em>、<em>finalize</em>。前3个为公有，后2个为保护。getClass为final（用于泛型和反射机制，禁止覆盖）。</li>
+<li>equals方法:用于测试两个对象是否相等。<strong>Object类的默认实现是比较两个对象引用是否引用同一个对象。</strong>只是比较引用是否相同，不能真正判断是否相同，引用相同一定相同，但是相同不一定是引用相同， 在很多子类中要覆盖。</li>
+<li>toString方法：返回代表这个对象的字符串。<strong>Object类的默认实现是返回由类名、@和hashCode组成。</strong><br>Circle circle = new Circle();<br>circle.toString();//Circle@15037e5，如果Circle没有覆盖toString<br>Object的toString方法提供的信息不是很有用。因此<strong>通常子类应该覆盖该方法，提供更有意义的信息</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="equals的覆盖"><a href="#equals的覆盖" class="headerlink" title="equals的覆盖"></a>equals的覆盖</h3><ul>
+<li>equals用于判断一个对象同另一个对象的所有成员内容是否相等。覆盖时应考虑：<ul>
+<li>对<strong>基本类型数值</strong>成员。直接使用==判断即可。</li>
+<li>对<strong>引用类型变量</strong>成员。则需要对这些变量成员调用equals判断，不能用==。</li>
+</ul>
+</li>
+<li>覆盖equals函数，最好<strong>同时覆盖hashCode()方法</strong>，该方法返回对象的hashCode值。<ul>
+<li>需要对比的时候，<strong>首先用hashCode去对比</strong>，如果hashCode不一样，则表示这两个对象肯定不相等（也就是不必再用equals()去再对比了）,<strong>如果hashCode相同，此时再用equals()比，如果equals()也相同</strong>，则表示这两个对象是真的相同了，这样既能大大提高了效率也保证了对比的绝对正确性！</li>
+</ul>
+</li>
+<li>覆盖equals函数，首先用instanceof检查参数的类型是否和当前对象的类型一样。</li>
+</ul>
+
+      
+           <!-- 添加版权声明 -->
+    
+  
+    <div class="declare">
+      <strong>本文作者：</strong>
+      
+        Trent-Liu
+      
+      <br>
+      <strong>本文链接：</strong>
+      <a href="https://trent-liu.github.io/2021/03/26/Java笔记——继承和多态下/" title="Java笔记——继承和多态下" target="_blank">https://trent-liu.github.io/2021/03/26/Java笔记——继承和多态下/</a>
+      <br>
+      <strong>版权声明：</strong>
+      本作品采用
+      <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+      进行许可。转载请注明出处！
+      
+        <br>
+        <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+      
+    </div>
+  
+        <!-- 添加版权声明 -->
+  
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>送我一朵小红花<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weipay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -247,7 +377,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -264,375 +394,138 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/26/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="archive-article-date">
-  	<time datetime="2021-03-26T13:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/26/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java笔记——继承和多态上</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/26/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/">Java笔记——继承和多态上</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">super关键字</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">实例初始化模块&静态初始化模块</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96"><span class="toc-number">1.</span> <span class="toc-text">实例方法覆盖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Object中的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E7%9A%84%E8%A6%86%E7%9B%96"><span class="toc-number">2.1.</span> <span class="toc-text">equals的覆盖</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/" class="archive-article-date">
-  	<time datetime="2021-03-25T13:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/">Java自学——包以及方法重载、覆盖、隐藏</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">重载</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">隐藏</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">覆盖</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2021-03-25T12:14:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/">Java自学——对象</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">对象</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">this</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="archive-article-date">
-  	<time datetime="2021-03-25T12:01:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">Java自学——构造函数</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">构造函数</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/23/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="archive-article-date">
-  	<time datetime="2021-03-23T14:07:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/23/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E4%BF%AE%E9%A5%B0%E7%AC%A6/">Java自学——修饰符</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单件模式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">访问控制符</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/23/%E8%87%AA%E8%BF%B0/" class="archive-article-date">
-  	<time datetime="2021-03-23T13:07:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/23/%E8%87%AA%E8%BF%B0/">自述</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">自我介绍</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/自我介绍//" class="article-tag-list-link color5">自我介绍</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
+  
+    <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+var gitalk = new Gitalk({
+  clientID: '81506d8985202387cbbd',
+  clientSecret: '40c6250a001a80f7986e1ec1a375dc2d7e82f7d9',
+  repo: 'Pigsty',
+  owner: 'Trent-Liu',
+  admin: ['Trent-Liu'],
+  id: md5(window.location.pathname),
+  distractionFreeMode: true
+})
+
+gitalk.render('gitalk-container')
+</script>
+
+
 
 
           </div>
@@ -664,8 +557,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
