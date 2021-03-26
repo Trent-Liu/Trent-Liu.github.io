@@ -16,7 +16,7 @@
 <meta property="og:description" content="实例方法覆盖 如果子类重新定义了从父类中继承的实例方法，称为方法覆盖(method override)。 仅当父类方法在子类里是可访问的，该实例方法才能被子类覆盖，即父类私有实例方法不能被子类覆盖，父类实例私有方法自动视为final的。 静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被隐藏。 覆盖特性：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-26T15:00:15.000Z">
-<meta property="article:modified_time" content="2021-03-26T14:40:02.847Z">
+<meta property="article:modified_time" content="2021-03-26T15:01:28.887Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="实例方法覆盖">
@@ -299,8 +299,25 @@
 <li>需要对比的时候，<strong>首先用hashCode去对比</strong>，如果hashCode不一样，则表示这两个对象肯定不相等（也就是不必再用equals()去再对比了）,<strong>如果hashCode相同，此时再用equals()比，如果equals()也相同</strong>，则表示这两个对象是真的相同了，这样既能大大提高了效率也保证了对比的绝对正确性！</li>
 </ul>
 </li>
-<li>覆盖equals函数，首先用instanceof检查参数的类型是否和当前对象的类型一样。</li>
+<li>覆盖equals函数，首先用instanceof检查参数的类型是否和当前对象的类型一样。  </li>
 </ul>
+<p>例如在Circle类中覆盖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object o)&#123;   &#x2F;&#x2F;父类的参数就为Object，覆盖参数必须与父类一致</span><br><span class="line">        if(o instanceof Circle)	&#x2F;&#x2F;应先检查另一对象o的类型 检查参数o的类型是否与当前对象的类型一样。</span><br><span class="line">            return  radius&#x3D;&#x3D;((Circle)o).radius;  &#x2F;&#x2F;o中无radius这个变量，需要强制类型转换</span><br><span class="line">        &#x2F;&#x2F;上面的式子，radius也可以写成this.radius,是c1的radius</span><br><span class="line">        &#x2F;&#x2F;o是c2传进equals时被转换为的Object，需要强制类型转换。</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Circle c1&#x3D; ...;</span><br><span class="line">Circle c2&#x3D; ...;</span><br><span class="line">c1.equals(c2);</span><br><span class="line">&#x2F;&#x2F;c1为Circle，为this引用，在对象中就是Circle</span><br><span class="line">&#x2F;&#x2F;c2在进入函数后被转换为Object类，相当于 Object o&#x3D;c2； 实际上在函数中，o还是有Circle类的各种实例</span><br><span class="line">&#x2F;&#x2F;只不过由于在进入equals时转换成Object，在上文中需要再强制转换为Circle再与this.radius比较</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>hashCode()方法和equal()方法的作用其实一样，在Java里都是用来对比两个对象是否相等一致，那么equal()既然已经能实现对比的功能了，为什么还要hashCode()呢？<br> <br>     因为重写的equal（）里一般比较的比较全面比较复杂，这样效率就比较低，而利用hashCode()进行对比，则只要生成一个hash值进行比较就可以了，效率很高，那么hashCode()既然效率这么高为什么还要equal()呢？<br> <br>           因为hashCode()并不是完全可靠，有时候不同的对象他们生成的hashcode也会一样（生成hash值得公式可能存在的问题），所以hashCode()只能说是大部分时候可靠，并不是绝对可靠，所以我们可以得出：<br> <br>         1.equal()相等的两个对象他们的hashCode()肯定相等，也就是用equal()对比是绝对可靠的。<br>         2.hashCode()相等的两个对象他们的equal()不一定相等，也就是hashCode()不是绝对可靠的。<br> <br>所有对于需要大量并且快速的对比的话如果都用equal()去做显然效率太低，所以解决方式是，每当需要对比的时候，首先用hashCode()去对比，如果hashCode()不一样，则表示这两个对象肯定不相等（也就是不必再用equal()去再对比了）,如果hashCode()相同，此时再对比他们的equal()，如果equal()也相同，则表示这两个对象是真的相同了，这样既能大大提高了效率也保证了对比的绝对正确性！  </p>
+</blockquote>
+<h3 id="clone的覆盖"><a href="#clone的覆盖" class="headerlink" title="clone的覆盖"></a>clone的覆盖</h3><ul>
+<li>要实现一个类的clone方法，首先这个类需要实现Cloneable接口，否则会抛出CloneNotSupportedException异常</li>
+<li>Cloneable接口其实就是一个标记接口，里面没有定义任何接口方法，只是用来标记一个类是否支持克隆：没有实现该接口的类不能克隆</li>
+<li>还要公有覆盖clone方法，即Object类里clone方法是保护的，<strong>子类覆盖这个方法时应该提升为public</strong></li>
+<li>方法里应实现<strong>深拷贝</strong>clone，Object的clone实现是<strong>浅拷贝</strong>。<ul>
+<li>浅拷贝指所有类型都直接赋值=，这就导致数值类型没问题，但是引用类型就不是拷贝，而是指向同一个值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    String j;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">A o1&#x3D;...;</span><br><span class="line">A 02;</span><br><span class="line">o2.i&#x3D;o1.i; &#x2F;&#x2F;值类型可以</span><br><span class="line">02.j&#x3D;o1.j; &#x2F;&#x2F;引用类型不可以，因为这会导致o2.j指向o1.j，而不是拷贝。</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>克隆的深度：要克隆的对象可能包含基本类型数值成员或引用类型变量成员，对于基本类型数值成员使用=赋值即可，对于引用类型成员则需要<strong>进一步嵌套调用该成员的克隆方法</strong>进行赋值。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">o2.j&#x3D;o1.j  &#x2F;&#x2F;错误，引用类型</span><br><span class="line">o2.j&#x3D;o1.j.clone();  &#x2F;&#x2F;实现该成员的克隆方法后</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>未完待续…;</p>
 
       
            <!-- 添加版权声明 -->
@@ -339,6 +356,11 @@
                 <span class="tooltip-inner">
                   <p class="reward-p"><i class="icon icon-quo-left"></i>送我一朵小红花<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
                     
                     
                     <div class="reward-box-item">
@@ -457,7 +479,7 @@
 <nav id="article-nav">
   
   
-    <a href="/2021/03/26/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Java笔记——继承和多态上</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -485,7 +507,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96"><span class="toc-number">1.</span> <span class="toc-text">实例方法覆盖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Object中的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E7%9A%84%E8%A6%86%E7%9B%96"><span class="toc-number">2.1.</span> <span class="toc-text">equals的覆盖</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96"><span class="toc-number">1.</span> <span class="toc-text">实例方法覆盖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Object中的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#equals%E7%9A%84%E8%A6%86%E7%9B%96"><span class="toc-number">2.1.</span> <span class="toc-text">equals的覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clone%E7%9A%84%E8%A6%86%E7%9B%96"><span class="toc-number">2.2.</span> <span class="toc-text">clone的覆盖</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -637,22 +659,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">实例方法覆盖</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Object中的方法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">重载</a>
               </li>
              
@@ -665,7 +671,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">实例方法覆盖</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Object中的方法</a>
               </li>
              
               <li class="article-tag-list-item">
