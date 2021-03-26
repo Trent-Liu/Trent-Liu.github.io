@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://trent-liu.github.io">
-  <title>Java自学——继承和多态 | Pigsty</title>
+  <title>Java笔记——继承和多态 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="继承 利用继承机制（提供了源代码重用机制，提高了开发效率（直接继承已有）同时也提高了软件可靠性：父类的代码如果经过了可靠性测试，我们通过继承机制可放心直接使用，只需要关注子类代码的实现）总的来说，不需要重新写，而且父类可靠，继承下来的子类一定也可靠。 1234567891011121314public class Employee &amp;#123;    public String name;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java自学——继承和多态">
-<meta property="og:url" content="https://trent-liu.github.io/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/index.html">
+<meta property="og:title" content="Java笔记——继承和多态">
+<meta property="og:url" content="https://trent-liu.github.io/2021/03/26/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/index.html">
 <meta property="og:site_name" content="Pigsty">
 <meta property="og:description" content="继承 利用继承机制（提供了源代码重用机制，提高了开发效率（直接继承已有）同时也提高了软件可靠性：父类的代码如果经过了可靠性测试，我们通过继承机制可放心直接使用，只需要关注子类代码的实现）总的来说，不需要重新写，而且父类可靠，继承下来的子类一定也可靠。 1234567891011121314public class Employee &amp;#123;    public String name;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-25T13:27:15.000Z">
-<meta property="article:modified_time" content="2021-03-25T15:22:04.456Z">
+<meta property="article:published_time" content="2021-03-26T13:00:15.000Z">
+<meta property="article:modified_time" content="2021-03-26T13:42:03.223Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="继承，多态">
+<meta property="article:tag" content="继承">
+<meta property="article:tag" content="super关键字">
+<meta property="article:tag" content="实例初始化模块&amp;静态初始化模块">
+<meta property="article:tag" content="实例方法覆盖">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Pigsty" type="application/atom+xml">
@@ -208,13 +211,13 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java自学——继承和多态
+      Java笔记——继承和多态
     </h1>
   
 
         
-        <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="archive-article-date">
-  	<time datetime="2021-03-25T13:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+        <a href="/2021/03/26/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="archive-article-date">
+  	<time datetime="2021-03-26T13:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
 </a>
         
 
@@ -262,17 +265,19 @@
 <p>如下为这个通用类的继承类，只需要添加一些自己特有的东西就可以。比如圆的半径</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class Circle extends GeometricObject &#123;</span><br><span class="line">	private double radius; &#x2F;&#x2F;新增属性</span><br><span class="line">	public Circle() &#123; &#125;   </span><br><span class="line">	public Circle(double radius) &#123; this.radius &#x3D; radius; &#125; </span><br><span class="line">	public double getRadius() &#123; return radius; &#125;</span><br><span class="line">	public void setRadius (double radius) &#123; this.radius &#x3D; radius; &#125;</span><br><span class="line"></span><br><span class="line">	public double getArea() &#123;</span><br><span class="line">		return radius * radius * Math.PI;</span><br><span class="line">	&#125;</span><br><span class="line">	public double getDiameter() &#123;</span><br><span class="line">		return 2 * radius;</span><br><span class="line">	&#125;</span><br><span class="line">	public double getPerimeter() &#123;</span><br><span class="line">		return 2 * radius * Math.PI;</span><br><span class="line">	&#125;</span><br><span class="line">       &#x2F;&#x2F;还应考虑equals，clone，toString等函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>父类<br>私有属性： color  filled  dateCreated<br>公有方法： getColor  setColor IsFilled setFilled getDataCreated<br>GeometricObject的私有属性在子类中<br>不可见（即不能在子类里直接访问）<br>但可以通过所继承的get和set<br>方法设置和访问</p>
-<ul>
-<li>初始化模块<ul>
-<li>初始化块是Java类中可以出现的第四种成员（前三种包括属性、方法、构造函数），分为实例初始化块和静态初始化块。</li>
-<li>实例初始化模块（instance initialization block，IIB）是一个用<strong>大括号括住的语句块</strong>，直接<strong>嵌套于类体中</strong>，不在方法内。</li>
-<li>它的作用就像把它放在了类中<strong>每个构造方法的最开始位置</strong>（也是为了省事，不用每个构造函数中都写一遍）。用于初始化对象。<strong>实例初始化块先于构造函数执行</strong>  （相当于C++成员初始化列表）</li>
-<li>作用：如果<strong>多个构造方法共享一段代码</strong>，并且每个构造方法不会调用其他构造方法，那么可以把这段<strong>公共代码</strong>放在初始化模块中。</li>
-<li>一个类可以有多个初始化模块，模块按照<strong>在类中出现的顺序</strong>执行  </li>
-<li></li>
-</ul>
+<h2 id="实例初始化模块"><a href="#实例初始化模块" class="headerlink" title="实例初始化模块"></a>实例初始化模块</h2><ul>
+<li><p>初始化块是Java类中可以出现的第四种成员（前三种包括属性、方法、构造函数），分为实例初始化块和静态初始化块。</p>
 </li>
-<li>作用</li>
+<li><p>实例初始化模块（instance initialization block，IIB）是一个用<strong>大括号括住的语句块</strong>，直接<strong>嵌套于类体中</strong>，不在方法内。</p>
+</li>
+<li><p>它的作用就像把它放在了类中<strong>每个构造方法的最开始位置</strong>（也是为了省事，不用每个构造函数中都写一遍）。用于初始化对象。<strong>实例初始化块先于构造函数执行</strong>  （相当于C++成员初始化列表）</p>
+</li>
+<li><p>作用：如果<strong>多个构造方法共享一段代码</strong>，并且每个构造方法不会调用其他构造方法，那么可以把这段<strong>公共代码</strong>放在初始化模块中。</p>
+</li>
+<li><p>一个类可以有多个初始化模块，模块按照<strong>在类中出现的顺序</strong>执行  </p>
+</li>
+<li><p>作用</p>
+</li>
 </ul>
 <ol>
 <li>简化代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class Book&#123;</span><br><span class="line">  private static int numOfObjects;</span><br><span class="line">  private String title</span><br><span class="line">  private int id;</span><br><span class="line">  </span><br><span class="line">  public Book(String title)&#123;</span><br><span class="line">    numOfObjects++;    &#x2F;&#x2F;一个</span><br><span class="line">    this.title &#x3D; title;</span><br><span class="line">  &#125;</span><br><span class="line">  public Book(int id)&#123;</span><br><span class="line">    numOfObjects++;  &#x2F;&#x2F;两个</span><br><span class="line">    this.id &#x3D; id</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -284,8 +289,140 @@
 <ul>
 <li>实例初始化模块只有在创建类的实例时才会调用。</li>
 <li><strong>定义并初始化类的实例变量等价于实例初始化块</strong>：private int id = 0；</li>
-<li>一个类可以有多个实例初始化块，对象被实例化时，模块按照在<strong>类中出现的顺序执行</strong>，构造函数最后运行。</li>
+<li>一个类可以有多个实例初始化块，对象被实例化时，模块按照在<strong>类中出现的顺序执行</strong>，构造函数最后运行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Book&#123;</span><br><span class="line">  private int id &#x3D; 0;		&#x2F;&#x2F;执行次序：1</span><br><span class="line">  </span><br><span class="line">  public Book(int id)&#123;		&#x2F;&#x2F;执行次序：4，构造函数最后运行</span><br><span class="line">    this.id &#x3D; id		</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &#123;</span><br><span class="line">     &#x2F;&#x2F;实例初始化块			&#x2F;&#x2F;执行次序：2</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &#123;</span><br><span class="line">     &#x2F;&#x2F;实例初始化块			&#x2F;&#x2F;执行次序：3</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
+<h2 id="静态初始化模块"><a href="#静态初始化模块" class="headerlink" title="静态初始化模块"></a>静态初始化模块</h2><ul>
+<li>静态初始化模块是由<strong>static修饰</strong>的初始化模块{}，只能访问类的静态成员，并且在JVM的Class Loader将类装入内存时调用。<strong>（类的装入和类的实例化是两个不同步骤，首先是将类装入内存，然后再实例化类的对象）。</strong></li>
+<li>在类体里直接定义静态变量相当于静态初始化块<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class A&#123;</span><br><span class="line">   &#x2F;&#x2F;类的属性和方法定义</span><br><span class="line">   &#123;</span><br><span class="line">     &#x2F;&#x2F;实例初始化模块	</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   static &#123;</span><br><span class="line">     &#x2F;&#x2F;静态初始化模块</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static int i &#x3D; 0;&#x2F;&#x2F;直接定义静态变量相当于静态初始化块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>一个类可以有多个静态初始化块，类被加载时，这些模块按照在类中出现的顺序执行<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class Book&#123;</span><br><span class="line">  private static int id &#x3D; 0;	&#x2F;&#x2F;执行次序：1</span><br><span class="line">  public Book(int id)&#123;</span><br><span class="line">	 this.id &#x3D; id 		    		</span><br><span class="line">  &#125;</span><br><span class="line">  static &#123;</span><br><span class="line">     &#x2F;&#x2F;静态初始化块			&#x2F;&#x2F;执行次序：2</span><br><span class="line">  &#125;</span><br><span class="line">  static &#123;</span><br><span class="line">     &#x2F;&#x2F;静态初始化块			&#x2F;&#x2F;执行次序：3</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="初始化模块的执行顺序"><a href="#初始化模块的执行顺序" class="headerlink" title="初始化模块的执行顺序"></a>初始化模块的执行顺序</h2><ul>
+<li><p>第一次使用类时装入类（此时是装载进JVM）</p>
+<ul>
+<li>如果父类没装入则<strong>首先装入父类</strong>，这是个<strong>递归</strong>的过程，直到继承链上所有祖先类全部装入</li>
+<li>装入一个类时，类的<strong>静态数据成员和静态初始化模块</strong>按它们在类中出现的顺序执行</li>
+</ul>
+</li>
+<li><p>实例化类的对象</p>
+<ul>
+<li>首先<strong>构造父类对象</strong>，这是个<strong>递归</strong>过程，直到继承链上所有祖先类的对象构造好</li>
+<li>构造一个类的对象时，按在类中出现的顺序执行<strong>实例数据成员的初始化及实例初始化模块</strong></li>
+<li>执行<strong>构造函数</strong>函数体</li>
+</ul>
+</li>
+<li><p>注意，如下语句等价</p>
+<blockquote>
+<p>如果声明类的实例变量时具有初始值，如</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double radius &#x3D; 5.0；</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>变量的初始化就像在实例初始化模块中一样，即等价于</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">double radius；</span><br><span class="line">&#123; radius &#x3D; 5.0；&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果声明类的静态变量时具有初始值，如</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static int numOfObjects &#x3D; 0；</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>变量的初始化就像在静态初始化模块中一样，即等价于</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static int numOfObjects；</span><br><span class="line">static&#123; numOfObjects &#x3D; 0；&#125;</span><br></pre></td></tr></table></figure>
+<p>在Java中，变量声明的位置是任意的（不同于C，定义必须在声明之后。）<br>因此声明类的实例/静态变量就相当于一个初始化块，按照实例和静态先后顺序完成。</p>
+</li>
+<li><p>下面举出一个案例，查看各个代码块的运行先后顺序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class N&#123;      &#x2F;&#x2F;子类N</span><br><span class="line">    N()&#123; 	System.out.println(&quot;(6) &quot;); &#125;   &#x2F;&#x2F;子类N的构造函数</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(&quot;(5) &quot;);    &#x2F;&#x2F;子类N的实例初始化模块</span><br><span class="line">    &#125;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;(3) &quot;);   &#x2F;&#x2F;子类N的静态初始化模块</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class M extends N&#123;     &#x2F;&#x2F;父类M</span><br><span class="line">    M()&#123; 	System.out.println(&quot;(8) &quot;); &#125;    &#x2F;&#x2F;父类M的构造函数</span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(&quot;(7) &quot;);     &#x2F;&#x2F;父类M的实例初始化模块</span><br><span class="line">    &#125;</span><br><span class="line">    static &#123;</span><br><span class="line">        System.out.println(&quot;(4) &quot;);     &#x2F;&#x2F;父类M的静态初始化模块</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class InitDemo&#123;</span><br><span class="line">    InitDemo()&#123;</span><br><span class="line">        new M();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">	  System.out.println(&quot;(1) &quot;);     &#x2F;&#x2F;main中第一条语句</span><br><span class="line">	  new InitDemo();               &#x2F;&#x2F;实例化主类方法</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(&quot;(2) &quot;);   &#x2F;&#x2F;主类的实例初始化模块</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static&#123;</span><br><span class="line">        System.out.println(&quot;(0) &quot;);    &#x2F;&#x2F;主类的静态初始化模块</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>分析：<br>主类InitDemo是程序入口，因此先加载JVM，将Init的静态先初始化，输出0;<br>主类还没有实例化，因此还不需要运行主类的实例化初始模块，进入main，打印1;<br>new InitDemo()，实例化主类，运行主类的实例化初始模块，打印2;<br>主类的实例化初始模块都运行后，进入主类的构造函数。<br>构造函数中要第一次实例化M，而M是N的子类，因此要先将父类N的静态初始化模块加载，打印3<br>父类的静态模块加载后，加载子类M的静态模块，打印4<br>由于实例化了M，因此先实例化父类N，先加载父类N的实例初始化块，再加载父类N的构造函数，打印5，6。<br>实例化父类完成后，回到子类M，同样先实例化初始化块，再构造函数，打印7，8  </p>
+</li>
+</ul>
+<p><strong>总之，若实例化一个类，那就按最原始的祖先直到它的顺序，加载它们的静态初始化块，递归完成。</strong><br><strong>然后由于实例化，需要不断实例化父类，还是按照最原始的祖先直到它的顺序，加载实例初始化块和构造函数</strong></p>
+<p>在IDEA代码运行后得到结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files\Java\jdk-15.0.2\bin\java.exe&quot; &quot;-javaagent:E:\Download\IDEA\IntelliJ IDEA Community Edition 2020.3.2\lib\idea_rt.jar&#x3D;2843:E:\Download\IDEA\IntelliJ IDEA Community Edition 2020.3.2\bin&quot; -Dfile.encoding&#x3D;UTF-8 -classpath E:\eclipse-workspace\JavaTest\out\production\Module01 InitDemo</span><br><span class="line">(0) </span><br><span class="line">(1) </span><br><span class="line">(2) </span><br><span class="line">(3) </span><br><span class="line">(4) </span><br><span class="line">(5) </span><br><span class="line">(6) </span><br><span class="line">(7) </span><br><span class="line">(8) </span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="super关键字"><a href="#super关键字" class="headerlink" title="super关键字"></a>super关键字</h2><ul>
+<li><p>利用super可以显式调用父类的构造函数  </p>
+<ul>
+<li>super(parametersopt)调用<strong>父类的的构造函数</strong>。  </li>
+<li>必须是子类构造函数的**第1条且仅1条语句(先构造父类)**。  </li>
+<li>如果子类构造函数中没有显式地调用父类的构造函数，那么将<strong>自动调用父类不带参数的构造函数。</strong></li>
+<li>父类的构造函数在子类构造函数<strong>之前</strong>执行。  </li>
+</ul>
+</li>
+<li><p>访问父类的<strong>成员（包括静态和实例成员）</strong></p>
+<ul>
+<li>super<strong>不能用于静态</strong>上下文（即静态方法和静态初始化块里不能使用super），this也不能用于静态上下文</li>
+<li>super.data（如果父类属性在子类可访问）</li>
+<li>super.method(parameters)（如果父类方法在子类可访问（无限定词））</li>
+<li>不能使用super.super.p()这样的super<strong>链</strong>（Java创造者认为没有必要）  </li>
+</ul>
+</li>
+<li><p>如果子类中没有显式地调用父类的构造函数，那么将<strong>自动调用父类不带参数的构造函数</strong>，因为编译器会偷偷地在子类构造函数第一条语句前加上super() ；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public A（）&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public A（）&#123;</span><br><span class="line">  super();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public A（double d）&#123;</span><br><span class="line">&#x2F;&#x2F;some statements</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public A（double d）&#123;</span><br><span class="line">  super();</span><br><span class="line">&#x2F;&#x2F;some statements</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在任何情况下，构造一个类的实例时，会沿着继承链调用所有父类的构造方法，这叫构造方法链。<br>![avatar](img/Java自学——继承和多态/屏幕截图 2021-03-26 205200.png)</li>
+</ul>
+<ol>
+<li>如果一个类自定义了构造函数（不管有无参数），编译器不会自动加上无参构造函数。</li>
+<li>如果一个类没定义任何构造函数，编译器会<strong>自动地</strong>加上无参构造函数。</li>
+<li>编译器在为子类添加无参构造函数时，函数体里会用super( )默认调用父类的无参构造函数，<strong>如果找不到父类无参构造函数，则编译器为子类添加无参构造函数失败</strong>，编译报错。</li>
+<li>如果一个类定义了带参数的构造函数，一定别忘了<strong>定义一个无参的构造函数</strong>，原因是：由于系统不会再自动加上无参构造函数，就造成该类没有无参构造函数</li>
+</ol>
+<ul>
+<li>如果父类没有无参构造函数，那么子类构造函数里若调用父类无参构造函数就会编译出错。<br>以下为实例及解释<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Fruit &#123;</span><br><span class="line">	public Fruit(String name) &#123;      &#x2F;&#x2F;父类，没有无参构造函数</span><br><span class="line">		System.out.println(&quot;调用Fruit的构造函数&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Apple extends Fruit &#123; &#125;       &#x2F;&#x2F;子类</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>//编译器为Apple提供无参构造函数时出错<br>//子类Apple没定义任何构造函数，故编译为子类提供无参构造函数Apple();<br>//提供的Apple()会调用父类无参构造函数Fruit(),因下列原因无法调用：<br>//父类定义了有参构造函数，所以编译没有为父类提供无参Fruit( )。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="实例方法覆盖"><a href="#实例方法覆盖" class="headerlink" title="实例方法覆盖"></a>实例方法覆盖</h2><ul>
+<li>如果子类<strong>重新定义</strong>了从父类中继承的实例方法，称为方法覆盖(method override)。<ul>
+<li>仅当父类方法在子类里是<strong>可访问的</strong>，该实例方法<strong>才能被子类覆盖</strong>，即父类<strong>私有</strong>实例方法不能被子类覆盖，父类实例私有方法自动视为final的。</li>
+<li>静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被<strong>隐藏</strong>。</li>
+<li><strong>覆盖特性</strong>：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能通过这个父类型引用变量去访问被覆盖的父类方法(即这时被覆盖的父类方法不可再被发现)。因为实例方法具有多态性（晚期绑定）<ul>
+<li>在子类类体函数中可以使用super调用被覆盖的父类方法。</li>
+</ul>
+</li>
+<li>隐藏特性：指父类的变量（实例变量、静态变量）和静态方法在子类被重新定义，但由于<strong>类的变量和静态方法没有多态性</strong>，因此通过<strong>父类型引用变量访问的一定是父类变量、静态方法</strong>(即被隐藏的可再发现)。</li>
+<li>方法覆盖的哲学涵义：子对象当然可以修改父类的行为（生物进化除了遗传，还有变异）  </li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;               &#x2F;&#x2F;父类</span><br><span class="line">    public void m() &#123;</span><br><span class="line">        System.out.println(&quot;A&#39;s m&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void s() &#123;</span><br><span class="line">        System.out.println(&quot;A&#39;s s&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A&#123;    &#x2F;&#x2F;子类</span><br><span class="line">    &#x2F;&#x2F;覆盖父类实例方法</span><br><span class="line">    public void m() &#123;</span><br><span class="line">        System.out.println(&quot;B&#39;s m&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;隐藏父类静态方法</span><br><span class="line">    public static void s() &#123;</span><br><span class="line">        System.out.println(&quot;B&#39;s s&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class OverrideDemo &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        A o &#x3D; new B();  &#x2F;&#x2F;父类型变量引用子类对象</span><br><span class="line">        o.m();  &#x2F;&#x2F;由于父类实例方法m被子类覆盖，o运行时指向B类对象，由于多态性，执行的是B的m</span><br><span class="line">        o.s();    &#x2F;&#x2F;由于s是静态方法，没有多态性，编译器编译时对象o的声明类型是A，所以执行的是A的s</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>父类型变量o引用了子类对象，通过o调用被覆盖的实例方法m时，调用的一定是子类方法，这时不可能调用到父类的方法m(父类函数不能被发现），因为多态特性。<strong>多态性使得根据new 后面的类型决定调用哪个m</strong>，new后是谁，实例方法就是谁的  </p>
+</blockquote>
+<blockquote>
+<p>静态方法和成员变量没有多态性，因此要<strong>根据声明类型决定调用哪个s</strong>，声明是谁，静态方法就是谁。</p>
+</blockquote>
+<p>因此上面的结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">B&#39;s m</span><br><span class="line">A&#39;s s</span><br></pre></td></tr></table></figure>
+<p>A o = new B();<br>o的实例方法是B的，静态方法是A的</p>
+<blockquote>
+<p>引用变量o有二个类型：声明类型A，实际运行时类型B  </p>
+</blockquote>
+<blockquote>
+<p>判断o.s()执行的是哪个函数按照o的<strong>声明类型</strong>，因为静态函数s<strong>没有多态性</strong>，<br>函数入口地址在<strong>编译时</strong>就确定（早期绑定），而编译时所有变量的类型都按声明类型。  </p>
+</blockquote>
+<blockquote>
+<p>判断o.m()执行的是哪个函数按照o的<strong>实际运行类型</strong>，在<strong>运行时</strong>按照o指向<br>的实际类型B来<strong>重新计算函数入口地址</strong>（晚期绑定。多态性），因此调用的是B的m</p>
+</blockquote>
+<blockquote>
+<p>因此一旦引用变量o指向了B类型对象（A o = new B()），o.m()调用的永远是B的m，再也无法通过o调用A的m，哪怕强制转换都不行： ((A)o).m();调用的还是B的m这就是前面PPT所说的不能再发现。</p>
+</blockquote>
+<p>对上面AB两个类，如果这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> B o &#x3D; new B();</span><br><span class="line"> o.s(); &#x2F;&#x2F;调用B的s，将父类A的s隐藏，即通过B类型的引用变量o是不可能调用A的s</span><br><span class="line">((A)o).s(); &#x2F;&#x2F;通过强制类型转换，可以调用A的s，可以找回。也可以通过类名调用来找回:A.s( );</span><br></pre></td></tr></table></figure>
+<p>这就是被隐藏的变量和静态方法可以再发现</p>
+<p>实例方法覆盖的一个应用：在子类里覆盖父类方法  (父类的toString可以打印颜色，填充等)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  public String toString() &#123;</span><br><span class="line">	return &quot;A circle &quot; + super.toString() </span><br><span class="line">        + &quot;\n\tradius: &quot; + radius;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这样做的好处是Circle对象的基本属性,如color，filled，dateCreated由父类方法打印，Circle对象只负责打印新的属性值</p>
+</blockquote>
 <h2 id="任何类在设计时应考虑覆盖祖先类Object的如下函数：-equal，clone，toString等。"><a href="#任何类在设计时应考虑覆盖祖先类Object的如下函数：-equal，clone，toString等。" class="headerlink" title="任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。"></a>任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。</h2>
       
            <!-- 添加版权声明 -->
@@ -298,7 +435,7 @@
       
       <br>
       <strong>本文链接：</strong>
-      <a href="https://trent-liu.github.io/2021/03/25/Java自学——继承和多态/" title="Java自学——继承和多态" target="_blank">https://trent-liu.github.io/2021/03/25/Java自学——继承和多态/</a>
+      <a href="https://trent-liu.github.io/2021/03/26/Java自学——继承和多态/" title="Java笔记——继承和多态" target="_blank">https://trent-liu.github.io/2021/03/26/Java自学——继承和多态/</a>
       <br>
       <strong>版权声明：</strong>
       本作品采用
@@ -352,7 +489,19 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">继承，多态</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">super关键字</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">实例初始化模块&静态初始化模块</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">实例方法覆盖</a>
         		</li>
       		
 		</ul>
@@ -423,7 +572,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/26/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -437,18 +586,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java自学——包以及方法重载、覆盖、隐藏
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java自学——对象</div>
+    <a href="/2021/03/25/Java%E8%87%AA%E5%AD%A6%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java自学——包以及方法重载、覆盖、隐藏</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -475,7 +615,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">设计案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E4%BD%95%E7%B1%BB%E5%9C%A8%E8%AE%BE%E8%AE%A1%E6%97%B6%E5%BA%94%E8%80%83%E8%99%91%E8%A6%86%E7%9B%96%E7%A5%96%E5%85%88%E7%B1%BBObject%E7%9A%84%E5%A6%82%E4%B8%8B%E5%87%BD%E6%95%B0%EF%BC%9A-equal%EF%BC%8Cclone%EF%BC%8CtoString%E7%AD%89%E3%80%82"><span class="toc-number">2.</span> <span class="toc-text">任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">1.</span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A1%88%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">设计案例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A8%A1%E5%9D%97"><span class="toc-number">2.</span> <span class="toc-text">实例初始化模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A8%A1%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">静态初始化模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A8%A1%E5%9D%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.</span> <span class="toc-text">初始化模块的执行顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#super%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">5.</span> <span class="toc-text">super关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96"><span class="toc-number">6.</span> <span class="toc-text">实例方法覆盖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E4%BD%95%E7%B1%BB%E5%9C%A8%E8%AE%BE%E8%AE%A1%E6%97%B6%E5%BA%94%E8%80%83%E8%99%91%E8%A6%86%E7%9B%96%E7%A5%96%E5%85%88%E7%B1%BBObject%E7%9A%84%E5%A6%82%E4%B8%8B%E5%87%BD%E6%95%B0%EF%BC%9A-equal%EF%BC%8Cclone%EF%BC%8CtoString%E7%AD%89%E3%80%82"><span class="toc-number">7.</span> <span class="toc-text">任何类在设计时应考虑覆盖祖先类Object的如下函数： equal，clone，toString等。</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -619,14 +759,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">重载</a>
               </li>
              
@@ -639,7 +771,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -651,11 +787,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">继承，多态</a>
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">自我介绍</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">实例方法覆盖</a>
               </li>
             
             <div class="clearfix"></div>
