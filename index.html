@@ -215,7 +215,14 @@
         <a href="/2021/03/28/Java%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8C%85/" class="archive-article-date">
   	<time datetime="2021-03-28T02:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -233,162 +240,9 @@
 <h2 id="import-javax-swing-JOptionPane；-弹窗输入字符串"><a href="#import-javax-swing-JOptionPane；-弹窗输入字符串" class="headerlink" title="import javax.swing.JOptionPane； //弹窗输入字符串"></a>import javax.swing.JOptionPane； //弹窗输入字符串</h2><blockquote>
 <p>String string = JOptionPane.showInputDialog(<br>null,”Prompting Message”,”Dialog Title”,JOptionPane.QUESTION_MESSAGE));<br>由从控制台输入变为弹出一个弹窗输入  </p>
 </blockquote>
-<h2 id="import-java-lang-Math；-数学函数-定义了一些常量如PI，E"><a href="#import-java-lang-Math；-数学函数-定义了一些常量如PI，E" class="headerlink" title="import java.lang.Math；  //数学函数   定义了一些常量如PI，E"></a>import java.lang.Math；  //数学函数   定义了一些常量如PI，E</h2><ul>
-<li>Math中的三角函数<ul>
-<li>sin(radians)–返回以弧度为单位的角度的三角正弦函数值  </li>
-<li>cos(radians)–返回以弧度为单位的角度的三角余弦函数值</li>
-<li>tan(radians)–返回以弧度为单位的角度的三角正切函数值</li>
-<li>toRandians(degree)–将以度为单位的角度值转化为以弧度表示</li>
-<li>toDegrees(radians)–将以弧度为单位的角度值转化为以度表示</li>
-<li>sain(a)–返回以弧度为单位的角度的反三角正弦函数值</li>
-<li>acos(a)–返回以弧度为单位的角度的反三角余弦函数值</li>
-<li>atan(a)–返回以弧度为单位的角度的反三角正切函数值</li>
-</ul>
-</li>
-<li>Math中的指数函数<ul>
-<li>exp(x)–返回e的x次方</li>
-<li>log(x)–返回x的自然底数</li>
-<li>log10(x)–返回x的以10为底的对数</li>
-<li>pow(a,b)–返回a的b次方</li>
-<li>sqrt(x)–对于x&gt;=0的数字，返回x的平方根</li>
-</ul>
-</li>
-<li>Math中的取整函数<ul>
-<li>ceil(x)–x向上取整为它最接近的整数，该整数作为一个双精度值返回</li>
-<li>floor(x)–x向下取整为它最接近的整数，该整数作为一个双精度值返回</li>
-<li>rint(x)–x取整为它最接近的整数，如果x与两个整数的距离相等，偶数的整数作为一个双精度值返回</li>
-<li>round(x)–如果x是单精度数，返回(int) Math.floor(x+0.5);如果x是双精度数，返回(long)Math.floor(x+0.5)</li>
-</ul>
-</li>
-<li><strong>Math中的随机数</strong><br>  Math.random方法生成[0.0,1.0)之间的double类型的随机数，可以用它写出简单的任意范围的随机数  </li>
-</ul>
-<ol>
-<li><strong>生成整数</strong><br> <code>a+(int)(Math.random()*b)</code><br> 返回[a,a+b)  <strong>不包括b</strong><br> <code>a+(int)(Math.random()*(b+1))</code><br> 返回[a,a+b]  </li>
-<li><strong>生成随机字符</strong><br> Java采用<strong>UniCode编码</strong>，0000到FFFF，生成随机字符就是生成0到65535之间的随机数<br> <code>(int)(Math.random()*(65535+1))</code><br> 随机生成所有的字符<br> <code>(char)(&#39;a&#39;+(int)(Math.random()*(&#39;z&#39;-&#39;a&#39;+1)))</code><br> 随机生成’a’-‘z’之间的字符<br> 随机生成别的区间字符的同理  </li>
-</ol>
-<blockquote>
-<p>Java为每个基本类型实现了对应的包装类，char类型的包装类是Character类。包装类的对象为引用类型，不是值类型</p>
-</blockquote>
-<h2 id="Character类"><a href="#Character类" class="headerlink" title="Character类"></a>Character类</h2><ol>
-<li>将char类型的数据封装成对象  </li>
-<li>包含处理字符的方法和常量  <ul>
-<li>isDigit方法判断一个字符是否是数字</li>
-<li>isLetter方法判断一个字符是否是字母</li>
-<li>isLetterOrDigit方法判断一个字符是否是字母或数字</li>
-<li>isLowerCase方法判断一个字符是否是小写</li>
-<li>isUpperCase方法判断一个字符是否是大写</li>
-<li>toLowerCase方法将一个字符转换成小写</li>
-<li>toUpperCase方法将一个字符转换成大写</li>
-</ul>
-</li>
-</ol>
-<h2 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h2><p>是一个final类，不能被继承<br>java.lang.String表示一个固定长度的字符串序列，实例化后其内容不能改<br>按照规范来说，创建一个字符串应该是<br><code>String newString=new String(stringLiteral);   //存入堆中</code><br>由于字符串经常使用，java提供了创建字符串的简写形式<br><code>String newString =stringLiteral;   //存入常量池中</code></p>
-<p><code>String m4 = &quot;Wel&quot; +new String(&quot;come&quot;)； //存入堆中，只要new的使用就存入堆中</code><br><img src="/.io//Java/1.png" alt="avatar"><br>intern()方法——堆-&gt;常量池<br><img src="/.io//Java/2.png" alt="avatar"><br>改变字符串的值，实际上是改变了指向，并没有在原有的基础上修改</p>
-<ul>
-<li><strong>字符串的比较</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s&#x3D;&quot;Welcome to Java&quot;;   &#x2F;&#x2F;常量池</span><br><span class="line">String s1&#x3D;new String(&quot;Welcome to Java&quot;);   &#x2F;&#x2F;堆</span><br></pre></td></tr></table></figure>
-如果直接比较s==s1，返回为false，因为比较的是指向的是不是一个内容，显然不是  </li>
-</ul>
-<ol>
-<li><strong>equals</strong> 比较两个字符串是否包含相同的内容，这时候就可以s.equals(s1),返回值为TRUE，表示内容相同。  </li>
-<li><strong>equalsIgnoreCase</strong>忽略大小写比较内容是否相同  </li>
-<li><strong>regionMatch</strong>比较部分内容是否相同   </li>
-</ol>
-<p><strong>s2.regionMatches(11,s0,0,4)</strong> 要给定两个串的起始位置和长度<br>4. <strong>startsWith</strong>判断是否以某个字符串开始<br>5. <strong>endsWith</strong>判断是否以某个字符串结束<br>6. <strong>compareTo</strong>方法用于比较两个字符串的大小，即第一个不同字符串的差值（字典序）。<br>**s1.compareTo(s2)**，相同返回0，s1&gt;s2返回小于0的值，反之。</p>
-<ul>
-<li><p><strong>字符串长度</strong><br>调用length()方法可以获取字符串的长度  </p>
-</li>
-<li><p><em>message.length()</em>* 返回长度   </p>
-</li>
-<li><p>获取单个字符   </p>
-</li>
-<li><p><em>charAt(index)*</em> 方法可以获取指定位置的字符。<strong>index必须在0——s.length-1之间。</strong><br><img src="/.io//Java/3.png" alt="avatar">  </p>
-</li>
-<li><p><strong>连接字符串</strong>  </p>
-</li>
-</ul>
-<ol>
-<li><strong>concat</strong>方法用于连接两个字符串<br><code>String s3=s1.concat(s2);</code></li>
-<li>(+)连接<br><code>String s3=s1+s2;</code>  </li>
-</ol>
-<p><strong>s1+s2+s3等价于s1.concat(s2).concat(s3)</strong><br>连接操作返回一个新得字符串，因为String类型的实例内容不可修改。  </p>
-<ul>
-<li><p><strong>截取子串</strong>  </p>
-</li>
-<li><p><em>substring</em>* 用于截取字符串的一部分，返回新字符串<br><code>public String substring(int beginIndex,int endIndex)</code><br>返回字符串的子串。子串从beginIndex开始，直到endIndex-1<br>或者只写beginIndex，就从beginIndex字符开始直到结尾。</p>
-</li>
-<li><p><strong>字符串转换</strong>  </p>
-</li>
-<li><p>*toLowerCase**将字符串转换成小写,得到新串  </p>
-</li>
-<li><p><em>toUpperCase</em>* 大写  </p>
-</li>
-<li><p><em>trim</em>* 删除两端空格  </p>
-</li>
-<li><p>*replace**字符替换<br><code>s1.replace(&quot;Java&quot;,&quot;HTML&quot;) 将s1中的Java换成HTML</code></p>
-</li>
-<li><p>查找字符或字符串  </p>
-</li>
-<li><p>*indexOf**返回字符串中字符或字符串匹配的位置，返回-1表示未找到。  </p>
-</li>
-<li><p>*lastIndexOf**返回字符串中字符或字符串最后出现的位置，返回-1表示未找到   </p>
-</li>
-<li><p><strong>字符数组和字符串之间的转换</strong>  </p>
-</li>
-</ul>
-<p><strong>toChararray</strong>将字符串转换成字符数组</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s&#x3D;&quot;Java&quot;;</span><br><span class="line">char[] charArray&#x3D;s.toCharArray(); &#x2F;&#x2F;charArray.length&#x3D;4</span><br></pre></td></tr></table></figure>
-<p> <strong>将字符数组转换成字符串</strong>  </p>
-<ol>
-<li>使用String的构造函数，可同时初始化<br><code>new String(new char[]&#123;&#39;J&#39;,&#39;a&#39;,&#39;v&#39;,&#39;a&#39;&#125;);</code>  </li>
-<li>使用valueOf方法：静态方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String.valueOf(new char[]&#123;&#39;J&#39;,&#39;a&#39;,&#39;v&#39;,&#39;a&#39;&#125;);</span><br><span class="line">String.vaueOf(2.34); &#x2F;&#x2F;2.34转&quot;2.34&quot;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li><strong>基本数据类型和字符串之间的转换</strong>  </li>
-<li>*valueOf**方法将基本数据类型转换为字符串。例如  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s1&#x3D;String.valueOf(1.0); &#x2F;&#x2F;&quot;1.0&quot;</span><br><span class="line">String s2&#x3D;String.valueOf(true);  &#x2F;&#x2F;&quot;true&quot;</span><br></pre></td></tr></table></figure>
-字符串转换为基本类型：利用<strong>包装类</strong>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Double.parseDouble(str)</span><br><span class="line">Integer.parseInt(str)</span><br><span class="line">Boolean.parseBoolean(str)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<blockquote>
-<p>String类一旦初始化完成，字符串就是不可修改的<br>StringBuilder与StringBuffer(final类)初始化后还可以修改字符串<br>StringBuffer修改缓冲区的方法是同步（synchronized）的，更适合多线程环境。<br>StringBuilder线程不安全，与StringBuffer工作机制类似。<br>由于可修改字符串， StringBuilder 与StringBuffer 增加了String类没有的一些函数，例如：append、insert、delete、replace、reverse、setCharAt等。<br>仅以StringBuilder为例：<br>StringBuilder  stringMy=new StringBuilder( );<br>StringMy.append(“Welcome to”);<br>      StringMy.append(“ Java”);  </p>
-</blockquote>
-<h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><ul>
-<li>修改StringBuffer中的字符串<ul>
-<li><strong>追加</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer bf &#x3D; new StringBuffer();</span><br><span class="line">bf.append(“Welcome”);</span><br><span class="line">bf.append(‘ ‘);</span><br><span class="line">bf.append(“to ”);</span><br><span class="line">bf.append(“Java”);</span><br><span class="line">System.out.println(bf.toString()); &#x2F;&#x2F;Welcome to Java</span><br></pre></td></tr></table></figure>
-上式中的toString是将StringBuffer类型转化为String类型  </li>
-<li>*toString()**:从缓存区返回字符串</li>
-<li><strong>插入</strong><br><code>bf.insert(11,”HTML and ”) //Welcome to HTML and JAVA</code>  </li>
-<li><strong>删除</strong>：Welcome to Java<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bf.delete(8,11); &#x2F;&#x2F;Welcome Java,将第8到第10删除，不含11</span><br><span class="line">bf.deleteCharAt(8);&#x2F;&#x2F;Welcome o Java 删除第8个</span><br><span class="line">bf.reverse(); &#x2F;&#x2F;avaJ ot emocleW 字符串反转</span><br><span class="line">bf.replace（11，15，“HTML”）;&#x2F;&#x2F;Welcome to HTML，第11到第14替换，不含15</span><br><span class="line">bf.setCharAt(0,’w’);&#x2F;&#x2F;welcome to Java</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>所有对StringBuffer对象内容进行修改的方法，都返回指向相同StringBuffer对象的引用<br>StringBuffer bf = new StringBuffer();<br>StringBuffer bf1 = bf.append(“Welcome “);<br>StringBuffer bf2 = bf.append(“to “);<br>StringBuffer bf3 = bf.append(“Java”);<br>assert bf==bf1 &amp;&amp; bf==bf2 &amp;&amp; bf == bf3;<br>因此以上语句可以直接写成：<br>bf.append(“Welcome “).append(“to “).append(“Java”);  </p>
-</blockquote>
-<p><strong>toString()</strong>: 从缓冲区返回字符串<br>**capacity()**：返回缓冲区容量。length &lt;= capacity<br>    当字符串长度超过缓冲区容量，capacity会自动增加<br>**length()**：返回缓冲区中字符数量<br>**setLength(newLength)**：设置缓冲区长度<br>**charAt(index)**：返回下标为index的字符  </p>
-<ul>
-<li>StringBuffer实例<br>编写程序，检查回文。<br>解决方案<br>创建一个新的StringBuffer，将字符串的字母和数字添加到StringBuffer中，返回过滤后的String对象。<br>翻转过滤后的字符串，并与过滤后的字符串进行比较，如果内容相同则是回文。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isPalindrome(String s) &#123;		</span><br><span class="line">		</span><br><span class="line">&#x2F;&#x2F; Create a new string that is the reversal of s</span><br><span class="line">	String s2 &#x3D; reverse(s);		</span><br><span class="line">&#x2F;&#x2F; Compare if the reversal is the same as the original string		return s2.equals(s);	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static String reverse(String s) &#123;		</span><br><span class="line">	StringBuffer strBuf &#x3D; new StringBuffer(s);		</span><br><span class="line">	strBuf.reverse();		</span><br><span class="line">	return strBuf.toString();	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><strong>arrayRefVar.length</strong>  直接求数组长度  </p>
-<ul>
-<li>复制数组的方法</li>
-</ul>
-<ol>
-<li>使用<strong>循环</strong>来复制每个元素  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int[ ] sourceArray &#x3D; &#123;2,3,1,5,10&#125;;</span><br><span class="line">int[ ] targetArray &#x3D; new int[sourceArray.length];</span><br><span class="line">for(int i &#x3D; 0; i &lt; sourceArray.length; i++)&#123;</span><br><span class="line">	targetArray[i] &#x3D; sourceArray[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用 <strong>System.arraycopy</strong><br>前提： sourceArray和targetArray都已经实例化好  </li>
-</ol>
-<p><code>arraycopy(sourceArray,srcPos,targetArray,tarPos,length)</code><br>原数组下标为几的元素开始，目标数组从几开始，长度</p>
-<p><code>System.arraycopy(sourcearray,0,targetArray,0,sourceArray.length)</code>  </p>
-<ol start="3">
-<li>数组<strong>克隆</strong><br>int [] targetArray=sourceArray.clone()  直接初始化。  </li>
-</ol>
-<ul>
-<li>java.util.Array类包括各种静态方法，其中实现了数组的<strong>排序和查找</strong></li>
-</ul>
-<p><strong>排序</strong><br><code>double[] numbers=&#123;6.0,4.4,1.9,2.9&#125;;</code><br>java.util.Arrays.sort(numbers);  //直接在原数组排序</p>
-<p><strong>二分查找</strong>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int [] list&#x3D;&#123;2,4,7,10,45,50&#125;  </span><br><span class="line">int index&#x3D;java.util.Arrays.binarySearch(list,11)</span><br></pre></td></tr></table></figure>
-
-
-
+        
+          <a class="article-more-a" href="/2021/03/28/Java%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8C%85/#more">more >></a>
+        
       
            <!-- 添加版权声明 -->
     
@@ -494,7 +348,14 @@
         <a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/" class="archive-article-date">
   	<time datetime="2021-03-26T15:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -620,7 +481,14 @@
         <a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" class="archive-article-date">
   	<time datetime="2021-03-26T13:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -739,7 +607,14 @@
         <a href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/" class="archive-article-date">
   	<time datetime="2021-03-25T13:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -866,7 +741,14 @@
         <a href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
   	<time datetime="2021-03-25T12:14:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -983,7 +865,14 @@
         <a href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="archive-article-date">
   	<time datetime="2021-03-25T12:01:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -1105,7 +994,14 @@
         <a href="/2021/03/23/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="archive-article-date">
   	<time datetime="2021-03-23T14:07:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -1226,7 +1122,14 @@
         <a href="/2021/03/23/%E8%87%AA%E8%BF%B0/" class="archive-article-date">
   	<time datetime="2021-03-23T13:07:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-23</time>
 </a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
         
+        <!-- 添加完成 -->
+
+
 
         
           
@@ -1430,6 +1333,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">重载</a>
               </li>
              
@@ -1442,23 +1353,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
