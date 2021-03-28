@@ -6,23 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://trent-liu.github.io">
-  <title>Java笔记——包以及方法重载、覆盖、隐藏 | Pigsty</title>
+  <title>Java的常用包 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="包 包除了起到名字空间的作用外，还有个很重要的作用：提供了package一级的访问权限控制（在Java里，成员访问控制权限除了公有、保护、私有，还多了包一级的访问控制；类的访问控制除了public外，也多了包一级的访问控制） 包的命名习惯: 将Internet域名作为包名 （但级别顺序相反），这样的好处是避免包名的重复 org.apache.tools.zip cn.edu.hust.cs.jav">
+  <meta name="description" content="import java.util,Scanner; &#x2F;&#x2F;输入的一种方式 Scanner scanner &#x3D;new Scanner(System.in);double d&#x3D;scanner.nextDouble();&#x2F;&#x2F;举例，输入double型nextInt() nextFloat() next()分别输入int，float，String  import javax.swing.JOptionPane">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java笔记——包以及方法重载、覆盖、隐藏">
-<meta property="og:url" content="https://trent-liu.github.io/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/index.html">
+<meta property="og:title" content="Java的常用包">
+<meta property="og:url" content="https://trent-liu.github.io/2021/03/28/Java%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8C%85/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="包 包除了起到名字空间的作用外，还有个很重要的作用：提供了package一级的访问权限控制（在Java里，成员访问控制权限除了公有、保护、私有，还多了包一级的访问控制；类的访问控制除了public外，也多了包一级的访问控制） 包的命名习惯: 将Internet域名作为包名 （但级别顺序相反），这样的好处是避免包名的重复 org.apache.tools.zip cn.edu.hust.cs.jav">
+<meta property="og:description" content="import java.util,Scanner; &#x2F;&#x2F;输入的一种方式 Scanner scanner &#x3D;new Scanner(System.in);double d&#x3D;scanner.nextDouble();&#x2F;&#x2F;举例，输入double型nextInt() nextFloat() next()分别输入int，float，String  import javax.swing.JOptionPane">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-25T13:27:15.000Z">
-<meta property="article:modified_time" content="2021-03-26T15:01:42.178Z">
+<meta property="og:image" content="https://trent-liu.github.io/.io//Java/1.png">
+<meta property="og:image" content="https://trent-liu.github.io/.io//Java/2.png">
+<meta property="og:image" content="https://trent-liu.github.io/.io//Java/3.png">
+<meta property="article:published_time" content="2021-03-28T02:00:15.000Z">
+<meta property="article:modified_time" content="2021-03-28T03:09:57.974Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="重载">
-<meta property="article:tag" content="隐藏">
-<meta property="article:tag" content="覆盖">
+<meta property="article:tag" content="常用的包">
+<meta property="article:tag" content="String">
+<meta property="article:tag" content="StringBuffer">
+<meta property="article:tag" content="随机数，数组">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://trent-liu.github.io/.io//Java/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Pigsty" type="application/atom+xml">
   
@@ -203,20 +208,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java笔记——包以及方法重载、覆盖、隐藏" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java的一些常用的包" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java笔记——包以及方法重载、覆盖、隐藏
+      Java的常用包
     </h1>
   
 
         
-        <a href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/" class="archive-article-date">
-  	<time datetime="2021-03-25T13:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+        <a href="/2021/03/28/Java%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8C%85/" class="archive-article-date">
+  	<time datetime="2021-03-28T02:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-28</time>
 </a>
         
 
@@ -234,24 +239,167 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><ul>
-<li>包除了起到名字空间的作用外，还有个很重要的作用：提供了package一级的访问权限控制（在Java里，成员访问控制权限除了公有、保护、私有，还多了包一级的访问控制；类的访问控制除了public外，也多了包一级的访问控制）</li>
-<li>包的命名习惯: 将Internet域名作为包名 （但级别顺序相反），这样的好处是<strong>避免包名的重复</strong><ul>
-<li>org.apache.tools.zip</li>
-<li>cn.edu.hust.cs.javacourse.ch1</li>
-<li>如果所有程序员都遵循这种包命名的约定，包名重复的可能性就非常小</li>
+        <h2 id="import-java-util-Scanner-输入的一种方式"><a href="#import-java-util-Scanner-输入的一种方式" class="headerlink" title="import java.util,Scanner; //输入的一种方式"></a>import java.util,Scanner; //输入的一种方式</h2><blockquote>
+<p>Scanner scanner =new Scanner(System.in);<br>double d=scanner.nextDouble();//举例，输入double型<br>nextInt() nextFloat() next()分别输入int，float，String</p>
+</blockquote>
+<h2 id="import-javax-swing-JOptionPane；-弹窗输入字符串"><a href="#import-javax-swing-JOptionPane；-弹窗输入字符串" class="headerlink" title="import javax.swing.JOptionPane； //弹窗输入字符串"></a>import javax.swing.JOptionPane； //弹窗输入字符串</h2><blockquote>
+<p>String string = JOptionPane.showInputDialog(<br>null,”Prompting Message”,”Dialog Title”,JOptionPane.QUESTION_MESSAGE));<br>由从控制台输入变为弹出一个弹窗输入  </p>
+</blockquote>
+<h2 id="import-java-lang-Math；-数学函数-定义了一些常量如PI，E"><a href="#import-java-lang-Math；-数学函数-定义了一些常量如PI，E" class="headerlink" title="import java.lang.Math；  //数学函数   定义了一些常量如PI，E"></a>import java.lang.Math；  //数学函数   定义了一些常量如PI，E</h2><ul>
+<li>Math中的三角函数<ul>
+<li>sin(radians)–返回以弧度为单位的角度的三角正弦函数值  </li>
+<li>cos(radians)–返回以弧度为单位的角度的三角余弦函数值</li>
+<li>tan(radians)–返回以弧度为单位的角度的三角正切函数值</li>
+<li>toRandians(degree)–将以度为单位的角度值转化为以弧度表示</li>
+<li>toDegrees(radians)–将以弧度为单位的角度值转化为以度表示</li>
+<li>sain(a)–返回以弧度为单位的角度的反三角正弦函数值</li>
+<li>acos(a)–返回以弧度为单位的角度的反三角余弦函数值</li>
+<li>atan(a)–返回以弧度为单位的角度的反三角正切函数值</li>
+</ul>
+</li>
+<li>Math中的指数函数<ul>
+<li>exp(x)–返回e的x次方</li>
+<li>log(x)–返回x的自然底数</li>
+<li>log10(x)–返回x的以10为底的对数</li>
+<li>pow(a,b)–返回a的b次方</li>
+<li>sqrt(x)–对于x&gt;=0的数字，返回x的平方根</li>
+</ul>
+</li>
+<li>Math中的取整函数<ul>
+<li>ceil(x)–x向上取整为它最接近的整数，该整数作为一个双精度值返回</li>
+<li>floor(x)–x向下取整为它最接近的整数，该整数作为一个双精度值返回</li>
+<li>rint(x)–x取整为它最接近的整数，如果x与两个整数的距离相等，偶数的整数作为一个双精度值返回</li>
+<li>round(x)–如果x是单精度数，返回(int) Math.floor(x+0.5);如果x是双精度数，返回(long)Math.floor(x+0.5)</li>
+</ul>
+</li>
+<li><strong>Math中的随机数</strong><br>  Math.random方法生成[0.0,1.0)之间的double类型的随机数，可以用它写出简单的任意范围的随机数  </li>
+</ul>
+<ol>
+<li><strong>生成整数</strong><br> <code>a+(int)(Math.random()*b)</code><br> 返回[a,a+b)  <strong>不包括b</strong><br> <code>a+(int)(Math.random()*(b+1))</code><br> 返回[a,a+b]  </li>
+<li><strong>生成随机字符</strong><br> Java采用<strong>UniCode编码</strong>，0000到FFFF，生成随机字符就是生成0到65535之间的随机数<br> <code>(int)(Math.random()*(65535+1))</code><br> 随机生成所有的字符<br> <code>(char)(&#39;a&#39;+(int)(Math.random()*(&#39;z&#39;-&#39;a&#39;+1)))</code><br> 随机生成’a’-‘z’之间的字符<br> 随机生成别的区间字符的同理  </li>
+</ol>
+<blockquote>
+<p>Java为每个基本类型实现了对应的包装类，char类型的包装类是Character类。包装类的对象为引用类型，不是值类型</p>
+</blockquote>
+<h2 id="Character类"><a href="#Character类" class="headerlink" title="Character类"></a>Character类</h2><ol>
+<li>将char类型的数据封装成对象  </li>
+<li>包含处理字符的方法和常量  <ul>
+<li>isDigit方法判断一个字符是否是数字</li>
+<li>isLetter方法判断一个字符是否是字母</li>
+<li>isLetterOrDigit方法判断一个字符是否是字母或数字</li>
+<li>isLowerCase方法判断一个字符是否是小写</li>
+<li>isUpperCase方法判断一个字符是否是大写</li>
+<li>toLowerCase方法将一个字符转换成小写</li>
+<li>toUpperCase方法将一个字符转换成大写</li>
+</ul>
+</li>
+</ol>
+<h2 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h2><p>是一个final类，不能被继承<br>java.lang.String表示一个固定长度的字符串序列，实例化后其内容不能改<br>按照规范来说，创建一个字符串应该是<br><code>String newString=new String(stringLiteral);   //存入堆中</code><br>由于字符串经常使用，java提供了创建字符串的简写形式<br><code>String newString =stringLiteral;   //存入常量池中</code></p>
+<p><code>String m4 = &quot;Wel&quot; +new String(&quot;come&quot;)； //存入堆中，只要new的使用就存入堆中</code><br><img src="/.io//Java/1.png" alt="avatar"><br>intern()方法——堆-&gt;常量池<br><img src="/.io//Java/2.png" alt="avatar"><br>改变字符串的值，实际上是改变了指向，并没有在原有的基础上修改</p>
+<ul>
+<li><strong>字符串的比较</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s&#x3D;&quot;Welcome to Java&quot;;   &#x2F;&#x2F;常量池</span><br><span class="line">String s1&#x3D;new String(&quot;Welcome to Java&quot;);   &#x2F;&#x2F;堆</span><br></pre></td></tr></table></figure>
+如果直接比较s==s1，返回为false，因为比较的是指向的是不是一个内容，显然不是  </li>
+</ul>
+<ol>
+<li><strong>equals</strong> 比较两个字符串是否包含相同的内容，这时候就可以s.equals(s1),返回值为TRUE，表示内容相同。  </li>
+<li><strong>equalsIgnoreCase</strong>忽略大小写比较内容是否相同  </li>
+<li><strong>regionMatch</strong>比较部分内容是否相同   </li>
+</ol>
+<p><strong>s2.regionMatches(11,s0,0,4)</strong> 要给定两个串的起始位置和长度<br>4. <strong>startsWith</strong>判断是否以某个字符串开始<br>5. <strong>endsWith</strong>判断是否以某个字符串结束<br>6. <strong>compareTo</strong>方法用于比较两个字符串的大小，即第一个不同字符串的差值（字典序）。<br>**s1.compareTo(s2)**，相同返回0，s1&gt;s2返回小于0的值，反之。</p>
+<ul>
+<li><p><strong>字符串长度</strong><br>调用length()方法可以获取字符串的长度  </p>
+</li>
+<li><p><em>message.length()</em>* 返回长度   </p>
+</li>
+<li><p>获取单个字符   </p>
+</li>
+<li><p><em>charAt(index)*</em> 方法可以获取指定位置的字符。<strong>index必须在0——s.length-1之间。</strong><br><img src="/.io//Java/3.png" alt="avatar">  </p>
+</li>
+<li><p><strong>连接字符串</strong>  </p>
+</li>
+</ul>
+<ol>
+<li><strong>concat</strong>方法用于连接两个字符串<br><code>String s3=s1.concat(s2);</code></li>
+<li>(+)连接<br><code>String s3=s1+s2;</code>  </li>
+</ol>
+<p><strong>s1+s2+s3等价于s1.concat(s2).concat(s3)</strong><br>连接操作返回一个新得字符串，因为String类型的实例内容不可修改。  </p>
+<ul>
+<li><p><strong>截取子串</strong>  </p>
+</li>
+<li><p><em>substring</em>* 用于截取字符串的一部分，返回新字符串<br><code>public String substring(int beginIndex,int endIndex)</code><br>返回字符串的子串。子串从beginIndex开始，直到endIndex-1<br>或者只写beginIndex，就从beginIndex字符开始直到结尾。</p>
+</li>
+<li><p><strong>字符串转换</strong>  </p>
+</li>
+<li><p>*toLowerCase**将字符串转换成小写,得到新串  </p>
+</li>
+<li><p><em>toUpperCase</em>* 大写  </p>
+</li>
+<li><p><em>trim</em>* 删除两端空格  </p>
+</li>
+<li><p>*replace**字符替换<br><code>s1.replace(&quot;Java&quot;,&quot;HTML&quot;) 将s1中的Java换成HTML</code></p>
+</li>
+<li><p>查找字符或字符串  </p>
+</li>
+<li><p>*indexOf**返回字符串中字符或字符串匹配的位置，返回-1表示未找到。  </p>
+</li>
+<li><p>*lastIndexOf**返回字符串中字符或字符串最后出现的位置，返回-1表示未找到   </p>
+</li>
+<li><p><strong>字符数组和字符串之间的转换</strong>  </p>
+</li>
+</ul>
+<p><strong>toChararray</strong>将字符串转换成字符数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s&#x3D;&quot;Java&quot;;</span><br><span class="line">char[] charArray&#x3D;s.toCharArray(); &#x2F;&#x2F;charArray.length&#x3D;4</span><br></pre></td></tr></table></figure>
+<p> <strong>将字符数组转换成字符串</strong>  </p>
+<ol>
+<li>使用String的构造函数，可同时初始化<br><code>new String(new char[]&#123;&#39;J&#39;,&#39;a&#39;,&#39;v&#39;,&#39;a&#39;&#125;);</code>  </li>
+<li>使用valueOf方法：静态方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String.valueOf(new char[]&#123;&#39;J&#39;,&#39;a&#39;,&#39;v&#39;,&#39;a&#39;&#125;);</span><br><span class="line">String.vaueOf(2.34); &#x2F;&#x2F;2.34转&quot;2.34&quot;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><strong>基本数据类型和字符串之间的转换</strong>  </li>
+<li>*valueOf**方法将基本数据类型转换为字符串。例如  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String s1&#x3D;String.valueOf(1.0); &#x2F;&#x2F;&quot;1.0&quot;</span><br><span class="line">String s2&#x3D;String.valueOf(true);  &#x2F;&#x2F;&quot;true&quot;</span><br></pre></td></tr></table></figure>
+字符串转换为基本类型：利用<strong>包装类</strong>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Double.parseDouble(str)</span><br><span class="line">Integer.parseInt(str)</span><br><span class="line">Boolean.parseBoolean(str)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>String类一旦初始化完成，字符串就是不可修改的<br>StringBuilder与StringBuffer(final类)初始化后还可以修改字符串<br>StringBuffer修改缓冲区的方法是同步（synchronized）的，更适合多线程环境。<br>StringBuilder线程不安全，与StringBuffer工作机制类似。<br>由于可修改字符串， StringBuilder 与StringBuffer 增加了String类没有的一些函数，例如：append、insert、delete、replace、reverse、setCharAt等。<br>仅以StringBuilder为例：<br>StringBuilder  stringMy=new StringBuilder( );<br>StringMy.append(“Welcome to”);<br>      StringMy.append(“ Java”);  </p>
+</blockquote>
+<h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><ul>
+<li>修改StringBuffer中的字符串<ul>
+<li><strong>追加</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">StringBuffer bf &#x3D; new StringBuffer();</span><br><span class="line">bf.append(“Welcome”);</span><br><span class="line">bf.append(‘ ‘);</span><br><span class="line">bf.append(“to ”);</span><br><span class="line">bf.append(“Java”);</span><br><span class="line">System.out.println(bf.toString()); &#x2F;&#x2F;Welcome to Java</span><br></pre></td></tr></table></figure>
+上式中的toString是将StringBuffer类型转化为String类型  </li>
+<li>*toString()**:从缓存区返回字符串</li>
+<li><strong>插入</strong><br><code>bf.insert(11,”HTML and ”) //Welcome to HTML and JAVA</code>  </li>
+<li><strong>删除</strong>：Welcome to Java<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bf.delete(8,11); &#x2F;&#x2F;Welcome Java,将第8到第10删除，不含11</span><br><span class="line">bf.deleteCharAt(8);&#x2F;&#x2F;Welcome o Java 删除第8个</span><br><span class="line">bf.reverse(); &#x2F;&#x2F;avaJ ot emocleW 字符串反转</span><br><span class="line">bf.replace（11，15，“HTML”）;&#x2F;&#x2F;Welcome to HTML，第11到第14替换，不含15</span><br><span class="line">bf.setCharAt(0,’w’);&#x2F;&#x2F;welcome to Java</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
-<h2 id="方法的重载、覆盖、隐藏"><a href="#方法的重载、覆盖、隐藏" class="headerlink" title="方法的重载、覆盖、隐藏"></a>方法的重载、覆盖、隐藏</h2><ul>
-<li>方法重载：同一个类中、或者父类子类中的多个方法具有<strong>相同的名字</strong>，但这些方法具有<strong>不同的参数列表</strong>(不含返回类型，即<strong>无法以返回类型</strong>作为方法重载的区分标准）<span id="more"></span></li>
-<li>方法覆盖和方法隐藏：发生在<strong>父类和子类</strong>之间，<strong>前提是继承</strong>。子类中定义的方法与父类中的方法具有<strong>相同的方法名字、相同的参数列表、相同的返回类型</strong>（也允许子类中方法的返回类型是父类中方法返回类型的子类。<ul>
-<li>方法覆盖：实例方法</li>
-<li>方法隐藏：静态方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class A &#123;</span><br><span class="line">    public void m(int x, int y) &#123;&#125;</span><br><span class="line">    public void m(double x, double y) &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;下面语句报错m(int,int)已经定义, 重载函数不能通过返回类型区分</span><br><span class="line">&#x2F;&#x2F;    public int m(int x, int y) &#123; return 0;&#125;; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class B extends A&#123; &#x2F;&#x2F;B继承了A</span><br><span class="line">    public void m(float x, float y) &#123; &#125; &#x2F;&#x2F;重载了父类的m(int,int)和m(double,double)</span><br><span class="line">    public void m(int x, int y) &#123;&#125; &#x2F;&#x2F;覆盖了父类的void m(int,int)，注意连返回类型都必须一致</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;注意下面这个语句报错，既不是覆盖（与父类的void m(int,int)返回类型不一样）</span><br><span class="line">    &#x2F;&#x2F; 也不是合法的重载（和父类的m(int,int)参数完全一样，只是返回类型不一致</span><br><span class="line">&#x2F;&#x2F;    public int m(int x, int y) &#123;&#125; &#x2F;&#x2F;错误</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;子类定义了新的重载函数int m()</span><br><span class="line">    public int m()&#123;return 0;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-C++重载会报错，不认为子类定义会覆盖父类。<br>final关键字修饰的方法不可以被覆盖或隐藏。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class A&#123;</span><br><span class="line">    public void m1()&#123; &#125;</span><br><span class="line">    public final void m2() &#123; &#125;</span><br><span class="line"></span><br><span class="line">    public static void m3() &#123; &#125;</span><br><span class="line">    public final static void m4() &#123; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class B extends A&#123;</span><br><span class="line">    &#x2F;&#x2F;覆盖父类A的void  m1()</span><br><span class="line">    public void m1()&#123; &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;下面语句报错，不能覆盖父类的final 方法</span><br><span class="line">&#x2F;&#x2F;    public void m2()&#123; &#125;</span><br><span class="line"></span><br><span class="line">    public static void m3() &#123; &#125; &#x2F;&#x2F;隐藏了父类的static void m3()</span><br><span class="line">    &#x2F;&#x2F;下面语句报错，父类final 静态方法不能被子类隐藏</span><br><span class="line">&#x2F;&#x2F;    public static void m4() &#123; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<blockquote>
+<p>所有对StringBuffer对象内容进行修改的方法，都返回指向相同StringBuffer对象的引用<br>StringBuffer bf = new StringBuffer();<br>StringBuffer bf1 = bf.append(“Welcome “);<br>StringBuffer bf2 = bf.append(“to “);<br>StringBuffer bf3 = bf.append(“Java”);<br>assert bf==bf1 &amp;&amp; bf==bf2 &amp;&amp; bf == bf3;<br>因此以上语句可以直接写成：<br>bf.append(“Welcome “).append(“to “).append(“Java”);  </p>
+</blockquote>
+<p><strong>toString()</strong>: 从缓冲区返回字符串<br>**capacity()**：返回缓冲区容量。length &lt;= capacity<br>    当字符串长度超过缓冲区容量，capacity会自动增加<br>**length()**：返回缓冲区中字符数量<br>**setLength(newLength)**：设置缓冲区长度<br>**charAt(index)**：返回下标为index的字符  </p>
+<ul>
+<li>StringBuffer实例<br>编写程序，检查回文。<br>解决方案<br>创建一个新的StringBuffer，将字符串的字母和数字添加到StringBuffer中，返回过滤后的String对象。<br>翻转过滤后的字符串，并与过滤后的字符串进行比较，如果内容相同则是回文。  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public static boolean isPalindrome(String s) &#123;		</span><br><span class="line">		</span><br><span class="line">&#x2F;&#x2F; Create a new string that is the reversal of s</span><br><span class="line">	String s2 &#x3D; reverse(s);		</span><br><span class="line">&#x2F;&#x2F; Compare if the reversal is the same as the original string		return s2.equals(s);	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static String reverse(String s) &#123;		</span><br><span class="line">	StringBuffer strBuf &#x3D; new StringBuffer(s);		</span><br><span class="line">	strBuf.reverse();		</span><br><span class="line">	return strBuf.toString();	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-</li>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p><strong>arrayRefVar.length</strong>  直接求数组长度  </p>
+<ul>
+<li>复制数组的方法</li>
 </ul>
+<ol>
+<li>使用<strong>循环</strong>来复制每个元素  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int[ ] sourceArray &#x3D; &#123;2,3,1,5,10&#125;;</span><br><span class="line">int[ ] targetArray &#x3D; new int[sourceArray.length];</span><br><span class="line">for(int i &#x3D; 0; i &lt; sourceArray.length; i++)&#123;</span><br><span class="line">	targetArray[i] &#x3D; sourceArray[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>使用 <strong>System.arraycopy</strong><br>前提： sourceArray和targetArray都已经实例化好  </li>
+</ol>
+<p><code>arraycopy(sourceArray,srcPos,targetArray,tarPos,length)</code><br>原数组下标为几的元素开始，目标数组从几开始，长度</p>
+<p><code>System.arraycopy(sourcearray,0,targetArray,0,sourceArray.length)</code>  </p>
+<ol start="3">
+<li>数组<strong>克隆</strong><br>int [] targetArray=sourceArray.clone()  直接初始化。  </li>
+</ol>
+<ul>
+<li>java.util.Array类包括各种静态方法，其中实现了数组的<strong>排序和查找</strong></li>
+</ul>
+<p><strong>排序</strong><br><code>double[] numbers=&#123;6.0,4.4,1.9,2.9&#125;;</code><br>java.util.Arrays.sort(numbers);  //直接在原数组排序</p>
+<p><strong>二分查找</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int [] list&#x3D;&#123;2,4,7,10,45,50&#125;  </span><br><span class="line">int index&#x3D;java.util.Arrays.binarySearch(list,11)</span><br></pre></td></tr></table></figure>
+
+
 
       
            <!-- 添加版权声明 -->
@@ -264,7 +412,7 @@ C++重载会报错，不认为子类定义会覆盖父类。<br>final关键字�
       
       <br>
       <strong>本文链接：</strong>
-      <a href="https://trent-liu.github.io/2021/03/25/Java笔记——包以及方法重载、覆盖、隐藏/" title="Java笔记——包以及方法重载、覆盖、隐藏" target="_blank">https://trent-liu.github.io/2021/03/25/Java笔记——包以及方法重载、覆盖、隐藏/</a>
+      <a href="https://trent-liu.github.io/2021/03/28/Java的一些常用的包/" title="Java的常用包" target="_blank">https://trent-liu.github.io/2021/03/28/Java的一些常用的包/</a>
       <br>
       <strong>版权声明：</strong>
       本作品采用
@@ -323,15 +471,19 @@ C++重载会报错，不认为子类定义会覆盖父类。<br>final关键字�
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">重载</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常用的包</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">隐藏</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">String</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">覆盖</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">StringBuffer</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">随机数，数组</a>
         		</li>
       		
 		</ul>
@@ -402,7 +554,7 @@ C++重载会报错，不认为子类定义会覆盖父类。<br>final关键字�
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%8C%85%E4%BB%A5%E5%8F%8A%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=Trent-Liu.github.iothub.io/2021/03/28/Java%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8C%85/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -416,18 +568,9 @@ C++重载会报错，不认为子类定义会覆盖父类。<br>final关键字�
   
 <nav id="article-nav">
   
-    <a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java笔记——继承和多态上
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java笔记——对象</div>
+    <a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java笔记——继承和多态下</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -454,7 +597,7 @@ C++重载会报错，不认为子类定义会覆盖父类。<br>final关键字�
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85"><span class="toc-number">1.</span> <span class="toc-text">包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E9%87%8D%E8%BD%BD%E3%80%81%E8%A6%86%E7%9B%96%E3%80%81%E9%9A%90%E8%97%8F"><span class="toc-number">2.</span> <span class="toc-text">方法的重载、覆盖、隐藏</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#import-java-util-Scanner-%E8%BE%93%E5%85%A5%E7%9A%84%E4%B8%80%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">import java.util,Scanner; &#x2F;&#x2F;输入的一种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#import-javax-swing-JOptionPane%EF%BC%9B-%E5%BC%B9%E7%AA%97%E8%BE%93%E5%85%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.</span> <span class="toc-text">import javax.swing.JOptionPane； &#x2F;&#x2F;弹窗输入字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#import-java-lang-Math%EF%BC%9B-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0-%E5%AE%9A%E4%B9%89%E4%BA%86%E4%B8%80%E4%BA%9B%E5%B8%B8%E9%87%8F%E5%A6%82PI%EF%BC%8CE"><span class="toc-number">3.</span> <span class="toc-text">import java.lang.Math；  &#x2F;&#x2F;数学函数   定义了一些常量如PI，E</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Character%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">Character类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">String类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#StringBuffer"><span class="toc-number">6.</span> <span class="toc-text">StringBuffer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">7.</span> <span class="toc-text">数组</span></a></li></ol>
                     </div>
                 </span>
             </div>
