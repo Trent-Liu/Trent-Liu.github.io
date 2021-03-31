@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://trent-liu.github.io">
   <title>Java笔记——对象 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="对象 new创建对象    与基本数据类型一样，可声明并用new创建对象数组。int[]a&#x3D;new int[10];&#x2F;&#x2F;所有元素缺省初值&#x3D;0   当创建对象数组时，数组元素的缺省初值为null。1234Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向n">
+  <meta name="description" content="对象 new创建对象    与基本数据类型一样，可声明并用new创建对象数组。int[]a&#x3D;new int[10];&#x2F;&#x2F;所有元素缺省初值&#x3D;0   当创建对象数组时，数组元素的缺省初值为null。1234Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向nullfor(int i &#x3D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记——对象">
 <meta property="og:url" content="https://trent-liu.github.io/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="对象 new创建对象    与基本数据类型一样，可声明并用new创建对象数组。int[]a&#x3D;new int[10];&#x2F;&#x2F;所有元素缺省初值&#x3D;0   当创建对象数组时，数组元素的缺省初值为null。1234Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向n">
+<meta property="og:description" content="对象 new创建对象    与基本数据类型一样，可声明并用new创建对象数组。int[]a&#x3D;new int[10];&#x2F;&#x2F;所有元素缺省初值&#x3D;0   当创建对象数组时，数组元素的缺省初值为null。1234Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向nullfor(int i &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-25T12:14:15.000Z">
-<meta property="article:modified_time" content="2021-03-26T15:02:54.069Z">
+<meta property="article:modified_time" content="2021-03-31T11:55:06.887Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="对象">
@@ -85,7 +85,7 @@
 		</nav>
 		<nav>
 			<br/><br/>
-			总文章数 9
+			总文章数 10
 		</nav>
 	<br/>
 	<br/>
@@ -227,7 +227,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">763字</span>
+      <span class="post-count">722字</span>
     </span>
   </span>
 
@@ -264,7 +264,7 @@
 <li><p>new创建对象  </p>
 <ul>
 <li>与基本数据类型一样，可声明并用new创建对象数组。<br>int[]a=new int[10];//所有元素缺省初值=0  </li>
-<li>当创建对象数组时，数组元素的缺省初值为null。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Circle[] circleArray &#x3D; new Circle[10]; &#x2F;&#x2F;这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向null</span><br><span class="line">for(int i &#x3D; 0; i &lt; circleArray.length; i++) &#123;</span><br><span class="line">	circleArray[i] &#x3D; new Circle( );    &#x2F;&#x2F;这时才构造Circle对象，可使用有参构造函数  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+<li>当创建对象数组时，数组元素的缺省初值为null。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Circle[] circleArray = <span class="keyword">new</span> Circle[<span class="number">10</span>]; <span class="comment">//这时没有构造Circle对象，只是构造数组,此时的circleArray[i]都指向null</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; circleArray.length; i++) &#123;</span><br><span class="line">	circleArray[i] = <span class="keyword">new</span> Circle( );    <span class="comment">//这时才构造Circle对象，可使用有参构造函数  </span></span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
 <span id="more"></span></li>
 </ul>
 </li>
@@ -281,12 +281,12 @@
 </ul>
 </li>
 <li><p>匿名对象也可访问实例(或静态)成员：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new Circle( ).radius&#x3D;2;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Circle( ).radius=<span class="number">2</span>;</span><br></pre></td></tr></table></figure></li>
 <li><p> 在实例方法中有个this引用，代表当前对象(引用当前对象：相当于指针)，因此在实例方法里，可以用this引用访问当前对象成员</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public class Circle &#123;</span><br><span class="line">    double radius &#x3D; 1.0;</span><br><span class="line"></span><br><span class="line">    Circle() &#123;  </span><br><span class="line">	radius &#x3D; 1.0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Circle(double r) &#123;    &#x2F;&#x2F;this可以省略，this就指当前对象</span><br><span class="line">        this.radius &#x3D; r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    double findArea() &#123;</span><br><span class="line">        return radius * radius * Math.PI;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setRadius(double newRadius)&#123;</span><br><span class="line">        this.radius &#x3D; newRadius;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class TestSimpleCircle &#123;</span><br><span class="line">    public static void main(String[] args)&#123;</span><br><span class="line">        Circle c1 &#x3D; new Circle();</span><br><span class="line">        System.out.println(&quot;Area &#x3D; &quot; + c1.findArea() + </span><br><span class="line">                &quot;, radius &#x3D; &quot; + c1.radius);   &#x2F;&#x2F;c1调用类中方法，当进入c1对象时，this就自动赋值，变成c1</span><br><span class="line"></span><br><span class="line">        Circle c2 &#x3D; new Circle(10.0);</span><br><span class="line">        System.out.println(&quot;Area &#x3D; &quot; + c2.findArea() + </span><br><span class="line">                &quot;, radius &#x3D; &quot; + c2.radius);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F;modify radius</span><br><span class="line">        c2.setRadius(20.0);</span><br><span class="line">        System.out.println(&quot;Area &#x3D; &quot; + c2.findArea() + </span><br><span class="line">                &quot;, radius &#x3D; &quot; + c2.radius);  &#x2F;&#x2F;c2调用，进入对象调用值时，this就自动变成c2</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Circle</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> radius = <span class="number">1.0</span>;</span><br><span class="line"></span><br><span class="line">    Circle() &#123;  </span><br><span class="line">	radius = <span class="number">1.0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Circle(<span class="keyword">double</span> r) &#123;    <span class="comment">//this可以省略，this就指当前对象</span></span><br><span class="line">        <span class="keyword">this</span>.radius = r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">findArea</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> radius * radius * Math.PI;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRadius</span><span class="params">(<span class="keyword">double</span> newRadius)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.radius = newRadius;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSimpleCircle</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Circle c1 = <span class="keyword">new</span> Circle();</span><br><span class="line">        System.out.println(<span class="string">&quot;Area = &quot;</span> + c1.findArea() + </span><br><span class="line">                <span class="string">&quot;, radius = &quot;</span> + c1.radius);   <span class="comment">//c1调用类中方法，当进入c1对象时，this就自动赋值，变成c1</span></span><br><span class="line"></span><br><span class="line">        Circle c2 = <span class="keyword">new</span> Circle(<span class="number">10.0</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Area = &quot;</span> + c2.findArea() + </span><br><span class="line">                <span class="string">&quot;, radius = &quot;</span> + c2.radius);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//modify radius</span></span><br><span class="line">        c2.setRadius(<span class="number">20.0</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Area = &quot;</span> + c2.findArea() + </span><br><span class="line">                <span class="string">&quot;, radius = &quot;</span> + c2.radius);  <span class="comment">//c2调用，进入对象调用值时，this就自动变成c2</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>this引用指向调用某个方法的当前对象</p>
 <ul>
-<li>在实例方法中，实例变量被同名局部变量或方法形参隐藏，可以通过this.instanceVariable访问实例变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Foo&#123;</span><br><span class="line">   int i &#x3D; 5;</span><br><span class="line">   static double k &#x3D; 0.0;</span><br><span class="line">   void setI(int i)&#123;   &#x2F;&#x2F;i为局部变量，若不加下面的this，调用完后上面i的值不变，</span><br><span class="line">                       &#x2F;&#x2F;this.i指的是上面的i,i则是方法的形参i</span><br><span class="line">      this.i&#x3D; i;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   Foo f1 &#x3D;new Foo();</span><br><span class="line">Foo f2 &#x3D; new Foo();</span><br><span class="line"></span><br><span class="line">f1.setI(10);&#x2F;&#x2F;这时this引用f1</span><br><span class="line">f2.setI(45);&#x2F;&#x2F;这时this引用f2</span><br></pre></td></tr></table></figure></li>
+<li>在实例方法中，实例变量被同名局部变量或方法形参隐藏，可以通过this.instanceVariable访问实例变量。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span>&#123;</span><br><span class="line">   <span class="keyword">int</span> i = <span class="number">5</span>;</span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">double</span> k = <span class="number">0.0</span>;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">setI</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;   <span class="comment">//i为局部变量，若不加下面的this，调用完后上面i的值不变，</span></span><br><span class="line">                       <span class="comment">//this.i指的是上面的i,i则是方法的形参i</span></span><br><span class="line">      <span class="keyword">this</span>.i= i;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   Foo f1 =<span class="keyword">new</span> Foo();</span><br><span class="line">Foo f2 = <span class="keyword">new</span> Foo();</span><br><span class="line"></span><br><span class="line">f1.setI(<span class="number">10</span>);<span class="comment">//这时this引用f1</span></span><br><span class="line">f2.setI(<span class="number">45</span>);<span class="comment">//这时this引用f2</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 <li><p>调用当前类的其它构造函数，需防止递归调用。</p>
@@ -642,34 +642,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">重载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">抽象类</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
               </li>
              
@@ -686,6 +658,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">重载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
              
@@ -694,11 +686,35 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">自我介绍</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">抽象类</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -719,18 +735,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
             
             <div class="clearfix"></div>
