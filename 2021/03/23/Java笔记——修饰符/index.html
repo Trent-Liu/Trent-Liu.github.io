@@ -16,10 +16,11 @@
 <meta property="og:description" content="static  修饰变量：   未用static修饰的成员变量，属于类的具体实例（对象），只能通过对象访问，如“对象名.变量名”使用static修饰的变量，被类的所有实例（对象）共享，也称类变量。可以通过对象或类名访问，提倡“类名.变量名”访问。实际上，实例变量是作为对象内存的一部分存在，每new一个对象，内存中就分配一个无静态变量的对象。静态变量是单独的内存单元，与对象内存分开，任何对象都可访问">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-23T14:07:15.000Z">
-<meta property="article:modified_time" content="2021-04-01T12:46:50.146Z">
+<meta property="article:modified_time" content="2021-04-01T12:51:10.606Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="单件模式">
+<meta property="article:tag" content="计数器">
 <meta property="article:tag" content="访问控制符">
 <meta name="twitter:card" content="summary">
   
@@ -342,10 +343,10 @@ DataType为私有成员  </li>
 </tr>
 </tbody></table>
 <h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><ul>
-<li>有一些对象只需要一个，并且可以在需要时才开始创建对象，保证只有一对象被创建。<br>不能在外部创建对象，只能在类的内部<br>可以定义全局变量，但是全局变量会在程序一开始就创建好，如果该对象在程序执行过程中对资源消耗非常大且使用率不高，就非常累赘。<br>```Java<br>public class Singleton<br>{<br>　　　private static Singleton uniqueInstance =null;  //其他的实例变量    //构造方法是私有的，所以在类外不能new出多个实例<br>　　　private singleton()<br>　　 {<br>　　 }<br>　　　public static Singleton getInstance()<br>　　 {<br>　　　　　 if(uniqueInstance == null)<br>//如果为null，就创建对象，否则不创建，直接在下面返回已经存在的对象<br>　　　 {<br>　　　　　　　  uniqueInstance == new Singleton();<br>　　　 }<br>　　　 return uniqueInstance;<br>}<br>```Java<br>//调用的时候，我们可以通过</li>
+<li>有一些对象只需要一个，并且可以在需要时才开始创建对象，保证只有一对象被创建。<br>不能在外部创建对象，只能在类的内部<br>可以定义全局变量，但是全局变量会在程序一开始就创建好，如果该对象在程序执行过程中对资源消耗非常大且使用率不高，就非常累赘。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span>  </span></span><br><span class="line"><span class="class"></span>&#123;  </span><br><span class="line">　　　<span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance =<span class="keyword">null</span>;  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment">//其他的实例变量  </span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//构造方法是私有的，所以在类外不能new出多个实例  </span></span><br><span class="line"> 　　　<span class="function"><span class="keyword">private</span> <span class="title">singleton</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> 　　 </span>&#123;  </span><br><span class="line"> 　　 &#125;</span><br><span class="line">　　　<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function">　　 </span>&#123;  </span><br><span class="line"> 　　　　　 <span class="keyword">if</span>(uniqueInstance == <span class="keyword">null</span>)  </span><br><span class="line"> <span class="comment">//如果为null，就创建对象，否则不创建，直接在下面返回已经存在的对象  </span></span><br><span class="line"> 　　　 &#123;  </span><br><span class="line">  　　　　　　　  uniqueInstance == <span class="keyword">new</span> Singleton();  </span><br><span class="line">  　　　 &#125;  </span><br><span class="line">  　　　 <span class="keyword">return</span> uniqueInstance;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+//调用的时候，我们可以通过<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Singleton uniqueInstance = Singleton.getInstance();  </span><br><span class="line">  </span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueInstance =<span class="keyword">null</span>;<span class="keyword">static</span>，<span class="comment">//静态变量，是所有实例化对象共有的  </span></span><br><span class="line"> <span class="comment">// 就算构造多个对象，它们指向的都是一个实例对象。</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<p>Singleton uniqueInstance = Singleton.getInstance();  </p>
-<p>  private static Singleton uniqueInstance =null;static，//静态变量，是所有实例化对象共有的<br> // 就算构造多个对象，它们指向的都是一个实例对象。</p>
 <hr>
 
       
@@ -419,6 +420,10 @@ DataType为私有成员  </li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">单件模式</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">计数器</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -705,6 +710,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">计数器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">重载</a>
               </li>
              
@@ -714,14 +731,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
               </li>
              
               <li class="article-tag-list-item">
