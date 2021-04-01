@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://trent-liu.github.io">
   <title>Java笔记——构造函数 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="构造函数 无返回类型（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。    注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只运行一次而一般函数是对象调用才执行，用“.方法名”的方式。   注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名">
+  <meta name="description" content="构造函数 无返回类型（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。   注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只运行一次而一般函数是对象调用才执行，用“.方法名”的方式。   注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记——构造函数">
 <meta property="og:url" content="https://trent-liu.github.io/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="构造函数 无返回类型（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。    注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只运行一次而一般函数是对象调用才执行，用“.方法名”的方式。   注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名">
+<meta property="og:description" content="构造函数 无返回类型（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。   注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只运行一次而一般函数是对象调用才执行，用“.方法名”的方式。   注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-25T12:01:15.000Z">
-<meta property="article:modified_time" content="2021-03-31T11:55:22.790Z">
+<meta property="article:modified_time" content="2021-04-01T12:53:55.032Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="构造函数">
@@ -260,52 +260,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><ul>
-<li><p><strong>无返回类型</strong>（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。  </p>
-<blockquote>
+<li><strong>无返回类型</strong>（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。  <blockquote>
 <p>注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只<strong>运行一次</strong><br>而一般函数是对象调用才执行，用“.方法名”的方式。</p>
 </blockquote>
 </li>
-<li><p>注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名 会报错）</p>
-</li>
-<li><p>只在new时被自动执行，不可以被显示调用（<del>.构造函数（）</del>）。</p>
-</li>
-<li><p>必须是实例方法（无static），可为公有、保护、私有和包级权限。</p>
-</li>
-<li><p>类的变量为引用(相当于C指针)，指向实例化好的对象。  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Circle c2=<span class="keyword">new</span> Circle(<span class="number">5.0</span>);<span class="comment">//调用时必须有括弧,可带参初始化</span></span><br></pre></td></tr></table></figure>
+<li>注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名 会报错）</li>
+<li>只在new时被自动执行，不可以被显示调用（<del>.构造函数（）</del>）。</li>
+<li>必须是实例方法（无static），可为公有、保护、私有和包级权限。</li>
+<li>类的变量为引用(相当于C指针)，指向实例化好的对象。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Circle c2=<span class="keyword">new</span> Circle(<span class="number">5.0</span>);<span class="comment">//调用时必须有括弧,可带参初始化</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span></li>
-<li><p>缺省构造函数(同C++)  </p>
-<blockquote>
+<li>缺省构造函数(同C++)  <blockquote>
 <p>如果类未定义任何构造函数，编译器会自动提供一个不带参数的默认构造函数。<br>如果已自定义构造函数，则<strong>不会提供默认构造函数</strong>。<br>因此如果程序员定义了一个带参数的构造函数，最好再定义一个不带参数的构造函数。</p>
 </blockquote>
 </li>
-<li><p>Java没有析构函数，但垃圾自动回收之前会自动调用finalize( ),可以覆盖定义该函数（但是finalize调用时机程序员无法控制，C++则需要手动调用）。  </p>
-</li>
-<li><p>如果定义了构造函数和一个与类名相同的方法</p>
-<pre><code class="Java">public class ConstructorTest &#123;
-  //构造函数前面不能有void   
-  public ConstructorTest() &#123;
-       System.out.println(&quot;constructor&quot;);
-  &#125;
-
-  //如果和类名同名函数前面加了void(可返回任何类型), 编译器看成是普通函数，这和C++不一样 
-  public void ConstructorTest() &#123;
-      System.out.println(&quot;normal instance method return void&quot;);
-  &#125;
-  public double ConstructorTest(double d) &#123;
-      System.out.println(&quot;normal method return double&quot;);
-      return d;
-  &#125;
-  public static void main(String ... args)&#123;
-   //先调用构造，再调用void ConstructorTest() 
-      new ConstructorTest().ConstructorTest();
-  &#125;
-&#125;
-</code></pre>
+<li>Java没有析构函数，但垃圾自动回收之前会自动调用finalize( ),可以覆盖定义该函数（但是finalize调用时机程序员无法控制，C++则需要手动调用）。  </li>
+<li>如果定义了构造函数和一个与类名相同的方法  </li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstructorTest</span> </span>&#123;</span><br><span class="line">  <span class="comment">//构造函数前面不能有void   </span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">ConstructorTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;constructor&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//如果和类名同名函数前面加了void(可返回任何类型), 编译器看成是普通函数，这和C++不一样 </span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConstructorTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;normal instance method return void&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">ConstructorTest</span><span class="params">(<span class="keyword">double</span> d)</span> </span>&#123;</span><br><span class="line">      System.out.println(<span class="string">&quot;normal method return double&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> d;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String ... args)</span></span>&#123;</span><br><span class="line"><span class="comment">//先调用构造，再调用void ConstructorTest() </span></span><br><span class="line">      <span class="keyword">new</span> ConstructorTest().ConstructorTest();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意上图中，先调用了构造函数后，紧接着调用普通函数。</p>
-</li>
-<li><p>注意在构造函数中调用构造函数，需要防止递归调用。</p>
-</li>
+<ul>
+<li>注意在构造函数中调用构造函数，需要防止递归调用。</li>
 </ul>
 
       
@@ -645,6 +619,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
               </li>
              
@@ -682,14 +664,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
               </li>
              
               <li class="article-tag-list-item">
