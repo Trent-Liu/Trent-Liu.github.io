@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://trent-liu.github.io">
   <title>Java笔记——面向对象思考 | Pigsty</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面向过程开发一个软件系统由一系列过程构成。因而采用功能划分或模块分解的方法进行。   面向对象开发一个软件系统由一系列参与活动的对象构成。故需建立对象模型、动态模型和功能模型。  对象模型：描述对象的组织结构。是核心模型。  动态模型：描述对象之间的交互行为。  功能模型：描述对象的行为或状态变化。  对象模型：描述类和类之间的关系，包括：关联、聚合、组合、依赖、继承。 UML建模语言的类图能够描">
+  <meta name="description" content="面向过程开发一个软件系统由一系列过程构成。因而采用功能划分或模块分解的方法进行。   面向对象开发一个软件系统由一系列参与活动的对象构成。故需建立对象模型、动态模型和功能模型。  对象模型：描述对象的组织结构。是核心模型。 动态模型：描述对象之间的交互行为。 功能模型：描述对象的行为或状态变化。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java笔记——面向对象思考">
 <meta property="og:url" content="https://trent-liu.github.io/2021/04/08/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%83/index.html">
 <meta property="og:site_name" content="Pigsty">
-<meta property="og:description" content="面向过程开发一个软件系统由一系列过程构成。因而采用功能划分或模块分解的方法进行。   面向对象开发一个软件系统由一系列参与活动的对象构成。故需建立对象模型、动态模型和功能模型。  对象模型：描述对象的组织结构。是核心模型。  动态模型：描述对象之间的交互行为。  功能模型：描述对象的行为或状态变化。  对象模型：描述类和类之间的关系，包括：关联、聚合、组合、依赖、继承。 UML建模语言的类图能够描">
+<meta property="og:description" content="面向过程开发一个软件系统由一系列过程构成。因而采用功能划分或模块分解的方法进行。   面向对象开发一个软件系统由一系列参与活动的对象构成。故需建立对象模型、动态模型和功能模型。  对象模型：描述对象的组织结构。是核心模型。 动态模型：描述对象之间的交互行为。 功能模型：描述对象的行为或状态变化。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%831.png?raw=true">
 <meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%832.png?raw=true">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%838.png?raw=true">
 <meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%839.png?raw=true">
 <meta property="article:published_time" content="2021-04-08T01:00:15.000Z">
-<meta property="article:modified_time" content="2021-04-08T01:47:20.447Z">
+<meta property="article:modified_time" content="2021-04-08T01:50:14.229Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="面向对象思考">
@@ -272,11 +272,9 @@
         <h2 id="面向过程开发"><a href="#面向过程开发" class="headerlink" title="面向过程开发"></a>面向过程开发</h2><p>一个软件系统由一系列过程构成。因而采用功能划分或模块分解的方法进行。  </p>
 <h2 id="面向对象开发"><a href="#面向对象开发" class="headerlink" title="面向对象开发"></a>面向对象开发</h2><p>一个软件系统由一系列参与活动的对象构成。故需建立对象模型、动态模型和功能模型。</p>
 <ul>
-<li><p><strong>对象模型</strong>：描述对象的组织结构。是核心模型。</p>
-</li>
-<li><p><strong>动态模型</strong>：描述对象之间的交互行为。</p>
-</li>
-<li><p><strong>功能模型</strong>：描述对象的行为或状态变化。</p>
+<li><strong>对象模型</strong>：描述对象的组织结构。是核心模型。</li>
+<li><strong>动态模型</strong>：描述对象之间的交互行为。</li>
+<li><strong>功能模型</strong>：描述对象的行为或状态变化。<span id="more"></span>
 <ul>
 <li><strong>对象模型：描述类和类之间的关系，包括：关联、聚合、组合、依赖、继承。</strong></li>
 <li><strong>UML建模语言的类图能够描述对象(类）的组织结构和行为。</strong></li>
@@ -694,19 +692,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">重载</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">计数器</a>
+                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -726,15 +720,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">重载</a>
+                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
+                <a href="javascript:void(0)" class="js-tag color4">计数器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
+                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -746,6 +740,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">面向对象思考</a>
               </li>
              
@@ -754,15 +756,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">抽象类</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -783,18 +793,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
             
             <div class="clearfix"></div>

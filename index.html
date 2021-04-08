@@ -257,82 +257,10 @@
         <h2 id="面向过程开发"><a href="#面向过程开发" class="headerlink" title="面向过程开发"></a>面向过程开发</h2><p>一个软件系统由一系列过程构成。因而采用功能划分或模块分解的方法进行。  </p>
 <h2 id="面向对象开发"><a href="#面向对象开发" class="headerlink" title="面向对象开发"></a>面向对象开发</h2><p>一个软件系统由一系列参与活动的对象构成。故需建立对象模型、动态模型和功能模型。</p>
 <ul>
-<li><p><strong>对象模型</strong>：描述对象的组织结构。是核心模型。</p>
-</li>
-<li><p><strong>动态模型</strong>：描述对象之间的交互行为。</p>
-</li>
-<li><p><strong>功能模型</strong>：描述对象的行为或状态变化。</p>
-<ul>
-<li><strong>对象模型：描述类和类之间的关系，包括：关联、聚合、组合、依赖、继承。</strong></li>
-<li><strong>UML建模语言的类图能够描述对象(类）的组织结构和行为。</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="类间的关系描述方法"><a href="#类间的关系描述方法" class="headerlink" title="类间的关系描述方法"></a>类间的关系描述方法</h2><h3 id="关联关系"><a href="#关联关系" class="headerlink" title="关联关系"></a>关联关系</h3><p>关联关系(association)是一种通用的二元关系，对象间通过活动发生联系。例如，学生(Student)选学课程(Course)，教师(Faculty)教授课程(Course)，这些联系可以在UML中表示。<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%831.png?raw=true" alt="haha"></p>
-<blockquote>
-<p>一个关联可以用两个类之间的实线表示。<br>可带描述关系的标签。<br>关联中的每个类可以指定一个数目或数字<br>区间，指出这个关系涉及多少个对象  </p>
-</blockquote>
-<ul>
-<li>在Java代码中，关联关系可以用数据域或方法来实现。对于方法，一个类中的方法包含另一个类的参数。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Course[] courseList;<span class="comment">//一对多用数组实现</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCourse</span><span class="params">( Course c)</span></span>&#123; …… &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Course</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Student[] classList;</span><br><span class="line">    <span class="keyword">private</span> Faculty faculty;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addStudent</span><span class="params">( Students s)</span></span>&#123; …… &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFaculty</span><span class="params">( Faculty f)</span> </span>&#123; …… &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Faculty</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Course[] courseList;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addCourse</span><span class="params">( Course c)</span></span>&#123; …… &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果学生或教师不需要知道课程的信息，可以去掉courseList域，形成单向关联。这时可将Student类和Faculty类中的数据域courseList和addCourse方法去掉。<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%832.png?raw=true" alt="haha"></li>
-</ul>
-<h4 id="自关联"><a href="#自关联" class="headerlink" title="自关联"></a>自关联</h4><p>同一个类的对象间存在关联，称自关联。例如，一个人有一个领导。<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%833.png?raw=true" alt="haha"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Person supervior；</span><br><span class="line">    ……</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="聚合关系"><a href="#聚合关系" class="headerlink" title="聚合关系"></a>聚合关系</h3><p>聚合关系(aggregation)是一种拥有关系，表示整体与部分之间的关系，即<strong>has-a</strong>的关系。所有者成为聚集者，从属对象称为被聚集者。<strong>在聚合关系中，一个对象可以被多个聚集者拥有(Weak has a)。</strong></p>
-<h3 id="组合关系"><a href="#组合关系" class="headerlink" title="组合关系"></a>组合关系</h3><p>组合关系(composition)是一种隶属关系，表示从属者强烈依赖于聚集者。<strong>一个从属者只能被一个聚集者所拥有，聚集者负责从属者的创建和销毁(Strong has a)。</strong><br><img src="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%833.png?raw=true" alt="haha"></p>
-<blockquote>
-<p>一个Name对象只能为一个Person所有，但一个Address对象可以被多个Person共享</p>
-</blockquote>
-<ul>
-<li><p>聚合关系和组合关系在代码中通常表示为聚集类中的数据域，如上图中的关系可以表示为</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Name name;</span><br><span class="line">    <span class="keyword">private</span> Address address;</span><br><span class="line">    …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Address</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>对于组合关系，聚集者往往负责对从属者的创建和销毁，而聚集关系则不是</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Name name;</span><br><span class="line">    <span class="keyword">private</span> Address address;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(Address a)</span></span>&#123;</span><br><span class="line">	name = <span class="keyword">new</span> Name();</span><br><span class="line">	address = a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Address对象是传递进来的一个引用，而Name对象是在Person对象创建时才创建。<br>当Person对象被析构时，Name对象也被析构，而Address对象可能还存在</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="依赖关系"><a href="#依赖关系" class="headerlink" title="依赖关系"></a>依赖关系</h3><p>依赖关系（dependency）指的是两个类之间一个（称为client）依存另一个（称为supplier）的关系。<br>在UML中，从client画一条带箭头的虚线指向supplier类<br>例如，可以向容器类ArrayList添加对象，因此ArrayList和Object之间的关系可以用依赖描述。<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%835.png?raw=true" alt="haha"><br>依赖关系在代码中通常表示为client类的成员函数以supplier类型的对象为参数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">       …</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="继承关系"><a href="#继承关系" class="headerlink" title="继承关系"></a>继承关系</h3><p>继承关系(inheritance)表示子类与父类之间的is-a关系。<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%836.png?raw=true" alt="[haha](6)"></p>
-<blockquote>
-<p>通过继承，子类可以重用父类的数据和代码。</p>
-</blockquote>
-<h3 id="实现关系"><a href="#实现关系" class="headerlink" title="实现关系"></a>实现关系</h3><p>实现关系(realization)表示类和接口之间的关系。<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%837.png?raw=true" alt="[haha](7)"></p>
-<hr>
-<h2 id="类的设计原则"><a href="#类的设计原则" class="headerlink" title="类的设计原则"></a>类的设计原则</h2><ul>
-<li>确定系统中的类</li>
-<li>建立类之间的关系</li>
-<li>描述每个类的属性和方法</li>
-<li>编写类的代码</li>
-<li>例如建立一个借方和贷款的模型，借方是要贷款的人，人有姓名和地址，因此可以确定以下类：<ul>
-<li>人Person</li>
-<li>姓名Name</li>
-<li>地址Address</li>
-<li>借方Borrow</li>
-<li>一笔贷款Loan</li>
-</ul>
-</li>
-</ul>
-<h3 id="分析类的关系"><a href="#分析类的关系" class="headerlink" title="分析类的关系"></a>分析类的关系</h3><p><img src="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%838.png?raw=true" alt="[haha](8)"></p>
-<ul>
-<li>Person对象包含Name对象和Address对象，Person和Name之间为组合关系，Person和Address之间为聚集关系</li>
-<li>Borrower继承Person</li>
-<li>Borrower对象包含一笔贷款，Borrower和Loan之间为组合关系。</li>
-</ul>
-<h3 id="设计实例-贷款的类模型"><a href="#设计实例-贷款的类模型" class="headerlink" title="设计实例-贷款的类模型"></a>设计实例-贷款的类模型</h3><p><img src="https://github.com/Trent-Liu/picture/blob/main/%E6%80%9D%E8%80%839.png?raw=true" alt="[haha](9)"></p>
-
+<li><strong>对象模型</strong>：描述对象的组织结构。是核心模型。</li>
+<li><strong>动态模型</strong>：描述对象之间的交互行为。</li>
+<li><strong>功能模型</strong>：描述对象的行为或状态变化。</li></ul>
+        
       
            <!-- 添加版权声明 -->
     
@@ -1849,19 +1777,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
+                <a href="javascript:void(0)" class="js-tag color3">重载</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">计数器</a>
+                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1881,15 +1805,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">重载</a>
+                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
+                <a href="javascript:void(0)" class="js-tag color4">计数器</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
+                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1901,6 +1825,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">面向对象思考</a>
               </li>
              
@@ -1909,15 +1841,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">抽象类</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1938,18 +1878,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
             
             <div class="clearfix"></div>
