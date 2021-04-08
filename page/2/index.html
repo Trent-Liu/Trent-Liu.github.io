@@ -81,7 +81,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 12
+			总文章数 13
 		</nav>
 	<br/>
 	
@@ -199,6 +199,148 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Java笔记——构造函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+       
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">Java笔记——构造函数</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2021-03-25T12:01:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-25</time>
+</a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">556字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  预计阅读时长: </span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
+
+          
+        <!-- 添加完成 -->
+
+
+
+        
+          
+          
+        
+          
+          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><ul>
+<li><strong>无返回类型</strong>（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。  <blockquote>
+<p>注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只<strong>运行一次</strong><br>而一般函数是对象调用才执行，用“.方法名”的方式。</p>
+</blockquote>
+</li>
+<li>注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名 会报错）</li>
+<li>只在new时被自动执行，不可以被显示调用（<del>.构造函数（）</del>）。</li>
+<li>必须是实例方法（无static），可为公有、保护、私有和包级权限。</li>
+<li>类的变量为引用(相当于C指针)，指向实例化好的对象。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Circle c2=<span class="keyword">new</span> Circle(<span class="number">5.0</span>);<span class="comment">//调用时必须有括弧,可带参初始化</span></span><br></pre></td></tr></table></figure></li></ul>
+        
+      
+           <!-- 添加版权声明 -->
+    
+  
+    <div class="declare" hidden="hidden"></div>
+  
+        <!-- 添加版权声明 -->
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">构造函数</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/25/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-Java笔记——修饰符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
