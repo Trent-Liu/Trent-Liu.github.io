@@ -259,65 +259,7 @@
 <p>我为了方便，直接用github的仓库当作图床，来保存我博客上的图片，由于我的设备是一直科学上网的，因此图片在我看来是一直可以加载出来的。</p>
 <p>实际上对于不能翻墙的用户来说，我博客上的图片由于链接是github，因此加载的极慢——国内对于github一直是半墙的状态，十分不稳定，且速度很慢。</p>
 <p>更别说最开始我竟然还上传了15M大小的图片了。</p>
-<p>今日想了不少办法解决这个事情，找了许多的教程，其中包括Coding平台搭建图床，在尝试过程中我的RSA公钥一直出问题，最后不得不放弃。</p>
-<p>但是我后来找到了一个很不错的方法——<strong>gitee（码云）</strong>+ PicGo +Typora<br>Gitee有5G的免费容量，而且国内访问速度还是很快的，很适合作为图床使用。</p>
-<p>下面根据个人经历做一个对新手友好的教程。</p>
-<h2 id="Gitee（码云）"><a href="#Gitee（码云）" class="headerlink" title="Gitee（码云）"></a>Gitee（码云）</h2><p>简单来讲，码云相当于一个国内版的Github，它的其他功能暂且不提，这里只用它搭建一个图床。</p>
-<p><a target="_blank" rel="noopener" href="https://gitee.com/">https://gitee.com/</a></p>
-<p>若还没有Gitee账号，请先注册一个账号。</p>
-<p>注册成功后，点击右上角加号</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408202539662.png" alt="image-20210408202539662"></p>
-<p>选择新建仓库</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408202612734.png" alt="image-20210408202612734" style="zoom:33%;">
-
-<p>如下，设置仓库名称</p>
-<p>是否开源选择公开，添加开源许可证根据提示选一个</p>
-<p>勾选使用Readme文件初始化这个仓库，这样可以使仓库直接创建一个master分支。</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408203011885.png" alt="image-20210408203011885" width="%70">
-
-<p>点击创建，创建成功。</p>
-<h2 id="PicGo"><a href="#PicGo" class="headerlink" title="PicGo"></a>PicGo</h2><p>下载PicGo： <a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">https://github.com/Molunerfinn/PicGo/releases</a></p>
-<p>windows用户下载exe文件，下载后找路径安装。</p>
-<p>打开PicGo，下载gitee-uploader插件</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408203455640.png" alt="image-20210408203455640"></p>
-<p>重启gitee-uploader，左侧图床设置栏内就多出了gitee</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408203638826.png" alt="image-20210408203638826" style="zoom:33%;">
-
-<p>打开图床设置栏的gitee</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408203824864.png" alt="image-20210408203824864"></p>
-<p>如图，repo栏填写 gitee的用户名/刚刚建立的仓库</p>
-<p>如我的名字是Trent-Liuy，我建立的想要当图床的仓库名为blogimage，我就填的Trent-Liuy/blogimage</p>
-<p>branch栏填master</p>
-<p>path栏可以填img，意思是在仓库中创建一个文件夹img，上传的图片保存在img中</p>
-<hr>
-<p>下面讲token栏如何填写。</p>
-<p>回到gitee码云，打开右上角的设置</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408204123927.png" alt="image-20210408204123927" style="zoom:33%;">
-
-<p>在设置界面找到打开私人令牌</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408204252976.png" alt="image-20210408204252976" style="zoom:33%;">
-
-<p>点击生成新令牌</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408204334101.png" alt="image-20210408204334101"></p>
-<p>只勾选projects，随便添加描述</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408204409888.png" alt="image-20210408204409888" style="zoom:33%;">
-
-<p>注意，生成的令牌内容要及时保存，关闭此窗口后就再也不能找到此令牌内容。之后要用只能再重新生成令牌。</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408204631385.png" alt="image-20210408204631385" style="zoom:33%;">
-
-<h2 id="将刚刚复制的内容粘贴进PicGo的token里就可以了"><a href="#将刚刚复制的内容粘贴进PicGo的token里就可以了" class="headerlink" title="将刚刚复制的内容粘贴进PicGo的token里就可以了"></a>将刚刚复制的内容粘贴进PicGo的token里就可以了</h2><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408203824864.png" alt="image-20210408203824864" style="zoom:33%;">
-
-<p>点击确定，设置成功。</p>
-<h2 id="Typora"><a href="#Typora" class="headerlink" title="Typora"></a>Typora</h2><p>下面介绍一个功能很强的markdown编辑工具Typora</p>
-<p><a target="_blank" rel="noopener" href="https://typora.io/">https://typora.io/</a></p>
-<p>我之前一直用VScode变击md文件，虽然VScode有很多插件使用，但使用Typora后我还是觉得后者更香——毕竟是专业的markdown编辑工具。</p>
-<p>下载成功后，文件——偏好设置或者直接ctrl+，进入设置</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210408205140536.png" alt="image-20210408205140536"></p>
-<p>如图，对其进行如上设置，注意PicGo路径是你安装路径下的exe文件，安装成功后便大功告成了。</p>
-<p>当你再写博客的时候，可以直接复制本地图片或者网络图片，直接在Typora上粘贴，PicGo会将图片自动上传到Gitee上，并且得到Gitee上的图片链接，自动生成Markdown图片格式。</p>
-<p>十分的方便。</p>
-<p>同时gitee的国内访问还是很快的，这样我的博客分享给不能翻墙的小伙伴时，博客里的图片就能很快的加载出来了。</p>
-
+        
       
            <!-- 添加版权声明 -->
     
