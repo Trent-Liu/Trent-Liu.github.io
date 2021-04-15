@@ -15,18 +15,19 @@
 <meta property="og:site_name" content="Pigsty">
 <meta property="og:description" content="异常 异常(Exception)：又称为例外，是程序在运行过程中发生的非正常事件，其发生会影响程序的正常执行。 当一个方法中发生错误时，将创建一个对象并将它交给运行时系统，此对象被称为异常对象(exception object) 创建异常对象并将它交给运行时系统被称为抛出一个异常(throw an exception) 。  异常产生的原因 Java虚拟机同步检测到一个异常的执行条件，间接抛出异常">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true">
-<meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B85.png?raw=true">
-<meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true">
-<meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true">
-<meta property="og:image" content="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B81.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B82.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B83.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B84.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B85.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210411202840760.png">
 <meta property="article:published_time" content="2021-03-31T07:00:15.000Z">
-<meta property="article:modified_time" content="2021-03-31T11:49:08.508Z">
+<meta property="article:modified_time" content="2021-04-11T13:02:16.032Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="异常处理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true">
+<meta name="twitter:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B81.png">
   
     <link rel="alternative" href="/atom.xml" title="Pigsty" type="application/atom+xml">
   
@@ -90,7 +91,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 14
+			总文章数 17
 		</nav>
 	<br/>
 	
@@ -287,7 +288,7 @@
 <h3 id="异常的抛出都是由throw语句直接或间接抛出"><a href="#异常的抛出都是由throw语句直接或间接抛出" class="headerlink" title="异常的抛出都是由throw语句直接或间接抛出"></a>异常的抛出都是由throw语句直接或间接抛出</h3><ol>
 <li><p>程序运行时的逻辑错误导致异常间接抛出，例如通过空引用访问实例变量和方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">m1</span><span class="params">()</span></span>&#123; &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">       A o = <span class="keyword">null</span>;</span><br><span class="line">       <span class="comment">/*</span></span><br><span class="line"><span class="comment">	通过空引用访问实例方法, 会间接地抛出异常NullPointerException</span></span><br><span class="line"><span class="comment">	*/</span>       </span><br><span class="line">       o.m1(); </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true" alt="haha">  </p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B81.png" alt="异常1"></p>
 </li>
 <li><p>程序在满足某条件时，用throw语句直接抛出异常，如</p>
 <blockquote>
@@ -297,24 +298,25 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">   <span class="comment">//由于main方法里抛出的异常没有被处理,因此在main方法必须加上异常声明throws Exception</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">       <span class="keyword">int</span> i = <span class="keyword">new</span> Scanner(System.in).nextInt();</span><br><span class="line">       <span class="keyword">if</span>(i &gt; <span class="number">10</span>)&#123; <span class="comment">//假设应用逻辑要求用户输入整数不能大于10</span></span><br><span class="line">		 <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;Input value is too big&quot;</span>); <span class="comment">//显式地用throw抛出异常</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>这里的main函数，加异常声明，但前一个例子没有加，因为一个是必检异常，一个不是。<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B85.png?raw=true" alt="haha">  </p>
+<p>这里的main函数，加异常声明，但前一个例子没有加，因为一个是必检异常，一个不是。<br><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B82.png" alt="异常2"></p>
 </blockquote>
 <h3 id="异常概述"><a href="#异常概述" class="headerlink" title="异常概述"></a>异常概述</h3><ul>
 <li>Java异常都必须<strong>继承Throwable</strong>的直接或间接子类。用户<strong>通过继承自定义异常</strong>。</li>
 <li>Java的异常分为二大类：从Exception派生的是<strong>程序级错误</strong>，<strong>可由程序本身处理</strong>；从Error派生是<strong>系统级错误</strong>，程序可不用处理（也基本上<strong>处理不了</strong>，例如JVM内存空间不够）。</li>
-<li>Exception的子类里，除了RuntimeException这个分支外，其他的都是<strong>必检异常（即：要么在函数里用catch子句捕获并处理，要么在所在函数加上异常声明</strong>，PPT第5页例子）。 RuntimeException的子类是<strong>非必检异常</strong>（PPT第4页例子）（这类异常一般我们是不处理的，因为会很判断会出现什么问题，而且有些异常你也无法运行时处理，比如空指针。）<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true" alt="haha">  </li>
+<li>Exception的子类里，除了RuntimeException这个分支外，其他的都是<strong>必检异常（即：要么在函数里用catch子句捕获并处理，要么在所在函数加上异常声明</strong>，PPT第5页例子）。 RuntimeException的子类是<strong>非必检异常</strong>（PPT第4页例子）（这类异常一般我们是不处理的，因为会很判断会出现什么问题，而且有些异常你也无法运行时处理，比如空指针。）<br><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B83.png" alt="异常3">  </li>
 </ul>
 <hr>
 <ul>
 <li>运行时异常系统处理异常的过程如下：<ul>
 <li>当发生异常时，运行时系统按与方法调用次序相反的次序搜索调用堆栈，寻找一个包含可处理异常的代码块的方法，这个代码块称为异常处理器(exception handler)，即try/catch语句</li>
 <li>如果被抛出的异常对象与try/catch块可以处理的类型匹配，运行时系统将异常对象传递给它，这称为捕获异常(catch the exception)</li>
-<li>如果运行时系统彻底搜索了调用堆栈中的所有方法（一直返回到了JVM还没有处理好），但没有找到合适的异常处理器，程序则终止<br><img src="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true" alt="haha">  </li>
+<li>如果运行时系统彻底搜索了调用堆栈中的所有方法（一直返回到了JVM还没有处理好），但没有找到合适的异常处理器，程序则终止<br><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B84.png" alt="异常4"></li>
 </ul>
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CallStack</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;in methodA&quot;</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">		methodB(); </span><br><span class="line">	&#125; </span><br><span class="line">        <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">		System.out.println(e);   <span class="comment">//方法A捕获异常兵处理，这里只是简单打印出异常对象e</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;end methodA&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;in methodB&quot;</span>);</span><br><span class="line">        methodC();    <span class="comment">//方法B没有处理，顺着调用栈向上抛到方法A</span></span><br><span class="line">        System.out.println(<span class="string">&quot;end methodB&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">methodC</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;in methodC&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">10</span> / <span class="number">0</span>;        <span class="comment">//方法C出现异常，抛出异常，但没有处理，顺着调用栈向上抛到方法B</span></span><br><span class="line">        System.out.println(i);  </span><br><span class="line">        System.out.println(<span class="string">&quot;end methodC&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;in methodMain&quot;</span>);</span><br><span class="line">        methodA();</span><br><span class="line">        System.out.println(<span class="string">&quot;end methodMain&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/Trent-Liu/picture/blob/main/%E5%BC%82%E5%B8%B81.png?raw=true" alt="haha">  </p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/%E5%BC%82%E5%B8%B85.png" alt="异常5"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210411202840760.png" alt="image-20210411202840760"></p>
 <h3 id="非必检异常-Unchecked-Exception"><a href="#非必检异常-Unchecked-Exception" class="headerlink" title="非必检异常(Unchecked Exception)"></a>非必检异常(Unchecked Exception)</h3><ul>
 <li>非必检异常是<strong>运行时异常(RuntimeException)<strong>和</strong>错误(Error)类及它们的子类</strong>, 非必检异常在方法里可不捕获异常同时方法头<strong>可不声明异常，编译器不会报错</strong>。但该发生的异常还是要发生。<h3 id="其它的异常称为必检异常-Checked-Exception"><a href="#其它的异常称为必检异常-Checked-Exception" class="headerlink" title="其它的异常称为必检异常(Checked Exception)"></a>其它的异常称为必检异常(Checked Exception)</h3></li>
 <li>非必检异常，编译器确保<strong>必检异常被捕</strong>获或<strong>声明（即要不在方法里捕获异常，要不在方法头声明异常）</strong><ul>
@@ -336,8 +338,8 @@
 <li>抛出异常有二种情况</li>
 </ul>
 <ol>
-<li>间接抛出：执行语句（如new FileInputStream(new File(“C:\1.txt”)); ）或调用方法时由被调用方法抛出的异常（如上）</li>
-<li>显式直接抛出<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i &#x3D; new Scanner(System.in).nextInt();</span><br><span class="line">         if(i &gt; 10)&#123; &#x2F;&#x2F;假设应用逻辑要求用户输入整数不能大于10</span><br><span class="line">		 throw new Exception(&quot;Input value is too big&quot;); </span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+<li>间接抛出：执行语句（如new FileInputStream(new File(“C:\1.txt”)); ）或调用方法时由<strong>被调用方法抛出的异常</strong>（如上），当前发生异常的方法自动抛出</li>
+<li>显式直接抛出，人为手动抛出<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i &#x3D; new Scanner(System.in).nextInt();</span><br><span class="line">         if(i &gt; 10)&#123; &#x2F;&#x2F;假设应用逻辑要求用户输入整数不能大于10</span><br><span class="line">		 throw new Exception(&quot;Input value is too big&quot;); </span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>上图就是调用throw，显式</p>
 </blockquote>
@@ -768,6 +770,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
               </li>
              
@@ -777,18 +783,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">重载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -804,6 +798,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">重载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
@@ -816,6 +822,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
@@ -824,7 +834,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -836,15 +846,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
+                <a href="javascript:void(0)" class="js-tag color3">泛型</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -865,6 +867,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
             
             <div class="clearfix"></div>
