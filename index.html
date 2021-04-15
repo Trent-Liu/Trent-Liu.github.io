@@ -81,7 +81,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 17
+			总文章数 16
 		</nav>
 	<br/>
 	
@@ -448,188 +448,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/04/12/Java_ArrayList/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    <article id="post-汇编常用寄存器及指令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-       
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/09/%E6%B1%87%E7%BC%96%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E6%8C%87%E4%BB%A4/">git的一些常用操作</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/09/%E6%B1%87%E7%BC%96%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E6%8C%87%E4%BB%A4/" class="archive-article-date">
-  	<time datetime="2021-04-09T11:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-09</time>
-</a>
-
-
-           <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-keyboard-o"></i>
-      <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">751字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="fa fa-hourglass-half"></i>
-      <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">2分</span>
-    </span>
-  </span>
-</div>
-
-          
-        <!-- 添加完成 -->
-
-
-
-        
-          
-          
-        
-          
-          
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h2><p>db byte 1个字节，unsigned char</p>
-<p>sbyte 1个字节，char</p>
-<p>dw word 2个字节，无符号</p>
-<p>sword 有符号字符类型变量</p>
-<p>dd dword sdword 4个字节双字</p>
-<p>dq qword sqword  8个字节四字</p>
-<p>real4 单精度浮点数 4个字节</p>
-<p>real8 双精度浮点 8个字节</p>
-<p>数值表达式在编译后就变成了一个值，如x dw 3＊3+4＊4就等价于x dw 25</p>
-<p>单个变量是一个地址表达式</p>
-<p>数据段定义？ 表示定义的变量无确定的初值，相当于空间占位</p>
-<p>x db 3 dup(5)等价于x db 5,5,5</p>
-<p>在数据段和代码段中，$就表示的是当前地址</p>
-<p>org $+5  在上一个变量空间分配后，空出五个字节之后再分配给下一个变量</p>
-<p>$+5</p>
-<p>代码段</p>
-<p>u_len = 5符号常量，u_len可以代替 5</p>
-<p>p dd x,y  p存的是x和y的地址</p>
-<p>寻址方式</p>
-<ol>
-<li>立即寻址  操作数是个常数，该数的编码在指令中</li>
-<li>寄存器寻址 操作数在CPU的寄存器中，该寄存器的编码在指令中</li>
-<li>存储器寻址方式<ol>
-<li>直接寻址  单个变量访问</li>
-<li>寄存器间接寻址  指针变量的访问</li>
-<li>变址寻址  一维数组</li>
-<li>基址加变址寻址  二维数组</li>
-</ol>
-</li>
-</ol>
-<p> 双操作数的指令规则 </p>
-<ol>
-<li>源操作数和目的操作数不能同时使用存储器存取方式</li>
-<li>立即寻址不能作为目的操作数的寻址方式，opd不可以是一个常数</li>
-<li>opd，ops数据类型都明确，则两者必须相同，opd，ops都为寄存器时，类型明确，不可不相同，opd，ops含有变量，类型就是变量定义时的类型</li>
-<li>opd，ops的类型都不能不明确</li>
-</ol>
-<p>一个字符或者字符串可以作为操作数</p>
-<p>mov al,’1’   mov al,31h</p>
-<p>mov ax,’12’  mov ax,3132h</p>
-<p>mov eax,’1234’  mov eax,31323334h</p>
-<p>mov ebx,offset x    ebx=&amp;x</p>
-<p>取变量的地址的时候，需要使用32位的寄存器</p>
-<p>直接寻址 操作码（存放地址）的下一个双字单元的内容为操作数的偏移地址</p>
-<p>变量 或者 [变量]</p>
-<p>变量+-数值表达式  [变量+-数值表达式]  变量[+-数值表达式]      得到的新地址的内容，是变量的地址加表达式，得到的地址的内容</p>
-<p>段寄存器名:[n]  </p>
-<p>变量为全局变量的时候，单个变量或者“变量+-一个数值表达式”是直接寻址</p>
-<p>变量为局部变量，该方式是变址寻址</p>
-<p>间接寻址中的寄存器类似于指针</p>
-<p>寄存器上有无方括号的查别是很大的，但是对于一个变量，有无方括号是等价的</p>
-<p>mov [ebx],32H语法错误，因为[ebx]就是指明了一个地址，并不知道数据类型，32H也没有类型，两个操作数的类型都不明确是不允许的</p>
-<p>改为  mov byte ptr[ebx],32H</p>
-
-      
-           <!-- 添加版权声明 -->
-    
-  
-    <div class="declare" hidden="hidden"></div>
-  
-        <!-- 添加版权声明 -->
-  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机/汇编//" class="article-tag-list-link color3">汇编</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/09/%E6%B1%87%E7%BC%96%E5%B8%B8%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8%E5%8F%8A%E6%8C%87%E4%BB%A4/">展开全文 >></a>
         </p>
       
 
@@ -1638,6 +1456,169 @@
 
 
   
+    <article id="post-Java笔记——继承和多态下" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+       
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/">Java笔记——继承和多态下</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/" class="archive-article-date">
+  	<time datetime="2021-03-26T15:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-26</time>
+</a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">5.7k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  预计阅读时长: </span>
+      <span class="post-count">22分</span>
+    </span>
+  </span>
+</div>
+
+          
+        <!-- 添加完成 -->
+
+
+
+        
+          
+          
+        
+          
+          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实例方法覆盖"><a href="#实例方法覆盖" class="headerlink" title="实例方法覆盖"></a>实例方法覆盖</h2><ul>
+<li>如果子类<strong>重新定义</strong>了从父类中继承的实例方法，称为方法覆盖(method override)。<ul>
+<li>仅当父类方法在子类里是<strong>可访问的</strong>，该实例方法<strong>才能被子类覆盖</strong>，即父类<strong>私有</strong>实例方法不能被子类覆盖，父类实例私有方法自动视为final的。</li>
+<li>静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被<strong>隐藏</strong>。</li>
+<li><strong>覆盖特性</strong>：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能通过这个父类型引用变量去访问被覆盖的父类方法(即这时被覆盖的父类方法不可再被发现)。因为实例方法具有多态性（晚期绑定）<ul>
+<li>在子类类体函数中可以使用super调用被覆盖的父类方法。</li>
+</ul>
+</li>
+<li>隐藏特性：指父类的变量（实例变量、静态变量）和静态方法在子类被重新定义，但由于<strong>类的变量和静态方法没有多态性</strong>，因此通过<strong>父类型引用变量访问的一定是父类变量、静态方法</strong>(即被隐藏的可再发现)。</li>
+<li>方法覆盖的哲学涵义：子对象当然可以修改父类的行为（生物进化除了遗传，还有变异）  </li>
+</ul>
+</li>
+</ul>
+<p>例子：</p>
+        
+      
+           <!-- 添加版权声明 -->
+    
+  
+    <div class="declare" hidden="hidden"></div>
+  
+        <!-- 添加版权声明 -->
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">实例方法覆盖</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Object中的方法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">clone的覆盖</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">equals的覆盖</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">！多态</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/26/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E6%80%81%E4%B8%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1764,6 +1745,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
               </li>
              
@@ -1780,10 +1765,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">List</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
               </li>
              
@@ -1793,18 +1774,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1820,6 +1789,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
@@ -1832,10 +1813,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
@@ -1844,7 +1821,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">汇编</a>
+                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1857,6 +1834,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">泛型</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1877,18 +1866,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
             
             <div class="clearfix"></div>
