@@ -17,8 +17,28 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210417081121324.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210417081330380.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421184045450.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421184504711.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421190447197.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421190613062.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192003612.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192306057.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192655047.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192841546.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421194556081.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421195919991.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421202408116.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421203255031.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421204754330.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421205701082.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421210848626.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421211526607.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421212622864.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421213850843.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421214552381.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421215036540.png">
 <meta property="article:published_time" content="2021-04-17T10:00:15.000Z">
-<meta property="article:modified_time" content="2021-04-17T01:05:37.110Z">
+<meta property="article:modified_time" content="2021-04-21T13:50:57.239Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="多线程">
@@ -229,7 +249,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">1.2k字</span>
+      <span class="post-count">9.3k字</span>
     </span>
   </span>
 
@@ -238,7 +258,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-hourglass-half"></i>
       <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">5分</span>
+      <span class="post-count">38分</span>
     </span>
   </span>
 </div>
@@ -331,7 +351,7 @@
 <li>线程和线程任务混在一起，不建议使用。</li>
 <li>Java不支持多继承，CustomThread继承了Thread类，不能再继承其他类。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Custom thread class</span></span><br><span class="line">   <span class="comment">//Thread类的拓展类</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">     <span class="comment">//数据成员</span></span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="title">CustomThread</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line">       ...</span><br><span class="line">     &#125;</span><br><span class="line">    </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="comment">// Tell system how to perform this task</span></span><br><span class="line">       ...</span><br><span class="line">     &#125;</span><br><span class="line">     ...</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Custom thread class</span></span><br><span class="line"><span class="comment">//Thread类的拓展类</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">CustomThread</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">  <span class="comment">//数据成员</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">CustomThread</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Tell system how to perform this task</span></span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>定义Thread类的扩展类（CustomThread）</li>
@@ -344,7 +364,499 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	    Thread printA = <span class="keyword">new</span> PrintChar(<span class="string">&#x27;a&#x27;</span>,<span class="number">100</span>); <span class="comment">//创建二个线程对象</span></span><br><span class="line">	    Thread printB = <span class="keyword">new</span> PrintChar(<span class="string">&#x27;b&#x27;</span>,<span class="number">100</span>);</span><br><span class="line">	    printA.start(); <span class="comment">//启动线程</span></span><br><span class="line">	    printB.start();	<span class="comment">//启动另外一个线程</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="线程的状态切换"><a href="#线程的状态切换" class="headerlink" title="线程的状态切换"></a>线程的状态切换</h3>
+<h3 id="线程的状态切换"><a href="#线程的状态切换" class="headerlink" title="线程的状态切换"></a>线程的状态切换</h3><ul>
+<li>就绪：万事俱备，等待CPU调度</li>
+<li>运行：线程获得了CPU的所有权并在上面运行</li>
+<li>消亡：当run()执行完毕后，线程就消亡</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421184045450.png" alt="image-20210421184045450"></p>
+<ul>
+<li>下面一些情况导致线程从<strong>运行状态转到阻塞状态</strong>：<ol>
+<li>调用了sleep</li>
+<li>调用了Object wait()方法，条件对象的await方法，Thread的join方法以及等待其他线程，或者等待资源锁</li>
+<li>发出了阻塞式IO操作请求，并等待IO操作结束(如等待阻塞式Socket的数据到来)</li>
+</ol>
+</li>
+<li>线程由<strong>阻塞状态被唤醒后，回到就绪态</strong>。唤醒的原因<ol>
+<li>sleep时间到</li>
+<li>调用wait(await)的线程被其他线程notify，调用join方法的线程等到了其他线程完成，线程拿到了资源锁</li>
+<li>阻塞IO完成</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>Object类定义了wait/notify/notifyAll方法</p>
+<p>Thread类定义了sleep/yield/join方法</p>
+</blockquote>
+<h3 id="Runnable接口和线程类Thread"><a href="#Runnable接口和线程类Thread" class="headerlink" title="Runnable接口和线程类Thread"></a>Runnable接口和线程类Thread</h3><ul>
+<li><p>java.lang.Runnable</p>
+<p>Runnable接口实例定义了线程任务，即线程要执行的逻辑。一个线程任务必须通过线程对象来执行</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421184504711.png" alt="image-20210421184504711" style="zoom: 50%;">
+
+<p>Thread()                                    创建一个空的线程</p>
+<p>Thread(task:Runnable)          为指定的任务创建一个线程</p>
+<p>start():void                                开始一个线程，进入Ready状态，如无其它线程等待，可立即Run进入running状态</p>
+<p>isAlive():boolean                      测试线程当前是否在运行</p>
+<p>setPriority(p:int):void             为该线程指定优先值p（1~10）</p>
+<p>join():void                                   等待线程结束</p>
+<p>sleep(millis:long):void             让当前线程休眠若干ms，监视器自动恢复其运行</p>
+<p>yield():void                                  将线程从running变为ready，允许其他线程执行（自己也可能立即执行）</p>
+<p>interrupt():void                            中断该线程</p>
+</li>
+</ul>
+<h4 id="线程的优先级"><a href="#线程的优先级" class="headerlink" title="线程的优先级"></a>线程的优先级</h4><ul>
+<li><p>n线程优先级范围从1－10，数字越高越能被优先执行。但优先级高并不代表能独自占用执行时间片，可能是<strong>优先级高得到越多的执行时间片</strong>，反之，<strong>优先级低的分到的执行时间少但不会分配不到执行时间</strong></p>
+</li>
+<li><p>每个线程创建时赋予默认的优先级Thread.NORM_PRIORITY. </p>
+</li>
+<li><p>通过setPriority(int priority)为线程指定优先级. </p>
+</li>
+<li><p>用getPriority()方法获取线程的优先级.</p>
+</li>
+<li><p>JAVA定义的优先级：1～10</p>
+</li>
+<li><p>Thread类有int 类型的常量：</p>
+<ul>
+<li><p>Thread.MIN_PRIORITY（1）</p>
+</li>
+<li><p>Thread.MAX_PRIORITY（10）</p>
+</li>
+<li><p>Thread.NORM_PRIORITY（5）</p>
+</li>
+</ul>
+</li>
+<li><p>多个线程只能是“宏观上并行，微观上串行”</p>
+</li>
+<li><p>在有限个CPU的系统中确定多个线程的执行顺序称为线程的调度</p>
+</li>
+<li><p>Java的线程调度是抢占式的，这表示调度机制会<strong>周期性地中断线程</strong>，将上下文切换到另一个线程；从而为每个线程都提供时间片</p>
+</li>
+<li><p>自私的线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">run() &#123;</span><br><span class="line">			<span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>应适当地在run()里sleep或yield一下，让其他线程由更多机会被运行。</p>
+<p><em><strong>不要编写依赖于线程优先级的程序</strong></em></p>
+</li>
+</ul>
+<h3 id="线程类Thread的yield，sleep方法"><a href="#线程类Thread的yield，sleep方法" class="headerlink" title="线程类Thread的yield，sleep方法"></a>线程类Thread的yield，sleep方法</h3><h4 id="使用yield-方法为其他线程让出CPU时间"><a href="#使用yield-方法为其他线程让出CPU时间" class="headerlink" title="使用yield()方法为其他线程让出CPU时间"></a>使用yield()方法为其他线程让出CPU时间</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; times; i++) &#123;</span><br><span class="line">        System.out.print(charToPrint);</span><br><span class="line">        Thread.yield();  <span class="comment">//挂起进入ready，给其它进程调度机会</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将线程从running变为ready，允许其他线程执行（自己也可能立即执行）</p>
+</blockquote>
+<h4 id="sleep-long-mills-方法将线程设置为休眠状态，确保其他线程执行："><a href="#sleep-long-mills-方法将线程设置为休眠状态，确保其他线程执行：" class="headerlink" title="sleep(long mills)方法将线程设置为休眠状态，确保其他线程执行："></a>sleep(long mills)方法将线程设置为休眠状态，确保其他线程执行：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;<span class="comment">//循环中使用sleep方法，循环放在try-catch块中</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; times; i++) &#123;</span><br><span class="line">            System.out.print(charToPrint);</span><br><span class="line">            <span class="keyword">if</span> (i &gt;= <span class="number">50</span>) Thread.sleep(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 必检异常：其它线程调当前线程（正在休眠）interupt方法会抛出该异常</span></span><br><span class="line">    <span class="keyword">catch</span> (InterruptedException ex &#123; &#125;</span><br><span class="line">&#125;<span class="comment">//处于阻塞状态（如在睡眠，在wait，在执行阻塞式IO）的线程，如果被其他线程打断（即处于阻塞的线程的interupt方法被其它线程调用），会抛出InterruptedException</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果一个线程处于了阻塞状态（如线程调用了thread.sleep、thread.join、thread.wait、1.5中的condition.await、以及可中断的通道上的 I/O 操作方法后可进入阻塞状态）</p>
+<p>则在线程在检查中断标示时如果发现中断标示为true，则会在这些阻塞方法（sleep、join、wait、1.5中的condition.await及可中断的通道上的 I/O 操作方法）调用处抛出InterruptedException异常，并且在抛出异常后立即将线程的中断标示位清除，即重新设置为false。</p>
+<p>抛出异常是为了线程从阻塞状态醒过来，并在结束线程前让程序员有足够的时间来处理中断请求。</p>
+</blockquote>
+<h4 id="线程类Thread的join方法"><a href="#线程类Thread的join方法" class="headerlink" title="线程类Thread的join方法"></a>线程类Thread的join方法</h4><p>Runnable接口的实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrintChar</span> <span class="keyword">implements</span> <span class="title">Runnable</span> //实现<span class="title">Runnable</span>接口</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  	<span class="keyword">private</span> <span class="keyword">char</span> charToPrint;  <span class="comment">// The character to print</span></span><br><span class="line"> 	<span class="keyword">private</span> <span class="keyword">int</span> times;  <span class="comment">// The times to repeat</span></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="title">PrintChar</span><span class="params">(<span class="keyword">char</span> c, <span class="keyword">int</span> t)</span></span>&#123;  charToPrint = c;  times = t; &#125;</span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123; <span class="comment">//实现Runnable中声明的run方法</span></span><br><span class="line">   		 <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span>; i &lt; times; i++) </span><br><span class="line">    			System.out.print(charToPrint);</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行多线程</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JoinDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">   		 Thread printA = <span class="keyword">new</span> Thread(<span class="keyword">new</span> PrintChar(<span class="string">&#x27;a&#x27;</span>,<span class="number">100</span>));</span><br><span class="line">   		 Thread printB = <span class="keyword">new</span> Thread(<span class="keyword">new</span> PrintChar(<span class="string">&#x27;b&#x27;</span>,<span class="number">100</span>));</span><br><span class="line">   		 printA.start();</span><br><span class="line">    		 printB.start();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421190447197.png" alt="image-20210421190447197"></p>
+<blockquote>
+<p>可以看到屏幕上<strong>无规律的交替输出ab</strong>。这是多线程程序的特点，<strong>每次运行输出结果可能是不一样的</strong>。如果希望把所有a先打印完再打印b，怎么做？</p>
+</blockquote>
+<p>修改代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JoinDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">        Thread printA = <span class="keyword">new</span> Thread(<span class="keyword">new</span> PrintChar(<span class="string">&#x27;a&#x27;</span>,<span class="number">100</span>));</span><br><span class="line">        Thread printB = <span class="keyword">new</span> Thread(<span class="keyword">new</span> PrintChar(<span class="string">&#x27;b&#x27;</span>,<span class="number">100</span>));</span><br><span class="line">        printA.start();  <span class="comment">//在主线程里首先启动printA线程</span></span><br><span class="line">        printA.join(); <span class="comment">//主线程被阻塞，等待printA执行完</span></span><br><span class="line">        printB.start(); <span class="comment">//主线程被唤醒，启动printB线程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421190613062.png" alt="image-20210421190613062"></p>
+<blockquote>
+<p>join方法的作用：在A线程中调用了B线程（对象）的join()方法时，表示A线程放弃控制权（被阻塞了），只有<strong>当B线程执行完毕时，A线程才被唤醒继续执行。</strong></p>
+<p>程序在main线程中调用printA线程（对象）的join方法时，<strong>main线程放弃cpu控制权（被阻塞），直到线程printA执行完毕</strong>，main线程被唤醒执行printB.start();</p>
+<p>运行结果是全部a打印完才开始打印b</p>
+</blockquote>
+<p>定义一个新的线程任务类</p>
+<blockquote>
+<p>在线程任务对象print100的run中启动新线程Thread4，并调用Thread4 的join( ) 方法，，等待Thread4结束:</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PrintNum</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123; <span class="comment">//实现新的线程任务类，打印数字</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> lastNum;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PrintNum</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123; lastNum = n; &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       Thread thread4=<span class="keyword">new</span> Thread(<span class="keyword">new</span> PrintChar(<span class="string">&#x27;c&#x27;</span>,<span class="number">4000</span>));</span><br><span class="line">        thread4.start();</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;lastNum;i++)&#123;</span><br><span class="line">                System.out.print(<span class="string">&quot; &quot;</span> + i);</span><br><span class="line">                <span class="keyword">if</span>(i == <span class="number">50</span>) thread4.join(); <span class="comment">//join方法可以给参数指定至多等若干毫秒</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span>(InterruptedException e)&#123; &#125; <span class="comment">//join方法可能会抛出这个异常</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>启动tPrint100线程：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Runnable print100 = <span class="keyword">new</span> PrintNum(<span class="number">100</span>); <span class="comment">//线程任务对象</span></span><br><span class="line">Thread tPrint100 = <span class="keyword">new</span> Thread(print100); <span class="comment">//线程对象</span></span><br><span class="line">tPrint100.start();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192003612.png" alt="image-20210421192003612"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192306057.png"></p>
+<p>可以看到，thread4打印c一直在执行，同时tPrint100也一直在打印数字，当打印到50的时候，调用了thread4.join()，之后停止tPrint100进程，让thread4打印c，当所有c打印完后，再继续打印数字</p>
+<h2 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h2><ul>
+<li><p>由于要为每一个线程任务创建一个线程（Thread对象），对于有<strong>大量线程任务的场景就不够高效</strong></p>
+<p>（当线程任务执行完毕，即run方法结束后，Thread对象就消亡，然后又为新的线程任务去new新的线程对象…, <strong>当有大量的线程任务时，就不断的new Thread对象，Thread对象消亡，再new Thread对象…</strong>）</p>
+</li>
+<li><p>线程池适合<strong>大量线程任务的并发执行</strong>。线程池通过有效管理线程、“复用” 线程来提高性能. </p>
+</li>
+<li><p>从JDK 1.5 开始使用Executor接口（执行器）来执行线程池中的任务，Executor的<strong>子接口ExecutorService管理和控制任务</strong></p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192655047.png" alt="image-20210421192655047"></p>
+<ul>
+<li>使用Executors的类方法创建一个线程池，Eecutors由Object派生</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421192841546.png" alt="image-20210421192841546"></p>
+<blockquote>
+<p>Executors还支持其它类型的线程池的创建方法如：newScheduledThreadPool、newSingleThreadPool</p>
+</blockquote>
+<p>实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.*;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExecutorDemo</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Create a fixed thread pool with maximum three threads</span></span><br><span class="line">    ExecutorService es= Executors.newFixedThreadPool(<span class="number">3</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Submit runnable tasks to the executor</span></span><br><span class="line"> 	es.execute(<span class="keyword">new</span> PrintChar(<span class="string">&#x27;a&#x27;</span>, <span class="number">100</span>));</span><br><span class="line"> 	es.execute(<span class="keyword">new</span> PrintChar(<span class="string">&#x27;b&#x27;</span>, <span class="number">100</span>));</span><br><span class="line"> 	es.execute(<span class="keyword">new</span> PrintNum(<span class="number">100</span>));</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Shut down 关闭，不接受新的线程任务，现有的任务将继续执行直到完成</span></span><br><span class="line"></span><br><span class="line">    es.shutdown();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="进一步讨论：区分任务和线程"><a href="#进一步讨论：区分任务和线程" class="headerlink" title="进一步讨论：区分任务和线程"></a>进一步讨论：区分任务和线程</h3><ul>
+<li><p>任务</p>
+<ul>
+<li>任务是实现了Runnable接口的类的实例</li>
+<li>这个任务的逻辑由run方法实现</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">   <span class="comment">//数据成员和其它方法... </span></span><br><span class="line">    </span><br><span class="line">   <span class="comment">//Implement the run method in Runnable</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//task logic...</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>线程</p>
+<ul>
+<li>线程是Thread类的实例，是任务的运行载体</li>
+<li>任务必须通过线程来运行</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String... args)</span> </span>&#123;</span><br><span class="line">        Runnable task = <span class="keyword">new</span> Task(...); <span class="comment">// Create an instance of Task</span></span><br><span class="line">        </span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(task); <span class="comment">// Create a thread   </span></span><br><span class="line">        thread.start(); <span class="comment">// Start a thread</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421194556081.png" alt="image-20210421194556081" style="zoom:67%;">
+
+<blockquote>
+<p>如果这样直接new一个线程，线程启动后，执行任务的run方法，当任务的run方法执行完毕，线程对象使命就结束，被JVM回收。</p>
+<p>如果有大量的任务要运行，会导致频繁创建新线程，销毁线程。</p>
+<p>线程池维护多个创建好的线程，同时可以让多个任务“复用”线程，避免了线程的重复创建和销毁。</p>
+</blockquote>
+<p><strong>但是一个线程任务被线程执行完后，线程就自动消亡。那么如何复用一个线程（即让线程去执行新的任务）？这个问题大家下去思考。</strong>（待解决）</p>
+<h2 id="线程同步-程序清单30-4"><a href="#线程同步-程序清单30-4" class="headerlink" title="线程同步-程序清单30-4"></a>线程同步-程序清单30-4</h2><ul>
+<li><p>如果一个共享资源（比如一个对象）被多个线程<strong>同时访问</strong>，如果不对访问进行控制，会造成<strong>不可预期</strong>的结果。这是需要对线程实施同步控制</p>
+</li>
+<li><p>Account是账户类，其数据成员balance为当前余额，deposit方法往账户存钱，getBalance方法读取账户余额</p>
+</li>
+<li><p>AddPennyTask为任务，每次往账户里存一个便士</p>
+</li>
+<li><p>启动100个线程同时执行AddPennyTask任务</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421195919991.png" alt="image-20210421195919991"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountWithoutSync</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//内部静态类Account</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">int</span> balance = <span class="number">0</span>;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			<span class="keyword">return</span> balance;  </span><br><span class="line">		&#125;	</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">int</span> amount)</span></span>&#123;</span><br><span class="line">			<span class="keyword">int</span> newBalance = balance + amount;   <span class="comment">//读取balance			</span></span><br><span class="line">			<span class="keyword">try</span>&#123; Thread.sleep(<span class="number">5</span>); <span class="comment">//休眠是为了放大数据不一致的可能性</span></span><br><span class="line">               &#125;</span><br><span class="line">			<span class="keyword">catch</span>(InterruptedException e)&#123;	&#125;</span><br><span class="line">			balance = newBalance;		<span class="comment">//写balance</span></span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//内部静态类AddPennyTask是线程任务类，实现Runnable接口，调用account对象的deposit方法</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AddPennyTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;  account.deposit(<span class="number">1</span>); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">     <span class="comment">//account对象被100个线程访问：每个线程的run方法都调用accoun.deposit方法   </span></span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">static</span> Account account = <span class="keyword">new</span> Account();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ch30;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountWithoutSync</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//newCachedThreadPool()创建一个线程池，会再必要的时候创建新的线程。但是如果以前已经创建好的线程可用，则先宠用之前创建好的线程。</span></span><br><span class="line">        ExecutorService executor = Executors.newCachedThreadPool();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//通过线程池启动100个线程，执行AddPenyTask类型的任</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)&#123;</span><br><span class="line">            executor.execute(<span class="keyword">new</span> AddPennyTask());</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//关闭线程池</span></span><br><span class="line">        executor.shutdown();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//等待线程池里线程全部结束，线程池中都执行完后，返回true</span></span><br><span class="line">        <span class="keyword">while</span>(!executor.isTerminated())&#123;  &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;What is balance?&quot;</span> + account.getBalance());</span><br><span class="line">        &#125;	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>按理说，结果应该得到100，但是实际上结果如下（每次得到的值都是不同的）</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421202408116.png" alt="image-20210421202408116" style="zoom: 67%;">
+
+<p><strong>原因：多个线程访问一个对象，没有同步</strong></p>
+<p>多个线程同时访问公共资源，会导致<strong>竞争状态（同时去修改公共资源）</strong>。为了避免竞争状态，应该<strong>防止多个线程同时进入程序的某一特定部分</strong>，这样的部分叫临界区。<strong>Account类的deposit方法就是临界区</strong>。可<strong>用synchronized关键字来同步</strong>，保证<strong>一次只有一个线程可以访问这个方法</strong>。当一个方法被synchronized修饰，这个方法就是<strong>原子的（一个线程开始执行这个方法，就不可中断）</strong></p>
+<blockquote>
+<p><strong>注意deposit里面每条语句都不是原子的（对应着一堆汇编指令），因此每条(汇编)语句执行时，是随时可能被中断，切换到另外一个线程</strong></p>
+</blockquote>
+<ul>
+<li>task1和task2同时进入account对象的deposit方法</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421203255031.png" alt="image-20210421203255031"></p>
+<blockquote>
+<p>task1还没有对balance进行修改，没执行到blance=newBalance的汇编语句，task2就开始任务，此时task2读取的balance就是0</p>
+</blockquote>
+<hr>
+<ul>
+<li><p>线程同步用于协调<strong>多个线程访问公共资源</strong></p>
+<p>公共资源被多个线程同时访问，可能会遭到破坏</p>
+<p>（程序清单30-4：AccountWithoutSync.java）</p>
+</li>
+<li><p>临界区（critical region）可能被多个线程同时进入的程序的一部分区域</p>
+<ul>
+<li>所以需要对临界区同步，<strong>保证任何时候只能有1个线程进入临界区</strong></li>
+</ul>
+</li>
+<li><p>可以用synchronized关键词来同步临界区</p>
+<ul>
+<li>临界区可以是方法，包括静态方法和实例方法，那么被<strong>synchronized关键字修饰的方法叫同步方法</strong></li>
+<li>临界区也可以是语句块，也可以用synchronized关键字来同步语句块：如synchronized(this){…}</li>
+</ul>
+</li>
+<li><p>除了用synchronized关键字，还可以<strong>利用加锁同步临界区</strong></p>
+</li>
+</ul>
+<h3 id="线程同步-synchronized"><a href="#线程同步-synchronized" class="headerlink" title="线程同步-synchronized"></a>线程同步-synchronized</h3><ul>
+<li><p>synchronized可用于<strong>同步方法</strong></p>
+</li>
+<li><p>使用关键字synchronized来修饰方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">double</span> amount)</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p>一次<strong>只有一个线程</strong>可以进入这个同步方法</p>
+</li>
+<li><p>synchronized关键字是如何做到方法同步的？</p>
+<p>通过<strong>加锁</strong>：一个线程要进入同步方法，首先拿到锁，进入方法后立刻上锁，导致<strong>其它要进入这个方法的线程被阻塞</strong>（等待锁）</p>
+<ul>
+<li>锁是一种实现资源排他使用的机制</li>
+<li>对于<strong>synchronized</strong>实例方法，是对调用该方法的<strong>对象(this对象)加锁</strong></li>
+<li>对于<strong>synchronized</strong>静态方法，是对拥有这个静态方法的<strong>类加锁</strong></li>
+</ul>
+</li>
+<li><p>当进入方法的线程执行完方法后，锁被释放，会唤醒等待这把锁的其他进程。</p>
+</li>
+</ul>
+<hr>
+<p><strong>同步对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">double</span> amount)</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421204754330.png" alt="image-20210421204754330"></p>
+<p><strong>同步语句块</strong></p>
+<ul>
+<li>被synchronized关键字同步的语句块称为同步块(synchronized Block)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> (expr) &#123;   statements;  &#125;  	，</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>表达式<strong>expr求值结果必须是一个对象的引用</strong>，因此可以通过对任何对象加锁来同步语句块</p>
+<ul>
+<li>如果expr指向的对象<strong>没有被加锁</strong>，则<strong>第一个执行到同步块的线程对该对象加锁</strong>，线程执行该语句块，然后解锁；</li>
+<li>如果expr指向的对象<strong>已经加了锁</strong>，则执行到同步块的其它线程将<strong>被阻塞</strong></li>
+<li>expr指向的对象解锁后，所有等待该对象锁的线程都被唤醒</li>
+</ul>
+</li>
+<li><p>同步语句块允许同步方法中的<strong>部分代码</strong>，而不必是整个方法，增强了程序的并发能力</p>
+</li>
+<li><p>任何同步的<strong>实例方法</strong>都可以转换为同步语句块。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421205701082.png" alt="image-20210421205701082"></p>
+<hr>
+<h4 id="前面的例子中的如下几种解决方案"><a href="#前面的例子中的如下几种解决方案" class="headerlink" title="前面的例子中的如下几种解决方案"></a>前面的例子中的如下几种解决方案</h4><ol>
+<li>deposit方法改为同步的</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> balance = <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> balance;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">int</span> amount)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> newBalance = balance + amount;			</span><br><span class="line">		<span class="keyword">try</span>&#123; Thread.sleep(<span class="number">5</span>); &#125;</span><br><span class="line">		<span class="keyword">catch</span>(InterruptedException e)&#123;	&#125;</span><br><span class="line">		balance = newBalance;</span><br><span class="line">	&#125;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>sleep方法调用之后，并没有释放锁。使得线程仍然可以同步控制。sleep不会让出系统资源；</p>
+<p>凡是在上了锁的临界区里，sleep方法不会释放锁</p>
+</blockquote>
+<ol start="2">
+<li>修改共享资源Account类，在deposit方法内部加同步块</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> balance = <span class="number">0</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> balance;</span><br><span class="line">	&#125;		</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">int</span> amount)</span></span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</span><br><span class="line">			<span class="keyword">int</span> newBalance = balance + amount;			</span><br><span class="line">			<span class="keyword">try</span>&#123; Thread.sleep(<span class="number">5</span>); &#125;</span><br><span class="line">			<span class="keyword">catch</span>(InterruptedException e)&#123;	&#125;</span><br><span class="line">			balance = newBalance;</span><br><span class="line">		&#125;		</span><br><span class="line">	&#125;		</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改线程任务类AddPennyTask，在run方法里加同步块</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AddPennyTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">synchronized</span>(account)&#123;</span><br><span class="line">			account.deposit(<span class="number">1</span>);	</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;	</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：是对account对象加锁。不能对this对象加锁，即**synchronized(this)**是错误的</p>
+<p>因为this是AddPennyTask对象（此处，而前两处就是account对象），100个线程任务对象各不相同，因此synchronized(this)是对100个线程任务对象分别加锁，根本没起到同步的作用。100个线程任务对象同时访问的是共享资源account对象，需要加锁同步的是account对象。</p>
+</blockquote>
+<h3 id="线程同步-加锁同步"><a href="#线程同步-加锁同步" class="headerlink" title="线程同步-加锁同步"></a>线程同步-加锁同步</h3><ul>
+<li><p>采用synchronized关键字的同步要<strong>隐式地</strong>在对<strong>象实例或类上加锁</strong>，粒度较大影响性能</p>
+</li>
+<li><p>JDK1.5可以显式地加锁，能够在更小地粒度上进行线程同步</p>
+</li>
+<li><p>一个锁是一个Lock接口的实例</p>
+</li>
+<li><p>类ReentrantLock是Lock的一个具体实现：可重入的锁</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421210848626.png" alt="image-20210421210848626"></p>
+<ul>
+<li>可重入性锁描述这样的一个问题：一个线程在<strong>持有一个锁的时候</strong>，它能否<strong>再次（多次）申请该锁</strong>。如果一个线程已经获得了锁，它还可以再次获取该锁而不会死锁，那么我们就称该锁为可重入锁。通过以下伪代码说明：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">methodA</span><span class="params">()</span></span>&#123;    </span><br><span class="line">	lock.lock(); <span class="comment">// 获取锁    </span></span><br><span class="line">	methodB();    </span><br><span class="line">	lock.unlock() <span class="comment">// 释放锁</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">methodB</span><span class="params">()</span></span>&#123;    </span><br><span class="line">	lock.lock(); <span class="comment">// 再次获取该锁   </span></span><br><span class="line">	 <span class="comment">// 其他业务    </span></span><br><span class="line">	lock.unlock();<span class="comment">// 释放锁</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Java关键字synchronized隐式支持重入性</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.*;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccountWithSyncUsingLock</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Account account = <span class="keyword">new</span> Account();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ExecutorService executor = Executors.newCachedThreadPool();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Create and launch 100 threads</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;executor.execute(<span class="keyword">new</span> AddPennyTask());&#125;</span><br><span class="line">        executor.shutdown();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Wait until all tasks are finished</span></span><br><span class="line">        <span class="keyword">while</span> (!executor.isTerminated()) &#123; &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;What is balance ? &quot;</span> + account.getBalance());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// A thread for adding a penny to the account</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">AddAPennyTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;account.deposit(<span class="number">1</span>); &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>加锁同步</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;<span class="comment">// An inner class for account，主要变化在账户类</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> Lock lock = <span class="keyword">new</span> ReentrantLock(); </span><br><span class="line">        <span class="comment">// 注意这里是静态的，被所有Account实例共享</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> balance = <span class="number">0</span>;   </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBalance</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> balance;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deposit</span><span class="params">(<span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">            <span class="comment">//在这里加锁（临界区开始）</span></span><br><span class="line">            <span class="comment">//第一个进入这个方法的线程获得锁，把deposite方法锁住。</span></span><br><span class="line">            <span class="comment">//其他进入方法的线程必须等待这把锁，因为进入阻塞状态</span></span><br><span class="line">            lock.lock( ); <span class="comment">// Acquire the lock</span></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> newBalance = balance + amount;</span><br><span class="line">                Thread.sleep(<span class="number">5</span>);</span><br><span class="line">                balance = newBalance;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (InterruptedException ex) &#123;   &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//在finally块里释放锁，其它等待这把锁的线程被唤醒</span></span><br><span class="line">            <span class="comment">//第一个获得锁的线程可以进入该方法了，进去后又对deposite上锁…</span></span><br><span class="line">            <span class="keyword">finally</span> &#123; lock.unlock(); <span class="comment">// Release the lock，在finally中进行锁的释放。&#125;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="线程同步-场景1"><a href="#线程同步-场景1" class="headerlink" title="线程同步-场景1"></a>线程同步-场景1</h4><ul>
+<li>假设一个类有多个用<strong>synchronized修饰的</strong>同步实例方法，如果多个线程访问这个类的<strong>同一个对象</strong>，当一个线程获得了该对象锁进入到其中一个同步方法时，这把锁<strong>会锁住这个对象所有的同步实例方法</strong></li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421211526607.png" alt="image-20210421211526607"></p>
+<p>设置如下共享资源类，这个类的实例被多个线程访问</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Resource</span></span>&#123; </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//多个线程会对value读写，因此需要同步控制。</span></span><br><span class="line">    <span class="comment">//value就是竞争性资源。Resource对象也因此成为竞争性资源</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> value = <span class="number">0</span>;   <span class="comment">//多个线程会同时对这个数据成员读写</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span></span>&#123;<span class="keyword">return</span>  value;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//inc方法把value值增加，增加量为amount</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">inc</span><span class="params">(<span class="keyword">int</span> amount)</span>  </span>&#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;\nThread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 进入inc: &quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> newValue = value + amount;</span><br><span class="line">        <span class="keyword">try</span>&#123; Thread.sleep(<span class="number">5</span>); &#125;  <span class="keyword">catch</span>(InterruptedException e)&#123;	&#125;</span><br><span class="line">        value = newValue;</span><br><span class="line">        System.out.print(<span class="string">&quot;--&gt;Thread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 离开inc.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//dec方法把value减少，减少量为amount</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">dec</span><span class="params">(<span class="keyword">int</span> amount)</span>  </span>&#123;</span><br><span class="line">        System.out.print(<span class="string">&quot;\nThread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 进入dec: &quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> newValue = value - amount;</span><br><span class="line">        <span class="keyword">try</span>&#123; Thread.sleep(<span class="number">2</span>); &#125; <span class="keyword">catch</span>(InterruptedException e)&#123;	&#125;</span><br><span class="line">        value = newValue;</span><br><span class="line">        System.out.print(<span class="string">&quot;--&gt;Thread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 离开dec.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>inc,dec两个方法都是synchronized的，两个同步的实例方法</p>
+</blockquote>
+<p><strong>设置如下的两个循环创建线程任务的类</strong></p>
+<ul>
+<li><p>IncTask是线程任务，会循环调用资源对象r.inc方法，loops是循环次数。</p>
+<p>IncTask的构造函数会传入要访问的对象</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IncTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Resource r = <span class="keyword">null</span>; <span class="comment">//要访问的对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> amount = <span class="number">0</span>; <span class="comment">//每次增加量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> loops = <span class="number">0</span>;  <span class="comment">//循环次数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IncTask</span><span class="params">(Resource r,<span class="keyword">int</span> amount,<span class="keyword">int</span> loops)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.r = r; <span class="keyword">this</span>.amount = amount; <span class="keyword">this</span>.loops = loops;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; loops; i++) &#123; r.inc(amount); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>DecTask是线程任务，会循环调用资源对象r.dec方法，loops是循环次数。</p>
+<p>DecTask的构造函数会传入要访问的对象</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecTask</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Resource r = <span class="keyword">null</span>; <span class="comment">//要访问的对象</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> amount = <span class="number">0</span>; <span class="comment">//每次减少量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> loops = <span class="number">0</span>;  <span class="comment">//循环次数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DecTask</span><span class="params">(Resource r, <span class="keyword">int</span> amount, <span class="keyword">int</span> loops)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.r = r;<span class="keyword">this</span>.amount = amount;<span class="keyword">this</span>.loops = loops;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; loops; i++) &#123;  r.dec(amount); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//每次增加量为10，每次减少量为5，循环次数100</span></span><br><span class="line">    	<span class="keyword">int</span> incAmount = <span class="number">10</span>;</span><br><span class="line">    	<span class="keyword">int</span> decAmount = <span class="number">5</span>;</span><br><span class="line">    	<span class="keyword">int</span> loops = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">//创建资源对象r</span></span><br><span class="line">        Resource r = <span class="keyword">new</span> Resource();</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//构造线程任务incTask，注意传入的第一个参数为对象r，</span></span><br><span class="line">		<span class="comment">//构造线程任务decTask，注意传入的第一个参数也为对象r，</span></span><br><span class="line">		<span class="comment">//意味着这二个线程任务一旦执行，对应的二个线程调用的是同一个对象的方法，</span></span><br><span class="line">    	<span class="comment">//一个线程(t1)调用r.inc, 另外一个线程(t2)调用r.dec</span></span><br><span class="line">        Runnable incTask = <span class="keyword">new</span> IncTask( r, incAmount, loops );</span><br><span class="line">        Runnable decTask = <span class="keyword">new</span> DecTask( r, decAmount, loops );</span><br><span class="line"></span><br><span class="line">        ExecutorService es = Executors.newCachedThreadPool();</span><br><span class="line">        es.execute(incTask); es.execute(decTask);</span><br><span class="line">        es.shutdown();</span><br><span class="line">        <span class="keyword">while</span>(!es.isTerminated())&#123;  &#125;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">//计算出正确的value值</span></span><br><span class="line">		<span class="comment">//显示实际的计算值和正确的值，验证同步是否正确</span></span><br><span class="line">        <span class="keyword">int</span> correctValue = (incAmount - decAmount)  * loops;</span><br><span class="line">        System.out.println(<span class="string">&quot;\nThe value: &quot;</span> +  r.getValue() + <span class="string">&quot;, correct value: &quot;</span> + correctValue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下</p>
+<blockquote>
+<p><strong>Thread 13</strong> <strong>进入inc: –&gt;Thread 13</strong> <strong>离开inc.</strong></p>
+<p><strong>…</strong></p>
+<p><strong>Thread 13</strong> <strong>进入inc</strong>: –&gt;Thread 13 <strong>离开inc.</strong></p>
+<p>**Thread 14 <strong>进入inc</strong>: –&gt;Thread 14 **离开inc.</p>
+<p>**Thread 14 <strong>进入inc</strong>: –&gt;Thread 14 **离开inc.</p>
+<p>**Thread 14 <strong>进入inc</strong>: –&gt;Thread 14 **离开inc.</p>
+<p>**Thread 14 <strong>进入inc</strong>: –&gt;Thread 14 **离开inc.</p>
+<p>**Thread 14 <strong>进入inc</strong>: –&gt;Thread 14 **离开inc.</p>
+<p><strong>Thread 13</strong> <strong>进入inc</strong>: –&gt;Thread 13 <strong>离开inc.</strong></p>
+<p><strong>…</strong></p>
+<p><strong>The value: 500, correct value: 500</strong></p>
+</blockquote>
+<blockquote>
+<p>可以看到线程13进入inc，对象被加锁，线程14必须等待线程13退出inc后，才能进入dec。所以输出结果里线程13和14的控制台输出没有乱。</p>
+<p>最下面的输出的value值也是正确的</p>
+</blockquote>
+<blockquote>
+<p><strong>这个例子说明，二个线程访问同一个对象时， 只要一个线程拿到对象锁，这个对象的所有同步实例方法都被锁</strong></p>
+<p>即incTask对应线程进入inc是，decTask的线程不能进入dec</p>
+</blockquote>
+<h4 id="线程同步-场景2"><a href="#线程同步-场景2" class="headerlink" title="线程同步-场景2"></a>线程同步-场景2</h4><ul>
+<li>假设一个类有多个用<strong>synchronized修饰的</strong>同步实例方法，如果多个线程访问这个类的<strong>不同对象</strong>，那么<strong>不同对象的synchronized锁不一样</strong>，<strong>每个对象的锁只能对访问该对象的线程同步</strong></li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421212622864.png" alt="image-20210421212622864"></p>
+<p><strong>如下示例创建两个对象</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> incAmount = <span class="number">10</span>,decAmount = <span class="number">5</span>, loops = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">//注意，和场景1不同，现在创建二个资源对象r1和r2</span></span><br><span class="line">        Resource r1 = <span class="keyword">new</span> Resource();</span><br><span class="line">        Resource r2 = <span class="keyword">new</span> Resource();</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//incTask1和decTask1访问对象r1; 它们的运行线程被r1的对象锁同步；</span></span><br><span class="line">		<span class="comment">//incTask2和decTask2访问对象r2;它们的运行线程被r2的对象锁同步；</span></span><br><span class="line">		<span class="comment">//但是这二对线程之间没有同步约束，例如incTask1和incTask2的运行线程不会被同步</span></span><br><span class="line">        Runnable incTask1 = <span class="keyword">new</span> IncTask(r1,incAmount,loops);      Runnable decTask1 = <span class="keyword">new</span> DecTask(r1,decAmount,loops);</span><br><span class="line">        Runnable incTask2 = <span class="keyword">new</span> IncTask(r2,incAmount,loops);     Runnable decTask2 = <span class="keyword">new</span> DecTask(r2,decAmount,loops);</span><br><span class="line"></span><br><span class="line">        ExecutorService es = Executors.newCachedThreadPool();</span><br><span class="line">        es.execute(incTask1);es.execute(decTask1);</span><br><span class="line">        es.execute(incTask2);es.execute(decTask2);</span><br><span class="line">        es.shutdown();</span><br><span class="line">        <span class="keyword">while</span>(!es.isTerminated())&#123;  &#125;</span><br><span class="line">        <span class="keyword">int</span> r1CorrectValue = (incAmount - decAmount)  * loops ;	<span class="keyword">int</span> r2CorrectValue = (incAmount - decAmount)  * loops;</span><br><span class="line">        System.out.println(<span class="string">&quot;\nThe value of r1: &quot;</span> + r1.getValue() + <span class="string">&quot;, correct value: &quot;</span> + r1CorrectValue);</span><br><span class="line">        System.out.println(<span class="string">&quot;\nThe value of r2: &quot;</span> + r2.getValue() + <span class="string">&quot;, correct value: &quot;</span> + r2CorrectValue);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>4个线程访问两个不同的对象，不同的对象锁不一样，incTask1进入对象r1的inc，和incTask2是否可以进入对象r2的inc无关</p>
+</blockquote>
+<p>结果如下</p>
+<blockquote>
+<p><strong>Thread 13 进入inc:</strong> </p>
+<p><strong>Thread 15 进入inc</strong>: –&gt;Thread 13 离开inc.</p>
+<p><strong>Thread 13  进入inc</strong>: –&gt;Thread 15 离开inc.</p>
+<p><strong>Thread 15 进入inc</strong>: –&gt;Thread 13 离开inc.</p>
+<p><strong>Thread 13  进入inc</strong>: –&gt;Thread 15 离开inc.</p>
+<p><strong>Thread 15进入inc</strong>: –&gt;<strong>Thread 15 离开inc.</strong>–&gt;<strong>Thread 13 离开inc.</strong></p>
+<p><strong>Thread 14 进入dec:</strong> </p>
+<p><strong>Thread 16进入dec</strong>: –&gt;<strong>Thread 14离开dec.</strong></p>
+<p><strong>Thread 14 进入dec:</strong> –&gt;<strong>Thread 16 离开dec.</strong></p>
+<p><strong>Thread 16进入dec</strong>: –&gt;<strong>Thread 14离开dec.</strong></p>
+<p><strong>Thread 14 进入dec:</strong> –&gt;<strong>Thread 16 离开dec.</strong></p>
+<p><strong>Thread 16进入dec</strong>: –&gt;<strong>Thread 16离开dec.</strong>–&gt;<strong>Thread 14离开dec.</strong></p>
+<p><strong>The value of r1: 15, correct value: 15</strong></p>
+<p><strong>The value of r2: 15, correct value: 15</strong></p>
+</blockquote>
+<blockquote>
+<p>计算结果正确。</p>
+<p>13和15分别访问二个对象的inc，没有同步约束，因此它们的System.out.println输出是乱的；14和16也是如此。但</p>
+<p>是13和14是同步的，15和16也是同步的。如果只看13和14的输出，就没有乱。</p>
+</blockquote>
+<h4 id="线程同步-场景3"><a href="#线程同步-场景3" class="headerlink" title="线程同步-场景3"></a>线程同步-场景3</h4><ul>
+<li>n如果采用Lock锁进行同步，一旦Lock锁被一个线程获得，那么被这把锁控制的所有临界区都被上锁，这时所有其他访问这些临界区的线程都被阻塞。</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421213850843.png" alt="image-20210421213850843"></p>
+<p><strong>ResourceWithLock采用Lock对临界区上锁，而不是用synchronized关键字</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ResourceWithLock</span> </span>&#123; <span class="comment">//重新定义资源类，采用Lock锁</span></span><br><span class="line">    <span class="keyword">private</span>  Lock lock = <span class="keyword">new</span> ReentrantLock();  <span class="comment">//创建Lock锁对象，注意是实例变量 </span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> value = <span class="number">0</span>;   <span class="comment">//多个线程会同时对这个数据成员读写</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getValue</span><span class="params">()</span></span>&#123; <span class="keyword">return</span>  value; &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">inc</span><span class="params">(<span class="keyword">int</span> amount)</span>   </span>&#123;</span><br><span class="line">        <span class="comment">//inc方法在这加Lock锁（临界区开始）</span></span><br><span class="line">        lock.lock( ); <span class="comment">// Acquire the lock</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123; System.out.print(<span class="string">&quot;\nThread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 进入inc: &quot;</span>);</span><br><span class="line">            <span class="keyword">int</span> newValue = value + amount;  <span class="keyword">try</span>&#123; Thread.sleep(<span class="number">5</span>); &#125;  <span class="keyword">catch</span>(InterruptedException e)&#123; &#125;</span><br><span class="line">            value = newValue; System.out.print(<span class="string">&quot;--&gt;Thread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 离开inc.&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span>&#123; lock.unlock(); &#125;<span class="comment">//inc退出方法前解Lock锁，退出临界区</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dec</span><span class="params">(<span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//dec方法用同一把Lock锁。</span></span><br><span class="line">        lock.lock( ); <span class="comment">// Acquire the lock</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span>&#123; System.out.print(<span class="string">&quot;\nThread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 进入dec: &quot;</span>);</span><br><span class="line">            <span class="keyword">int</span> newValue = value - amount; <span class="keyword">try</span>&#123; Thread.sleep(<span class="number">2</span>); &#125;  <span class="keyword">catch</span>(InterruptedException e)&#123;	&#125;</span><br><span class="line">            value = newValue; System.out.print(<span class="string">&quot;--&gt;Thread &quot;</span> + Thread.currentThread().getId() + <span class="string">&quot; 离开dec.&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123; lock.unlock(); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Inc，dec方法用同一把Lock锁。因此如果调用lock.lock(); 加锁，这个锁同时锁住inc和dec方法。</strong></p>
+</blockquote>
+<p>与场景一相同的两个类,但是<strong>访问类型不同</strong>了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IncTaskWithLock</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ResourceWithLock r = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> amount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> loops = <span class="number">0</span>;  <span class="comment">//循环次数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IncTaskWithLock</span><span class="params">(ResourceWithLock r,<span class="keyword">int</span> amount,<span class="keyword">int</span> loops)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.r = r; <span class="keyword">this</span>.amount = amount; <span class="keyword">this</span>.loops = loops;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; loops; i++) &#123; r.inc(amount); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>IncTask是线程任务，会循环调用资源对象r.inc方法，loops是循环次数。</p>
+<p>线程任务现在要访问的资源类型是<strong>ResourceWithLock</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DecTaskWithLock</span> <span class="keyword">implements</span>  <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ResourceWithLock r = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> amount = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> loops = <span class="number">0</span>;  <span class="comment">//循环次数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DecTaskWithLock</span><span class="params">(ResourceWithLock r, <span class="keyword">int</span> amount, <span class="keyword">int</span> loops)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.r = r; <span class="keyword">this</span>.amount = amount; <span class="keyword">this</span>.loops = loops;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; loops; i++) &#123; r.dec(amount); &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DecTask是线程任务，会循环调用资源对象r.dec方法，loops是循环次数。</p>
+<p>线程任务现在要访问的资源类型是<strong>ResourceWithLock</strong></p>
+</blockquote>
+<p>如下运行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> incAmount = <span class="number">10</span>; <span class="keyword">int</span> decAmount = <span class="number">5</span>; <span class="keyword">int</span> loops = <span class="number">50</span>;</span><br><span class="line">		<span class="comment">//创建资源对象r，注意资源类型是ResourceWithLock</span></span><br><span class="line">        ResourceWithLock r = <span class="keyword">new</span> ResourceWithLock();</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">//构造线程任务incTask，decTask</span></span><br><span class="line">    	<span class="comment">//注意:二个任务的线程访问的是同一个ResourceWithLock对象，用的是同一把Lock锁。</span></span><br><span class="line">    	<span class="comment">//这时只要一个线程拿到锁，所有被这个锁控制的临界区都被锁住。</span></span><br><span class="line">   		<span class="comment">//即incTask的线程进入inc时，decTask的线程不能进入dec</span></span><br><span class="line">        Runnable incTask = <span class="keyword">new</span> IncTaskWithLock( r ,incAmount,loops);</span><br><span class="line">        Runnable decTask = <span class="keyword">new</span> DecTaskWithLock( r ,decAmount,loops);</span><br><span class="line"></span><br><span class="line">        ExecutorService es = Executors.newCachedThreadPool();</span><br><span class="line">        es.execute(incTask); es.execute(decTask);</span><br><span class="line">        es.shutdown(); <span class="keyword">while</span>(!es.isTerminated())&#123;  &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> correctValue = (incAmount - decAmount)  * loops;</span><br><span class="line">        System.out.println(<span class="string">&quot;\nThe value: &quot;</span> + r.getValue() + <span class="string">&quot;, correct value: &quot;</span> + correctValue);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果如下</p>
+<blockquote>
+<p><strong>Thread 13 进入inc: –&gt;Thread 13 离开inc.</strong></p>
+<p><strong>Thread 14 进入dec: –&gt;Thread 14 离开dec.</strong></p>
+<p><strong>Thread 14 进入dec: –&gt;Thread 14 离开dec.</strong></p>
+<p><strong>Thread 14 进入dec: –&gt;Thread 14 离开dec.</strong></p>
+<p><strong>…</strong></p>
+<p><strong>Thread 14 进入dec: –&gt;Thread 14 离开dec.</strong></p>
+<p><strong>Thread 13 进入inc: –&gt;Thread 13 离开inc.</strong></p>
+<p><strong>Thread 13 进入inc: –&gt;Thread 13 离开inc.</strong></p>
+<p><strong>…</strong></p>
+<p><strong>The value: 250, correct value: 250</strong></p>
+</blockquote>
+<blockquote>
+<p>可以看到线程13进入inc，临界区inc和dec都被加锁，线程14必须等待线程13退出inc后，才能进入dec。所以输出结果里线程13和14的控制台输出没有乱.</p>
+<p>最下面的输出的value值也是正确的</p>
+</blockquote>
+<h4 id="线程同步-场景4"><a href="#线程同步-场景4" class="headerlink" title="线程同步-场景4"></a>线程同步-场景4</h4><ul>
+<li>如果一个类采用Lock锁对临界区上锁，而且这个Lock锁也是该类的实例成员（见ResourceWithLock的里的lock对象定义），那么<strong>这个类的二个实例的Lock锁就是不同的锁</strong>，下面的动画演示了这种场景：对象o1的Lock锁和对象o2的Lock锁是不同的锁对象。</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421214552381.png" alt="image-20210421214552381"></p>
+<blockquote>
+<p><strong>注意，和场景3不同，现在创建二个资源对象r1和r2.注意资源类型是ResourceWithLock</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> incAmount = <span class="number">10</span>, decAmount = <span class="number">5</span>,loops = <span class="number">20</span>; </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//两个ResourceWithLock对象</span></span><br><span class="line">    ResourceWithLock r1 = <span class="keyword">new</span> ResourceWithLock();  </span><br><span class="line">    ResourceWithLock r2 = <span class="keyword">new</span> ResourceWithLock();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*四个线程访问二个不同对象</span></span><br><span class="line"><span class="comment">     *incTask1，decTask1的执行线程访问同一个对象r1，它们之间同步</span></span><br><span class="line"><span class="comment">     * incTask2，decTask2的执行线程访问同一个对象r2，它们之间同步</span></span><br><span class="line"><span class="comment">     * incTask1执行线程进入对象r1的inc，和incTask2执行线程是否可以进入对象r2的inc无关，因为锁不一样</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">        <span class="comment">//incTask1，decTask1访问同一个对象r1，它们之间同步</span></span><br><span class="line">        Runnable incTask1 = <span class="keyword">new</span> IncTaskWithLock(r1,incAmount,loops);</span><br><span class="line">        Runnable decTask1 = <span class="keyword">new</span> DecTaskWithLock(r1,decAmount,loops);</span><br><span class="line">        <span class="comment">//incTask2，decTask2访问同一个对象r2，它们之间同步</span></span><br><span class="line">        Runnable incTask2 = <span class="keyword">new</span> IncTaskWithLock(r2,incAmount,loops);</span><br><span class="line">        Runnable decTask2 = <span class="keyword">new</span> DecTaskWithLock(r2,decAmount,loops);</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">        ExecutorService es = Executors.newCachedThreadPool();</span><br><span class="line">        es.execute(incTask1); es.execute(decTask1); es.execute(incTask2); es.execute(decTask2);</span><br><span class="line">        es.shutdown();</span><br><span class="line">        <span class="keyword">while</span>(!es.isTerminated())&#123;  &#125;</span><br><span class="line">        <span class="keyword">int</span> r1CorrectValue = (incAmount - decAmount)  * loops ; <span class="keyword">int</span> r2CorrectValue = (incAmount - decAmount)  * loops;          </span><br><span class="line">        System.out.println(<span class="string">&quot;\nThe value of r1: &quot;</span> + r1.getValue() + <span class="string">&quot;, correct value: &quot;</span> + r1CorrectValue);</span><br><span class="line">        System.out.println(<span class="string">&quot;\nThe value of r2: &quot;</span> + r2.getValue() + <span class="string">&quot;, correct value: &quot;</span> + r2CorrectValue);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<blockquote>
+<p><strong>Thread 13 进入inc:</strong></p>
+<p><strong>Thread 15 进入inc: –&gt;Thread 15 离开inc.</strong></p>
+<p><strong>Thread 16 进入dec: –&gt;Thread 13 离开inc.</strong></p>
+<p><strong>Thread 14 进入dec: –&gt;Thread 16 离开dec.</strong></p>
+<p><strong>Thread 16 进入dec: –&gt;Thread 14 离开dec.</strong></p>
+<p><strong>Thread 14 进入dec: –&gt;Thread 16 离开dec.</strong></p>
+<p><strong>Thread 16 进入dec: –&gt;Thread 14 离开dec.</strong></p>
+<p><strong>Thread 14 进入dec: –&gt;Thread 16 离开dec.</strong></p>
+<p><strong>Thread 15 进入inc: –&gt;Thread 14 离开dec.</strong></p>
+<p><strong>Thread 13 进入inc: –&gt;Thread 15 离开inc.</strong></p>
+<p><strong>Thread 15 进入inc: –&gt;Thread 13 离开inc.</strong></p>
+<p><strong>Thread 13 进入inc: –&gt;Thread 15 离开inc.–&gt;Thread 13 离开inc.</strong></p>
+<p><strong>The value of r1: 15, correct value: 15</strong></p>
+<p><strong>The value of r2: 15, correct value: 15</strong></p>
+</blockquote>
+<blockquote>
+<p>计算结果正确。</p>
+<p>13和15分别访问二个对象的inc，没有同步约束，因此它们的输出是乱的；14和16也是如此。但是13和14是同步的，15和16也是同步的。如果只看13和14的输出，就没有乱。</p>
+</blockquote>
+<h3 id="线程同步-总结和思考"><a href="#线程同步-总结和思考" class="headerlink" title="线程同步-总结和思考"></a>线程同步-总结和思考</h3><ul>
+<li><p>如果采用synchronized关键字对类 A的实例方法进行同步控制，这时等价于synchronized(this){ }</p>
+<ul>
+<li>一旦一个线程进入类A的对象o的synchronized实例方法，<strong>对象o被加锁，对象o所有的synchronized实例方法都被锁住</strong>，从而阻塞了要访问对象o的synchronized实例方法的线程，<strong>但是与访问A类其它对象的线程无关</strong></li>
+</ul>
+</li>
+<li><p>如果采用synchronized关键字对类 A的静态方法进行同步控制，这时等价于synchronized(A.class){ }。一旦一个线程进入A的一个静态同步方法，A所有的静态同步方法都被锁（这个锁是类级别的锁），<strong>这个锁对所有访问该类静态同步方法的线程有效，不管这些线程是通过类名访问静态同步方法还是通过不同的对象访问静态同步方法。</strong></p>
+</li>
+<li><p>如果通过Lock对象进行同步，首先看Lock对象对哪些临界区上锁，一旦Lock锁被一个线程获得，那么被这把锁控制的所有临界区都被上锁（如场景3）；另外要区分Lock对象本身是否是不同的：不同的Lock对象能阻塞的线程是不一样的（如场景4）。</p>
+</li>
+</ul>
+<h3 id="线程同步-线程协作"><a href="#线程同步-线程协作" class="headerlink" title="线程同步-线程协作"></a>线程同步-线程协作</h3><ul>
+<li><p>线程之间有资源竞争，<strong>synchronized和Lock锁这些同步机制解决的是资源竞争问题</strong></p>
+</li>
+<li><p>线程之间还有相互协作的问题</p>
+</li>
+<li><p>假设创建并启动两个任务线程：</p>
+<ul>
+<li><p>存款线程用来向账户中存款</p>
+</li>
+<li><p>提款线程从同一账户中提款</p>
+</li>
+<li><p>当提款的数额大于账户的当前余额时，提款线程必须等待存款线程往账户里存钱</p>
+</li>
+<li><p>如果存款线程存入一笔资金，必须通知提款线程重新尝试提款，如果余额仍未达到提款的数额，提款线程必须继续等待新的存款 </p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210421215036540.png" alt="image-20210421215036540"></p>
+
       
            <!-- 添加版权声明 -->
     
@@ -529,7 +1041,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">程序、进程和线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">线程的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runuable%E6%8E%A5%E5%8F%A3%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%B1%BBThread"><span class="toc-number">3.</span> <span class="toc-text">Runuable接口和线程类Thread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">3.1.</span> <span class="toc-text">通过实现Runnable接口创建线程的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%BB%A7%E6%89%BFThread%E7%B1%BB%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="toc-number">3.2.</span> <span class="toc-text">通过继承Thread类创建线程的实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text">线程的状态切换</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">程序、进程和线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">线程的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Runuable%E6%8E%A5%E5%8F%A3%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%B1%BBThread"><span class="toc-number">3.</span> <span class="toc-text">Runuable接口和线程类Thread</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">3.1.</span> <span class="toc-text">通过实现Runnable接口创建线程的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%BB%A7%E6%89%BFThread%E7%B1%BB%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AE%9E%E4%BE%8B"><span class="toc-number">3.2.</span> <span class="toc-text">通过继承Thread类创建线程的实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E5%88%87%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text">线程的状态切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Runnable%E6%8E%A5%E5%8F%A3%E5%92%8C%E7%BA%BF%E7%A8%8B%E7%B1%BBThread"><span class="toc-number">3.4.</span> <span class="toc-text">Runnable接口和线程类Thread</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">3.4.1.</span> <span class="toc-text">线程的优先级</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%B1%BBThread%E7%9A%84yield%EF%BC%8Csleep%E6%96%B9%E6%B3%95"><span class="toc-number">3.5.</span> <span class="toc-text">线程类Thread的yield，sleep方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8yield-%E6%96%B9%E6%B3%95%E4%B8%BA%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%AE%A9%E5%87%BACPU%E6%97%B6%E9%97%B4"><span class="toc-number">3.5.1.</span> <span class="toc-text">使用yield()方法为其他线程让出CPU时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sleep-long-mills-%E6%96%B9%E6%B3%95%E5%B0%86%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE%E4%B8%BA%E4%BC%91%E7%9C%A0%E7%8A%B6%E6%80%81%EF%BC%8C%E7%A1%AE%E4%BF%9D%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E6%89%A7%E8%A1%8C%EF%BC%9A"><span class="toc-number">3.5.2.</span> <span class="toc-text">sleep(long mills)方法将线程设置为休眠状态，确保其他线程执行：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E7%B1%BBThread%E7%9A%84join%E6%96%B9%E6%B3%95"><span class="toc-number">3.5.3.</span> <span class="toc-text">线程类Thread的join方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">4.</span> <span class="toc-text">线程池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E8%AE%A8%E8%AE%BA%EF%BC%9A%E5%8C%BA%E5%88%86%E4%BB%BB%E5%8A%A1%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="toc-number">4.1.</span> <span class="toc-text">进一步讨论：区分任务和线程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E7%A8%8B%E5%BA%8F%E6%B8%85%E5%8D%9530-4"><span class="toc-number">5.</span> <span class="toc-text">线程同步-程序清单30-4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-synchronized"><span class="toc-number">5.1.</span> <span class="toc-text">线程同步-synchronized</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E9%9D%A2%E7%9A%84%E4%BE%8B%E5%AD%90%E4%B8%AD%E7%9A%84%E5%A6%82%E4%B8%8B%E5%87%A0%E7%A7%8D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">5.1.1.</span> <span class="toc-text">前面的例子中的如下几种解决方案</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E5%8A%A0%E9%94%81%E5%90%8C%E6%AD%A5"><span class="toc-number">5.2.</span> <span class="toc-text">线程同步-加锁同步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E5%9C%BA%E6%99%AF1"><span class="toc-number">5.2.1.</span> <span class="toc-text">线程同步-场景1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E5%9C%BA%E6%99%AF2"><span class="toc-number">5.2.2.</span> <span class="toc-text">线程同步-场景2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E5%9C%BA%E6%99%AF3"><span class="toc-number">5.2.3.</span> <span class="toc-text">线程同步-场景3</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E5%9C%BA%E6%99%AF4"><span class="toc-number">5.2.4.</span> <span class="toc-text">线程同步-场景4</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E6%80%BB%E7%BB%93%E5%92%8C%E6%80%9D%E8%80%83"><span class="toc-number">5.3.</span> <span class="toc-text">线程同步-总结和思考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5-%E7%BA%BF%E7%A8%8B%E5%8D%8F%E4%BD%9C"><span class="toc-number">5.4.</span> <span class="toc-text">线程同步-线程协作</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -743,10 +1255,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
               </li>
              
@@ -812,6 +1320,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">多线程</a>
               </li>
              
               <li class="article-tag-list-item">
