@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210416204338780.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210416204444415.png">
 <meta property="article:published_time" content="2021-04-12T10:00:15.000Z">
-<meta property="article:modified_time" content="2021-04-17T05:37:33.001Z">
+<meta property="article:modified_time" content="2021-04-22T10:50:32.872Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="泛型">
@@ -95,7 +95,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 17
+			总文章数 19
 		</nav>
 	<br/>
 	
@@ -319,7 +319,7 @@
 <li>每个类都有一个对应的Class对象，每当编写并编译了一个类，就会<strong>产生一个Class对象</strong>，这个对象当JVM加载这个类时就产生了。</li>
 </ul>
 <h3 id="获取Class对象"><a href="#获取Class对象" class="headerlink" title="获取Class对象"></a>获取Class对象</h3><ol>
-<li> <strong>Class.forName方法</strong>，是Class类的静态方法</li>
+<li>  <strong>Class.forName方法</strong>，是Class类的静态方法</li>
 </ol>
 <p>   ch13下有如下三个类</p>
    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Employee</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manager</span> <span class="keyword">extends</span> <span class="title">Employee</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -340,15 +340,12 @@
    <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Class clz = Manager.class;  <span class="comment">// Manager.class得到Manager的Class对象.赋给引用clz</span></span><br><span class="line">        System.out.println(clz.getName()); <span class="comment">//产生完全限定名ch13.Manager</span></span><br><span class="line">        System.out.println(clz.getSimpleName()); <span class="comment">//产生简单名Manager   </span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>类字面常量不仅可以用于类，也可用于数组(int[].class)，接口，<strong>基本类型</strong>，如int.class</p>
-</li>
-<li><p>相比Class.forName方法，这种方法更安全，<strong>在编译时就会被检查，因此不需要放在Try/Catch块里（见上面的标注里说明）</strong></p>
-</li>
-<li><p>Class.forName会引起类的静态初始化块的执行，T.class不会引起类的静态初始化块的执行</p>
-</li>
+<li>类字面常量不仅可以用于类，也可用于数组(int[].class)，接口，<strong>基本类型</strong>，如int.class</li>
+<li>相比Class.forName方法，这种方法更安全，<strong>在编译时就会被检查，因此不需要放在Try/Catch块里（见上面的标注里说明）</strong></li>
+<li>Class.forName会引起类的静态初始化块的执行，T.class不会引起类的静态初始化块的执行</li>
 </ul>
 <ol start="3">
-<li> 通过对象。如果获得一个对象的引用o，通过<strong>o.getClass()方法</strong>获得这个对象的类型的Class对象</li>
+<li> <strong>通过对象。</strong>如果获得一个对象的引用o，通过<strong>o.getClass()方法</strong>获得这个对象的类型的Class对象</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ClassDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Object o = <span class="keyword">new</span> Manager();</span><br><span class="line">        Class clz = o.getClass();</span><br><span class="line">        System.out.println(clz.getName()); <span class="comment">//产生完全限定名ch13.Manager</span></span><br><span class="line">        System.out.println(clz.getSimpleName()); <span class="comment">//产生简单名Manager</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -411,8 +408,7 @@
 </blockquote>
 <blockquote>
 <p>Method m = clz.getMethod(“setName”, String.class);</p>
-<pre><code>         m.invoke(s1, &quot;Marry&quot;); //调用s1对象的setName方法，实参&quot;Marry&quot;
-</code></pre>
+<p>m.invoke(s1, “Marry”); //调用s1对象的setName方法，实参”Marry”</p>
 <p>clz.getMethod(“setName”, String.class);得到方法名为setName,参数为String的方法对象m，类型是Method。</p>
 <p>然后通过m.invoke去调用该方法，第一个参数为对象，第二个参数是传递给被调方法的实参。这二条语句等价于s1.setName(“Marry)，但是是通过反射去调的</p>
 </blockquote>
@@ -1272,6 +1268,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
               </li>
              
@@ -1285,22 +1289,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">随机数，数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">List</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">计数器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1324,6 +1312,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">计数器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
               </li>
              
@@ -1332,11 +1332,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color2">面向对象思考</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">面向对象思考</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1345,6 +1345,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数电</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">触发器</a>
               </li>
              
               <li class="article-tag-list-item">
