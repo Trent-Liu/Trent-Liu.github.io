@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210416204338780.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210416204444415.png">
 <meta property="article:published_time" content="2021-04-12T10:00:15.000Z">
-<meta property="article:modified_time" content="2021-04-22T10:50:32.872Z">
+<meta property="article:modified_time" content="2021-04-22T11:37:08.713Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="泛型">
@@ -237,7 +237,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">10.1k字</span>
+      <span class="post-count">10.2k字</span>
     </span>
   </span>
 
@@ -287,7 +287,7 @@
 <p>六个基本类型求和要写六个，但是</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">T <span class="title">Sum</span><span class="params">(T o1,T o2)</span></span>;</span><br></pre></td></tr></table></figure>
 
-<p><T>必须为引用类型，六个基本值类型的包装类</T></p>
+<p>&lt;T&gt;必须为引用类型，六个基本值类型的包装类</p>
 <p>调用</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sum(<span class="keyword">new</span> Integer(<span class="number">1</span>),<span class="keyword">new</span> Integer(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
 </blockquote>
@@ -432,8 +432,8 @@
 <p>非泛型类Comparable接口的CompareTo方法的参数声明类型为Object，而传进去的实参”red”确实是Object类型，因此编译器通过。但实际运行时一个Data对象和字符串对象比较大小肯定出错。<strong>因此在非泛型年代，保证传进去的对象与另一个比较大小的对象实际类型的一致性是程序员的责任</strong></p>
 </blockquote>
 <blockquote>
-<p>现在泛型接口Comparable<T>里的comparaTo方法的参数类型必须是T，这就规定了要比较的另外一个对象类型必须是T，即和this对象的类型必须一致，否则编译器就可以检查出类型不一致</T></p>
-<p>Comparable<Data>是Comparable<T>的类型实例，因为Comparable<T>是泛型接口，而Comparable<Date>是具体接口类型</Date></T></T></Data></p>
+<p>现在泛型接口Comparable&lt;T&gt;里的comparaTo方法的参数类型必须是T，这就规定了要比较的另外一个对象类型必须是T，即和this对象的类型必须一致，否则编译器就可以检查出类型不一致</p>
+<p>Comparable&lt;Data&gt;是Comparable&lt;T&gt;的类型实例，因为Comparable&lt;T&gt;是泛型接口，而Comparable&lt;Date&gt;是具体接口类型</p>
 </blockquote>
 <ul>
 <li><p>以ArrayList为例说明看看定义的不同，注意使用了泛型参数E的地方</p>
@@ -457,12 +457,15 @@
 <p>尖括号里E为类型形参，以和方法参数区分开(圆括号)规定了放入ArrayList里必须是某种类型E的对象。类型形参在类体里可以用在任何其它类型可以用的地方，如成员变量类型，方法形参类型，方法返回类型。</p>
 <p>注意抽象父类和实现的接口List也带了类型参数E。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, </span></span><br><span class="line"><span class="class">    <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span>&#123;</span><br></pre></td></tr></table></figure>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &#x2F;&#x2F;其它代码	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre>
-<p>​    内部结构</p>
-<p>​```Java<br>// 内部就是一个Object[]数组<br>    transient Object[] elementData; </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;将下标为index的元素（注意类型是Object）强制转换为E类型返回。为什么不用instanceOf检查？</span><br><span class="line">&gt;</span><br><span class="line">&gt;因为add方法保证了数组里元素的类型一定是E</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;Java</span><br><span class="line">E elementData(int index) &#123; </span><br><span class="line">        return (E) elementData[index];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractList</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt;, </span></span><br><span class="line"><span class="class">    <span class="title">RandomAccess</span>, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>内部结构就是一个Object数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">transient</span> Object[] elementData; </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>将下标为index的元素（注意类型是Object）强制转换为E类型返回。为什么不用instanceOf检查？</p>
+<p>因为add方法保证了数组里元素的类型一定是E</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">E <span class="title">elementData</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> (E) elementData[index];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>add方法参数类型是E，这就规定了加入这个集合的元素都必须是E类型，如果add类型不一致的对象，编译器一定报错</p>
@@ -489,21 +492,15 @@
 </li>
 <li><p>ArrayList<String> list = new ArrayList<String>(); </String></String></p>
 </li>
-<li><p>ArrayList<String> list就规定了只能往list里添加字符串</String></p>
-</li>
-<li><p>list.add(“Hust”);     //只能向list中添加字符串</p>
-</li>
-<li><p>list.add(new Integer(1)); //错误，list中只能添加字符串</p>
+<li><p>ArrayList<String> list就规定了只能往list里添加String字符串</String></p>
+<p>list.add(“Hust”);     //正确，只能向list中添加字符串</p>
+<p>list.add(new Integer(1)); //错误，list中只能添加字符串</p>
 </li>
 <li><p><strong>泛型类型的参数类型必须是引用类型</strong></p>
-</li>
-<li><p>如 ArrayList<int> list = new ArrayList<int>(); //错误</int></int></p>
-</li>
-<li><p> ArrayList<Integer> list = new ArrayList<Integer>(); //正确</Integer></Integer></p>
-</li>
-<li><p>list.add(5); //正确 <strong>自动打包（装箱）机制</strong></p>
-</li>
-<li><p>int i = list.get(0); //正确，如果元素是包装类型，如Integer,Double,Character，可以直接将这个元素赋给一个基本类型的变量。这个过程称为<strong>自动拆箱机制</strong></p>
+<p>如 ArrayList<int> list = new ArrayList<int>(); //错误</int></int></p>
+<p>ArrayList<Integer> list = new ArrayList<Integer>(); //正确</Integer></Integer></p>
+<p>list.add(5); //正确 <strong>自动打包（装箱）机制</strong></p>
+<p>int i = list.get(0); //正确，如果元素是包装类型，如Integer,Double,Character，可以直接将这个元素赋给一个基本类型的变量。这个过程称为<strong>自动拆箱机制</strong></p>
 </li>
 </ul>
 <h2 id="定义泛型类和接口"><a href="#定义泛型类和接口" class="headerlink" title="定义泛型类和接口"></a>定义泛型类和接口</h2><h3 id="用泛型定义栈类"><a href="#用泛型定义栈类" class="headerlink" title="用泛型定义栈类"></a>用泛型定义栈类</h3><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210414185245589.png" alt="image-20210414185245589" style="zoom:50%;">
@@ -554,7 +551,7 @@
 <li><p>在定义泛型类、泛型接口、泛型方法时，可以将类型参数指定为另外一种类型（或泛型）的子类型（用extends），这样的类型参数称之为<strong>受限的</strong>（bounded）</p>
 </li>
 <li><p>想实现泛型方法比较二个几何对象的面积是否相等，几何对象类型很多，都从GeometricObject派生 （E代表一种几何对象类型，如Circle，Triangel）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BoundedTypeDemo</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span> &lt;E                                              &gt; <span class="function"><span class="keyword">boolean</span> <span class="title">equalArea</span><span class="params">(E object1, E object2 )</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">        	<span class="keyword">return</span> object1.getArea() == object2.getArea( );</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BoundedTypeDemo</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span>  <span class="keyword">static</span> &lt;E&gt; <span class="function"><span class="keyword">boolean</span> <span class="title">equalArea</span><span class="params">(E object1, E object2 )</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">        	<span class="keyword">return</span> object1.getArea() == object2.getArea( );</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>E extends GeometricObject规定了E必须是GeometricObject及其子类，因此E类型对象有方法getArea</p>
@@ -1292,18 +1289,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">重载</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
               </li>
              
@@ -1316,7 +1301,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">重载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">隐藏</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">覆盖</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1325,6 +1318,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">this</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1340,19 +1337,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数电</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">触发器</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">图床</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数电</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">触发器</a>
               </li>
              
               <li class="article-tag-list-item">
