@@ -81,7 +81,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 20
+			总文章数 21
 		</nav>
 	<br/>
 	
@@ -200,6 +200,200 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-verilog常用电路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+       
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/25/verilog%E5%B8%B8%E7%94%A8%E7%94%B5%E8%B7%AF/">Verilog常见电路</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/25/verilog%E5%B8%B8%E7%94%A8%E7%94%B5%E8%B7%AF/" class="archive-article-date">
+  	<time datetime="2021-04-25T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-25</time>
+</a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">1.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  预计阅读时长: </span>
+      <span class="post-count">7分</span>
+    </span>
+  </span>
+</div>
+
+          
+        <!-- 添加完成 -->
+
+
+
+        
+          
+          
+        
+          
+          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="2-1选择器"><a href="#2-1选择器" class="headerlink" title="2-1选择器"></a>2-1选择器</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2-1 选择器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> mux_21(a, b, sel, out);</span><br><span class="line">    <span class="keyword">parameter</span> WIDTH = <span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">input</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] a, b;</span><br><span class="line">    <span class="keyword">input</span> sel;</span><br><span class="line">    <span class="keyword">output</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] out;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 三元运算符</span></span><br><span class="line">    <span class="keyword">assign</span> out = sel == <span class="number">0</span> ? a : b;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-1选择器"><a href="#4-1选择器" class="headerlink" title="4-1选择器"></a>4-1选择器</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4-1 1 bit 选择器设计方案I</span></span><br><span class="line"><span class="keyword">module</span> mux_41(a, b, c, d, </span><br><span class="line">  sel, out);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">input</span> a, b, c, d;</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> out;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(a, b, c, d, sel)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (sel == <span class="number">2&#x27;b00</span>)</span><br><span class="line">      out = a;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (sel == <span class="number">2&#x27;b01</span>)</span><br><span class="line">      out = b;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (sel == <span class="number">2&#x27;b10</span>)</span><br><span class="line">      out = c;</span><br><span class="line">    <span class="keyword">else</span> out = d;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4-1 1 bit 选择器设计方案II</span></span><br><span class="line"><span class="keyword">module</span> mux_41(a, b, c, d, </span><br><span class="line">  sel, out);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">input</span> a, b, c, d;</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> out;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(a, b, c, d, sel)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span>(sel)</span><br><span class="line">      <span class="number">2&#x27;b00</span>: out = a;</span><br><span class="line">      <span class="number">2&#x27;b01</span>: out = b;</span><br><span class="line">      <span class="number">2&#x27;b10</span>: out = c;</span><br><span class="line">      <span class="keyword">default</span>: out = d;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4-1 选择器设计方案 III</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> mux_41(a, sel, out);</span><br><span class="line">    <span class="keyword">parameter</span> WIDTH = <span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">input</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] a[<span class="number">0</span>:<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">    <span class="keyword">output</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] out;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 利用数组</span></span><br><span class="line">    <span class="keyword">assign</span> out = a[sel];</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="译码器"><a href="#译码器" class="headerlink" title="译码器"></a>译码器</h2><ul>
+<li><p><strong>译码器：将具有特定含义的二进制代码转换成控制信号的器件。</strong></p>
+</li>
+<li><p><strong>地址译码器</strong></p>
+</li>
+<li><p><strong>显示译码器</strong></p>
+</li>
+<li><p><strong>指令译码器</strong></p>
+</li>
+<li><p><strong>…</strong></p>
+</li>
+</ul>
+<p><strong>通过二进制编码来选择当前占用总线的设备。</strong></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427202403937.png" alt="image-20210427202403937"></p>
+<h3 id="38译码器"><a href="#38译码器" class="headerlink" title="38译码器"></a>38译码器</h3><p>最常见的地址译码器 3比特构成8个设备的地址的地址译码器</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3-8 译码器 行为描述方法</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">要点：</span></span><br><span class="line"><span class="comment">1、输出（被赋值的对象必须被声明为寄存器类型）</span></span><br><span class="line"><span class="comment">2. 用always做关键词,后面跟@():trigger list,包含所有影响输出的变量，如果变化，就执行always</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">module</span> decoder_38(A, Y);</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">2</span>:<span class="number">0</span>] A;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] Y;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(A)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span>(A)</span><br><span class="line">      <span class="number">3&#x27;d0</span>: Y = <span class="number">8&#x27;b1111_1110</span>;</span><br><span class="line">      <span class="number">3&#x27;d1</span>: Y = <span class="number">8&#x27;b1111_1101</span>;</span><br><span class="line">      <span class="number">3&#x27;d2</span>: Y = <span class="number">8&#x27;b1111_1011</span>;</span><br><span class="line">      <span class="number">3&#x27;d3</span>: Y = <span class="number">8&#x27;b1111_0111</span>;</span><br><span class="line">      <span class="number">3&#x27;d4</span>: Y = <span class="number">8&#x27;b1110_1111</span>;</span><br><span class="line">      <span class="number">3&#x27;d5</span>: Y = <span class="number">8&#x27;b1101_1111</span>;</span><br><span class="line">      <span class="number">3&#x27;d6</span>: Y = <span class="number">8&#x27;b1011_1111</span>;</span><br><span class="line">      <span class="number">3&#x27;d7</span>: Y = <span class="number">8&#x27;b0111_1111</span>;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>常数的声明方法:</p>
+<p>[宽度]‘[进制][值]</p>
+<p>硬件中，不能赋没有位宽的值，没有位宽的值在硬件中通常为32位的值，通常又用不到，浪费资源。所以通常要指定位宽</p>
+<p>为了更好的阅读二进制串，允许中间用_连接，verilog会自动去掉_</p>
+</blockquote>
+<p>负值逻辑：enable逻辑信号是为了让选中的信号有效，其他的信号无效。</p>
+<p>硬件中对于enable信号通常采用负逻辑，0有效，1无效，因为负逻辑不容易被误触发。通常无效的时候是1，被干扰的可能性较小，使得设备不会被误触发。</p>
+<p>通常enable，reset，控制信号写允许读允许都用负值逻辑</p>
+<h2 id="计数器"><a href="#计数器" class="headerlink" title="计数器"></a>计数器</h2><h3 id="简单加法计数器"><a href="#简单加法计数器" class="headerlink" title="简单加法计数器"></a>简单加法计数器</h3><p>时钟脉冲来的时候，就+1，四位，将记到f的时候再+1就溢出，归0</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> CNT4 (CLK,Q);</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">3</span>:<span class="number">0</span>] Q;</span><br><span class="line">    <span class="keyword">input</span> CLK;</span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] Q;</span><br><span class="line">    <span class="keyword">always</span>@(posegde CLK)</span><br><span class="line">        Q&lt;=Q+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427203236919.png" alt="image-20210427203236919"></p>
+<h3 id="实用加法计数器"><a href="#实用加法计数器" class="headerlink" title="实用加法计数器"></a>实用加法计数器</h3><ul>
+<li><p><strong>异步复位</strong> <strong>rst_n</strong> 优先级最高</p>
+</li>
+<li><p><strong>使能</strong> **en ** 当使能信号有效时，加法计数器才执行加法，无效时，即使有时钟脉冲，值保持不变</p>
+</li>
+<li><p><strong>同步预置</strong> <strong>load/data</strong>：可以预置一个计数的初始值  通过load控制信号，和预置的数data，预置初始值。load为负值逻辑，当时钟上升沿时，检测到load信号，就把data赋到计数输出</p>
+</li>
+<li><p><strong>计数输出</strong> **dout ** 设定记满的上限</p>
+</li>
+<li><p><strong>计数溢出</strong> <strong>cout</strong>：计数满时的输出信号</p>
+<h3 id="实用模10计数器"><a href="#实用模10计数器" class="headerlink" title="实用模10计数器"></a>实用模10计数器</h3></li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实用模 10 计数器</span></span><br><span class="line"><span class="keyword">module</span> cnt10(clk, rst_n, en, load_n, data, cout, dout);</span><br><span class="line">    <span class="keyword">input</span> clk, rst_n, en, load_n;  </span><br><span class="line">    <span class="keyword">input</span> [<span class="number">3</span>:<span class="number">0</span>] data;</span><br><span class="line">    <span class="keyword">output</span> cout;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] dout;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//行为描述</span></span><br><span class="line">    <span class="comment">//不能混合边沿和电平，所以两个边沿触发。rst_n为负值逻辑</span></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk, <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (!rst_n) dout &lt;= <span class="number">0</span>;  <span class="comment">//优先级最高</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (en) <span class="keyword">begin</span>  <span class="comment">//使能en高于load，使能无效则load无效。</span></span><br><span class="line">            <span class="keyword">if</span> (!load_n) dout &lt;= data;  <span class="comment">//load有效，赋值。</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (dout &lt; <span class="number">4&#x27;d9</span>) dout &lt;= dout + <span class="number">1</span>; <span class="comment">//没记满，则+1</span></span><br><span class="line">            <span class="keyword">else</span> dout &lt;= <span class="number">4&#x27;d0</span>;  <span class="comment">//计数值记满（9）或大于9（预置了&gt;10的数，如此写避免了bug），复位到0</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">//计数到9，输出记满1信号，否则输出0</span></span><br><span class="line">    <span class="keyword">assign</span> cout = (dout == <span class="number">4&#x27;d9</span>) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="tb的写法"><a href="#tb的写法" class="headerlink" title="tb的写法"></a>tb的写法</h3><p>对于上述较为复杂的电路，用tb验证，模拟了上述的信号</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps;</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">必须声明timescale，tb除了做行为仿真，还要做综合后时序仿真，因为综合后会引入器件延时和布线延时，即使在行为仿真后正确，也可能在综合仿真后产生尖峰和毛刺，导致逻辑失败。</span></span><br><span class="line"><span class="comment">因此必须考虑延时。延时要声明timescale，过大，则低频电路，器件延时被忽略，若过小，则高频电路，则器件延时布线延时不可忽略，产生不可预期的后果。</span></span><br><span class="line"><span class="comment">所以tb首先要声明实在哪一个频率点上进行仿真，不可或缺。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">module</span> cnt10_tb( );</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  输入信号赋值，来模拟信号源，观测输出信号，看是否满足输出要求，既然要赋值，则通常为initial或always，因此输入信号要为reg类型</span></span><br><span class="line"><span class="comment">  输出信号只观测，则wire型。</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">reg</span> clk,rst_n,en,load_n;</span><br><span class="line">  <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] data;</span><br><span class="line">  <span class="keyword">wire</span> cout;</span><br><span class="line">  <span class="keyword">wire</span> [<span class="number">3</span>:<span class="number">0</span>] dout;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    tb的第一条语句一定是调用待检测的模块，输入信号输出信号连上模块，待检测模块的一头接信号源，另一头接示波器，第一条语句始终引入待检测模块</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  cnt10 dut(clk,rst_n,en,</span><br><span class="line">    load_n,data,cout,dout);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 产生 10ns 周期的时钟信号，每5ns反相一次</span></span><br><span class="line">  <span class="keyword">initial</span> clk = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">always</span> #<span class="number">5</span> clk = ~clk;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">切记，做任何仿真之前，需要对该信号进行初始化，凡是没有初始化的信号，vivado认为是个x，未知状态信号，任何操作逻辑都是未知状态。</span></span><br><span class="line"><span class="comment">对输入信号操作前，要赋初值。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">// #100 </span></span><br><span class="line">    rst_n = <span class="number">1</span>;</span><br><span class="line">    en = <span class="number">1</span>;</span><br><span class="line">    load_n = <span class="number">1</span>;</span><br><span class="line">    data = <span class="number">3</span>;</span><br><span class="line">    <span class="comment">// 使能为0期间，不计数</span></span><br><span class="line">    #<span class="number">10</span> en = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">15</span> en = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 异步复位，不受时钟影响</span></span><br><span class="line">    #<span class="number">6</span> rst_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">2</span> rst_n = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 预置数改变不影响计数</span></span><br><span class="line">    #<span class="number">10</span> data = <span class="number">7</span>;</span><br><span class="line">    <span class="comment">// 直到预置数被装载</span></span><br><span class="line">    #<span class="number">20</span> load_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">10</span> load_n = <span class="number">1</span>; </span><br><span class="line">    <span class="comment">// 大于10的预置数</span></span><br><span class="line">    #<span class="number">30</span> data = <span class="number">11</span>;</span><br><span class="line">    #<span class="number">30</span> load_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">10</span> load_n = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>总是使用</strong> <strong>timescale</strong> <strong>规定时间</strong>,对后续综合后时间仿真产生影响</p>
+<p>在全局置位、复位脉冲释放之前就确保 <em><strong>时钟源</strong></em> 已经开始工作。时钟源写在最前。</p>
+<p><strong>在仿真时间的</strong> <strong>0</strong> <strong>时刻，将所有的设计输入初始化位为一个确定的值；</strong></p>
+<p>**在综合后和实现后的时序仿真中，会自动触发全局置位/复位脉冲（GSR），这会让所有的寄存器在仿真的前100ns **内锁定其值。因此在100ns 之后再赋值激励数据；如果对一个带复位的时序电路仿真，而且希望做综合后实现后的时序仿真，则第一条语句要写延时100ns，保证后续所有输入在100ns后输入才能得到正确的仿真结果。</p>
+</blockquote>
+
+      
+           <!-- 添加版权声明 -->
+    
+  
+    <div class="declare" hidden="hidden"></div>
+  
+        <!-- 添加版权声明 -->
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Verilog</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常见电路</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Verilog//" class="article-tag-list-link color3">Verilog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/25/verilog%E5%B8%B8%E7%94%A8%E7%94%B5%E8%B7%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-verilog入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -225,7 +419,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">2.1k字</span>
+      <span class="post-count">3.1k字</span>
     </span>
   </span>
 
@@ -234,7 +428,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-hourglass-half"></i>
       <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">7分</span>
+      <span class="post-count">10分</span>
     </span>
   </span>
 </div>
@@ -1432,137 +1626,9 @@
 
 
   
-    <article id="post-武汉恋爱季" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-       
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/07/%E6%AD%A6%E6%B1%89%E6%81%8B%E7%88%B1%E5%AD%A3/">准程序员和女朋友在武汉</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/07/%E6%AD%A6%E6%B1%89%E6%81%8B%E7%88%B1%E5%AD%A3/" class="archive-article-date">
-  	<time datetime="2021-04-07T13:27:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-07</time>
-</a>
-
-
-           <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-keyboard-o"></i>
-      <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">1.7k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="fa fa-hourglass-half"></i>
-      <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">5分</span>
-    </span>
-  </span>
-</div>
-
-          
-        <!-- 添加完成 -->
-
-
-
-        
-          
-          
-        
-          
-          
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>更新内容：解决国内网络访问无法加载图片的情况<br>解决方案：<a href="https://trent-liu.github.io/2021/04/08/%E5%8D%9A%E5%AE%A2%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E7%9A%84%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/">https://trent-liu.github.io/2021/04/08/%E5%8D%9A%E5%AE%A2%E5%9B%BD%E5%86%85%E8%AE%BF%E9%97%AE%E7%9A%84%E5%9B%BE%E5%BA%8A%E6%90%AD%E5%BB%BA/</a><br><strong>综述</strong>  </p>
-<p>  　　2021年4月2日下午，湖南省长沙市中南大学的小杨同志冒雨深入武汉市进行小刘同志的学习生活及安全工作视察。  </p>
-<p>  　　刘同学全程陪同。刘同学首先向杨同志汇报了近期对其的想念之情及其美貌的不吝夸赞以及对未来三天的吃喝规划等。刘同学特别介绍了江汉路步行街和光谷的美食之多，为此做了许多工作。特别是今年，刘同学较去年的仓促准备，此次准备相对充分，挑选了以下一些特色美食：肉蟹煲，蔡林记，半秋山，夏氏砂锅，鲍师傅等，想法颇多。杨同志听完后露出了满意的笑容，肯定了小刘能的吃货本色，做足大量工作无私养胖自己和女朋友的行为值得颂赞，希望继续把吃喝玩乐做好，使双方继续展开体重的增长。  </p>
-        
-      
-           <!-- 添加版权声明 -->
-    
-  
-    <div class="declare" hidden="hidden"></div>
-  
-        <!-- 添加版权声明 -->
-  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">大学生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/大学生活//" class="article-tag-list-link color5">大学生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/07/%E6%AD%A6%E6%B1%89%E6%81%8B%E7%88%B1%E5%AD%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1690,6 +1756,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
               </li>
              
@@ -1715,10 +1785,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1754,14 +1820,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -1770,7 +1828,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">快速入门</a>
+                <a href="javascript:void(0)" class="js-tag color5">常见电路</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1779,6 +1837,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">触发器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1791,18 +1857,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1823,6 +1877,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">快速入门</a>
               </li>
              
               <li class="article-tag-list-item">
