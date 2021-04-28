@@ -255,76 +255,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="JAVA-UI编程经历的三个阶段"><a href="#JAVA-UI编程经历的三个阶段" class="headerlink" title="JAVA UI编程经历的三个阶段"></a>JAVA UI编程经历的三个阶段</h2><p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428001620727.png" alt="image-20210428001620727"></p>
-<h2 id="JavaFx程序的基本结构"><a href="#JavaFx程序的基本结构" class="headerlink" title="JavaFx程序的基本结构"></a>JavaFx程序的基本结构</h2><p><strong>Java FX工程结构图如下所示</strong></p>
-<p><strong>Java FX采用MVC（Model-View-Control）设计模式：</strong></p>
-<p><strong>降低了界面展现、应用逻辑、用户对视图的操作控制三部分的耦合度。</strong></p>
-<p>（UI的程序都是基于事件驱动，用户点击按钮，触发事件，事件处理函数中写逻辑。如果不采用MVC，导致逻辑被写进事件处理函数，界面展示和应用逻辑搅在一起，可维护性很差）</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428001634383.png" alt="image-20210428001634383" style="zoom: 67%;">
-
-<ol>
-<li>不管播放器的UI怎么设计，先设计一个Model，里面有状态、数据、方法。</li>
-<li>专门负责界面展现 视图</li>
-<li>控制器</li>
-</ol>
-<p>以上三部分相对独立，用户对视图的操作转到控制器，控制器解读操作含义，来操作模型。如操作player，控制器向模型请求player模型放歌，模型告诉视图状态已经改变，视图显示位用户更新。</p>
-<p>使用IDEA创建工程，工程要选择Java FX</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428002247404.png" alt="image-20210428002247404"></p>
-<p>设计一个网页的时候，网页的视图就是html描述，如上xml与网页联系起来。</p>
-<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>要实现如下页面，一个编辑框和一个按钮</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003306682.png" alt="image-20210428003306682"></p>
-<p>对应的配置文件：语法基于xml，可扩展的标记语言。JavaFx UI的开发和设计网页是完全一致，设计网页用html，html实际上是xml的一个实例，开发方式与web开发统一起来。</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003543633.png" alt="image-20210428003543633"></p>
-<p>pane为根节点，第二行fx:controller是很重要的属性，指定了视图的控制器，引入类名</p>
-<p>里面两个组件Button和TextField，如果需要在Java程序里访问空间，需要在xml里指定控件的fx:id属性</p>
-<p>Java中通过如下语句加载</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Main.java里加载sample.fxml</span></span><br><span class="line">FXMLLoader loader = <span class="keyword">new</span> FXMLLoader(getClass().getResource(“sample.fxml<span class="string">&quot;));</span></span><br><span class="line"><span class="string">Pane root = loader.load(); //返回一个对象，对象的类型就是根节点的类型Pane，将整个视图加载进来</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Main类的实现"><a href="#Main类的实现" class="headerlink" title="Main类的实现"></a>Main类的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main必须继承Application(JavaFx定义好的),并覆盖start方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span>  <span class="comment">//覆盖Application中的start方法</span></span><br><span class="line">    <span class="comment">//Stage就是舞台（窗体），可以随时切换场景</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//加载sample.fxml</span></span><br><span class="line">			FXMLLoader loader = <span class="keyword">new</span> FXMLLoader(getClass().getResource(“sample.fxml<span class="string">&quot;));</span></span><br><span class="line"><span class="string">                                                                         //加载视图的根节点（fxml里根节点），自动加载根节点下面所有的UI控件</span></span><br><span class="line"><span class="string">			Pane root = loader.load();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//得到控制器实例</span></span><br><span class="line"><span class="string">			Controller controller = loader.getController();</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">            //将Main对象传进控制器，这样控制器就可以访问Main对象的成员</span></span><br><span class="line"><span class="string">           	 controller.setMyApp(this);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//Scene构造函数第一个参数指定了场景里的根节点对象root（前面已加载）</span></span><br><span class="line"><span class="string">			//root是视图的根结点，将整个视图加载进scene中了</span></span><br><span class="line"><span class="string">			Scene scene = new Scene(root,400,600);</span></span><br><span class="line"><span class="string">                                                                      	//切换了舞台的场景</span></span><br><span class="line"><span class="string">			primaryStage.setScene(scene);</span></span><br><span class="line"><span class="string">			primaryStage.show();</span></span><br><span class="line"><span class="string">		&#125; catch(Exception e) &#123;</span></span><br><span class="line"><span class="string">			e.printStackTrace();</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	public static void main(String[] args) &#123;</span></span><br><span class="line"><span class="string">		//静态方法，Application里已经定义好了</span></span><br><span class="line"><span class="string">        launch(args);</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">	<span class="meta">@FXML</span>    </span><br><span class="line">    	<span class="keyword">private</span> TextField text;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Main对象引用，引用Main的实例，这样控制器就可以访问Main对象的成员</span></span><br><span class="line">	<span class="keyword">private</span> Main myApp;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyApp</span><span class="params">(Main myApp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.myApp = myApp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@FXML</span>    <span class="comment">//ActionEvent e用户点击按钮的事件处理函数</span></span><br><span class="line">    <span class="comment">//@FXML标注将onClick函数与xml中定义的onAction=“#onClick” 绑定</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">		text.setText(<span class="string">&quot;Button Cliked&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>@FXML标注很重要，将实例变量名与xml中fx:id属性值相同的控件绑定起来，</p>
-<p>在Java程序里通过text引用，可以控制TextField对象（读写），比如onClick方法里的text.setText方法</p>
-</blockquote>
-<p>视图 控制器 model Main(仅仅是启动类)如何关联</p>
-<p>@FXML标注，controller就可以得到视图文件中任何一个UI组件的实例</p>
-<p>controller和main联系起来，如下属性和方法</p>
-<pre><code>private Main myApp;
-public void setMyApp(Main myApp) &#123;
-    this.myApp = myApp;
-&#125;
-</code></pre>
-<blockquote>
-<p>我们讨论了Controller（控制器）、fxml配置文件（视图）。那么Model呢？Main不要作为模型类，应该在工程里添加Model类。Main只是JavaFX应用的启动类。控制器如何拿到Model的对象？定义一个类似于setMyApp的方法，例如：</p>
-<p>  public void setModel(Model model)。</p>
-<p>然后在Main类里实例化Model对象，通过拿到的Controller实例（Main类中），controller调用setModel方法。Model就传到Controller里</p>
-</blockquote>
-<h3 id="也可以完全用Java程序创建UI"><a href="#也可以完全用Java程序创建UI" class="headerlink" title="也可以完全用Java程序创建UI"></a>也可以完全用Java程序创建UI</h3><p>start中直接new了Button，再创建scene，将btOK入scene第一个参数，就是UI的根结点，scene中只有一个button，占满整个scene。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javafx.application.Application ;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.control .Button;</span><br><span class="line"><span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJavaFX</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">    Button btOK = <span class="keyword">new</span> Button(<span class="string">&quot;OK&quot;</span>）；</span><br><span class="line">    Scene scene = <span class="keyword">new</span> Scene(btOK, <span class="number">200</span>, <span class="number">250</span>) ;</span><br><span class="line">    primaryStage.setTitle(<span class="string">&quot;MyJavaFX&quot;</span>) ; </span><br><span class="line">    primaryStage.setScene(scene) ; </span><br><span class="line">    primaryStage.show() ; </span><br><span class="line">  &#125;<span class="comment">//注意按钮占满了了整个场景  </span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	 Application.launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>需从Application类派生</strong></p>
-<p><strong>重写start方法：用于启</strong></p>
-<p><strong>动主窗体(Stage类型)。</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>如果想启动两个窗体</strong></p>
-<p><strong>（Stage），</strong></p>
-<p><strong>可在start中创建新的</strong></p>
-<p><strong>Stage对象。</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>Stage就像一个舞台，</strong></p>
-<p><strong>由场景Scene组成。</strong></p>
-<p><strong>场景可以切换（Stage的setScene方法）</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>launch 方法是一个定义在Application 类中的静态方法，用于启动一个独立的JavaFX 应用：激活start方法。</strong></p>
-</blockquote>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428010018119.png" alt="image-20210428010018119"></p>
-<p><strong>注意也可以完全脱离fxml，完全在Java程序里定义视图的内容，这个例子就是如此。但不推荐这样做，用fxml定义视图，可以将代码与视图定义分离。有的同学担心fxml写起来太麻烦，不用担心。利用UI设计工具SceneBuilder，用拖拽控件的方式设计好UI后，会自动产生fxml配置文件。</strong></p>
-
+        
       
            <!-- 添加版权声明 -->
     
@@ -1756,11 +1687,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Map</a>
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">List</a>
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1820,27 +1751,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">面向对象思考</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Verilog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常见电路</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1852,6 +1771,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Verilog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常见电路</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数电</a>
               </li>
              
@@ -1860,11 +1787,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">抽象类</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">接口</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1885,18 +1828,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">！多态</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">super关键字</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">实例初始化模块&静态初始化模块</a>
               </li>
              
               <li class="article-tag-list-item">
