@@ -17,8 +17,16 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427202403937.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427203236919.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428010431170.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428011405545.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428011748095.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428012140989.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428080744342.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428081400344.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428082140830.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428084327484.png">
 <meta property="article:published_time" content="2021-04-25T10:00:15.000Z">
-<meta property="article:modified_time" content="2021-04-27T12:55:42.457Z">
+<meta property="article:modified_time" content="2021-04-28T00:43:35.610Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Verilog">
 <meta property="article:tag" content="常见电路">
@@ -87,7 +95,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 21
+			总文章数 22
 		</nav>
 	<br/>
 	
@@ -229,7 +237,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">1.8k字</span>
+      <span class="post-count">3.2k字</span>
     </span>
   </span>
 
@@ -238,7 +246,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-hourglass-half"></i>
       <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">7分</span>
+      <span class="post-count">13分</span>
     </span>
   </span>
 </div>
@@ -263,6 +271,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="2-1选择器"><a href="#2-1选择器" class="headerlink" title="2-1选择器"></a>2-1选择器</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2-1 选择器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> mux_21(a, b, sel, out);</span><br><span class="line">    <span class="keyword">parameter</span> WIDTH = <span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">input</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] a, b;</span><br><span class="line">    <span class="keyword">input</span> sel;</span><br><span class="line">    <span class="keyword">output</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] out;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 三元运算符</span></span><br><span class="line">    <span class="keyword">assign</span> out = sel == <span class="number">0</span> ? a : b;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 
 <h3 id="4-1选择器"><a href="#4-1选择器" class="headerlink" title="4-1选择器"></a>4-1选择器</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4-1 1 bit 选择器设计方案I</span></span><br><span class="line"><span class="keyword">module</span> mux_41(a, b, c, d, </span><br><span class="line">  sel, out);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">input</span> a, b, c, d;</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> out;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(a, b, c, d, sel)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (sel == <span class="number">2&#x27;b00</span>)</span><br><span class="line">      out = a;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (sel == <span class="number">2&#x27;b01</span>)</span><br><span class="line">      out = b;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (sel == <span class="number">2&#x27;b10</span>)</span><br><span class="line">      out = c;</span><br><span class="line">    <span class="keyword">else</span> out = d;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
@@ -323,6 +333,112 @@
 <p><strong>在仿真时间的</strong> <strong>0</strong> <strong>时刻，将所有的设计输入初始化位为一个确定的值；</strong></p>
 <p>**在综合后和实现后的时序仿真中，会自动触发全局置位/复位脉冲（GSR），这会让所有的寄存器在仿真的前100ns **内锁定其值。因此在100ns 之后再赋值激励数据；如果对一个带复位的时序电路仿真，而且希望做综合后实现后的时序仿真，则第一条语句要写延时100ns，保证后续所有输入在100ns后输入才能得到正确的仿真结果。</p>
 </blockquote>
+<h2 id="触发器和锁存器"><a href="#触发器和锁存器" class="headerlink" title="触发器和锁存器"></a>触发器和锁存器</h2><ul>
+<li><p>触发器（Flip-flop）和锁存器（Latch）都是具有记忆功能的二进制存储器件。</p>
+</li>
+<li><p>触发器和锁存器的实现形式很多，在ASIC中通常使用 D 触发器和 D 锁存器。</p>
+</li>
+<li><p>触发器和锁存器的功能区别：</p>
+<ul>
+<li>触发器由时钟信号的跳边沿触发“存储”</li>
+<li>锁存器由电平信号触发“存储”</li>
+</ul>
+<h3 id="基本D触发器"><a href="#基本D触发器" class="headerlink" title="基本D触发器"></a>基本D触发器</h3><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428010431170.png" alt="image-20210428010431170" style="zoom:50%;"></li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> DFF1(CLK,D,Q)</span><br><span class="line">    <span class="keyword">output</span> Q;</span><br><span class="line">    <span class="keyword">input</span> CLK,D;</span><br><span class="line">    <span class="keyword">reg</span> Q;</span><br><span class="line">    <span class="keyword">always</span>@(<span class="keyword">posedge</span> CLK) <span class="comment">//时钟上升沿才会引起赋值，非阻塞式赋值（上一个时刻存储的内容赋值给当前时刻）</span></span><br><span class="line">        Q&lt;=D;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>D触发器在时钟的边沿执行存储（写入功能），设定上升沿，每遇到上升沿，就把D的内容写入Q，随后D变化（变化中没有碰到时钟上升沿），D的变化不会写入Q。</p>
+<p>输出存储了上一个时钟时候的写入，起到了存储的功能，每遇到时钟上升沿，就将D写入Q</p>
+<blockquote>
+<p>非阻塞式赋值：上一个时刻存储的内容赋给当前时刻</p>
+<p>阻塞式赋值：执行上一次赋值后面执行出的计算出的值赋值给当前内容</p>
+<p>时序电路使用非阻塞式赋值，非阻塞式赋值可以，但写法比较麻烦</p>
+</blockquote>
+<h3 id="含异步复位和使能的D触发器"><a href="#含异步复位和使能的D触发器" class="headerlink" title="含异步复位和使能的D触发器"></a>含异步复位和使能的D触发器</h3><ul>
+<li><strong>异步</strong>复位：复位信号不受时钟控制，时钟不管是上升沿下降沿不变</li>
+<li>复位信号通常都是<strong>负值逻辑</strong>的，抗干扰能力强，不容易被误触发</li>
+<li>使能：使能信号有效时，触发器才工作</li>
+<li>使能优先级低于复位信号</li>
+</ul>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428011405545.png" alt="image-20210428011405545" style="zoom:50%;">
+
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> DFF2(CLK,D,Q,RST,EN);</span><br><span class="line">    <span class="keyword">output</span> Q;</span><br><span class="line">    <span class="keyword">input</span> CLK,D,RST,EN;</span><br><span class="line">    <span class="keyword">reg</span> Q;</span><br><span class="line">    <span class="keyword">always</span>@(<span class="keyword">posedge</span> CLK <span class="keyword">or</span> <span class="keyword">negedge</span> RST)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            <span class="keyword">if</span>(!RST) Q&lt;=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(EN) Q&lt;=D;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="含同步复位的D触发器"><a href="#含同步复位的D触发器" class="headerlink" title="含同步复位的D触发器"></a>含同步复位的D触发器</h3><ul>
+<li>同步复位：在时钟信号跳变沿检测复位信号</li>
+</ul>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428011748095.png" alt="image-20210428011748095" style="zoom:50%;">
+
+<p>复位信号为1时若时钟为上升沿，则复位</p>
+<p>时钟上升沿时检测到复位信号。</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> DFF3(CLK,D,Q,RST);</span><br><span class="line">    <span class="keyword">output</span> Q;</span><br><span class="line">    <span class="keyword">input</span> CLK,D,RST;</span><br><span class="line">    <span class="keyword">reg</span> Q;</span><br><span class="line">    <span class="keyword">always</span>@(<span class="keyword">posedge</span> CLK)</span><br><span class="line">        <span class="keyword">if</span>(RST==<span class="number">1</span>) Q=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (RST==<span class="number">0</span>) Q=D;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428012140989.png" alt="image-20210428012140989"></p>
+<h3 id="基本锁存器"><a href="#基本锁存器" class="headerlink" title="基本锁存器"></a>基本锁存器</h3><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428080744342.png" alt="image-20210428080744342" style="zoom:50%;">
+
+<p>最大的区别在于锁存器是电平触发</p>
+<p>clk=1的时候，Q随D变化，clk=0时，Q不变</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> LATCH1(CLK,D,Q);</span><br><span class="line">    <span class="keyword">output</span> Q; <span class="keyword">input</span> CLK,D;</span><br><span class="line">    <span class="keyword">reg</span> Q;</span><br><span class="line">    <span class="keyword">always</span> @(D oir CLK)</span><br><span class="line">        <span class="keyword">if</span>(CLK) Q&lt;=D;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>CLK</strong> <strong>==</strong> <strong>1</strong> <strong>时，等于直通电路，等于写入当前状态。</strong></p>
+<p><strong>CLK</strong> <strong>==</strong> <strong>0</strong> <strong>时，保持输出，等于记忆当前状态。</strong></p>
+</blockquote>
+<h3 id="含异步复位的锁存器"><a href="#含异步复位的锁存器" class="headerlink" title="含异步复位的锁存器"></a>含异步复位的锁存器</h3><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428081400344.png" alt="image-20210428081400344" style="zoom:50%;">
+
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> LATCH3 (CLK,D,Q,RST);</span><br><span class="line">    <span class="keyword">output</span> Q;</span><br><span class="line">    <span class="keyword">input</span> CLK,D,RST;</span><br><span class="line">    <span class="keyword">reg</span> Q;</span><br><span class="line">    <span class="keyword">always</span>@(D <span class="keyword">or</span> CLK <span class="keyword">or</span> RST)</span><br><span class="line">        <span class="keyword">if</span>(!RST) Q&lt;=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(CLK) Q&lt;=D;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>复位的优先级总是最高的。</p>
+<p>锁存器中，CLK往往也被称为LE（latch enable）</p>
+</blockquote>
+<h3 id="触发器和锁存器的比较"><a href="#触发器和锁存器的比较" class="headerlink" title="触发器和锁存器的比较"></a>触发器和锁存器的比较</h3><p><strong>Latch 对输入电平敏感，受布线延时影响大，很难保证没有毛刺的输出；而 DFF 不容易产生毛刺。</strong></p>
+<p><strong>FPGA 中没有 Latch 单元，只有 FF 单元 (我们使用的 Artix-7 中，有 126,800 个 FF)，需要用多个逻辑单元来实现 Latch，因此使用 FF 更节约资源。</strong></p>
+<p><strong>但是，在某些设计中，Latch 不可替代。</strong></p>
+<p><strong>结论：尽可能避免 Latch 的产生。例如：一个不“完备”的条件语句（有 if 而无 else，case 没有 default）（没有完全穷举状态的时候）将会产生 Latch。</strong></p>
+<p>例如3-1 bit选择器，如下只对三种状态赋值，产生锁存器</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3-1 1 bit 选择器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> mux_31(a,b,c,sel,out);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">input</span> a, b, c;</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> out;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(a, b, c, sel)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span>(sel)</span><br><span class="line">      <span class="number">2</span>’b00: out = a;</span><br><span class="line">      <span class="number">2</span>’b01: out = b;</span><br><span class="line">      <span class="number">2</span>’b10: out = c;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428082140830.png" alt="image-20210428082140830" style="zoom: 50%;">
+
+<p>锁存器当sel=11时，锁存器将保持过去的状态不会改变</p>
+<h2 id="寄存器和存储器"><a href="#寄存器和存储器" class="headerlink" title="寄存器和存储器"></a>寄存器和存储器</h2><ul>
+<li><p>寄存器（register）：用来存放数据的一些小型存储区域，用来暂时存放参与运算的数据和运算结果。</p>
+</li>
+<li><p>存储器（memory）：也是用来存放数据的区域，分为 ROM 和 RAM 两类。</p>
+</li>
+<li><p>寄存器与存储器的制造工艺不同：</p>
+<ul>
+<li><p>寄存器通常使用触发器和锁存器来实现，速度快、占用面积大</p>
+</li>
+<li><p>存储器通常使用 6 MOS 管（静态存储器）或 1 MOS 管（动态存储器）实现，速度慢，占用面积小</p>
+</li>
+<li><p>FPGA 中通常配有专门的存储单元，而不用逻辑门来实现存储。Aritx-7 上有大约 5Mbits 的可配置内存块。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="基本寄存器"><a href="#基本寄存器" class="headerlink" title="基本寄存器"></a>基本寄存器</h3><p>根据触发器和锁存器分析。FPGA中寄存器最好用触发器实现（占用资源少，稳定）</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> register(clk,en,d,q);</span><br><span class="line">    <span class="keyword">parameter</span> WHIDTH = <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">input</span> clk,rst_n,en;</span><br><span class="line">    <span class="keyword">input</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] d;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [width-<span class="number">1</span>:<span class="number">0</span>] q;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">always</span>@(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span>(!rst_n) q&lt;=<span class="number">0</span>;   <span class="comment">//复位</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(en) q&lt;=d;  <span class="comment">//能赋值</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="双端口存储器-结构最简单"><a href="#双端口存储器-结构最简单" class="headerlink" title="双端口存储器(结构最简单)"></a>双端口存储器(结构最简单)</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> ram(data,read_addr,write_addr,clk,we,q);</span><br><span class="line">    <span class="keyword">parameter</span> DATA_WIDTH=<span class="number">8</span>; <span class="comment">//数据宽度</span></span><br><span class="line">    <span class="keyword">parameter</span> ADDR_WIDTH=<span class="number">3</span>;  <span class="comment">//地址总线宽度</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">input</span> clk,we;</span><br><span class="line">    <span class="keyword">input</span> [DATA_WIDTH-<span class="number">1</span>:<span class="number">0</span>] data;</span><br><span class="line">    <span class="keyword">input</span> [ADDR_WIDTH-<span class="number">1</span>:<span class="number">0</span>] read_addr,write_addr;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [DATA_WIDTH-<span class="number">1</span>:<span class="number">0</span>] q;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//申明存储器数组</span></span><br><span class="line">    <span class="keyword">reg</span> [DATA_WIDTH=<span class="number">1</span>:<span class="number">0</span>] ram[ADDR_WIDTH-<span class="number">1</span>:<span class="number">0</span>];  <span class="comment">//每个总线对应一个ram，每个ram是8位</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (we)</span><br><span class="line">        ram[write_addr] &lt;= data;   <span class="comment">//write_addr总线连接的存储单元赋值</span></span><br><span class="line"></span><br><span class="line">        q &lt;= ram[read_addr];  <span class="comment">//输出一直是read——addr总选连接的存储单元</span></span><br><span class="line">  <span class="keyword">end</span>    </span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>双端口</strong> <strong>RAM</strong> <strong>读写端口完全独立</strong></p>
+<ul>
+<li><strong>优点：简单；快速，读写无需等待</strong></li>
+<li><strong>缺点：占用资源多</strong></li>
+</ul>
+</li>
+<li><p><strong>存储大小与地址宽度之间的关系</strong></p>
+<ul>
+<li><strong>size</strong> <strong>=</strong> <strong>2^addr_width</strong></li>
+</ul>
+</li>
+<li><p><strong>实现上，使用了</strong> <strong>FPGA</strong> <strong>中的内存块单元</strong></p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428084327484.png" alt="image-20210428084327484"></p>
 
       
            <!-- 添加版权声明 -->
@@ -479,6 +595,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2021/04/28/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94JAVAFX/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Java笔记——JavaFx
+        
+      </div>
+    </a>
+  
   
     <a href="/2021/04/24/verilog%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Verilog填鸭入门</div>
@@ -508,7 +633,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">2-1选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">4-1选择器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">译码器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#38%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">38译码器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">计数器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%8A%A0%E6%B3%95%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">简单加法计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E5%8A%A0%E6%B3%95%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">实用加法计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E6%A8%A110%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">实用模10计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tb%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">tb的写法</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">选择器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.1.</span> <span class="toc-text">2-1选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">4-1选择器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">译码器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#38%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">2.1.</span> <span class="toc-text">38译码器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">计数器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%8A%A0%E6%B3%95%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">简单加法计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E5%8A%A0%E6%B3%95%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.2.</span> <span class="toc-text">实用加法计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E6%A8%A110%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">3.3.</span> <span class="toc-text">实用模10计数器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tb%E7%9A%84%E5%86%99%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">tb的写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E5%92%8C%E9%94%81%E5%AD%98%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">触发器和锁存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%ACD%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.1.</span> <span class="toc-text">基本D触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AB%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E5%92%8C%E4%BD%BF%E8%83%BD%E7%9A%84D%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text">含异步复位和使能的D触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AB%E5%90%8C%E6%AD%A5%E5%A4%8D%E4%BD%8D%E7%9A%84D%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">含同步复位的D触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%94%81%E5%AD%98%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">基本锁存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AB%E5%BC%82%E6%AD%A5%E5%A4%8D%E4%BD%8D%E7%9A%84%E9%94%81%E5%AD%98%E5%99%A8"><span class="toc-number">4.5.</span> <span class="toc-text">含异步复位的锁存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E5%92%8C%E9%94%81%E5%AD%98%E5%99%A8%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">4.6.</span> <span class="toc-text">触发器和锁存器的比较</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%92%8C%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">寄存器和存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">5.1.</span> <span class="toc-text">基本寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E7%AB%AF%E5%8F%A3%E5%AD%98%E5%82%A8%E5%99%A8-%E7%BB%93%E6%9E%84%E6%9C%80%E7%AE%80%E5%8D%95"><span class="toc-number">5.2.</span> <span class="toc-text">双端口存储器(结构最简单)</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -670,11 +795,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">List</a>
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Map</a>
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -691,6 +816,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">随机数，数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaFx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -750,11 +879,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数电</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">触发器</a>
+                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,7 +891,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">数电</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">触发器</a>
               </li>
              
               <li class="article-tag-list-item">

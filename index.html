@@ -81,7 +81,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 21
+			总文章数 22
 		</nav>
 	<br/>
 	
@@ -200,6 +200,209 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Java笔记——JAVAFX" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+       
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/28/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94JAVAFX/">Java笔记——JavaFx</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/28/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94JAVAFX/" class="archive-article-date">
+  	<time datetime="2021-04-28T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-28</time>
+</a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">1.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  预计阅读时长: </span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
+          
+        <!-- 添加完成 -->
+
+
+
+        
+          
+          
+        
+          
+          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JAVA-UI编程经历的三个阶段"><a href="#JAVA-UI编程经历的三个阶段" class="headerlink" title="JAVA UI编程经历的三个阶段"></a>JAVA UI编程经历的三个阶段</h2><p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428001620727.png" alt="image-20210428001620727"></p>
+<h2 id="JavaFx程序的基本结构"><a href="#JavaFx程序的基本结构" class="headerlink" title="JavaFx程序的基本结构"></a>JavaFx程序的基本结构</h2><p><strong>Java FX工程结构图如下所示</strong></p>
+<p><strong>Java FX采用MVC（Model-View-Control）设计模式：</strong></p>
+<p><strong>降低了界面展现、应用逻辑、用户对视图的操作控制三部分的耦合度。</strong></p>
+<p>（UI的程序都是基于事件驱动，用户点击按钮，触发事件，事件处理函数中写逻辑。如果不采用MVC，导致逻辑被写进事件处理函数，界面展示和应用逻辑搅在一起，可维护性很差）</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428001634383.png" alt="image-20210428001634383" style="zoom: 67%;">
+
+<ol>
+<li>不管播放器的UI怎么设计，先设计一个Model，里面有状态、数据、方法。</li>
+<li>专门负责界面展现 视图</li>
+<li>控制器</li>
+</ol>
+<p>以上三部分相对独立，用户对视图的操作转到控制器，控制器解读操作含义，来操作模型。如操作player，控制器向模型请求player模型放歌，模型告诉视图状态已经改变，视图显示位用户更新。</p>
+<p>使用IDEA创建工程，工程要选择Java FX</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428002247404.png" alt="image-20210428002247404"></p>
+<p>设计一个网页的时候，网页的视图就是html描述，如上xml与网页联系起来。</p>
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>要实现如下页面，一个编辑框和一个按钮</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003306682.png" alt="image-20210428003306682"></p>
+<p>对应的配置文件：语法基于xml，可扩展的标记语言。JavaFx UI的开发和设计网页是完全一致，设计网页用html，html实际上是xml的一个实例，开发方式与web开发统一起来。</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003543633.png" alt="image-20210428003543633"></p>
+<p>pane为根节点，第二行fx:controller是很重要的属性，指定了视图的控制器，引入类名</p>
+<p>里面两个组件Button和TextField，如果需要在Java程序里访问空间，需要在xml里指定控件的fx:id属性</p>
+<p>Java中通过如下语句加载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Main.java里加载sample.fxml</span></span><br><span class="line">FXMLLoader loader = <span class="keyword">new</span> FXMLLoader(getClass().getResource(“sample.fxml<span class="string">&quot;));</span></span><br><span class="line"><span class="string">Pane root = loader.load(); //返回一个对象，对象的类型就是根节点的类型Pane，将整个视图加载进来</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Main类的实现"><a href="#Main类的实现" class="headerlink" title="Main类的实现"></a>Main类的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main必须继承Application(JavaFx定义好的),并覆盖start方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span>  <span class="comment">//覆盖Application中的start方法</span></span><br><span class="line">    <span class="comment">//Stage就是舞台（窗体），可以随时切换场景</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//加载sample.fxml</span></span><br><span class="line">			FXMLLoader loader = <span class="keyword">new</span> FXMLLoader(getClass().getResource(“sample.fxml<span class="string">&quot;));</span></span><br><span class="line"><span class="string">                                                                         //加载视图的根节点（fxml里根节点），自动加载根节点下面所有的UI控件</span></span><br><span class="line"><span class="string">			Pane root = loader.load();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//得到控制器实例</span></span><br><span class="line"><span class="string">			Controller controller = loader.getController();</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">            //将Main对象传进控制器，这样控制器就可以访问Main对象的成员</span></span><br><span class="line"><span class="string">           	 controller.setMyApp(this);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//Scene构造函数第一个参数指定了场景里的根节点对象root（前面已加载）</span></span><br><span class="line"><span class="string">			//root是视图的根结点，将整个视图加载进scene中了</span></span><br><span class="line"><span class="string">			Scene scene = new Scene(root,400,600);</span></span><br><span class="line"><span class="string">                                                                      	//切换了舞台的场景</span></span><br><span class="line"><span class="string">			primaryStage.setScene(scene);</span></span><br><span class="line"><span class="string">			primaryStage.show();</span></span><br><span class="line"><span class="string">		&#125; catch(Exception e) &#123;</span></span><br><span class="line"><span class="string">			e.printStackTrace();</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	public static void main(String[] args) &#123;</span></span><br><span class="line"><span class="string">		//静态方法，Application里已经定义好了</span></span><br><span class="line"><span class="string">        launch(args);</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">	<span class="meta">@FXML</span>    </span><br><span class="line">    	<span class="keyword">private</span> TextField text;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Main对象引用，引用Main的实例，这样控制器就可以访问Main对象的成员</span></span><br><span class="line">	<span class="keyword">private</span> Main myApp;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyApp</span><span class="params">(Main myApp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.myApp = myApp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@FXML</span>    <span class="comment">//ActionEvent e用户点击按钮的事件处理函数</span></span><br><span class="line">    <span class="comment">//@FXML标注将onClick函数与xml中定义的onAction=“#onClick” 绑定</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">		text.setText(<span class="string">&quot;Button Cliked&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>@FXML标注很重要，将实例变量名与xml中fx:id属性值相同的控件绑定起来，</p>
+<p>在Java程序里通过text引用，可以控制TextField对象（读写），比如onClick方法里的text.setText方法</p>
+</blockquote>
+<p>视图 控制器 model Main(仅仅是启动类)如何关联</p>
+<p>@FXML标注，controller就可以得到视图文件中任何一个UI组件的实例</p>
+<p>controller和main联系起来，如下属性和方法</p>
+<pre><code>private Main myApp;
+public void setMyApp(Main myApp) &#123;
+    this.myApp = myApp;
+&#125;
+</code></pre>
+<blockquote>
+<p>我们讨论了Controller（控制器）、fxml配置文件（视图）。那么Model呢？Main不要作为模型类，应该在工程里添加Model类。Main只是JavaFX应用的启动类。控制器如何拿到Model的对象？定义一个类似于setMyApp的方法，例如：</p>
+<p>  public void setModel(Model model)。</p>
+<p>然后在Main类里实例化Model对象，通过拿到的Controller实例（Main类中），controller调用setModel方法。Model就传到Controller里</p>
+</blockquote>
+<h3 id="也可以完全用Java程序创建UI"><a href="#也可以完全用Java程序创建UI" class="headerlink" title="也可以完全用Java程序创建UI"></a>也可以完全用Java程序创建UI</h3><p>start中直接new了Button，再创建scene，将btOK入scene第一个参数，就是UI的根结点，scene中只有一个button，占满整个scene。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javafx.application.Application ;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.control .Button;</span><br><span class="line"><span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJavaFX</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">    Button btOK = <span class="keyword">new</span> Button(<span class="string">&quot;OK&quot;</span>）；</span><br><span class="line">    Scene scene = <span class="keyword">new</span> Scene(btOK, <span class="number">200</span>, <span class="number">250</span>) ;</span><br><span class="line">    primaryStage.setTitle(<span class="string">&quot;MyJavaFX&quot;</span>) ; </span><br><span class="line">    primaryStage.setScene(scene) ; </span><br><span class="line">    primaryStage.show() ; </span><br><span class="line">  &#125;<span class="comment">//注意按钮占满了了整个场景  </span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	 Application.launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>需从Application类派生</strong></p>
+<p><strong>重写start方法：用于启</strong></p>
+<p><strong>动主窗体(Stage类型)。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>如果想启动两个窗体</strong></p>
+<p><strong>（Stage），</strong></p>
+<p><strong>可在start中创建新的</strong></p>
+<p><strong>Stage对象。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Stage就像一个舞台，</strong></p>
+<p><strong>由场景Scene组成。</strong></p>
+<p><strong>场景可以切换（Stage的setScene方法）</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>launch 方法是一个定义在Application 类中的静态方法，用于启动一个独立的JavaFX 应用：激活start方法。</strong></p>
+</blockquote>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428010018119.png" alt="image-20210428010018119"></p>
+<p><strong>注意也可以完全脱离fxml，完全在Java程序里定义视图的内容，这个例子就是如此。但不推荐这样做，用fxml定义视图，可以将代码与视图定义分离。有的同学担心fxml写起来太麻烦，不用担心。利用UI设计工具SceneBuilder，用拖拽控件的方式设计好UI后，会自动产生fxml配置文件。</strong></p>
+
+      
+           <!-- 添加版权声明 -->
+    
+  
+    <div class="declare" hidden="hidden"></div>
+  
+        <!-- 添加版权声明 -->
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">JavaFx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/JavaFx//" class="article-tag-list-link color2">JavaFx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/28/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94JAVAFX/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-verilog常用电路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -225,7 +428,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">1.8k字</span>
+      <span class="post-count">3.2k字</span>
     </span>
   </span>
 
@@ -234,7 +437,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-hourglass-half"></i>
       <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">7分</span>
+      <span class="post-count">13分</span>
     </span>
   </span>
 </div>
@@ -255,67 +458,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="2-1选择器"><a href="#2-1选择器" class="headerlink" title="2-1选择器"></a>2-1选择器</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2-1 选择器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> mux_21(a, b, sel, out);</span><br><span class="line">    <span class="keyword">parameter</span> WIDTH = <span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">input</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] a, b;</span><br><span class="line">    <span class="keyword">input</span> sel;</span><br><span class="line">    <span class="keyword">output</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] out;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 三元运算符</span></span><br><span class="line">    <span class="keyword">assign</span> out = sel == <span class="number">0</span> ? a : b;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="4-1选择器"><a href="#4-1选择器" class="headerlink" title="4-1选择器"></a>4-1选择器</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4-1 1 bit 选择器设计方案I</span></span><br><span class="line"><span class="keyword">module</span> mux_41(a, b, c, d, </span><br><span class="line">  sel, out);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">input</span> a, b, c, d;</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> out;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(a, b, c, d, sel)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (sel == <span class="number">2&#x27;b00</span>)</span><br><span class="line">      out = a;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (sel == <span class="number">2&#x27;b01</span>)</span><br><span class="line">      out = b;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (sel == <span class="number">2&#x27;b10</span>)</span><br><span class="line">      out = c;</span><br><span class="line">    <span class="keyword">else</span> out = d;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4-1 1 bit 选择器设计方案II</span></span><br><span class="line"><span class="keyword">module</span> mux_41(a, b, c, d, </span><br><span class="line">  sel, out);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">input</span> a, b, c, d;</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> out;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(a, b, c, d, sel)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span>(sel)</span><br><span class="line">      <span class="number">2&#x27;b00</span>: out = a;</span><br><span class="line">      <span class="number">2&#x27;b01</span>: out = b;</span><br><span class="line">      <span class="number">2&#x27;b10</span>: out = c;</span><br><span class="line">      <span class="keyword">default</span>: out = d;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4-1 选择器设计方案 III</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> mux_41(a, sel, out);</span><br><span class="line">    <span class="keyword">parameter</span> WIDTH = <span class="number">8</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">input</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] a[<span class="number">0</span>:<span class="number">3</span>];</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] sel;</span><br><span class="line">    <span class="keyword">output</span> [WIDTH-<span class="number">1</span>:<span class="number">0</span>] out;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 利用数组</span></span><br><span class="line">    <span class="keyword">assign</span> out = a[sel];</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="译码器"><a href="#译码器" class="headerlink" title="译码器"></a>译码器</h2><ul>
-<li><p><strong>译码器：将具有特定含义的二进制代码转换成控制信号的器件。</strong></p>
-</li>
-<li><p><strong>地址译码器</strong></p>
-</li>
-<li><p><strong>显示译码器</strong></p>
-</li>
-<li><p><strong>指令译码器</strong></p>
-</li>
-<li><p><strong>…</strong></p>
-</li>
-</ul>
-<p><strong>通过二进制编码来选择当前占用总线的设备。</strong></p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427202403937.png" alt="image-20210427202403937"></p>
-<h3 id="38译码器"><a href="#38译码器" class="headerlink" title="38译码器"></a>38译码器</h3><p>最常见的地址译码器 3比特构成8个设备的地址的地址译码器</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3-8 译码器 行为描述方法</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">要点：</span></span><br><span class="line"><span class="comment">1、输出（被赋值的对象必须被声明为寄存器类型）</span></span><br><span class="line"><span class="comment">2. 用always做关键词,后面跟@():trigger list,包含所有影响输出的变量，如果变化，就执行always</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">module</span> decoder_38(A, Y);</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">2</span>:<span class="number">0</span>] A;</span><br><span class="line">  <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] Y;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">always</span> @(A)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span>(A)</span><br><span class="line">      <span class="number">3&#x27;d0</span>: Y = <span class="number">8&#x27;b1111_1110</span>;</span><br><span class="line">      <span class="number">3&#x27;d1</span>: Y = <span class="number">8&#x27;b1111_1101</span>;</span><br><span class="line">      <span class="number">3&#x27;d2</span>: Y = <span class="number">8&#x27;b1111_1011</span>;</span><br><span class="line">      <span class="number">3&#x27;d3</span>: Y = <span class="number">8&#x27;b1111_0111</span>;</span><br><span class="line">      <span class="number">3&#x27;d4</span>: Y = <span class="number">8&#x27;b1110_1111</span>;</span><br><span class="line">      <span class="number">3&#x27;d5</span>: Y = <span class="number">8&#x27;b1101_1111</span>;</span><br><span class="line">      <span class="number">3&#x27;d6</span>: Y = <span class="number">8&#x27;b1011_1111</span>;</span><br><span class="line">      <span class="number">3&#x27;d7</span>: Y = <span class="number">8&#x27;b0111_1111</span>;</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>常数的声明方法:</p>
-<p>[宽度]‘[进制][值]</p>
-<p>硬件中，不能赋没有位宽的值，没有位宽的值在硬件中通常为32位的值，通常又用不到，浪费资源。所以通常要指定位宽</p>
-<p>为了更好的阅读二进制串，允许中间用_连接，verilog会自动去掉_</p>
-</blockquote>
-<p>负值逻辑：enable逻辑信号是为了让选中的信号有效，其他的信号无效。</p>
-<p>硬件中对于enable信号通常采用负逻辑，0有效，1无效，因为负逻辑不容易被误触发。通常无效的时候是1，被干扰的可能性较小，使得设备不会被误触发。</p>
-<p>通常enable，reset，控制信号写允许读允许都用负值逻辑</p>
-<h2 id="计数器"><a href="#计数器" class="headerlink" title="计数器"></a>计数器</h2><h3 id="简单加法计数器"><a href="#简单加法计数器" class="headerlink" title="简单加法计数器"></a>简单加法计数器</h3><p>时钟脉冲来的时候，就+1，四位，将记到f的时候再+1就溢出，归0</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> CNT4 (CLK,Q);</span><br><span class="line">    <span class="keyword">output</span> [<span class="number">3</span>:<span class="number">0</span>] Q;</span><br><span class="line">    <span class="keyword">input</span> CLK;</span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] Q;</span><br><span class="line">    <span class="keyword">always</span>@(posegde CLK)</span><br><span class="line">        Q&lt;=Q+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427203236919.png" alt="image-20210427203236919"></p>
-<h3 id="实用加法计数器"><a href="#实用加法计数器" class="headerlink" title="实用加法计数器"></a>实用加法计数器</h3><ul>
-<li><p><strong>异步复位</strong> <strong>rst_n</strong> 优先级最高</p>
-</li>
-<li><p><strong>使能</strong> **en ** 当使能信号有效时，加法计数器才执行加法，无效时，即使有时钟脉冲，值保持不变</p>
-</li>
-<li><p><strong>同步预置</strong> <strong>load/data</strong>：可以预置一个计数的初始值  通过load控制信号，和预置的数data，预置初始值。load为负值逻辑，当时钟上升沿时，检测到load信号，就把data赋到计数输出</p>
-</li>
-<li><p><strong>计数输出</strong> **dout ** 设定记满的上限</p>
-</li>
-<li><p><strong>计数溢出</strong> <strong>cout</strong>：计数满时的输出信号</p>
-<h3 id="实用模10计数器"><a href="#实用模10计数器" class="headerlink" title="实用模10计数器"></a>实用模10计数器</h3></li>
-</ul>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实用模 10 计数器</span></span><br><span class="line"><span class="keyword">module</span> cnt10(clk, rst_n, en, load_n, data, cout, dout);</span><br><span class="line">    <span class="keyword">input</span> clk, rst_n, en, load_n;  </span><br><span class="line">    <span class="keyword">input</span> [<span class="number">3</span>:<span class="number">0</span>] data;</span><br><span class="line">    <span class="keyword">output</span> cout;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] dout;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//行为描述</span></span><br><span class="line">    <span class="comment">//不能混合边沿和电平，所以两个边沿触发。rst_n为负值逻辑</span></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk, <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (!rst_n) dout &lt;= <span class="number">0</span>;  <span class="comment">//优先级最高</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (en) <span class="keyword">begin</span>  <span class="comment">//使能en高于load，使能无效则load无效。</span></span><br><span class="line">            <span class="keyword">if</span> (!load_n) dout &lt;= data;  <span class="comment">//load有效，赋值。</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (dout &lt; <span class="number">4&#x27;d9</span>) dout &lt;= dout + <span class="number">1</span>; <span class="comment">//没记满，则+1</span></span><br><span class="line">            <span class="keyword">else</span> dout &lt;= <span class="number">4&#x27;d0</span>;  <span class="comment">//计数值记满（9）或大于9（预置了&gt;10的数，如此写避免了bug），复位到0</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">//计数到9，输出记满1信号，否则输出0</span></span><br><span class="line">    <span class="keyword">assign</span> cout = (dout == <span class="number">4&#x27;d9</span>) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="tb的写法"><a href="#tb的写法" class="headerlink" title="tb的写法"></a>tb的写法</h3><p>对于上述较为复杂的电路，用tb验证，模拟了上述的信号</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps;</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">必须声明timescale，tb除了做行为仿真，还要做综合后时序仿真，因为综合后会引入器件延时和布线延时，即使在行为仿真后正确，也可能在综合仿真后产生尖峰和毛刺，导致逻辑失败。</span></span><br><span class="line"><span class="comment">因此必须考虑延时。延时要声明timescale，过大，则低频电路，器件延时被忽略，若过小，则高频电路，则器件延时布线延时不可忽略，产生不可预期的后果。</span></span><br><span class="line"><span class="comment">所以tb首先要声明实在哪一个频率点上进行仿真，不可或缺。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">module</span> cnt10_tb( );</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  输入信号赋值，来模拟信号源，观测输出信号，看是否满足输出要求，既然要赋值，则通常为initial或always，因此输入信号要为reg类型</span></span><br><span class="line"><span class="comment">  输出信号只观测，则wire型。</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">reg</span> clk,rst_n,en,load_n;</span><br><span class="line">  <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] data;</span><br><span class="line">  <span class="keyword">wire</span> cout;</span><br><span class="line">  <span class="keyword">wire</span> [<span class="number">3</span>:<span class="number">0</span>] dout;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    tb的第一条语句一定是调用待检测的模块，输入信号输出信号连上模块，待检测模块的一头接信号源，另一头接示波器，第一条语句始终引入待检测模块</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  cnt10 dut(clk,rst_n,en,</span><br><span class="line">    load_n,data,cout,dout);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 产生 10ns 周期的时钟信号，每5ns反相一次</span></span><br><span class="line">  <span class="keyword">initial</span> clk = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">always</span> #<span class="number">5</span> clk = ~clk;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">切记，做任何仿真之前，需要对该信号进行初始化，凡是没有初始化的信号，vivado认为是个x，未知状态信号，任何操作逻辑都是未知状态。</span></span><br><span class="line"><span class="comment">对输入信号操作前，要赋初值。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">// #100 </span></span><br><span class="line">    rst_n = <span class="number">1</span>;</span><br><span class="line">    en = <span class="number">1</span>;</span><br><span class="line">    load_n = <span class="number">1</span>;</span><br><span class="line">    data = <span class="number">3</span>;</span><br><span class="line">    <span class="comment">// 使能为0期间，不计数</span></span><br><span class="line">    #<span class="number">10</span> en = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">15</span> en = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 异步复位，不受时钟影响</span></span><br><span class="line">    #<span class="number">6</span> rst_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">2</span> rst_n = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 预置数改变不影响计数</span></span><br><span class="line">    #<span class="number">10</span> data = <span class="number">7</span>;</span><br><span class="line">    <span class="comment">// 直到预置数被装载</span></span><br><span class="line">    #<span class="number">20</span> load_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">10</span> load_n = <span class="number">1</span>; </span><br><span class="line">    <span class="comment">// 大于10的预置数</span></span><br><span class="line">    #<span class="number">30</span> data = <span class="number">11</span>;</span><br><span class="line">    #<span class="number">30</span> load_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">10</span> load_n = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>总是使用</strong> <strong>timescale</strong> <strong>规定时间</strong>,对后续综合后时间仿真产生影响</p>
-<p>在全局置位、复位脉冲释放之前就确保 <em><strong>时钟源</strong></em> 已经开始工作。时钟源写在最前。</p>
-<p><strong>在仿真时间的</strong> <strong>0</strong> <strong>时刻，将所有的设计输入初始化位为一个确定的值；</strong></p>
-<p>**在综合后和实现后的时序仿真中，会自动触发全局置位/复位脉冲（GSR），这会让所有的寄存器在仿真的前100ns **内锁定其值。因此在100ns 之后再赋值激励数据；如果对一个带复位的时序电路仿真，而且希望做综合后实现后的时序仿真，则第一条语句要写延时100ns，保证后续所有输入在100ns后输入才能得到正确的仿真结果。</p>
-</blockquote>
-
+        
       
            <!-- 添加版权声明 -->
     
@@ -1487,145 +1630,6 @@
 
 
   
-    <article id="post-Java笔记——面向对象思考" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-       
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/08/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%83/">Java笔记——面向对象思考</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/08/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%83/" class="archive-article-date">
-  	<time datetime="2021-04-08T01:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-08</time>
-</a>
-
-
-           <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-keyboard-o"></i>
-      <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">1.2k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="fa fa-hourglass-half"></i>
-      <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">4分</span>
-    </span>
-  </span>
-</div>
-
-          
-        <!-- 添加完成 -->
-
-
-
-        
-          
-          
-        
-          
-          
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="面向过程开发"><a href="#面向过程开发" class="headerlink" title="面向过程开发"></a>面向过程开发</h2><p>一个软件系统由一系列过程构成。因而采用功能划分或模块分解的方法进行。  </p>
-<h2 id="面向对象开发"><a href="#面向对象开发" class="headerlink" title="面向对象开发"></a>面向对象开发</h2><p>一个软件系统由一系列参与活动的对象构成。故需建立对象模型、动态模型和功能模型。</p>
-<ul>
-<li><strong>对象模型</strong>：描述对象的组织结构。是核心模型。</li>
-<li><strong>动态模型</strong>：描述对象之间的交互行为。</li>
-<li><strong>功能模型</strong>：描述对象的行为或状态变化。</li></ul>
-        
-      
-           <!-- 添加版权声明 -->
-    
-  
-    <div class="declare" hidden="hidden"></div>
-  
-        <!-- 添加版权声明 -->
-  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">面向对象思考</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/08/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E8%80%83/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1752,11 +1756,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">List</a>
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Map</a>
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1773,6 +1777,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">随机数，数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaFx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1832,11 +1840,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数电</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">触发器</a>
+                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1848,7 +1852,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">大学生活</a>
+                <a href="javascript:void(0)" class="js-tag color3">数电</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">触发器</a>
               </li>
              
               <li class="article-tag-list-item">
