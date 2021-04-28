@@ -20,9 +20,15 @@
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428002247404.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003306682.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003543633.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003543633.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428010018119.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429002126467.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429003434137.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429003704742.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429003347993.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429005012890.png">
 <meta property="article:published_time" content="2021-04-28T10:00:15.000Z">
-<meta property="article:modified_time" content="2021-04-28T13:38:14.542Z">
+<meta property="article:modified_time" content="2021-04-28T16:56:12.642Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JavaFx">
@@ -233,7 +239,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">1.4k字</span>
+      <span class="post-count">2.2k字</span>
     </span>
   </span>
 
@@ -242,7 +248,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-hourglass-half"></i>
       <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">5分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -281,19 +287,22 @@
 <li>控制器</li>
 </ol>
 <p>以上三部分相对独立，用户对视图的操作转到控制器，控制器解读操作含义，来操作模型。如操作player，控制器向模型请求player模型放歌，模型告诉视图状态已经改变，视图显示位用户更新。</p>
-<p>使用IDEA创建工程，工程要选择Java FX</p>
+<p>使用IDEA创建工程，工程要选择Java FX，就产生如下的工程文件</p>
 <p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428002247404.png" alt="image-20210428002247404"></p>
 <p>设计一个网页的时候，网页的视图就是html描述，如上xml与网页联系起来。</p>
 <h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>要实现如下页面，一个编辑框和一个按钮</p>
 <p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003306682.png" alt="image-20210428003306682"></p>
 <p>对应的配置文件：语法基于xml，可扩展的标记语言。JavaFx UI的开发和设计网页是完全一致，设计网页用html，html实际上是xml的一个实例，开发方式与web开发统一起来。</p>
+<p>如下为sample.fxml</p>
 <p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003543633.png" alt="image-20210428003543633"></p>
-<p>pane为根节点，第二行fx:controller是很重要的属性，指定了视图的控制器，引入类名</p>
+<blockquote>
+<p> pane为根节点，第二行fx:controller是很重要的属性，指定了视图的控制器，引入类名</p>
 <p>里面两个组件Button和TextField，如果需要在Java程序里访问空间，需要在xml里指定控件的fx:id属性</p>
+</blockquote>
 <p>Java中通过如下语句加载</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Main.java里加载sample.fxml</span></span><br><span class="line">FXMLLoader loader = <span class="keyword">new</span> FXMLLoader(getClass().getResource(“sample.fxml<span class="string">&quot;));</span></span><br><span class="line"><span class="string">Pane root = loader.load(); //返回一个对象，对象的类型就是根节点的类型Pane，将整个视图加载进来</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Main类的实现"><a href="#Main类的实现" class="headerlink" title="Main类的实现"></a>Main类的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main必须继承Application(JavaFx定义好的),并覆盖start方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span>  <span class="comment">//覆盖Application中的start方法</span></span><br><span class="line">    <span class="comment">//Stage就是舞台（窗体），可以随时切换场景</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//加载sample.fxml</span></span><br><span class="line">			FXMLLoader loader = <span class="keyword">new</span> FXMLLoader(getClass().getResource(“sample.fxml<span class="string">&quot;));</span></span><br><span class="line"><span class="string">                                                                         //加载视图的根节点（fxml里根节点），自动加载根节点下面所有的UI控件</span></span><br><span class="line"><span class="string">			Pane root = loader.load();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//得到控制器实例</span></span><br><span class="line"><span class="string">			Controller controller = loader.getController();</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">            //将Main对象传进控制器，这样控制器就可以访问Main对象的成员</span></span><br><span class="line"><span class="string">           	 controller.setMyApp(this);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//Scene构造函数第一个参数指定了场景里的根节点对象root（前面已加载）</span></span><br><span class="line"><span class="string">			//root是视图的根结点，将整个视图加载进scene中了</span></span><br><span class="line"><span class="string">			Scene scene = new Scene(root,400,600);</span></span><br><span class="line"><span class="string">                                                                      	//切换了舞台的场景</span></span><br><span class="line"><span class="string">			primaryStage.setScene(scene);</span></span><br><span class="line"><span class="string">			primaryStage.show();</span></span><br><span class="line"><span class="string">		&#125; catch(Exception e) &#123;</span></span><br><span class="line"><span class="string">			e.printStackTrace();</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	public static void main(String[] args) &#123;</span></span><br><span class="line"><span class="string">		//静态方法，Application里已经定义好了</span></span><br><span class="line"><span class="string">        launch(args);</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Main类的实现"><a href="#Main类的实现" class="headerlink" title="Main类的实现"></a>Main类的实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main必须继承Application(JavaFx定义好的),并覆盖start方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span>  <span class="comment">//覆盖Application中的start方法</span></span><br><span class="line">    <span class="comment">//Stage就是舞台（窗体），可以随时切换场景</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//1.加载sample.fxml</span></span><br><span class="line">			FXMLLoader loader = <span class="keyword">new</span> FXMLLoader(getClass().getResource(“sample.fxml<span class="string">&quot;));</span></span><br><span class="line"><span class="string">                                                                         //2.加载视图的根节点（fxml里根节点），自动加载根节点下面所有的UI控件</span></span><br><span class="line"><span class="string">			Pane root = loader.load();</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//3.得到控制器实例</span></span><br><span class="line"><span class="string">			Controller controller = loader.getController();</span></span><br><span class="line"><span class="string">			</span></span><br><span class="line"><span class="string">            //4.将Main对象传进控制器，这样控制器就可以访问Main对象的成员</span></span><br><span class="line"><span class="string">           	 controller.setMyApp(this);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">			//5.Scene构造函数第一个参数指定了场景里的根节点对象root（前面已加载）</span></span><br><span class="line"><span class="string">			//root是视图的根结点，将整个视图加载进scene中了</span></span><br><span class="line"><span class="string">			Scene scene = new Scene(root,400,600);</span></span><br><span class="line"><span class="string">                                                                      	//6.切换了舞台的场景</span></span><br><span class="line"><span class="string">			primaryStage.setScene(scene);</span></span><br><span class="line"><span class="string">			primaryStage.show();</span></span><br><span class="line"><span class="string">		&#125; catch(Exception e) &#123;</span></span><br><span class="line"><span class="string">			e.printStackTrace();</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	public static void main(String[] args) &#123;</span></span><br><span class="line"><span class="string">		//静态方法，Application里已经定义好了</span></span><br><span class="line"><span class="string">        launch(args);</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">	<span class="meta">@FXML</span>    </span><br><span class="line">    	<span class="keyword">private</span> TextField text;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Main对象引用，引用Main的实例，这样控制器就可以访问Main对象的成员</span></span><br><span class="line">	<span class="keyword">private</span> Main myApp;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyApp</span><span class="params">(Main myApp)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.myApp = myApp;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@FXML</span>    <span class="comment">//ActionEvent e用户点击按钮的事件处理函数</span></span><br><span class="line">    <span class="comment">//@FXML标注将onClick函数与xml中定义的onAction=“#onClick” 绑定</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">		text.setText(<span class="string">&quot;Button Cliked&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -301,43 +310,109 @@
 <p>@FXML标注很重要，将实例变量名与xml中fx:id属性值相同的控件绑定起来，</p>
 <p>在Java程序里通过text引用，可以控制TextField对象（读写），比如onClick方法里的text.setText方法</p>
 </blockquote>
+<hr>
 <p>视图 控制器 model Main(仅仅是启动类)如何关联</p>
 <p>@FXML标注，controller就可以得到视图文件中任何一个UI组件的实例</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428003543633.png" alt="image-20210428003543633"></p>
+<p>如下，控制器中的</p>
+<p>private TextField text    对应fxml中的TextField fx:id=”text”</p>
+<p>public void onclick(ActionEvent e){}   对应onAction=”#onClick”</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	<span class="meta">@FXML</span>    </span><br><span class="line">    <span class="keyword">private</span> TextField text;</span><br><span class="line">	<span class="meta">@FXML</span>    </span><br><span class="line"><span class="comment">//@FXML标注将onClick函数与xml中定义的onAction=“#onClick” 绑定</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">		text.setText(<span class="string">&quot;Button Cliked&quot;</span>);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
 <p>controller和main联系起来，如下属性和方法</p>
-<pre><code>private Main myApp;
-public void setMyApp(Main myApp) &#123;
-    this.myApp = myApp;
-&#125;
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Main对象引用，引用Main的实例，这样控制器就可以访问Main对象的成员</span></span><br><span class="line"><span class="keyword">private</span> Main myApp;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMyApp</span><span class="params">(Main myApp)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.myApp = myApp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>我们讨论了Controller（控制器）、fxml配置文件（视图）。那么Model呢？Main不要作为模型类，应该在工程里添加Model类。Main只是JavaFX应用的启动类。控制器如何拿到Model的对象？定义一个类似于setMyApp的方法，例如：</p>
 <p>  public void setModel(Model model)。</p>
 <p>然后在Main类里实例化Model对象，通过拿到的Controller实例（Main类中），controller调用setModel方法。Model就传到Controller里</p>
 </blockquote>
 <h3 id="也可以完全用Java程序创建UI"><a href="#也可以完全用Java程序创建UI" class="headerlink" title="也可以完全用Java程序创建UI"></a>也可以完全用Java程序创建UI</h3><p>start中直接new了Button，再创建scene，将btOK入scene第一个参数，就是UI的根结点，scene中只有一个button，占满整个scene。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javafx.application.Application ;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.control .Button;</span><br><span class="line"><span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJavaFX</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">    Button btOK = <span class="keyword">new</span> Button(<span class="string">&quot;OK&quot;</span>）；</span><br><span class="line">    Scene scene = <span class="keyword">new</span> Scene(btOK, <span class="number">200</span>, <span class="number">250</span>) ;</span><br><span class="line">    primaryStage.setTitle(<span class="string">&quot;MyJavaFX&quot;</span>) ; </span><br><span class="line">    primaryStage.setScene(scene) ; </span><br><span class="line">    primaryStage.show() ; </span><br><span class="line">  &#125;<span class="comment">//注意按钮占满了了整个场景  </span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	 Application.launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> javafx.application.Application ;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"><span class="keyword">import</span> javafx.scene.control .Button;</span><br><span class="line"><span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyJavaFX</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span> </span>&#123;</span><br><span class="line">    Button btOK = <span class="keyword">new</span> Button(<span class="string">&quot;OK&quot;</span>);</span><br><span class="line">    Scene scene = <span class="keyword">new</span> Scene(btOK, <span class="number">200</span>, <span class="number">250</span>);</span><br><span class="line">    primaryStage.setTitle(<span class="string">&quot;MyJavaFX&quot;</span>); </span><br><span class="line">    primaryStage.setScene(scene); </span><br><span class="line">    primaryStage.show(); </span><br><span class="line">  &#125;<span class="comment">//注意按钮占满了了整个场景  </span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	 Application.launch(args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p><strong>需从Application类派生</strong></p>
-<p><strong>重写start方法：用于启</strong></p>
-<p><strong>动主窗体(Stage类型)。</strong></p>
+<p><strong>重写start方法：用于启动主窗体(Stage类型)。</strong></p>
 </blockquote>
 <blockquote>
-<p><strong>如果想启动两个窗体</strong></p>
-<p><strong>（Stage），</strong></p>
-<p><strong>可在start中创建新的</strong></p>
-<p><strong>Stage对象。</strong></p>
+<p><strong>如果想启动两个窗体（Stage），可在start中创建新的Stage对象。</strong></p>
 </blockquote>
 <blockquote>
-<p><strong>Stage就像一个舞台，</strong></p>
-<p><strong>由场景Scene组成。</strong></p>
-<p><strong>场景可以切换（Stage的setScene方法）</strong></p>
+<p><strong>Stage就像一个舞台，由场景Scene组成。场景可以切换（Stage的setScene方法）</strong></p>
 </blockquote>
 <blockquote>
 <p><strong>launch 方法是一个定义在Application 类中的静态方法，用于启动一个独立的JavaFX 应用：激活start方法。</strong></p>
 </blockquote>
 <p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428010018119.png" alt="image-20210428010018119"></p>
 <p><strong>注意也可以完全脱离fxml，完全在Java程序里定义视图的内容，这个例子就是如此。但不推荐这样做，用fxml定义视图，可以将代码与视图定义分离。有的同学担心fxml写起来太麻烦，不用担心。利用UI设计工具SceneBuilder，用拖拽控件的方式设计好UI后，会自动产生fxml配置文件。</strong></p>
+<h2 id="面板、UI组件以及形状"><a href="#面板、UI组件以及形状" class="headerlink" title="面板、UI组件以及形状"></a>面板、UI组件以及形状</h2><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429002126467.png" style="zoom:67%;">
+
+
+
+<blockquote>
+<p> 一个Stage就是一个窗口，在<strong>Stage中包含了多个Scene</strong>，Stage可以通过setScene切换场景</p>
+</blockquote>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429003434137.png" style="zoom:50%;">
+
+<blockquote>
+<p><strong>Scene包含多个Parent</strong>（Pane或者Control），但其中只<strong>有一个根节点root，根节点的类型可以是Parent，Pane，Control</strong>(Parent或其子类，但Scene里不能包含Shape，ImageView，因为这两个不是Parent的子类，不能直接放在Scene)，根节点里面可以有很多UI的具体组件，UI组件都是Node类型，Node是所有可视化组件的祖先类</p>
+</blockquote>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429003704742.png" style="zoom:33%;">
+
+
+
+<blockquote>
+<p>Node有多个子类， </p>
+<ul>
+<li><p>其中第一个子类Parant，凡是Parant派生的，都有子节点。其两个子类</p>
+<ol>
+<li><p>Control：子类为各种UI组件</p>
+</li>
+<li><p>面板Pane，子类为许多具体面板。</p>
+</li>
+</ol>
+</li>
+<li><p>Node可以直接派生子类</p>
+<pre><code>  1. Shape：各种形状，
+  2. ImageView：图像。
+</code></pre>
+<p>  Node直接派生的，而不是Parant派生的，这些类没有子节点，这些类的对象只能加载到Parant。</p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>面板Pane</p>
+<p>通常是作为一个容器，面板Pane里面可以包含很多Node，Node是所有可视化UI组件的祖先类，因此Pane里还可以嵌套Pane，也可以放UI组件。面板的主要作用是布局。</p>
+</blockquote>
+<p>界面元素的包含关系</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429003347993.png" style="zoom: 67%;">
+
+<blockquote>
+<p>注意:</p>
+<p>(1)派生：Node-&gt;Parent-&gt;Pane，</p>
+<p>  故Pane可包含Node的任何子类。</p>
+<p>(2)Pane由Node构成-&gt;故可由Pane构成，</p>
+<p>  故Pane可包含多个Pane。</p>
+<p>(3)Scene可包含Control或Pane, 但不能</p>
+<p>  包含Shape和ImageView。</p>
+</blockquote>
+<hr>
+<p>通过最开始的例子进行解释</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210429005012890.png"></p>
+<blockquote>
+<p>注意Pane作为容器，负责里面UI组件的布局(Layout). Pane可以相互嵌套，实现任意复杂的布局。</p>
+</blockquote>
+<blockquote>
+<p>如果需要在Pane里加入更多UI组件</p>
+<p>在fxml文件的Pane节点里添加子节点</p>
+</blockquote>
+<hr>
+<p>可以通过Java程序动态地向UI界面添加新的UI组件</p>
+<p><strong>pane.getChi1dren().add(构造好的UI组件对象);是将一个UI组件加入面板的方法。</strong></p>
+<p>这个代码<strong>不需要fxml文件可以运行</strong>。因此，我们可以不依赖于fxml，直接在程序里创建UI并布局（当然比较麻烦）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> javafx.application.Application;</span><br><span class="line"> <span class="keyword">import</span> javafx.scene.Scene;</span><br><span class="line"> <span class="keyword">import</span> javafx.scene.control.Button;</span><br><span class="line"> <span class="keyword">import</span> javafx.stage.Stage;</span><br><span class="line"> <span class="keyword">import</span> javafx.scene.1ayout.StackPane;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ButtonlnPane</span> <span class="keyword">extends</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">(Stage primaryStage)</span></span>&#123;</span><br><span class="line"> 		<span class="comment">/*StackPane：Pane的子类，</span></span><br><span class="line"><span class="comment"> 		它实现的布局方式是：控件在同一中央位置堆叠存放，</span></span><br><span class="line"><span class="comment"> 		一个控件可能覆盖其它控件。</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">        StackPane pane = <span class="keyword">new</span> StackPane();</span><br><span class="line">		<span class="comment">/*程序将Button控件加入StackPane。</span></span><br><span class="line"><span class="comment">		getChildren返回javafx.collections.ObservableList 的一个实例。子节点列表</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">        <span class="comment">/*ObservableList类似于ArrayList, 用于存储元素集合。</span></span><br><span class="line"><span class="comment">        调用add(e)可将一个元素加入集合的列表。</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">        pane.getChildren().add(<span class="keyword">new</span> Button(<span class="string">&quot;OK&quot;</span>));</span><br><span class="line"></span><br><span class="line">        Scene scene = <span class="keyword">new</span> Scene(pane, <span class="number">200</span>,<span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">        primaryStage.setTitle(<span class="string">&quot;Button in a pane&quot;</span>); </span><br><span class="line"></span><br><span class="line">        primaryStage.setScene(scene);     </span><br><span class="line"></span><br><span class="line">        primaryStage.show(); <span class="comment">// Display the stage</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       
            <!-- 添加版权声明 -->
@@ -523,7 +598,7 @@ public void setMyApp(Main myApp) &#123;
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA-UI%E7%BC%96%E7%A8%8B%E7%BB%8F%E5%8E%86%E7%9A%84%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.</span> <span class="toc-text">JAVA UI编程经历的三个阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaFx%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">JavaFx程序的基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.</span> <span class="toc-text">Main类的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controller"><span class="toc-number">2.3.</span> <span class="toc-text">controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%8C%E5%85%A8%E7%94%A8Java%E7%A8%8B%E5%BA%8F%E5%88%9B%E5%BB%BAUI"><span class="toc-number">2.4.</span> <span class="toc-text">也可以完全用Java程序创建UI</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA-UI%E7%BC%96%E7%A8%8B%E7%BB%8F%E5%8E%86%E7%9A%84%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.</span> <span class="toc-text">JAVA UI编程经历的三个阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaFx%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text">JavaFx程序的基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE"><span class="toc-number">2.1.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Main%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.2.</span> <span class="toc-text">Main类的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controller"><span class="toc-number">2.3.</span> <span class="toc-text">controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%AE%8C%E5%85%A8%E7%94%A8Java%E7%A8%8B%E5%BA%8F%E5%88%9B%E5%BB%BAUI"><span class="toc-number">2.4.</span> <span class="toc-text">也可以完全用Java程序创建UI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E6%9D%BF%E3%80%81UI%E7%BB%84%E4%BB%B6%E4%BB%A5%E5%8F%8A%E5%BD%A2%E7%8A%B6"><span class="toc-number">3.</span> <span class="toc-text">面板、UI组件以及形状</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -685,11 +760,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">List</a>
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Map</a>
+                <a href="javascript:void(0)" class="js-tag color5">List</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -709,10 +784,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">JavaFx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
               </li>
              
@@ -722,6 +793,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">访问控制符</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">JavaFx</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,11 +824,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">面向对象思考</a>
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+                <a href="javascript:void(0)" class="js-tag color2">面向对象思考</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -766,14 +841,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">图床</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Verilog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常见电路</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -829,7 +896,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Verilog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">快速入门</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常见电路</a>
               </li>
              
               <li class="article-tag-list-item">
