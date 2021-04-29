@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427202403937.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210427203236919.png">
-<meta property="og:image" content="c:/Users/liuYIkang/AppData/Roaming/Typora/typora-user-images/image-20210429013238264.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/newimg/image-20210429013238264.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428010431170.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428011405545.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428011748095.png">
@@ -26,10 +26,10 @@
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428081400344.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428082140830.png">
 <meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210428084327484.png">
-<meta property="og:image" content="c:/Users/liuYIkang/AppData/Roaming/Typora/typora-user-images/image-20210429011556719.png">
-<meta property="og:image" content="c:/Users/liuYIkang/AppData/Roaming/Typora/typora-user-images/image-20210429012206972.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/newimg/image-20210429012206972.png">
+<meta property="og:image" content="https://gitee.com/Trent-Liuy/blogimage/raw/master/newimg/image-20210429011533770.png">
 <meta property="article:published_time" content="2021-04-25T10:00:15.000Z">
-<meta property="article:modified_time" content="2021-04-28T17:33:41.323Z">
+<meta property="article:modified_time" content="2021-04-29T02:56:51.441Z">
 <meta property="article:author" content="Trent-Liu">
 <meta property="article:tag" content="Verilog">
 <meta property="article:tag" content="常见电路">
@@ -331,7 +331,7 @@
 </ul>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 实用模 10 计数器</span></span><br><span class="line"><span class="keyword">module</span> cnt10(clk, rst_n, en, load_n, data, cout, dout);</span><br><span class="line">    <span class="keyword">input</span> clk, rst_n, en, load_n;  </span><br><span class="line">    <span class="keyword">input</span> [<span class="number">3</span>:<span class="number">0</span>] data;</span><br><span class="line">    <span class="keyword">output</span> cout;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] dout;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//行为描述</span></span><br><span class="line">    <span class="comment">//不能混合边沿和电平，所以两个边沿触发。rst_n为负值逻辑</span></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk, <span class="keyword">negedge</span> rst_n) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (!rst_n) dout &lt;= <span class="number">0</span>;  <span class="comment">//优先级最高</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (en) <span class="keyword">begin</span>  <span class="comment">//使能en高于load，使能无效则load无效。</span></span><br><span class="line">            <span class="keyword">if</span> (!load_n) dout &lt;= data;  <span class="comment">//load有效，赋值。</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (dout &lt; <span class="number">4&#x27;d9</span>) dout &lt;= dout + <span class="number">1</span>; <span class="comment">//没记满，则+1</span></span><br><span class="line">            <span class="keyword">else</span> dout &lt;= <span class="number">4&#x27;d0</span>;  <span class="comment">//计数值记满（9）或大于9（预置了&gt;10的数，如此写避免了bug），复位到0</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">//计数到9，输出记满1信号，否则输出0</span></span><br><span class="line">    <span class="keyword">assign</span> cout = (dout == <span class="number">4&#x27;d9</span>) ? <span class="number">1&#x27;b1</span> : <span class="number">1&#x27;b0</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/liuYIkang/AppData/Roaming/Typora/typora-user-images/image-20210429013238264.png" alt="image-20210429013238264"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/newimg/image-20210429013238264.png" alt="image-20210429013238264"></p>
 <h3 id="tb的写法"><a href="#tb的写法" class="headerlink" title="tb的写法"></a>tb的写法</h3><p>对于上述较为复杂的电路，用tb验证，模拟了上述的信号</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">`<span class="meta-keyword">timescale</span> 1ns / 1ps;</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">必须声明timescale，tb除了做行为仿真，还要做综合后时序仿真，因为综合后会引入器件延时和布线延时，即使在行为仿真后正确，也可能在综合仿真后产生尖峰和毛刺，导致逻辑失败。</span></span><br><span class="line"><span class="comment">因此必须考虑延时。延时要声明timescale，过大，则低频电路，器件延时被忽略，若过小，则高频电路，则器件延时布线延时不可忽略，产生不可预期的后果。</span></span><br><span class="line"><span class="comment">所以tb首先要声明实在哪一个频率点上进行仿真，不可或缺。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">module</span> cnt10_tb( );</span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">  输入信号赋值，来模拟信号源，观测输出信号，看是否满足输出要求，既然要赋值，则通常为initial或always，因此输入信号要为reg类型</span></span><br><span class="line"><span class="comment">  输出信号只观测，则wire型。</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="keyword">reg</span> clk,rst_n,en,load_n;</span><br><span class="line">  <span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] data;</span><br><span class="line">  <span class="keyword">wire</span> cout;</span><br><span class="line">  <span class="keyword">wire</span> [<span class="number">3</span>:<span class="number">0</span>] dout;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    tb的第一条语句一定是调用待检测的模块，输入信号输出信号连上模块，待检测模块的一头接信号源，另一头接示波器，第一条语句始终引入待检测模块</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  cnt10 dut(clk,rst_n,en,</span><br><span class="line">    load_n,data,cout,dout);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 产生 10ns 周期的时钟信号，每5ns反相一次</span></span><br><span class="line">  <span class="keyword">initial</span> clk = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">always</span> #<span class="number">5</span> clk = ~clk;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">切记，做任何仿真之前，需要对该信号进行初始化，凡是没有初始化的信号，vivado认为是个x，未知状态信号，任何操作逻辑都是未知状态。</span></span><br><span class="line"><span class="comment">对输入信号操作前，要赋初值。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">  <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="comment">// #100 </span></span><br><span class="line">    rst_n = <span class="number">1</span>;</span><br><span class="line">    en = <span class="number">1</span>;</span><br><span class="line">    load_n = <span class="number">1</span>;</span><br><span class="line">    data = <span class="number">3</span>;</span><br><span class="line">    <span class="comment">// 使能为0期间，不计数</span></span><br><span class="line">    #<span class="number">10</span> en = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">15</span> en = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 异步复位，不受时钟影响</span></span><br><span class="line">    #<span class="number">6</span> rst_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">2</span> rst_n = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 预置数改变不影响计数</span></span><br><span class="line">    #<span class="number">10</span> data = <span class="number">7</span>;</span><br><span class="line">    <span class="comment">// 直到预置数被装载</span></span><br><span class="line">    #<span class="number">20</span> load_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">10</span> load_n = <span class="number">1</span>; </span><br><span class="line">    <span class="comment">// 大于10的预置数</span></span><br><span class="line">    #<span class="number">30</span> data = <span class="number">11</span>;</span><br><span class="line">    #<span class="number">30</span> load_n = <span class="number">0</span>;</span><br><span class="line">    #<span class="number">10</span> load_n = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
@@ -450,7 +450,7 @@
 <h2 id="数据通路设计"><a href="#数据通路设计" class="headerlink" title="数据通路设计"></a>数据通路设计</h2><ul>
 <li>首先实现各个单元模块，包括计算单元ALU，寄存器单元LA和LB，双端口存储器GR</li>
 </ul>
-<p><img src="C:/Users/liuYIkang/AppData/Roaming/Typora/typora-user-images/image-20210429011556719.png" alt="image-20210429011556719"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/newimg/image-20210429012206972.png" alt="image-20210429011556719"></p>
 <p>首先实现各个模块</p>
 <p>ALU</p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> alu(a,b,op,q);</span><br><span class="line">    <span class="keyword">parameter</span> WIDTH = <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">input</span>[WIDTH-<span class="number">1</span>：<span class="number">0</span>] a,b;</span><br><span class="line">    <span class="keyword">input</span>[<span class="number">1</span>:<span class="number">0</span>] op;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span>[WIDTH-<span class="number">1</span>:<span class="number">0</span>] q;</span><br><span class="line">    <span class="keyword">always</span>@(*) <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">case</span>(op)</span><br><span class="line">            <span class="number">2&#x27;b00</span>:q=a+b;</span><br><span class="line">            <span class="number">2&#x27;b01</span>:q=a&amp;b;</span><br><span class="line">            <span class="number">2&#x27;b10</span>:q=a^b;</span><br><span class="line">            <span class="number">2&#x27;b11</span>:q=a|b;</span><br><span class="line">            <span class="keyword">default</span>: q=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
@@ -459,7 +459,7 @@
 <p>register(clk,rst_n,end,d,q)</p>
 <p>ram(data,read_addr,write_addr,clk,we,q)</p>
 <p>利用结构描述设计方法，利用以上模块实现数据通路</p>
-<p><img src="C:/Users/liuYIkang/AppData/Roaming/Typora/typora-user-images/image-20210429012206972.png" alt="image-20210429012206972"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/newimg/image-20210429011533770.png" alt="image-20210429012206972"></p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> datapath_top(clk,rst,lda,ldb,read_addr,write_addr,we,op);</span><br><span class="line">    <span class="keyword">input</span> clk,rst,lda,ldb,we;</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">4</span>:<span class="number">0</span>] read_addr,write_addr;</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">1</span>:<span class="number">0</span>] op;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] gr_data,alu_data;</span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">31</span>:<span class="number">0</span>] la_data,lb_data;</span><br><span class="line">    </span><br><span class="line">    register<span class="variable">#(32) LA(clk,rst,lda,gr_data,la_data)</span></span><br><span class="line">    register<span class="variable">#(32) LB(clk,rst,ldb,gr_data,lb_data)</span></span><br><span class="line">    ram<span class="variable">#(32,5) GR(alu_data,read_addr,write_addr,clk,we,gr_data)</span>;</span><br><span class="line">    alu<span class="variable">#(32) ALU(la_data,lb_data,op,alu_data)</span>;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 
 
@@ -826,22 +826,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">String</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">StringBuffer</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">随机数，数组</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">单件模式</a>
               </li>
              
@@ -855,6 +839,22 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">JavaFx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">String</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">StringBuffer</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">随机数，数组</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -878,11 +878,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+                <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -894,19 +894,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">图床</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数电</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">触发器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">图床</a>
               </li>
              
               <li class="article-tag-list-item">
