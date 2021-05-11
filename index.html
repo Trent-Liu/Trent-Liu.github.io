@@ -81,7 +81,7 @@
 		</nav>
 		<nav>
 			<br/>
-			总文章数 23
+			总文章数 24
 		</nav>
 	<br/>
 	
@@ -199,6 +199,346 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-verilog的一些简单电路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+       
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/11/verilog%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%94%B5%E8%B7%AF/">Verilog一些简单电路</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/11/verilog%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%94%B5%E8%B7%AF/" class="archive-article-date">
+  	<time datetime="2021-05-11T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
+</a>
+
+
+           <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+          <div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-keyboard-o"></i>
+      <span class="post-meta-item-text">  字数统计: </span>
+      <span class="post-count">1.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="fa fa-hourglass-half"></i>
+      <span class="post-meta-item-text">  预计阅读时长: </span>
+      <span class="post-count">8分</span>
+    </span>
+  </span>
+</div>
+
+          
+        <!-- 添加完成 -->
+
+
+
+        
+          
+          
+        
+          
+          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="七段数码管"><a href="#七段数码管" class="headerlink" title="七段数码管"></a>七段数码管</h2><p>模块定义</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> <span class="number">_7</span>Seg_Driver_Decode(SW, SEG, AN, LED);</span><br><span class="line">	<span class="keyword">input</span> [<span class="number">15</span>:<span class="number">0</span>] SW;   <span class="comment">// 16位拨动开关</span></span><br><span class="line">	<span class="keyword">output</span>[<span class="number">7</span>:<span class="number">0</span>] SEG;  <span class="comment">// 7段数码管驱动，低电平有效</span></span><br><span class="line">	<span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] AN;<span class="comment">// 7段数码管片选信号，低电平有效</span></span><br><span class="line">	<span class="keyword">output</span> [<span class="number">15</span>:<span class="number">0</span>] LED;   <span class="comment">// 16位LED显示</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="直接驱动7段数码管（7-SegDisplay）"><a href="#直接驱动7段数码管（7-SegDisplay）" class="headerlink" title="直接驱动7段数码管（7-SegDisplay）"></a>直接驱动7段数码管（7-SegDisplay）</h3><p>使用“数据流描述”设计“7段数码管直接驱动”模块。</p>
+<ul>
+<li><p>用SW[7:0]直接驱动7段数码管的CA-CG、DP显示单元。</p>
+</li>
+<li><p>用SW[15:8]选择被驱动的7段数码管。</p>
+</li>
+<li><p>用LED[15:0]显示SW的状态。</p>
+</li>
+</ul>
+<p>拨动开关与7-SegDisplay对应关系</p>
+<table>
+<thead>
+<tr>
+<th><strong>拨动开关编号</strong></th>
+<th><strong>7-SegDisplay</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SW7</td>
+<td>CA</td>
+</tr>
+<tr>
+<td>SW6</td>
+<td>CB</td>
+</tr>
+<tr>
+<td>SW5</td>
+<td>CC</td>
+</tr>
+<tr>
+<td>SW4</td>
+<td>CD</td>
+</tr>
+<tr>
+<td>SW3</td>
+<td>CE</td>
+</tr>
+<tr>
+<td>SW2</td>
+<td>CF</td>
+</tr>
+<tr>
+<td>SW1</td>
+<td>CG</td>
+</tr>
+<tr>
+<td>SW0</td>
+<td>DP</td>
+</tr>
+</tbody></table>
+<p>代码如下</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> <span class="number">_7</span>Seg_Driver_Direct(SW, CA, CB, CC, CD, CE, CF, CG, DP, AN, LED);</span><br><span class="line">  <span class="keyword">input</span> [<span class="number">15</span>:<span class="number">0</span>] SW;                          <span class="comment">// 16位拨动开关</span></span><br><span class="line">	<span class="keyword">output</span> CA, CB, CC, CD, CE, CF, CG, DP;    <span class="comment">// 7段数码管驱动，低电平有效</span></span><br><span class="line">	<span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] AN;                          <span class="comment">// 7段数码管片选信号，低电平有效</span></span><br><span class="line">	<span class="keyword">output</span> [<span class="number">15</span>:<span class="number">0</span>] LED;                        <span class="comment">// 16位LED显示，高电平有效</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">assign</span> &#123;CA, CB, CC, CD, CE, CF, CG, DP&#125; = SW[<span class="number">7</span>:<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">assign</span> AN[<span class="number">7</span>:<span class="number">0</span>] = SW[<span class="number">15</span>:<span class="number">8</span>];</span><br><span class="line">	<span class="keyword">assign</span> LED[<span class="number">15</span>:<span class="number">0</span>] = SW[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="译码驱动七段数码管"><a href="#译码驱动七段数码管" class="headerlink" title="译码驱动七段数码管"></a>译码驱动七段数码管</h3><ul>
+<li><p>添加<strong>译码器</strong>，<strong>用SW[3:0]输入待显示的单个数字</strong>,转换成对应的数码管应该亮的位置，而不是之前通过[7:0] SEG直接控制LED亮。</p>
+</li>
+<li><p>输入数字与显示对应表如表3-2。</p>
+</li>
+<li><p>用SW[15:8]选择被驱动的7段数码管。</p>
+</li>
+<li><p>用LED[15:0]显示SW的状态。</p>
+</li>
+</ul>
+<p>输入与7-SegDisplay对应关系及显示码</p>
+<table>
+<thead>
+<tr>
+<th><strong>输入数字</strong></th>
+<th><strong>7-SegDisplay</strong></th>
+<th><strong>显示码</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0000</td>
+<td>0</td>
+<td>11000000</td>
+</tr>
+<tr>
+<td>0001</td>
+<td>1</td>
+<td>11111001</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>2</td>
+<td>10100100</td>
+</tr>
+<tr>
+<td>0011</td>
+<td>3</td>
+<td>10110000</td>
+</tr>
+<tr>
+<td>0100</td>
+<td>4</td>
+<td>10011001</td>
+</tr>
+<tr>
+<td>0101</td>
+<td>5</td>
+<td>10010010</td>
+</tr>
+<tr>
+<td>0110</td>
+<td>6</td>
+<td>10000010</td>
+</tr>
+<tr>
+<td>0111</td>
+<td>7</td>
+<td>11111000</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>8</td>
+<td>10000000</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>9</td>
+<td>10011000</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>A</td>
+<td>10001000</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>b</td>
+<td>10000011</td>
+</tr>
+<tr>
+<td>1100</td>
+<td>C</td>
+<td>11000110</td>
+</tr>
+<tr>
+<td>1101</td>
+<td>d</td>
+<td>10100001</td>
+</tr>
+<tr>
+<td>1110</td>
+<td>E</td>
+<td>10000110</td>
+</tr>
+<tr>
+<td>1111</td>
+<td>F</td>
+<td>10001110</td>
+</tr>
+</tbody></table>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210511112315620.png" style="zoom: 50%;">
+
+<h4 id="四位转16位译码器"><a href="#四位转16位译码器" class="headerlink" title="四位转16位译码器"></a>四位转16位译码器</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> decoder_4to16(in, out);</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">3</span>:<span class="number">0</span>] in;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] out;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span>@(in)</span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            <span class="keyword">case</span>(in)</span><br><span class="line">                <span class="number">4&#x27;b0000</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11000000</span>;</span><br><span class="line">                <span class="number">4&#x27;b0001</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11111001</span>;</span><br><span class="line">                <span class="number">4&#x27;b0010</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10100100</span>;</span><br><span class="line">                <span class="number">4&#x27;b0011</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10110000</span>;</span><br><span class="line">                <span class="number">4&#x27;b0100</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10011001</span>;</span><br><span class="line">                <span class="number">4&#x27;b0101</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10010010</span>;</span><br><span class="line">                <span class="number">4&#x27;b0110</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10000010</span>;</span><br><span class="line">                <span class="number">4&#x27;b0111</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11111000</span>;</span><br><span class="line">                <span class="number">4&#x27;b1000</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10000000</span>;</span><br><span class="line">                <span class="number">4&#x27;b1001</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10011000</span>;</span><br><span class="line">                <span class="number">4&#x27;b1010</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10001000</span>;</span><br><span class="line">                <span class="number">4&#x27;b1011</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10000011</span>;</span><br><span class="line">                <span class="number">4&#x27;b1100</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11000110</span>;</span><br><span class="line">                <span class="number">4&#x27;b1101</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10100001</span>;</span><br><span class="line">                <span class="number">4&#x27;b1110</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10000110</span>;</span><br><span class="line">                <span class="keyword">default</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10001110</span>;</span><br><span class="line">            <span class="keyword">endcase</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>译码驱动七段数码管</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> <span class="number">_7</span>Seg_Driver_Decode(SW, SEG, AN, LED);</span><br><span class="line">	<span class="keyword">input</span> [<span class="number">15</span>:<span class="number">0</span>] SW;           <span class="comment">// 16位拨动开关</span></span><br><span class="line">	<span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] SEG;      <span class="comment">// 7段数码管驱动，低电平有效</span></span><br><span class="line">	<span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] AN;           <span class="comment">// 7段数码管片选信号，低电平有效</span></span><br><span class="line">	<span class="keyword">output</span> [<span class="number">15</span>:<span class="number">0</span>] LED;         <span class="comment">// 16位LED显示</span></span><br><span class="line">	</span><br><span class="line">	decoder_4to16(<span class="variable">.in</span>(SW[<span class="number">3</span>:<span class="number">0</span>]), <span class="variable">.out</span>(SEG[<span class="number">7</span>:<span class="number">0</span>]));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">assign</span> AN[<span class="number">7</span>:<span class="number">0</span>]   = SW[<span class="number">15</span>:<span class="number">8</span>];</span><br><span class="line">    <span class="keyword">assign</span> LED[<span class="number">15</span>:<span class="number">0</span>] = SW[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="译码选择7段数码管"><a href="#译码选择7段数码管" class="headerlink" title="译码选择7段数码管"></a>译码选择7段数码管</h3><p>不仅数码管显示的数字直接通过译码器显示，对于哪个数码管亮的选择，采用选择器，三位的开关选择8个数码管谁亮。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210511113303265.png" style="zoom:50%;">
+
+<h4 id="三转八选择器"><a href="#三转八选择器" class="headerlink" title="三转八选择器"></a>三转八选择器</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> selector_3to8(in, out);</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">2</span>:<span class="number">0</span>] in;</span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">7</span>:<span class="number">0</span>] out;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">always</span>@(in)  </span><br><span class="line">        <span class="keyword">case</span>(in)  </span><br><span class="line">            <span class="number">3&#x27;b000</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11111110</span>;</span><br><span class="line">            <span class="number">3&#x27;b001</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11111101</span>;</span><br><span class="line">            <span class="number">3&#x27;b010</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11111011</span>;</span><br><span class="line">            <span class="number">3&#x27;b011</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11110111</span>;</span><br><span class="line">            <span class="number">3&#x27;b100</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11101111</span>;</span><br><span class="line">            <span class="number">3&#x27;b101</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b11011111</span>;</span><br><span class="line">            <span class="number">3&#x27;b110</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b10111111</span>;</span><br><span class="line">            <span class="keyword">default</span> : out[<span class="number">7</span>:<span class="number">0</span>] = <span class="number">8&#x27;b01111111</span>;</span><br><span class="line">        <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<p>用译码器和选择器组成的译码选择七段数码管</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> <span class="number">_7</span>Seg_Driver_Choice(SW, SEG, AN, LED);</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">15</span>:<span class="number">0</span>] SW;       <span class="comment">// 16位拨动开关</span></span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] SEG;      <span class="comment">// 7段数码管驱动，低电平有效</span></span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] AN;       <span class="comment">// 7段数码管片选信号，低电平有效</span></span><br><span class="line">    <span class="keyword">output</span> [<span class="number">15</span>:<span class="number">0</span>] LED;     <span class="comment">// 16位LED显示</span></span><br><span class="line"></span><br><span class="line">    selector_3to8(<span class="variable">.in</span>(SW[<span class="number">15</span>:<span class="number">13</span>]), <span class="variable">.out</span>(AN[<span class="number">7</span>:<span class="number">0</span>]));</span><br><span class="line">    decoder_4to16(<span class="variable">.in</span>(SW[<span class="number">3</span>:<span class="number">0</span>]), <span class="variable">.out</span>(SEG[<span class="number">7</span>:<span class="number">0</span>]));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">assign</span> LED[<span class="number">15</span>:<span class="number">0</span>] = SW[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="简单时序电路-数码管动态显示"><a href="#简单时序电路-数码管动态显示" class="headerlink" title="简单时序电路 数码管动态显示"></a>简单时序电路 数码管动态显示</h3><h4 id="分频器"><a href="#分频器" class="headerlink" title="分频器"></a>分频器</h4><ul>
+<li><p>nexys4ddr实验板的系统时钟信号由E3引脚提供，频率100MHz，周期10ns。</p>
+</li>
+<li><p>设计一个频率为1Hz（周期为1s）的分频器divider，可在模块中用parameter定义一个参数delay，值为50,000,000，同时定义一个变量cnt对系统时钟clk的上升沿进行计数。每当cnt计数到delay（50,000,000×10ns=500,000,000ns=0.5s）时，将分频时钟信号CK的电平反转，即可得到周期为1s的分频时钟信号。在上层模块中实例化divider模块时，可传递新的参数来调整delay的值，得到合适频率的分频时钟信号。</p>
+</li>
+<li><p>设计上层模块lab3_1，实例化分频器模块divider，用分频器模块的输出信号控制led[0]闪亮。</p>
+</li>
+<li><p>在上层模块中修改分频器模块的参数delay，观察led[0]闪亮快慢的变化。</p>
+</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> divider(clk, clk_N);</span><br><span class="line">    <span class="keyword">input</span> clk;                      <span class="comment">// 系统时钟</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> clk_N;                   <span class="comment">// 分频后的时钟</span></span><br><span class="line">    <span class="keyword">parameter</span> N = <span class="number">50_000_000</span>;     <span class="comment">// 1Hz的时钟,N=fclk/fclk_N</span></span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">31</span>:<span class="number">0</span>] counter;             <span class="comment">/* 计数器变量，通过计数实现分频。当计数器从0计数到50_000_000时，输出时钟翻转，计数器清零 */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span></span><br><span class="line">    <span class="keyword">begin</span>                           <span class="comment">// 赋初始值</span></span><br><span class="line">        counter = <span class="number">0</span>;</span><br><span class="line">        clk_N = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk)           <span class="comment">// 时钟上升</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        counter &lt;= counter + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (counter &gt; N )   <span class="comment">//每次初始时钟记满50_000_000次后，即每0.5s，新的时钟信号翻转一次，就得到了周期为1s的时钟。</span></span><br><span class="line">            <span class="keyword">begin</span></span><br><span class="line">                clk_N &lt;= ~clk_N;</span><br><span class="line">                counter &lt;= <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="三位计数器"><a href="#三位计数器" class="headerlink" title="三位计数器"></a>三位计数器</h4><ul>
+<li>所谓计数器就是在时钟信号沿的控制下能够进行自动加或减（通常是+1或-1）的时序电路。</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> counter(clk, out);</span><br><span class="line">    <span class="keyword">input</span> clk;                    <span class="comment">// 计数时钟</span></span><br><span class="line">    <span class="keyword">output</span> <span class="keyword">reg</span> [<span class="number">2</span>:<span class="number">0</span>] out;         <span class="comment">// 计数值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">always</span> @(<span class="keyword">posedge</span> clk)         <span class="comment">// 在时钟上升沿计数器加1</span></span><br><span class="line">    <span class="keyword">begin</span></span><br><span class="line">        out &lt;= out + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="只读存储器（ROM）"><a href="#只读存储器（ROM）" class="headerlink" title="只读存储器（ROM）"></a>只读存储器（ROM）</h4><ul>
+<li>设计一个容量为8单元的4位只读存储器，里面存放待显示数字0、2、4、6、8、A、C、E 的4位二进制编码，可在initial语句中对存储器进行初始化。</li>
+</ul>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> rom8x4(addr, data);</span><br><span class="line">    <span class="keyword">input</span> [<span class="number">2</span>:<span class="number">0</span>] addr;               <span class="comment">// 地址</span></span><br><span class="line">    <span class="keyword">output</span> [<span class="number">3</span>:<span class="number">0</span>] data;              <span class="comment">// 地址addr处存储的数据 </span></span><br><span class="line">    <span class="keyword">reg</span> [<span class="number">3</span>: <span class="number">0</span>] mem [<span class="number">7</span>: <span class="number">0</span>];          <span class="comment">//  8个4位的存储器</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">initial</span>                         <span class="comment">// 初始化存储器</span></span><br><span class="line">        <span class="keyword">begin</span></span><br><span class="line">            mem[<span class="number">0</span>]=<span class="number">4&#x27;b0000</span>;</span><br><span class="line">            mem[<span class="number">1</span>]=<span class="number">4&#x27;b0010</span>;</span><br><span class="line">            mem[<span class="number">2</span>]=<span class="number">4&#x27;b0100</span>;</span><br><span class="line">            mem[<span class="number">3</span>]=<span class="number">4&#x27;b0110</span>;</span><br><span class="line">            mem[<span class="number">4</span>]=<span class="number">4&#x27;b1000</span>;</span><br><span class="line">            mem[<span class="number">5</span>]=<span class="number">4&#x27;b1010</span>;</span><br><span class="line">            mem[<span class="number">6</span>]=<span class="number">4&#x27;b1100</span>;</span><br><span class="line">            mem[<span class="number">7</span>]=<span class="number">4&#x27;b1110</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">assign</span> data[<span class="number">3</span>:<span class="number">0</span>] = mem[addr];   <span class="comment">// 读取addr单元的值输出</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="数码管动态显示"><a href="#数码管动态显示" class="headerlink" title="数码管动态显示"></a>数码管动态显示</h4><p>顶层模块</p>
+<p>实现八个数码管从右至左“分时”显示存储器中的数据，即mem[0]值在AN0显示，mem[1]值在AN1显示，……</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> dynamic <span class="number">_</span>scan(clk,  SEG, AN);</span><br><span class="line"><span class="keyword">input</span> clk;              <span class="comment">// 系统时钟</span></span><br><span class="line"><span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] SEG;  		<span class="comment">// 分别对应CA、CB、CC、CD、CE、CF、CG和DP</span></span><br><span class="line"><span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] AN;        <span class="comment">// 8位数码管片选信号</span></span><br><span class="line"></span><br><span class="line">┋                      <span class="comment">// 功能实现</span></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210511120547376.png" style="zoom: 33%;">
+
+<p>信号进来以后，先通过分频器得到人眼可以识别的信号频率</p>
+<p>新的信号频率通过计数器得到八位不同状态</p>
+<p>计数器得到的数据分别用来选择数码管和显示数字</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> dynamic_scan(clk, SEG, AN);</span><br><span class="line">    <span class="keyword">input</span> clk;              <span class="comment">// 系统时钟</span></span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] SEG;  		<span class="comment">// 分别对应CA、CB、CC、CD、CE、CF、CG和DP</span></span><br><span class="line">    <span class="keyword">output</span> [<span class="number">7</span>:<span class="number">0</span>] AN;        <span class="comment">// 8位数码管片选信</span></span><br><span class="line">    <span class="keyword">wire</span> clk_tmp;</span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">2</span>:<span class="number">0</span>] num;</span><br><span class="line">    <span class="keyword">wire</span> [<span class="number">3</span>:<span class="number">0</span>] code;</span><br><span class="line"></span><br><span class="line">    divider d1(<span class="variable">.clk</span>(clk), <span class="variable">.clk_N</span>(clk_tmp));</span><br><span class="line">    counter c1(<span class="variable">.clk</span>(clk_tmp), <span class="variable">.out</span>(num[<span class="number">2</span>:<span class="number">0</span>]));</span><br><span class="line">    selector_3to8(<span class="variable">.in</span>(num[<span class="number">2</span>:<span class="number">0</span>]), <span class="variable">.out</span>(AN[<span class="number">7</span>:<span class="number">0</span>]));</span><br><span class="line">    rom8x4(<span class="variable">.addr</span>(num[<span class="number">2</span>:<span class="number">0</span>]), <span class="variable">.data</span>(code[<span class="number">3</span>:<span class="number">0</span>]));</span><br><span class="line">    decoder_4to16(<span class="variable">.in</span>(code[<span class="number">3</span>:<span class="number">0</span>]), <span class="variable">.out</span>(SEG[<span class="number">7</span>:<span class="number">0</span>]));</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
+
+
+      
+           <!-- 添加版权声明 -->
+    
+  
+    <div class="declare" hidden="hidden"></div>
+  
+        <!-- 添加版权声明 -->
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Verilog</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">常见电路</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/计算机/Verilog//" class="article-tag-list-link color3">Verilog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/11/verilog%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%94%B5%E8%B7%AF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
   
     <article id="post-win10快捷键" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -487,7 +827,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-keyboard-o"></i>
       <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">3.6k字</span>
+      <span class="post-count">3.7k字</span>
     </span>
   </span>
 
@@ -1418,144 +1758,6 @@
 
 
   
-    <article id="post-git常用操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-       
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/09/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">git的一些常用操作</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/09/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" class="archive-article-date">
-  	<time datetime="2021-04-09T08:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-09</time>
-</a>
-
-
-           <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-          <div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-keyboard-o"></i>
-      <span class="post-meta-item-text">  字数统计: </span>
-      <span class="post-count">2.7k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="fa fa-hourglass-half"></i>
-      <span class="post-meta-item-text">  预计阅读时长: </span>
-      <span class="post-count">10分</span>
-    </span>
-  </span>
-</div>
-
-          
-        <!-- 添加完成 -->
-
-
-
-        
-          
-          
-        
-          
-          
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>对于每一个计算机小白来讲，学习新事物总是不简单的，但是计算机专业的学生总是要强迫自己不断学习的。</p>
-<p>我也总少了一份学习新知识的勇气，但是走出第一步就好了，不管是学习一门语言还是学习一种工具</p>
-<p>学会git操作应该是程序员必备的，但是对于小白可能有点难入门（拖了一年多才开始学习使用git），感谢stormzhang的learn github from zero这本书，让我简单入门了git。</p>
-<p>整理以下有关git操作的代码，只是浅尝辄止，整理如何用git的一些操作和如何和github联动</p>
-<hr>
-<h1 id="git仓库的创建"><a href="#git仓库的创建" class="headerlink" title="git仓库的创建"></a>git仓库的创建</h1><p>当你建立一个github仓库，想要在这个仓库中上传文件，可以先在本地创建一个git仓库，之后再push到github仓库，这样你在github建立的仓库里就有本地仓库的内容了。</p>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
-<li><p><strong>git init 初始化仓库</strong></p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210409181537402.png" alt="image-20210409181537402" style="zoom:33%;">
-
-<p>会提示你已初始化一个空仓库</p>
-</li>
-</ul>
-        
-      
-           <!-- 添加版权声明 -->
-    
-  
-    <div class="declare" hidden="hidden"></div>
-  
-        <!-- 添加版权声明 -->
-  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/计算机//" class="article-tag-list-link color4">计算机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/09/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1686,10 +1888,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Map</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">常用的包</a>
               </li>
              
@@ -1703,6 +1901,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">随机数，数组</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Map</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1722,14 +1924,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">this</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">重载</a>
               </li>
              
@@ -1742,11 +1936,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">this</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">异常处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">构造函数</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1755,6 +1957,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Verilog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">常见电路</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1822,15 +2032,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Verilog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">快速入门</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">常见电路</a>
               </li>
              
               <li class="article-tag-list-item">
