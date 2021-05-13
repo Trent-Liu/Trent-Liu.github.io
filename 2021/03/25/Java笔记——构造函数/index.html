@@ -16,10 +16,11 @@
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="构造函数
 无返回类型（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。  
+
 注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只运行一次而一般函数是对象调用才执行，用“.方法名”的方式。
 
 
-注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名 ">
+注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名">
   <meta name="author" content="Trent-Liu">
   <meta name="keywords" content="分享在HUST中的一些学习经历">
   
@@ -168,7 +169,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/wallhaven-dgkmpo_3840x2160.png') no-repeat center center;
+         style="background: url('/img/Java.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -247,27 +248,35 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月1日 晚上
+                  本文最后更新于：2021年5月13日 中午
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><ul>
-<li><strong>无返回类型</strong>（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。  <blockquote>
+<li><p><strong>无返回类型</strong>（包括void，void也是返回类型：无返回值），名字与类名相同，用于初始化对象。  </p>
+<blockquote>
 <p>注意的是构造函数是对象一建立就运行，给对象初始化，包括属性、方法中的语句。只<strong>运行一次</strong><br>而一般函数是对象调用才执行，用“.方法名”的方式。</p>
 </blockquote>
 </li>
-<li>注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名 会报错）</li>
-<li>只在new时被自动执行，不可以被显示调用（<del>.构造函数（）</del>）。</li>
-<li>必须是实例方法（无static），可为公有、保护、私有和包级权限。</li>
-<li>类的变量为引用(相当于C指针)，指向实例化好的对象。  <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">Circle c2=<span class="hljs-keyword">new</span> Circle(<span class="hljs-number">5.0</span>);<span class="hljs-comment">//调用时必须有括弧,可带参初始化</span><br></code></pre></div></td></tr></table></figure>
+<li><p>注意JAVA如果类名前加了void，定义void className(…),被认为是普通方法，而不是构造函数。（如果是C++语言，这样写void 类名 会报错）</p>
+</li>
+<li><p>只在new时被自动执行，不可以被显示调用（<del>.构造函数（）</del>）。</p>
+</li>
+<li><p>必须是实例方法（无static），可为公有、保护、私有和包级权限。</p>
+</li>
+<li><p>类的变量为引用(相当于C指针)，指向实例化好的对象。  </p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">Circle c2=<span class="hljs-keyword">new</span> Circle(<span class="hljs-number">5.0</span>);<span class="hljs-comment">//调用时必须有括弧,可带参初始化</span><br></code></pre></div></td></tr></table></figure>
 <span id="more"></span></li>
-<li>缺省构造函数(同C++)  <blockquote>
+<li><p>缺省构造函数(同C++)  </p>
+<blockquote>
 <p>如果类未定义任何构造函数，编译器会自动提供一个不带参数的默认构造函数。<br>如果已自定义构造函数，则<strong>不会提供默认构造函数</strong>。<br>因此如果程序员定义了一个带参数的构造函数，最好再定义一个不带参数的构造函数。</p>
 </blockquote>
 </li>
-<li>Java没有析构函数，但垃圾自动回收之前会自动调用finalize( ),可以覆盖定义该函数（但是finalize调用时机程序员无法控制，C++则需要手动调用）。  </li>
-<li>如果定义了构造函数和一个与类名相同的方法  </li>
+<li><p>Java没有析构函数，但垃圾自动回收之前会自动调用finalize( ),可以覆盖定义该函数（但是finalize调用时机程序员无法控制，C++则需要手动调用）。  </p>
+</li>
+<li><p>如果定义了构造函数和一个与类名相同的方法  </p>
+</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConstructorTest</span> </span>&#123;<br>  <span class="hljs-comment">//构造函数前面不能有void   </span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ConstructorTest</span><span class="hljs-params">()</span> </span>&#123;<br>       System.out.println(<span class="hljs-string">&quot;constructor&quot;</span>);<br>  &#125;<br><br>  <span class="hljs-comment">//如果和类名同名函数前面加了void(可返回任何类型), 编译器看成是普通函数，这和C++不一样 </span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ConstructorTest</span><span class="hljs-params">()</span> </span>&#123;<br>      System.out.println(<span class="hljs-string">&quot;normal instance method return void&quot;</span>);<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">ConstructorTest</span><span class="hljs-params">(<span class="hljs-keyword">double</span> d)</span> </span>&#123;<br>      System.out.println(<span class="hljs-string">&quot;normal method return double&quot;</span>);<br>      <span class="hljs-keyword">return</span> d;<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String ... args)</span></span>&#123;<br><span class="hljs-comment">//先调用构造，再调用void ConstructorTest() </span><br>      <span class="hljs-keyword">new</span> ConstructorTest().ConstructorTest();<br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p>注意上图中，先调用了构造函数后，紧接着调用普通函数。</p>

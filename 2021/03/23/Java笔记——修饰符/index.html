@@ -166,7 +166,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/wallhaven-dgkmpo_3840x2160.png') no-repeat center center;
+         style="background: url('/img/Java.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -245,7 +245,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年4月1日 晚上
+                  本文最后更新于：2021年5月13日 中午
                 
               </p>
             
@@ -273,12 +273,16 @@
 </ul>
 <hr>
 <h2 id="private"><a href="#private" class="headerlink" title="private"></a>private</h2><ul>
-<li>修饰成员变量  <blockquote>
+<li><p>修饰成员变量  </p>
+<blockquote>
 <p>被private修饰的变量和方法，只能在自己对象<strong>内部</strong>使用<br>面向对象的<strong>封装性</strong>要求最好把实例成员变量设为私有的或保护的<br>为私有、保护的实例成员变量提供公有的<strong>get</strong>和<strong>set</strong>方法。get和set方法遵循JavaBean的命名规范  </p>
 </blockquote>
-DataType为私有成员  </li>
-<li><strong>get获取成员值</strong>  <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> DataType <span class="hljs-title">getPropertyName</span><span class="hljs-params">()</span>   </span><br><span class="hljs-function"></span>&#123;  <br>    <span class="hljs-keyword">return</span> a;  <br>&#125;  <br></code></pre></div></td></tr></table></figure></li>
-<li><strong>set设置成员值</strong>  <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPropertyName</span><span class="hljs-params">(DataType value)</span>  </span><br><span class="hljs-function"></span>&#123;  <br>    value =xx;  <br>&#125; <br></code></pre></div></td></tr></table></figure></li>
+<p>DataType为私有成员  </p>
+</li>
+<li><p><strong>get获取成员值</strong>  </p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> DataType <span class="hljs-title">getPropertyName</span><span class="hljs-params">()</span>   </span><br><span class="hljs-function"></span>&#123;  <br>    <span class="hljs-keyword">return</span> a;  <br>&#125;  <br></code></pre></div></td></tr></table></figure></li>
+<li><p><strong>set设置成员值</strong>  </p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setPropertyName</span><span class="hljs-params">(DataType value)</span>  </span><br><span class="hljs-function"></span>&#123;  <br>    value =xx;  <br>&#125; <br></code></pre></div></td></tr></table></figure></li>
 </ul>
 <blockquote>
 <p>封装起来，防止程序员写出类似o.radius=-100（radius要求&gt;0）这样的错误值，类是给别人使用的，要防止别人乱写，因此将这个元素封装起来，起控制作用。<br>  可以在上面set中添加if判断条件语句，保证一定设置正值。<br>    另一应用:<strong>计数器</strong>  </p>
@@ -333,8 +337,7 @@ DataType为私有成员  </li>
 </tbody></table>
 <h2 id="单件模式"><a href="#单件模式" class="headerlink" title="单件模式"></a>单件模式</h2><ul>
 <li>有一些对象只需要一个，并且可以在需要时才开始创建对象，保证只有一对象被创建。<br>不能在外部创建对象，只能在类的内部<br>可以定义全局变量，但是全局变量会在程序一开始就创建好，如果该对象在程序执行过程中对资源消耗非常大且使用率不高，就非常累赘。  <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singleton</span>  </span><br><span class="hljs-class"></span>&#123;  <br>　　　<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton uniqueInstance =<span class="hljs-keyword">null</span>;  <br>  <br>  <br>  <span class="hljs-comment">//其他的实例变量  </span><br>    <br>    <span class="hljs-comment">//构造方法是私有的，所以在类外不能new出多个实例  </span><br> 　　　<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">singleton</span><span class="hljs-params">()</span>  </span><br><span class="hljs-function"> 　　 </span>&#123;  <br> 　　 &#125;<br>　　　<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Singleton <span class="hljs-title">getInstance</span><span class="hljs-params">()</span>  </span><br><span class="hljs-function">　　 </span>&#123;  <br> 　　　　　 <span class="hljs-keyword">if</span>(uniqueInstance == <span class="hljs-keyword">null</span>)  <br> <span class="hljs-comment">//如果为null，就创建对象，否则不创建，直接在下面返回已经存在的对象  </span><br> 　　　 &#123;  <br>  　　　　　　　  uniqueInstance == <span class="hljs-keyword">new</span> Singleton();  <br>  　　　 &#125;  <br>  　　　 <span class="hljs-keyword">return</span> uniqueInstance;  <br>&#125;  <br></code></pre></div></td></tr></table></figure>
-//调用的时候，我们可以通过<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">Singleton uniqueInstance = Singleton.getInstance();  <br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton uniqueInstance =<span class="hljs-keyword">null</span>;<span class="hljs-keyword">static</span>，<span class="hljs-comment">//静态变量，是所有实例化对象共有的  </span><br> <span class="hljs-comment">// 就算构造多个对象，它们指向的都是一个实例对象。</span><br></code></pre></div></td></tr></table></figure>
-</li>
+//调用的时候，我们可以通过<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">Singleton uniqueInstance = Singleton.getInstance();  <br>  <br>  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Singleton uniqueInstance =<span class="hljs-keyword">null</span>;<span class="hljs-keyword">static</span>，<span class="hljs-comment">//静态变量，是所有实例化对象共有的  </span><br> <span class="hljs-comment">// 就算构造多个对象，它们指向的都是一个实例对象。</span><br></code></pre></div></td></tr></table></figure></li>
 </ul>
 <hr>
 
@@ -399,12 +402,6 @@ DataType为私有成员  </li>
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2021/03/23/%E8%87%AA%E8%BF%B0/">
-                        <span class="hidden-mobile">自述</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>

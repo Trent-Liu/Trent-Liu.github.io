@@ -166,7 +166,7 @@ import javax.swing.JOptionPane">
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/wallhaven-dgkmpo_3840x2160.png') no-repeat center center;
+         style="background: url('/img/Java.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -245,7 +245,7 @@ import javax.swing.JOptionPane">
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年3月31日 晚上
+                  本文最后更新于：2021年5月13日 中午
                 
               </p>
             
@@ -255,9 +255,10 @@ import javax.swing.JOptionPane">
 </blockquote>
 <h2 id="import-javax-swing-JOptionPane；-弹窗输入字符串"><a href="#import-javax-swing-JOptionPane；-弹窗输入字符串" class="headerlink" title="import javax.swing.JOptionPane； //弹窗输入字符串"></a>import javax.swing.JOptionPane； //弹窗输入字符串</h2><blockquote>
 <p>String string = JOptionPane.showInputDialog(<br>null,”Prompting Message”,”Dialog Title”,JOptionPane.QUESTION_MESSAGE));<br>由从控制台输入变为弹出一个弹窗输入  </p>
-</blockquote>
 <span id="more"></span>
-<h2 id="import-java-lang-Math；-数学函数-定义了一些常量如PI，E"><a href="#import-java-lang-Math；-数学函数-定义了一些常量如PI，E" class="headerlink" title="import java.lang.Math；  //数学函数   定义了一些常量如PI，E"></a>import java.lang.Math；  //数学函数   定义了一些常量如PI，E</h2><ul>
+
+<h2 id="import-java-lang-Math；-数学函数-定义了一些常量如PI，E"><a href="#import-java-lang-Math；-数学函数-定义了一些常量如PI，E" class="headerlink" title="import java.lang.Math；  //数学函数   定义了一些常量如PI，E"></a>import java.lang.Math；  //数学函数   定义了一些常量如PI，E</h2></blockquote>
+<ul>
 <li>Math中的三角函数<ul>
 <li>sin(radians)–返回以弧度为单位的角度的三角正弦函数值  </li>
 <li>cos(radians)–返回以弧度为单位的角度的三角余弦函数值</li>
@@ -368,9 +369,12 @@ import javax.swing.JOptionPane">
 </ol>
 <ul>
 <li><strong>基本数据类型和字符串之间的转换</strong>  </li>
-<li>*valueOf**方法将基本数据类型转换为字符串。例如  <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">String s1=String.valueOf(<span class="hljs-number">1.0</span>); <span class="hljs-comment">//&quot;1.0&quot;</span><br>String s2=String.valueOf(<span class="hljs-keyword">true</span>);  <span class="hljs-comment">//&quot;true&quot;</span><br></code></pre></div></td></tr></table></figure>
-字符串转换为基本类型：利用<strong>包装类</strong>  <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">Double.parseDouble(str)<br>Integer.parseInt(str)<br>Boolean.parseBoolean(str)<br></code></pre></div></td></tr></table></figure></li>
 </ul>
+<p><strong>valueOf</strong>方法将基本数据类型转换为字符串。例如  </p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">String s1=String.valueOf(<span class="hljs-number">1.0</span>); <span class="hljs-comment">//&quot;1.0&quot;</span><br>String s2=String.valueOf(<span class="hljs-keyword">true</span>);  <span class="hljs-comment">//&quot;true&quot;</span><br></code></pre></div></td></tr></table></figure>
+<p>字符串转换为基本类型：利用<strong>包装类</strong>  </p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">Double.parseDouble(str)<br>Integer.parseInt(str)<br>Boolean.parseBoolean(str)<br></code></pre></div></td></tr></table></figure>
+
 <blockquote>
 <p>String类一旦初始化完成，字符串就是不可修改的<br>StringBuilder与StringBuffer(final类)初始化后还可以修改字符串<br>StringBuffer修改缓冲区的方法是同步（synchronized）的，更适合多线程环境。<br>StringBuilder线程不安全，与StringBuffer工作机制类似。<br>由于可修改字符串， StringBuilder 与StringBuffer 增加了String类没有的一些函数，例如：append、insert、delete、replace、reverse、setCharAt等。<br>仅以StringBuilder为例：<br>StringBuilder  stringMy=new StringBuilder( );<br>StringMy.append(“Welcome to”);<br>      StringMy.append(“ Java”);  </p>
 </blockquote>
@@ -410,7 +414,6 @@ import javax.swing.JOptionPane">
 <p><strong>排序</strong><br><code>double[] numbers=&#123;6.0,4.4,1.9,2.9&#125;;</code><br>java.util.Arrays.sort(numbers);  //直接在原数组排序</p>
 <p><strong>二分查找</strong>  </p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">int</span> [] list=&#123;<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">10</span>,<span class="hljs-number">45</span>,<span class="hljs-number">50</span>&#125;  <br><span class="hljs-keyword">int</span> index=java.util.Arrays.binarySearch(list,<span class="hljs-number">11</span>)<br></code></pre></div></td></tr></table></figure>
-
 
 
             </div>
