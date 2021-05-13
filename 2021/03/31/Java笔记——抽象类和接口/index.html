@@ -643,6 +643,36 @@ Java可定义不含方法体的方法（由子类覆盖），其方法体由子�
   
 </footer>
 
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
 <div class="text-center py-1">  
 <div>
   <span id="timeDate">载入天数...</span>
@@ -650,7 +680,7 @@ Java可定义不含方法体的方法（由子类覆盖），其方法体由子�
   <script>
   var now = new Date();
   function createtime(){
-      var grt= new Date("03/20/2021 17:00:00");//此处修改你的建站时间或者网站上线时间
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
       now.setTime(now.getTime()+250);
       days = (now - grt ) / 1000 / 60 / 60 / 24;
       dnum = Math.floor(days);
@@ -664,13 +694,15 @@ Java可定义不含方法体的方法（由子类覆盖），其方法体由子�
       if(String(mnum).length ==1 ){
                 mnum = "0" + mnum;
       }
+      /*
       seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
       snum = Math.round(seconds);
       if(String(snum).length ==1 ){
                 snum = "0" + snum;
       }
-      document.getElementById("timeDate").innerHTML = "🚀 for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
-      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" + snum + "&nbspsec";
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
   }  //此次自定义显示内容
   setInterval("createtime()",250);
   </script>
