@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2021/05/24/Ubuntu%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/"/>
+    <url>/2021/05/24/Ubuntu%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/</url>
+    
+    <content type="html"><![CDATA[<p>title: 虚拟机Ubuntu共享文件夹不显示问题</p><p>copyright: true<br>date: 2021-5-24 8:00:15</p><p>toc: true<br>tags: [Ubuntu]<br>categories: [计算机]</p><h2 id="一个奇葩的问题"><a href="#一个奇葩的问题" class="headerlink" title="一个奇葩的问题"></a>一个奇葩的问题</h2><p>为了课程要求，下载了VM 16pro，安装了Ubuntu 16.04 32位。</p><p>要设置一个共享文件夹，但是始终不显示，试过了网上的所有方法，都没有用</p><p>最后找到了一个解决方式：</p><p>安装VMware Tools的时候，在最后的询问填no，再回车就可以解决。</p><p>sudo ./wmware-install.pl后，一路回车，直到提示：</p><p>would you like to revover the wasted disk space by uninstalling VMware Tools at this time?(yes/no) [yes] <strong>no</strong></p><p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210524171118278.png" alt="image-20210524171118278"></p><p>设置的共享文件夹，终于出现了</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>长沙游记</title>
     <link href="/2021/05/13/%E9%95%BF%E6%B2%99%E6%B8%B8%E8%AE%B0/"/>
     <url>/2021/05/13/%E9%95%BF%E6%B2%99%E6%B8%B8%E8%AE%B0/</url>
