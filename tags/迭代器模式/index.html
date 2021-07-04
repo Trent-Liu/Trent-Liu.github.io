@@ -14,32 +14,13 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="MapMap接口时一种键——值对（key-value）集合，Map集合中的每一个元素都包含一个键对象和一个值对象。
-键对象不允许重复，值对象可以重复，而且值对象还可以是Map类型的，就像数组中的元素还可以是数组一样。
-它主要有两个实现类：HashMap 类和 TreeMap 类。
-HashMap按哈希算法来存取键对象，而TreeMap类可以对键对象进行排序">
+  <meta name="description" content="个人博客">
   <meta name="author" content="Trent-Liu">
   <meta name="keywords" content="分享在HUST中的一些学习经历">
   
-  <title>Java自学——Map - Pigsty</title>
+  <title>标签 - 迭代器模式 - Pigsty</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
-    
-  
-
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 
@@ -72,7 +53,7 @@ HashMap按哈希算法来存取键对象，而TreeMap类可以对键对象进行
 
 
 <body>
-  <header style="height: 70vh;">
+  <header style="height: 80vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -166,63 +147,22 @@ HashMap按哈希算法来存取键对象，而TreeMap类可以对键对象进行
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/Java.png') no-repeat center center;
+         style="background: url('/img/wallhaven-e781gr_1920x1080.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Java自学——Map">
+            <span class="h2" id="subtitle" title="标签 - 迭代器模式">
               
             </span>
 
             
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-22 13:00" pubdate>
-        2021年4月22日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      440 字
-    </span>
-  
-
-  
-    
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      5
-       分钟
-    </span>
-  
-
-  
-  
-    
-      <!-- 不蒜子统计文章PV -->
-      <span id="busuanzi_container_page_pv" style="display: none">
-        <i class="iconfont icon-eye" aria-hidden="true"></i>
-        <span id="busuanzi_value_page_pv"></span> 次
-      </span>
-    
-  
-</div>
-
-            
           </div>
 
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
           
         </div>
       </div>
@@ -231,202 +171,40 @@ HashMap按哈希算法来存取键对象，而TreeMap类可以对键对象进行
 
   <main>
     
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+  
+    
       
+      <p class="h5">2021</p>
+    
+    <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" class="list-group-item list-group-item-action">
+      <span class="archive-post-title">Java装饰者、迭代器模式</span>
+      <time style="float: right;">05-27</time>
+    </a>
+  
+</div>
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">Java自学——Map</h1>
-            
-              <p class="note note-info">
-                
-                  本文最后更新于：2021年5月27日 晚上
-                
-              </p>
-            
-            <div class="markdown-body">
-              <h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>Map接口时一种<strong>键——值对（key-value）集合</strong>，Map集合中的每一个元素都包含一个键对象和一个值对象。</p>
-<p>键对象不允许重复，值对象可以重复，而且值对象还可以是Map类型的，就像数组中的元素还可以是数组一样。</p>
-<p>它主要有两个实现类：HashMap 类和 TreeMap 类。</p>
-<p>HashMap按哈希算法来存取键对象，而TreeMap类可以对键对象进行排序</p>
-<span id="more"></span>
 
-<hr>
-<ul>
-<li>可以通过键来访问对应的值</li>
-<li>当访问的值不存在的时候，方法会抛出一个NoSuchElementException异常</li>
-<li>当对象的类型和 Map 里元素类型不兼容的时候，就会抛出一个 ClassCastException 异常。</li>
-<li>当在不允许使用 Null 对象的 Map 中使用 Null 对象，会抛出一个 NullPointerException 异常。</li>
-<li>当尝试修改一个只读的 Map 时，会抛出一个 UnsupportedOperationException 异常。</li>
-</ul>
-<hr>
-<p>常用方法</p>
-<table>
-<thead>
-<tr>
-<th>方法名称</th>
-<th>方法说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>初始化Map</td>
-<td>Map&lt;String, String&gt; map = ``new<code> </code>HashMap&lt;String, String&gt;();</td>
-</tr>
-<tr>
-<td>添加键值对</td>
-<td>map.put(<code>&quot;key1&quot;</code>, <code>&quot;value1&quot;</code>);返回 key 以前对应的 value，如果没有， 则返回 null</td>
-</tr>
-<tr>
-<td>移除键值对</td>
-<td>map.remove(<code>&quot;key1&quot;</code>);返回 key 对应的 value，如果没有，则返回null</td>
-</tr>
-<tr>
-<td>获取值</td>
-<td>map.get(<code>&quot;key1&quot;</code>)</td>
-</tr>
-<tr>
-<td>清空Map</td>
-<td>map.clear();</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>Map的遍历</p>
-<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">Map&lt;Integer, String&gt; map = <span class="hljs-keyword">new</span> TreeMap&lt;&gt;();<br><span class="hljs-comment">//</span><br>先添加几个元素<br>map.put(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;aaa&quot;</span>);<br>map.put(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;bbb&quot;</span>);<br>map.put(<span class="hljs-number">3</span>, <span class="hljs-string">&quot;ccc&quot;</span>);<br>map.put(<span class="hljs-number">4</span>, <span class="hljs-string">&quot;ddd&quot;</span>);<br><span class="hljs-comment">//</span><br>再遍历<br>StringBuffer buf = <span class="hljs-keyword">new</span> StringBuffer();<br><span class="hljs-comment">//</span><br>通过迭代器遍历。Java的集合类都实现了迭代器接口<br>Iterator&lt;Map.Entry&lt;Integer,String&gt;&gt; it = map.entrySet().iterator();<br><span class="hljs-keyword">while</span> (it.hasNext())&#123;<br>	Map.Entry&lt;Integer,String&gt; entry = it.next();<br>	buf.append(entry.getKey() + <span class="hljs-string">&quot; ----&gt; &quot;</span> +<br>entry.getValue()).append(<span class="hljs-string">&quot;\n&quot;</span>);<br>&#125;<br>System.out.println(buf.toString());<br></code></pre></div></td></tr></table></figure>
 
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527200245667.png" srcset="/img/loading.gif" lazyload alt="image-20210527200245667"></p>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Java/">Java</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Map/">Map</a>
-                    
-                  </div>
-                
+
               </div>
-
-              <!--
-              
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
-              
--->
-<p class="note note-warning">
-  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
-  <strong>本文链接: </strong><a href="https://trent-liu.github.io/2021/04/22/Java_Map/">https://trent-liu.github.io/2021/04/22/Java_Map/</a> <br>
-  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-     </p>
-     
-
-
-              
-                <div class="post-prevnext">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2021/04/22/%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A7%A6%E5%8F%91%E5%99%A8/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">常见的触发器</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2021/04/22/Java%E6%B5%81/">
-                        <span class="hidden-mobile">Java流，文件，IO</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
             </div>
-
-            
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
-  <div id="gitalk-container"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#gitalk-container', function() {
-      Fluid.utils.createCssLink('/css/gitalk.css')
-      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function () {
-        var gitalk = new Gitalk({
-          clientID: '81506d8985202387cbbd',
-          clientSecret: '64178d52cfaa5212817554ce6178ac0d318407ca',
-          repo: 'Pigsty',
-          owner: 'Trent-Liu',
-          admin: ["Trent-Liu"],
-          id: 'ef3de3170096dd8fa69efcc5fc282071',
-          language: 'zh-CN',
-          labels: ["Gitalk"],
-          perPage: 10,
-          pagerDirection: 'last',
-          createIssueManually: true,
-          distractionFreeMode: false,
-          proxy: '&lt;your own proxy&gt;/https://github.com/login/oauth/access_token'
-        });
-        gitalk.render('gitalk-container');
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-              </article>
-            
-          </article>
+          </div>
         </div>
       </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
     
 
     
@@ -609,15 +387,9 @@ HashMap按哈希算法来存取键对象，而TreeMap类可以对键对象进行
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 

@@ -1,0 +1,846 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>Java装饰者、迭代器模式 - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trent-liu.github.io","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/Java.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java装饰者、迭代器模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-27 23:00" pubdate>
+        2021年5月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      45
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java装饰者、迭代器模式</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年5月27日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>多用组合，少用继承。利用组合，委托同样可以达到继承的目的</p>
+<p>如果有两个类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>&#123;&#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span></span>&#123;&#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>若需要实现一个类，同时具有A和B的行为，但是不能继承（JAVA）。</p>
+<p>可以采用对象组合方式，继承一个类，另一个类的对象作为数据成员。</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">A</span></span>&#123;<br>    B b=<span class="hljs-keyword">new</span> B();<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span></span>&#123;<br>        b.g();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>继承了A，获得A的方法f()，同时有委托对象b，通过调用b.g();得到方法g().</p>
+<p>如此，C就具有了A的行为和B的行为，达到了多重继承的效果</p>
+<h3 id="装饰（Decorator）模式的由来"><a href="#装饰（Decorator）模式的由来" class="headerlink" title="装饰（Decorator）模式的由来"></a>装饰（Decorator）模式的由来</h3><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527162832473.png" srcset="/img/loading.gif" lazyload alt="image-20210527162832473" style="zoom: 33%;">
+
+<p>购买咖啡时，可以在其中加入调料，例如牛奶（Milk），豆浆（Soy），摩卡（Mocha）.星巴兹会根据加入的调料收取不同的费用口</p>
+<p>第一个尝试：每加入一种新的调料，就派生一个新的子类，每个子类根据加入的调料实现cost方法<br>很明显，星巴兹为自己制造了一个维护的噩梦</p>
+<ul>
+<li>根据加入调料的不同组合，派生子类的数目呈<strong>组合爆炸</strong></li>
+<li>如果调料价格变化，必须修改每个派生类的cost方法</li>
+</ul>
+<p>若从基类下手，利用实例变量+继承来追踪这些调料</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527163127659.png" srcset="/img/loading.gif" lazyload alt="image-20210527163127659" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527163142237.png" srcset="/img/loading.gif" lazyload alt="image-20210527163142237" style="zoom:33%;">
+
+<p>改进后的Beverage实现</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Beverage</span></span>&#123;<br>    <span class="hljs-comment">//为milkCost，soyCost，mochaCost声明实例变量</span><br>    <span class="hljs-comment">//为milk，soy，mocha声明getter、setter方法</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> cost（）&#123;<br>        <span class="hljs-keyword">float</span> condimentCost=<span class="hljs-number">0.0</span>;<br>        <span class="hljs-keyword">if</span>(hasmilk()) condimentCost+=milkCost;<br>        <span class="hljs-keyword">if</span>(hasSoy()) condimentCost+=soyCost;<br>        <span class="hljs-keyword">if</span>(hasMocha()) condimentCost+=mochaCost;<br>        <span class="hljs-keyword">return</span> condimentCost;<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FarkRoast</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Beverage</span></span>&#123;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DarkRoast</span><span class="hljs-params">()</span></span>&#123; description = <span class="hljs-string">&quot;Most execllent Dark Roast&quot;</span>;&#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span></span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1.99</span>+<span class="hljs-keyword">super</span>.cost;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>改进的Beverage实现存在的问题<ol>
+<li>调料价钱改变会使我们更改现有Beverage代码</li>
+<li>一旦出现新的调料，我们就需要在超类里加上新的实例变量来记录该调料的布尔值及价格，同时要修改cost实现</li>
+<li>万一客户想要双倍mocha怎么办？</li>
+<li>以后会出现新的饮料（如茶Tea）。作为Beverage的子类，某些调料可能并不适合（比如milk）。但是现在的设计方式中，Tea类仍将继承那些不适合的方法如hasMilk</li>
+<li><strong>这就是继承带来的问题：利用继承来设计子类的行为，是在编译时静态决定的，而且所有的子类都会继承到相同的行为</strong></li>
+<li>如果利用对象组合的做法扩展对象的行为，就可以在运行时动态扩展。</li>
+<li>装饰者模式就是利用这个技巧把多个新的职责、甚至是涉及超类时还没有想到的职责加到对象上</li>
+</ol>
+</li>
+</ul>
+<h3 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h3><p>类继承带来许多问题：类数量爆炸，设计死板，基类加入新的功能不适合所有子类</p>
+<p>现在采用不一样的做法：以饮料为主题，在运行时以调料来“装饰”饮料，具体步骤为</p>
+<ul>
+<li>拿一个饮料对象，如深焙咖啡（DarkRoast）</li>
+<li>以摩卡（Mocha）对象装饰它</li>
+<li>以牛奶（Milk）对象装饰它</li>
+<li>调用cost方法，并依赖委托（delegate）将调料的价钱加上去</li>
+</ul>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527164034854.png" srcset="/img/loading.gif" lazyload alt="image-20210527164034854" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527164112284.png" srcset="/img/loading.gif" lazyload alt="image-20210527164112284" style="zoom:33%;">
+
+<ul>
+<li>装饰者和被装饰者有相同的超类型</li>
+<li>可以用一个或多个装饰者装饰一个对象</li>
+<li>既然装饰者和被装饰者有相同的超类型，所以在任何需要原始对象（被装饰的）场合，可以用装饰过的对象代替它</li>
+<li>装饰者可以在所委托被装饰者的行为之前/之后，加上自己的行为</li>
+<li>对象可以在任何时候被装饰，所以可以在运行时动态地、不限量地用你喜欢的装饰者来装饰</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527164239616.png" srcset="/img/loading.gif" lazyload alt="image-20210527164239616"></p>
+<p>放到咖啡店的举例</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527164323382.png" srcset="/img/loading.gif" lazyload alt="image-20210527164323382"></p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>被装饰对象的超类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Beverage</span></span>&#123;<br>    String description = <span class="hljs-string">&quot;Unknown Beverage&quot;</span>;<br>    <br>    <span class="hljs-comment">//给出描述</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDescription</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> description;<br>    &#125;<br>    <span class="hljs-comment">//cost必须在子类实现</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>装饰者的超类，继承了被装饰对象的超类</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CondimentDecorator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Beverage</span></span>&#123;<br>    <span class="hljs-comment">//必须在具体装饰者对象实现子类实现</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> String <span class="hljs-title">getDescription</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>具体的饮料类(被装饰对象)</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DarkRoast</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Beverage</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DarkRoast</span><span class="hljs-params">()</span></span>&#123;<br>        description = <span class="hljs-string">&quot;Dark Roast Coffee&quot;</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0.99</span>; <span class="hljs-comment">//返回饮料的价格</span><br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HouseBlend</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Beverage</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DarkRoast</span><span class="hljs-params">()</span></span>&#123;<br>        description = <span class="hljs-string">&quot;House Blend Coffee&quot;</span>;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0.89</span>; <span class="hljs-comment">//返回饮料的价格</span><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>具体的调料装饰者</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Mocha</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CondimentDecorator</span></span>&#123;<br>    <br>    Beverage beverage;  <span class="hljs-comment">//beverage实例变量记录被装饰对象</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Mocha</span><span class="hljs-params">(Beverage beverage)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.beverage=beverage;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDescription</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> beverage.getDescription()+<span class="hljs-string">&quot;,Mocha&quot;</span>;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0.20</span>+beverage.cost();<br>    &#125;<br>    <br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Milk</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CondimentDecorator</span></span>&#123;<br>    <br>    Beverage beverage;  <span class="hljs-comment">//beverage实例变量记录被装饰对象</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Milk</span><span class="hljs-params">(Beverage beverage)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.beverage=beverage;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDescription</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> beverage.getDescription()+<span class="hljs-string">&quot;,Milk&quot;</span>;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">cost</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0.2</span>+beverage.cost();<br>    &#125;<br>    <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>综合实例</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StartBuzzCoffee</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span></span>&#123;<br>        Beverage beverage=<span class="hljs-keyword">new</span> DarkRoast();<span class="hljs-comment">//订一杯咖啡，不叫调料</span><br>  		System.out.println(beverage.getDescription()+<span class="hljs-string">&quot;$&quot;</span>+beverage.cost());<br>        beverage=<span class="hljs-keyword">new</span> Mocha(beverage); <span class="hljs-comment">//加调料Mocha</span><br>        beverage=<span class="hljs-keyword">new</span> Milk(beverage); <span class="hljs-comment">//加调料Milk</span><br>        beverage=<span class="hljs-keyword">new</span> Soy(beverage); <span class="hljs-comment">//加调料Soy</span><br>        <br>        System.out.printlf(beverage.getDescription()+<span class="hljs-string">&quot;$&quot;</span>+beverage.cost());<br>        <br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>输出结果为</p>
+<p>Dark Roast Coffee $0.99</p>
+<p>Dark Roast Coffee,Mocha,Milk,Soy $1.49</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>使用Decorator模式可以很容易地向对象添加职责。</li>
+<li>使用Decorator模式可以很容易地重复添加一个特性，而两次继承则极容易出错</li>
+<li>避免在层次结构高层的类有太多的特征：可以从简单的部件组合出复杂的功能。具有低依赖性和低复杂性缺点：Decorator与Component不一样；有许多小对象</li>
+</ul>
+<p>实验中用到装饰者模式对数据流过滤</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527170058585.png" srcset="/img/loading.gif" lazyload alt="image-20210527170058585" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527170058585.png" srcset="/img/loading.gif" lazyload style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527170136179.png" srcset="/img/loading.gif" lazyload alt="image-20210527170136179" style="zoom:33%;">
+
+<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h3 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h3><p>将对象职责分离，最大限度减少彼此之间的耦合程度，从而建立一个松散耦合的对象网络</p>
+<p>集合对象拥有两个职责，一是存储内部数据，二是遍历内部数据，从依赖性看，前者为对象的根本属性，后者既可以是变化的，又是可分离的。可将遍历行为分离出来，抽象为一个迭代器，专门提供遍历集合内部数据对象行为。这是迭代模式的本质</p>
+<p>若有两家店，煎饼屋（PancakeHouse）和餐厅（Diner）的菜单</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MenuItem</span></span>&#123;<br>    Sting name;<br>    String description;<br>    <span class="hljs-keyword">boolean</span> vegetarian;<br>    <span class="hljs-keyword">double</span> price;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MenuItem</span><span class="hljs-params">(String name,String description,<span class="hljs-keyword">boolean</span> vegetarian,<span class="hljs-keyword">double</span> price)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.name=name;<br>        <span class="hljs-keyword">this</span>.description=description;<br>        <span class="hljs-keyword">this</span>.vegetarian=vegetarian;<br>        <span class="hljs-keyword">this</span>.price=price;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> name;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getDescription</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> description;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getPrice</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> price;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isVegetarian</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-keyword">return</span> vegetarian;&#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>煎饼屋菜单用ArrayList</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PancakeHouseMenu</span></span>&#123;<br>    ArrayList menuItems;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PancakeHouseMenu</span><span class="hljs-params">()</span></span>&#123;<br>        menuItems = <span class="hljs-keyword">new</span> AyyayList();<br>        addItem(<span class="hljs-string">&quot;Pancake1&quot;</span>,<span class="hljs-string">&quot;Pancake1&quot;</span>,<span class="hljs-keyword">true</span>,<span class="hljs-number">2.99</span>);<br>        addItem(<span class="hljs-string">&quot;Pancake2&quot;</span>,<span class="hljs-string">&quot;Pancake2&quot;</span>,<span class="hljs-keyword">false</span>,<span class="hljs-number">2.99</span>);<br>        addItem(<span class="hljs-string">&quot;Pancake3&quot;</span>,<span class="hljs-string">&quot;Pancake3&quot;</span>,<span class="hljs-keyword">true</span>,<span class="hljs-number">3.49</span>);<br>        addItem(<span class="hljs-string">&quot;Pancake4&quot;</span>,<span class="hljs-string">&quot;Pancake4&quot;</span>,<span class="hljs-keyword">true</span>,<span class="hljs-number">3.59</span>);<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addItem</span><span class="hljs-params">(String name,String description,<span class="hljs-keyword">boolean</span> vegatarian,<span class="hljs-keyword">double</span> price)</span></span>&#123;<br>        MenuItem item = <span class="hljs-keyword">new</span> MenuItem(name,description,vegetarian,price);<br>        menuItems.add(item);<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ArrayList <span class="hljs-title">getMenuItems</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> menuItems;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>餐厅菜单</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DinerMenu</span></span>&#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAX_ITEMS = <span class="hljs-number">6</span>;<br>    <span class="hljs-keyword">int</span> numberOfItems = <span class="hljs-number">0</span>;<br>    MenuItem[] menuItems;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DinerMenu</span><span class="hljs-params">()</span></span>&#123;<br>        menuItems = <span class="hljs-keyword">new</span> MenuItem[MAX_ITEMS];<br>        addItem(<span class="hljs-string">&quot;Diner1&quot;</span>,<span class="hljs-string">&quot;Diner1&quot;</span>,<span class="hljs-keyword">true</span>,<span class="hljs-number">2.99</span>);<br>        addItem(<span class="hljs-string">&quot;Diner2&quot;</span>,<span class="hljs-string">&quot;Diner2&quot;</span>,<span class="hljs-keyword">false</span>,<span class="hljs-number">2.99</span>);<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addItem</span><span class="hljs-params">(Sting name,String description,<span class="hljs-keyword">boolean</span> vegetarian,<span class="hljs-keyword">double</span> price)</span></span>&#123;<br>        MenuItem item = <span class="hljs-keyword">new</span> MenuItem(name,description,vegetarian,price);<br>        <span class="hljs-keyword">if</span>(numberOfItems&lt;=MAX_ITEMS)&#123;<br>            System.out.println(<span class="hljs-string">&quot;Sorry,menu is full!&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span>&#123;<br>            menuItems[numberOfItems]=item;<br>            numberOfItems++;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">public</span> MenuItem[] getMenuItems()&#123;<span class="hljs-keyword">return</span> menuItems;&#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>现在煎饼屋和餐厅合并了，存在两种菜单，如果女服务员想打印菜单怎么办</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Waitress</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printMenu</span><span class="hljs-params">()</span></span>&#123;<br>        PancakeHouseMenu pancakeHouseMenu = <span class="hljs-keyword">new</span> PancakeHouseMenu();<br>        ArrayList breakfastItems = pancakeHouseMenuItems.getMenuItems();<br>        <br>        DinerMenu dinerMenu = <span class="hljs-keyword">new</span> DinerMenu();<br>        MenuItem[] lunchItems = dinerMenu.getMenuItems();<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;breakfastItems.size();i++)&#123;<br>            MenuItem menuItem = (MenuItem)breakfastItems.get(i);<br>            System.out.print(menuItem.getName()+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.println(menuItem.getPrice()+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.println(menuItem.getDescription());<br>        &#125;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;lunchItems.length;i++)&#123;<br>            MenuItem menuItem = lunchItems[i];<br>            System.out.print(menuItem.getName()+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.println(menuItem.getPrice()+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.println(menuItem.getDescription());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>由于两种菜单存储在不同的集合里，因此必须写两个循环，分别打印</p>
+<p>如果增加一个菜单，放在第三种集合里，还得增加一个循环</p>
+</blockquote>
+<ul>
+<li><p>这种实现的问题</p>
+<ul>
+<li><p>针对具体类编程，不是针对接口</p>
+</li>
+<li><p>女招待需要知道每种菜单如何表达内部菜单项的集合，<strong>违反了封装</strong></p>
+</li>
+<li><p>如果增加新的菜单，而且新菜单用别的集合来保存菜单项，我们又要修改女招待的代码</p>
+</li>
+<li><p>由于这二种集合遍历元素以及取元素的方法不同，导致必须写二个循环。但二个循环代码有重复</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>能不能找到一种统一的方式来遍历集合中的元素，使得只要一个循环就可以打印不同的菜单</p>
+<h3 id="迭代器模式-1"><a href="#迭代器模式-1" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><p>关于迭代器模式，第一件事情：它依赖于一个名为迭代器的接口</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527182524724.png" srcset="/img/loading.gif" lazyload alt="image-20210527182524724"></p>
+<p>一旦我们有了迭代器接口，就可以为各种对象集合实现迭代器：数组，链表，Hash表等</p>
+<p>DinerMenu的迭代器</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DinerMenuIerator</span> <span class="hljs-title">impements</span> <span class="hljs-title">Iterator</span></span>&#123;<br>    <span class="hljs-comment">//position记录当前遍历的位置，items是集合对象</span><br>    MenuItem[] items;<br>    <span class="hljs-keyword">int</span> position = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-comment">//通过构造函数，传递集合对象给迭代器</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DinerMenuIterator</span><span class="hljs-params">(MenuItem[] items)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.items = items;<br>    &#125;<br>    <br>    <span class="hljs-comment">//因为使用数组（长度固定），所以不仅要检查position是否超出数组长度，还必须检查下一项是否为null，如果为null，表示没有下一项了</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(position&gt;=items.length||items[position]==<span class="hljs-keyword">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>    <br>    <span class="hljs-comment">//返回数组内的下一项，并递增当前遍历的位置</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">next</span><span class="hljs-params">()</span></span>&#123;<br>        MenuItems = items[position];<br>        position++;<br>        <span class="hljs-keyword">return</span> item;<br>    &#125;<br>    <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>PancakeHouseMenu的迭代器</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PancakeHouseMenuIterator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Iterator</span></span>&#123;<br>    ArrayList items;<br>    <span class="hljs-keyword">int</span> position = <span class="hljs-number">0</span>;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PancakeHOuseMenuIterator</span><span class="hljs-params">(ArrayList items)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.items = items;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasNext</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(position&lt;=items.size())<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>        <span class="hljs-keyword">else</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">next</span><span class="hljs-params">()</span></span>&#123;<br>        MenuItem item = (MenuItem)items.get(position);<br>        position++;<br>        <span class="hljs-keyword">return</span> item;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>现在改写餐厅菜单</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DinerMenu</span></span>&#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAX_ITEMS=<span class="hljs-number">6</span>;<br>    <span class="hljs-keyword">int</span> numberOfItems = <span class="hljs-number">0</span>;<br>    MenuItem[] menuItems;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DinerMenu</span><span class="hljs-params">()</span></span>&#123;<br>        ...<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">additem</span><span class="hljs-params">(String name,String description,<span class="hljs-keyword">boolean</span> vegetarian,<span class="hljs-keyword">double</span> price)</span></span>&#123;<br>        ...<br>    &#125;<br>    <br>   <span class="hljs-comment">//将以前的getMenuItems更换成迭代器</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Iterator <span class="hljs-title">createIterator</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DinerMenuIterator(menuItems);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>返回迭代器接口，客户不需要知道餐厅菜单如何维护菜单项，也不需要知道迭代器如何实现，只需直接使用迭代器遍历菜单项。</p>
+</blockquote>
+<p>改写煎饼屋菜单</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PancakeHouseMenu</span></span>&#123;<br>    ArrayList menuItems;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PancakeHouseMenu</span><span class="hljs-params">()</span></span>&#123;<br>        ...<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addItem</span><span class="hljs-params">(String name,String description,<span class="hljs-keyword">boolean</span> vegetarian,<span class="hljs-keyword">double</span> price)</span></span>&#123;<br>        ...<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Iterator <span class="hljs-title">createIterator</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> PancakeHouseMenuIterator(menuItems);<br>    &#125;<br>    <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<p><strong>改写女招待代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Waitress</span></span>&#123;<br>    PancakeHouseMenu pancakeHouseMenu;<br>    DinerMenu dinerMenu;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Waitress</span><span class="hljs-params">(PancakeHouseMenu pm,DinerMenu dm)</span></span>&#123;<br>        pancakeHouseMenu = pm; dinerMenu = dm;<br>    &#125;<br>    <br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printMenu</span><span class="hljs-params">()</span></span>&#123;<br>       <span class="hljs-comment">//分别得到两个菜单的迭代器</span><br>       Iterator pancakeIt = pancakeHouseMenu.createIterator();<br>       Iterator dinerIt = dinerMenu.createIterator();<br>       <br>       printMenu(pancakeIt);<br>       printMenu(dinerIt);<br>   &#125;<br>    <span class="hljs-comment">//现在的printMenu函数利用迭代器来遍历集合中的元素，而不用关心集合是如何组织元素的</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printMenu</span><span class="hljs-params">(Iteratorit)</span></span>&#123;<br>        <span class="hljs-keyword">while</span>(it.hasNext())&#123;<br>            MenuItem menuItem = (MenuItem)it.next();<br>            System.out.print(menuItem.getName()+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.print(menuItem.getPrice+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.println(menuuItem.getDescription());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>目前为止</p>
+<ul>
+<li>菜单的实现已经被封装起来了，女招待不知道每种菜单如何存储内部菜单项的</li>
+<li>只要实现迭代器，我们只需要一个循环，就可以多态地处理任何项的集合</li>
+<li>女招待现在只使用一个接口（迭代器）</li>
+<li>但女招待仍然捆绑于两个具体的菜单类，需要修改下。</li>
+</ul>
+<p>定义Menu接口</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Menu</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Iterator <span class="hljs-title">createIterator</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DinerMenu</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Menu</span></span>&#123;<br>    <span class="hljs-comment">//其他不变</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Iterator <span class="hljs-title">createIteraor</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> DinerMenuIterator(menuItems);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PancakeHouseMenu</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Menu</span></span>&#123;<br>    <span class="hljs-comment">//其他不变</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Iterator <span class="hljs-title">createIteraor</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> PancakeHouseMenuIterator(menuItems);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>现在女招待不再捆绑到具体类了</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Waitress</span></span>&#123;<br>    Menu pancakeHouseMenu;<br>    Menu dinerMenu;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Waitress</span><span class="hljs-params">(Menu pm,Menu dm)</span></span>&#123;<br>        pancakeHouseMenu = pm; dinerMenu = dm;<br>    &#125;<br>     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printMenu</span><span class="hljs-params">()</span></span>&#123;<br>       <span class="hljs-comment">//分别得到两个菜单的迭代器</span><br>       Iterator pancakeIt = pancakeHouseMenu.createIterator();<br>       Iterator dinerIt = dinerMenu.createIterator();<br>       <br>       printMenu(pancakeIt);<br>       printMenu(dinerIt);<br>   &#125;<br>    <span class="hljs-comment">//现在的printMenu函数利用迭代器来遍历集合中的元素，而不用关心集合是如何组织元素的</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printMenu</span><span class="hljs-params">(Iteratorit)</span></span>&#123;<br>        <span class="hljs-keyword">while</span>(it.hasNext())&#123;<br>            MenuItem menuItem = (MenuItem)it.next();<br>            System.out.print(menuItem.getName()+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.print(menuItem.getPrice+<span class="hljs-string">&quot;&quot;</span>);<br>            System.out.println(menuuItem.getDescription());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527194943682.png" srcset="/img/loading.gif" lazyload alt="image-20210527194943682"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>迭代器模式提供一种方法顺序访问一个聚合对象中的各个元素，而又不暴露其内部的表示*</li>
+<li>把遍历元素的任务从聚合对象剥离出来，放到迭代器上。这样简化了聚合的接口和实现。也让任务各得其所口职责分离！<ul>
+<li>一个类一个职责</li>
+<li>一个职责意味着一个变化的可能</li>
+<li>类的职责多了，意味着变化的可能多了，类被修改的可能性就大</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>意图<ul>
+<li>迭代器模式的目的是设计一个迭代器，提供一种可顺序访问聚合对象中各个元素的方法，但不暴露该对象内部表示</li>
+</ul>
+</li>
+<li>适用场合<ul>
+<li>访问一个聚合对象的内容而无需暴露其内部表示</li>
+<li>支持对聚合对象的多种遍历</li>
+<li>为遍历不同的聚合结构提供一个统一接口（支持多态迭代）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527195238651.png" srcset="/img/loading.gif" lazyload alt="image-20210527195238651"></p>
+<p><strong>迭代器模式的参与者</strong></p>
+<ul>
+<li><p>Iterator</p>
+<ul>
+<li>定义访问和遍历元素的接口</li>
+</ul>
+</li>
+<li><p>Concrete Iterator</p>
+<ul>
+<li>实现迭代器接口</li>
+</ul>
+</li>
+<li><p>Aggregate</p>
+<ul>
+<li>定义创建迭代器对象的接口</li>
+</ul>
+</li>
+<li><p>Concrete Aggregate</p>
+<ul>
+<li>实现创建迭代器的接口，返回具体迭代器的一个实例</li>
+</ul>
+</li>
+<li><p>简化了聚集的行为，迭代器具备遍历接口的功能，聚集不必具备遍历接口</p>
+</li>
+<li><p>每一个聚集对象都可以有一个或者更多的迭代器对象，每一个迭代器的迭代状态可以彼此独立</p>
+</li>
+<li><p>遍历算法被封装到迭代器对象中，迭代算法可以独立于聚集对象变化。客户端不必知道聚集对象的类型，通过迭代器就可以读取和遍历聚集对象。聚集内部数据发生变化不影响客户端程序</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210527195544234.png" srcset="/img/loading.gif" lazyload alt="image-20210527195544234"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/">装饰者模式</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">迭代器模式</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trent-liu.github.io/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/">https://trent-liu.github.io/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/05/Ubuntu%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/13/%E9%95%BF%E6%B2%99%E6%B8%B8%E8%AE%B0/">
+                        <span class="hidden-mobile">长沙游记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function () {
+        var gitalk = new Gitalk({
+          clientID: '81506d8985202387cbbd',
+          clientSecret: '64178d52cfaa5212817554ce6178ac0d318407ca',
+          repo: 'Pigsty',
+          owner: 'Trent-Liu',
+          admin: ["Trent-Liu"],
+          id: '29cc0e6adb6ad36f971e7a2ca9c22c9a',
+          language: 'zh-CN',
+          labels: ["Gitalk"],
+          perPage: 10,
+          pagerDirection: 'last',
+          createIssueManually: true,
+          distractionFreeMode: false,
+          proxy: '&lt;your own proxy&gt;/https://github.com/login/oauth/access_token'
+        });
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>

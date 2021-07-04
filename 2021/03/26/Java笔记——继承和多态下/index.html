@@ -16,9 +16,9 @@
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="实例方法覆盖
 如果子类重新定义了从父类中继承的实例方法，称为方法覆盖(method override)。
-仅当父类方法在子类里是可访问的，该实例方法才能被子类覆盖，即父类私有实例方法不能被子类覆盖，父类实例私有方法自动视为final的。
+仅当父类方法在子类里是可访问的，该实例方法才能被子类覆盖，即父类私有（private）实例方法不能被子类覆盖，private方法子类不可见。父类实例私有方法自动视为final的。
 静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被隐藏。
-覆盖特性：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能">
+覆盖特性：一旦父类中的实例方法被子类覆盖">
   <meta name="author" content="Trent-Liu">
   <meta name="keywords" content="分享在HUST中的一些学习经历">
   
@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.7k 字
+      5.8k 字
     </span>
   
 
@@ -246,20 +246,20 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月13日 中午
+                  本文最后更新于：2021年5月27日 下午
                 
               </p>
             
             <div class="markdown-body">
               <h2 id="实例方法覆盖"><a href="#实例方法覆盖" class="headerlink" title="实例方法覆盖"></a>实例方法覆盖</h2><ul>
 <li>如果子类<strong>重新定义</strong>了从父类中继承的实例方法，称为方法覆盖(method override)。<ul>
-<li>仅当父类方法在子类里是<strong>可访问的</strong>，该实例方法<strong>才能被子类覆盖</strong>，即父类<strong>私有</strong>实例方法不能被子类覆盖，父类实例私有方法自动视为final的。</li>
+<li>仅当父类方法在子类里是<strong>可访问的</strong>，该实例方法<strong>才能被子类覆盖</strong>，即父类<strong>私有</strong>（private）实例方法不能被子类覆盖，private方法子类不可见。父类实例私有方法自动视为final的。</li>
 <li>静态方法不能被覆盖，如果静态方法在子类中重新定义，那么父类方法将被<strong>隐藏</strong>。</li>
-<li><strong>覆盖特性</strong>：一旦父类中的实例方法被子类覆盖，同时用父类型的引用变量引用了子类对象，这时不能通过这个父类型引用变量去访问被覆盖的父类方法(即这时被覆盖的父类方法不可再被发现)。因为实例方法具有多态性（晚期绑定）<ul>
+<li><strong>覆盖特性</strong>：一旦父类中的实例方法被子类覆盖，同时用 <strong>父类型的引用变量</strong>（类型为父类） 引用了 <strong>子类对象</strong>（内存中的实例是子类），这时不能通过这个父类型引用变量去访问被覆盖的父类方法(即这时被覆盖的父类方法不可再被发现)，实际指向的对象的空间是子类的。因为实例方法具有多态性（晚期绑定）<ul>
 <li>在子类类体函数中可以使用super调用被覆盖的父类方法。</li>
 </ul>
 </li>
-<li>隐藏特性：指父类的变量（实例变量、静态变量）和静态方法在子类被重新定义，但由于<strong>类的变量和静态方法没有多态性</strong>，因此通过<strong>父类型引用变量访问的一定是父类变量、静态方法</strong>(即被隐藏的可再发现)。</li>
+<li>隐藏特性：指父类的变量（实例变量、静态变量）和静态方法在子类被重新定义，但由于<strong>类的变量和静态方法没有多态性</strong>，因此通过<strong>父类型引用变量（类型为父类）访问的一定是父类变量、静态方法</strong>(即被隐藏的可再发现)。</li>
 <li>方法覆盖的哲学涵义：子对象当然可以修改父类的行为（生物进化除了遗传，还有变异）  </li>
 </ul>
 </li>
@@ -551,7 +551,7 @@
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function () {
         var gitalk = new Gitalk({
           clientID: '81506d8985202387cbbd',
-          clientSecret: '40c6250a001a80f7986e1ec1a375dc2d7e82f7d9',
+          clientSecret: '64178d52cfaa5212817554ce6178ac0d318407ca',
           repo: 'Pigsty',
           owner: 'Trent-Liu',
           admin: ["Trent-Liu"],

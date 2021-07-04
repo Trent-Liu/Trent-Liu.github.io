@@ -243,7 +243,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年5月13日 中午
+                  本文最后更新于：2021年6月4日 上午
                 
               </p>
             
@@ -335,21 +335,16 @@
 <li><p>触发器状态的变化发生在时钟脉冲CP由1变为0的时刻，因为在CP=0期间主触发器被封锁，其状态不再受输入RS的影响，因此不会引起触发器状态发生两次以上的翻转，从未克服了空翻现象。</p>
 </li>
 <li><p>触发器的状态取决于CP由1变成0时刻主触发器的状态，二主触发器的状态在CP=1期间是随输入RS变化的，所以触发器的状态实际上取决于CP由1变为0之前输入RS的值</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210429122410875.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ul>
 <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210422175311253.png" srcset="/img/loading.gif" lazyload alt="image-20210422175311253" style="zoom:67%;">
 
 <p>主从R-S触发器状态的变化发生在时钟脉冲CP的下降沿时刻，故通常称为下降沿触发。</p>
 <h3 id="主从J-K触发器"><a href="#主从J-K触发器" class="headerlink" title="主从J-K触发器"></a>主从J-K触发器</h3><p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210422174748592.png" srcset="/img/loading.gif" lazyload alt="image-20210422174748592"></p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210429123707381.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
-
 <p>克服了空翻现象，但是存在一次翻转现象。</p>
 <p>一次翻转：在时钟脉冲作用（CP=1）期间，主触发器的状态只能根据输入信号的变化改变一次。即主触发器在接受输入信号发生一次翻转后，其状态保持不变，不再受输入JK变化的影响。</p>
 <h3 id="维持阻塞钟控触发器"><a href="#维持阻塞钟控触发器" class="headerlink" title="维持阻塞钟控触发器"></a>维持阻塞钟控触发器</h3><p>既克服简单结构钟控触发器的空翻现象，又提高触发器的抗干扰能力，引出了边沿触发器。边沿触发器仅在时钟脉冲CP的上升沿或者下降沿时刻响应输入信号。</p>
 <p>维持-阻塞D触发器</p>
-<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210429130144954.png" srcset="/img/loading.gif" lazyload style="zoom:67%;">
-
 <ul>
 <li><p>时钟脉冲CP=0，触发器状态保持不变。</p>
 <p>此时接受输入信号，A=~D，B=D</p>
@@ -361,7 +356,6 @@
 <p>时钟脉冲的上升边沿采样D输入端的数据，所以要求输入D在时钟脉冲CP由0变为1之前将数据准备好。在CP＝1期间始终有Qm=D</p>
 <p>CP下降沿的时候，主触发器所存的D的值，Qm=D送入从触发器，Q=D，<del>Q=</del>D</p>
 <p>下降沿过后，从触发器的状态也将保持不变。</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img1/image-20210429131222263.png" srcset="/img/loading.gif" lazyload></p>
 
             </div>
             <hr>
@@ -446,7 +440,7 @@
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function () {
         var gitalk = new Gitalk({
           clientID: '81506d8985202387cbbd',
-          clientSecret: '40c6250a001a80f7986e1ec1a375dc2d7e82f7d9',
+          clientSecret: '64178d52cfaa5212817554ce6178ac0d318407ca',
           repo: 'Pigsty',
           owner: 'Trent-Liu',
           admin: ["Trent-Liu"],
