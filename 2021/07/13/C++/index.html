@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      20.4k 字
+      20.9k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      240
+      246
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月13日 下午
+                  本文最后更新于：2021年9月13日 晚上
                 
               </p>
             
@@ -1094,15 +1094,15 @@
 
 
 
-<h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><p>同一作用域内的几个函数名字相同但是形参列表不同，我们称之为重载函数</p>
+<h3 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h3><p>同一作用域内的几个<strong>函数名字相同但是形参列表不同</strong>，我们称之为重载函数</p>
 <p>比如定义几个print函数</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *p)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *beg,<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *end)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ia[],<span class="hljs-keyword">size_t</span> size)</span></span>;<br></code></pre></div></td></tr></table></figure>
 
-<p>调用这些函数时，编译器会根据传递的实参类型推断想要的时哪个函数</p>
+<p>调用这些函数时，编译器会<strong>根据传递的实参类型推断</strong>想要的时哪个函数</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> j[<span class="hljs-number">2</span>] = &#123;<span class="hljs-number">0</span>,<span class="hljs-number">1</span>&#125;;<br>print(<span class="hljs-string">&quot;Hello World&quot;</span>);		<span class="hljs-comment">//调用print(const char*)</span><br>pirnt(j,end(j)-begin(j));	<span class="hljs-comment">//调用print(const int*,size_t)</span><br>print(begin(j),end(j));		<span class="hljs-comment">//调用print(const int*,const int*)</span><br></code></pre></div></td></tr></table></figure>
 
 <p>函数重载在一定程度上可以减轻程序员起名字，记名字的负担</p>
-<p>重载的函数应该在形参数量或者类型上有所不同，返回类型无关</p>
+<p>注意重载的定义，重载的函数应该在<strong>形参</strong>数量或者类型上有所不同，而与<strong>返回类型</strong>无关</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function">Record <span class="hljs-title">lookup</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Account&amp;)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">lookup</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Account&amp;)</span></span>;<br><span class="hljs-comment">//错误，与上一个函数相比只有返回类型不同</span><br></code></pre></div></td></tr></table></figure>
 
 <p>有时候两个形参列表看起来不一样，实际上是相同的。</p>
@@ -1116,14 +1116,22 @@
 <p>但是如果形参是某种类型的指针或者引用，通过区分其指向的是常量对象还是非常量对象可以实现函数重载，此时的const是底层的</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//对于接受引用或指针的函数来说，对象是常量还是非常量对应的形参不同</span><br><span class="hljs-function">Record <span class="hljs-title">lookup</span><span class="hljs-params">(Account&amp;)</span></span>;		<span class="hljs-comment">//函数作用与Account的引用</span><br><span class="hljs-function">Record <span class="hljs-title">lookup</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Account&amp;)</span></span>;	<span class="hljs-comment">//新函数，作用于常量引用</span><br><br><span class="hljs-function">Record <span class="hljs-title">lookup</span><span class="hljs-params">(Account*)</span></span>;		<span class="hljs-comment">//函数作用于指向Account的指针</span><br><span class="hljs-function">Record <span class="hljs-title">lookup</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Account*)</span></span>;	<span class="hljs-comment">//新函数，作用于指向常量的指针</span><br></code></pre></div></td></tr></table></figure>
 
-<p>编译器会优先选用非常量版本的函数</p>
+<p>编译器会<strong>优先选用非常量版本的函数</strong></p>
 <h4 id="const-cast在重载中的作用"><a href="#const-cast在重载中的作用" class="headerlink" title="const_cast在重载中的作用"></a>const_cast在重载中的作用</h4><p>比如之前的函数shortString</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;<span class="hljs-title">shorterString</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s1,<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s2)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">return</span> s1.size()&lt;= s2.size()?s1:s2;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
-<p>这个函数的参数和返回类型都是const string的引用。我们可以对两个非常量的string实参调用这个函数，但返回的结果仍然是const string的引用，因此我们需要一种新的shorterString函数，当它的实参不是常量时，得到的结果是一个普通的引用，使用const_cast可以做到这一点</p>
+<p>这个函数的参数和返回类型都是const string的引用。我们可以对两个非常量的string实参调用这个函数，但返回的结果仍然是const string的引用，因此我们需要一种新的shorterString函数，<strong>当它的实参不是常量时，得到的结果是一个普通的引用</strong>，使用const_cast可以做到这一点</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">string</span> &amp;<span class="hljs-title">shorterString</span><span class="hljs-params">(<span class="hljs-built_in">string</span> &amp;s1,<span class="hljs-built_in">string</span> &amp;s2)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">auto</span> &amp;r = shorterString(<span class="hljs-keyword">const_cast</span>&lt;<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp;&gt;(s1),<span class="hljs-keyword">const_cast</span>&lt;<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp;&gt;(s2));<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">const_cast</span>&lt;<span class="hljs-built_in">string</span>&amp;&gt;(r);<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
-<p>先将实参强制转换为const，再将返回的const转换为普通的，显然很安全</p>
+<p>先将<strong>实参强制转换为const，再将返回的const转换为普通的</strong>，显然很安全</p>
+<h4 id="重载与作用域"><a href="#重载与作用域" class="headerlink" title="重载与作用域"></a>重载与作用域</h4><p>内层作用域中声明名字，将隐藏外层作用域中声明的 同名实体。在不同的作用域中无法重载函数名</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">double</span>)</span></span>; 		<span class="hljs-comment">//重载print函数</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foobar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ival)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">bool</span> read = fasle;		<span class="hljs-comment">//新作用域，隐藏了外层的read</span><br>    <span class="hljs-built_in">string</span> s = read();		<span class="hljs-comment">//错误，read是一个布尔值，不是一个函数，read将外面的read()覆盖了</span><br>    <br>    <span class="hljs-comment">//下面是不好的习惯，通常来说，在局部作用域中声明函数不是一个好的选择</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-keyword">int</span>)</span></span>;		<span class="hljs-comment">//新作用域，隐藏了之前的print</span><br>    print(<span class="hljs-string">&quot;Value: &quot;</span>);		<span class="hljs-comment">//错误，print(const string &amp;)被隐藏掉了</span><br>    print(ival);			<span class="hljs-comment">//正确：当前print(int)可见</span><br>    print(<span class="hljs-number">3.14</span>);			<span class="hljs-comment">//正确，调用print(int);print(double)被隐藏掉了</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>调用read的时候，找到的是定义在局部作用域中的read，这个名字是布尔变量，我们无法调用一个布尔值</p>
+<p>调用print同样，编译器首先寻找对该函数名的声明，找到的是接受int的那个局部声明，一旦当前作用域中找到了所需的名字，编译器就会忽略外层作用域中的同名实体，剩下的工作就是检查函数调用是否有效。</p>
+<p>第一个调用传入一个字符串字面值，但是当前作用域内的print函数唯一声明要求参数是int，字符串无法转换为int类型，外层作用域的那个函数被隐藏，不会被考虑</p>
+<p>传入double，重复上述过程，编译器发现当前作用域的print(int)函数，double类型被转换为int类型，因此调用合法。</p>
+<p>如果把这三个print放到一个作用域，则成为另一种形式，三种调用都合法。</p>
 <h3 id="函数的默认实参"><a href="#函数的默认实参" class="headerlink" title="函数的默认实参"></a>函数的默认实参</h3><p>调用含有默认实参的函数，可以包含该实参，也可以忽略该实参</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-built_in">string</span>::size_type sz;<br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">screen</span><span class="hljs-params">(sz ht = <span class="hljs-number">24</span>,sz wid = <span class="hljs-number">80</span>,<span class="hljs-keyword">char</span> backgrnd = <span class="hljs-string">&#x27; &#x27;</span>)</span></span>;<br></code></pre></div></td></tr></table></figure>
 
