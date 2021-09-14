@@ -399,6 +399,71 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/19/C++%E8%87%AA%E5%AD%A6%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8Aconstexpr%E5%87%BD%E6%95%B0/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——内敛函数以及constexpr函数">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/19/C++%E8%87%AA%E5%AD%A6%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8Aconstexpr%E5%87%BD%E6%95%B0/" target="_self">
+          C++自学——内敛函数以及constexpr函数
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/19/C++%E8%87%AA%E5%AD%A6%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8Aconstexpr%E5%87%BD%E6%95%B0/" target="_self">
+          
+          
+            
+          
+          一段简单的代码，比较两个string形参的长度并返回长度较小的string的引用。
+1234const string &amp;shorterString(const string &amp;s1, const string &amp;s2)&#123;    return s1.size() &lt;= s2.size() ? s1 : s2;&#125;
+
+把这种规模较小的操作定义成函数有很多
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-19 14:00" pubdate>
+              2021-07-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/">内联函数</a>
+            
+              <a href="/tags/constexpr/">constexpr</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" target="_self">
           <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——函数重载及默认实参">
         </a>
@@ -465,7 +530,7 @@
     
       <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——函数传参只传引用参数">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——函数传参之传引用参数">
         </a>
       </div>
     
@@ -473,7 +538,7 @@
       <h1 class="index-header">
         
         <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
-          C++自学——函数传参只传引用参数
+          C++自学——函数传参之传引用参数
         </a>
       </h1>
 
@@ -783,67 +848,6 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
               <a href="/tags/C/">C++</a>
             
               <a href="/tags/vector/">vector</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——数组">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
-          C++自学——数组
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
-          
-          
-            
-          
-          与C相同的部分不过做赘述，比如多维数组等
-数组数组类似于标准库类型vector的数据结构，但是在性能和灵活性的权衡上与vector不同，与vector相似的是，数组也是存放类型相同的对象的容器，这些对象没有名字，需要通过其所在位置访问。与vector不同的地方是，数组的大小确定不变，不能随意向数组中添加元素，因为数组的大小固定，因此对某些特殊应用来说程序的运行时性能较好，但是相应地也损失了一些灵活
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-14 15:00" pubdate>
-              2021-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C/">C++</a>
-            
-              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
             
           </div>
         
