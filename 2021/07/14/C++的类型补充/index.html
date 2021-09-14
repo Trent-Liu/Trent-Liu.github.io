@@ -1,0 +1,852 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>C++自学——C++类型较C的补充，引用指针常量表达式等 - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trentliu.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/TreeHole/">
+                <i class="iconfont icon-wechat-fill"></i>
+                TreeHole
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/C++.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++自学——C++类型较C的补充，引用指针常量表达式等">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-14 15:00" pubdate>
+        2021年7月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      46
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++自学——C++类型较C的补充，引用指针常量表达式等</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年9月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="C-的基本内置类型"><a href="#C-的基本内置类型" class="headerlink" title="C++的基本内置类型"></a>C++的基本内置类型</h3><p>C++的基本内置类型：算术类型，空类型</p>
+<p>关于字符，整数型，浮点型等类型与C大同小异，不做多赘述</p>
+<p>算术类型：字符、整型数、布尔值、浮点数</p>
+<p>空类型不对应具体的值，仅用于一些特殊的场合</p>
+<p>以下为C++ primer上关于如何选择类型的建议</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210707093310511.png" srcset="/img/loading.gif" lazyload alt="image-20210707093310511"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210707093325521.png" srcset="/img/loading.gif" lazyload alt="image-20210707093325521"></p>
+<p>字面值的类型（前后缀指定）</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210707093909683.png" srcset="/img/loading.gif" lazyload alt="image-20210707093909683"></p>
+<h4 id="列表初始化"><a href="#列表初始化" class="headerlink" title="列表初始化"></a>列表初始化</h4><p>C++11，初始化的方法</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> units_sold = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">int</span> units_sold = &#123;<span class="hljs-number">0</span>&#125;;<br><span class="hljs-keyword">int</span> units_sold&#123;<span class="hljs-number">0</span>&#125;;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">units_sold</span><span class="hljs-params">(<span class="hljs-number">0</span>)</span></span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>若使用<strong>列表初始化{}，初始值存在丢失的风险时，编译器报错</strong></p>
+<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">long</span> <span class="hljs-keyword">double</span> ld=<span class="hljs-number">3.1415926536</span>;<br><span class="hljs-keyword">int</span> a&#123;ld&#125;,b=&#123;ld&#125;;    <span class="hljs-comment">//错误，转换未执行，因为存在丢失信息的风险</span><br>int c(ld),d=ld;      //正确，转换执行，且确实丢失了部分值<br></code></pre></div></td></tr></table></figure>
+
+<p>使用long double的值初始化int变量时可能丢失数据，所以编译器拒绝了a和b的初始化请求，其中，至少ld的小数部分会丢失掉，并且int可能也存不下ld的整数部分</p>
+<blockquote>
+<p>C++内置类型的默认初始化与Java基本类型相同，内置类型的变量未被显式初始化，值由定义的位置决定，<strong>定义于函数体外的变量被初始化为0</strong>。定义在<strong>函数体内部的内置类型变量将不被初始化。</strong></p>
+<p>C++中每个类各自决定其初始化对象的方式，而且是否允许不经初始化就定义对象也由类自己决定，如果类允许这种行为，将决定对象的初始值到底是什么</p>
+</blockquote>
+<h4 id="变量声明和定义的关系"><a href="#变量声明和定义的关系" class="headerlink" title="变量声明和定义的关系"></a>变量声明和定义的关系</h4><p>声明使得名字为程序所知，一个文件如果想使用别处定义的名字则必须包含对那个名字的声明</p>
+<p>定义负责创建与名字关联的实体 （定义声明都规定了变量的类型和名字，但是<strong>定义还申请存储空间</strong>）</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> i;    	<span class="hljs-comment">//声明i而非定义i</span><br><span class="hljs-keyword">int</span> j;				<span class="hljs-comment">//声明并定义j</span><br><span class="hljs-keyword">extern</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.1416</span>;		<span class="hljs-comment">//赋值，就抵消了extern的作用，变成了定义</span><br></code></pre></div></td></tr></table></figure>
+
+<p>定义只有一次，但是声明可以多次</p>
+<blockquote>
+<p><strong>函数体内部</strong>，试图初始化一个extern关键字标记的变量，将引发错误</p>
+</blockquote>
+<h4 id="引用（左值引用）"><a href="#引用（左值引用）" class="headerlink" title="引用（左值引用）"></a>引用（左值引用）</h4><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> ival = <span class="hljs-number">1024</span>;<br><span class="hljs-keyword">int</span> &amp;refVal = ival;  	<span class="hljs-comment">//refVal指向ival（是ival的另一个名字）</span><br><span class="hljs-keyword">int</span> &amp;refVal2;			<span class="hljs-comment">//报错，引用必须初始化</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>引用是<strong>为对象起了另一个名字</strong>，引用类型引用另外一种类型，通过将声明符写成&amp;d的形式来定义引用类型，d是声明的变量名。</p>
+</li>
+<li><p>定义引用时，程序把引用和初始值<strong>绑定</strong>在一起，而不是初始值拷贝给引用。初始化完成，引用就和它的初始值对象一直绑定在一起。因为<strong>无法令引用重新绑定到另外一个对象</strong>，因此<strong>引用必须初始化</strong></p>
+</li>
+<li><p>引用即<strong>别名</strong>，引用后一切操作都是在与之绑定的对象上进行的，为引用赋值，其实是赋值给了与引用绑定的对象，获取引用的值，实际上是获取引用绑定对象的值，以引用作为初始值，实际上是以与引用绑定的对象作为初始值。</p>
+</li>
+<li><p>引用本身不是一个对象，不能定义引用的引用。</p>
+</li>
+<li><p>一条语句可以定义多个引用，每个引用标识符以&amp;开头</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> &amp;r1=i1,&amp;r2=i2;<br></code></pre></div></td></tr></table></figure></li>
+<li><p>引用不能与<strong>字面值</strong>或<strong>某个表达式的计算结果</strong>绑定在一起。</p>
+</li>
+</ul>
+<h4 id="指针（与C大致相同）"><a href="#指针（与C大致相同）" class="headerlink" title="指针（与C大致相同）"></a>指针（与C大致相同）</h4><p>定义，通过*号，获取对象的地址用取地址符&amp;</p>
+<p>定义指针的方法将声明符写成*d，d为变量名，不可以是引用，引用不是对象，没有实际地址。</p>
+<p>指针的值的四种状态：</p>
+<ol>
+<li>指向一个对象</li>
+<li>指向紧邻对象所占空间的下一个位置</li>
+<li>空指针，指针没有指向任何对象</li>
+<li>无效指针，上述情况以外的其他值</li>
+</ol>
+<h4 id="空指针"><a href="#空指针" class="headerlink" title="空指针"></a>空指针</h4><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> *p1 = <span class="hljs-literal">nullptr</span>;	<span class="hljs-comment">//等价于int *p1=0；</span><br><span class="hljs-keyword">int</span> *p2 = <span class="hljs-number">0</span>;		<span class="hljs-comment">//直接将p2初始化为字面常量0</span><br><span class="hljs-comment">//需要先#include cstdlib</span><br><span class="hljs-keyword">int</span> *p3 = <span class="hljs-literal">NULL</span>;		<span class="hljs-comment">//等价于int *p3=0;</span><br></code></pre></div></td></tr></table></figure>
+
+<p>C++11新标准引入，得到空指针最直接的方法就是使用字面值nullptr。</p>
+<p>过去的程序用到名为NULL的预处理变量给指针赋值，这个变量在头文件cstdlib中定义，值就是0。</p>
+<p>现在的C++最好使用nullptr，尽量避免使用NULL。</p>
+<p>同样把值为0的变量赋给指针是错误的操作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> zero=<span class="hljs-number">0</span>;<br>pi=zero;    <span class="hljs-comment">//错误，不能把int变量直接赋给指针。</span><br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210707102856005.png" srcset="/img/loading.gif" lazyload alt="image-20210707102856005"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210707102903719.png" srcset="/img/loading.gif" lazyload alt="image-20210707102903719"></p>
+<h4 id="void-指针"><a href="#void-指针" class="headerlink" title="void* 指针"></a>void* 指针</h4><p>可用于存放<strong>任意对象的地址</strong>，但是对该地址中到底是个什么类型的对象并不了解。</p>
+<p>void* 能做的事情有限，比如和其他指针比较，作为函数的输入输出，或者赋给另一个void*指针，<strong>不能直接操作void*指针所指的对象</strong>，因为我们并不知道这个对象到底是什么类型，也就无法确定能在这个对象上做哪些操作。</p>
+<h4 id="const"><a href="#const" class="headerlink" title="const"></a>const</h4><ul>
+<li><p>const类型能参加不改变其内容的操作，如算术运算，转化为布尔值等，同样还有初始化赋值。</p>
+</li>
+<li><p>默认情况下，const对象仅在文件内有效，编译器在编译过程中把用到该变量的地方都替换成对应的值，若程序包含多个文件，每个用了const对象的文件都不许能访问到它的初始值才行。</p>
+</li>
+<li><p>要做到上述，必须在每个用到变量的文件中都有对它的定义，为了支持这一用法，同时避免对同一变量的重复定义，默认情况下，<strong>const对象被设为仅在文件内有效</strong>。当多个文件中出现了同名的const变量，其实<strong>等同于在不同文件中分别定义了独立的变量</strong>。</p>
+</li>
+<li><p>若真的想有这样一种const变量，初始值不是一个常量表达式，但是又确实要在文件间共享，不希望每个文件分别生成独立的变量，<strong>只在一个文件中定义const，在多个文件中声明并使用它</strong>。</p>
+</li>
+<li><p>解决方法：对于const变量<strong>不管声明还是定义都添加extern</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//file_1.cc定义并初始化了一个常量，该常量能被其他文件访问</span><br><span class="hljs-keyword">extern</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> bufSize = fcn();<br><span class="hljs-comment">//file_1.h头文件</span><br><span class="hljs-keyword">extern</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> bufSize;  <span class="hljs-comment">//与file_1.cc中定义的bufSize是同一个,声明bufSize</span><br></code></pre></div></td></tr></table></figure></li>
+</ul>
+<h5 id="引用和常量"><a href="#引用和常量" class="headerlink" title="引用和常量"></a>引用和常量</h5><ul>
+<li><p>对常量的引用</p>
+<p>可以把引用绑定到const对象上，对<strong>常量的引用不能修改它所绑定的对象</strong>。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci = <span class="hljs-number">1024</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r1 = ci;     	<span class="hljs-comment">//正确，引用及其对应的对象都是常量</span><br>r1 = <span class="hljs-number">42</span>;   					<span class="hljs-comment">//错误，r1是对常量的引用</span><br><span class="hljs-keyword">int</span> &amp;r2 = ci;				<span class="hljs-comment">//错误，试图让一个非常量引用指向一个常量对象</span><br></code></pre></div></td></tr></table></figure>
+
+<p>非常量引用，普通引用不能指向一个常量对象</p>
+<p>但是常量引用能指向一个非常量对象</p>
+<p><strong>初始化常量引用</strong>时允许<strong>任意表达式</strong>作为初始值，只要该表达式的结果能<strong>转换成引用的类型</strong>即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">int</span> i = <span class="hljs-number">42</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r1 = i;   	<span class="hljs-comment">//允许将const int&amp;绑定到一个普通int对象上。</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r2 = <span class="hljs-number">42</span>;		<span class="hljs-comment">//正确，r1是一个常量引用</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r3 = r1*<span class="hljs-number">2</span>; 	<span class="hljs-comment">//正确，r3是一个常量引用</span><br><span class="hljs-keyword">int</span> &amp;r4 = r1*<span class="hljs-number">2</span>;			<span class="hljs-comment">//错误，r4是一个普通的非常量引用</span><br></code></pre></div></td></tr></table></figure>
+
+<p>当一个常量引用被绑定到另外一种类型上时</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">double</span> dval = <span class="hljs-number">3.14</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;ri = dval;<br></code></pre></div></td></tr></table></figure>
+
+<p>为了让ri绑定一个整数，编译器：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> temp = dval;		<span class="hljs-comment">//由双精度浮点数生成一个临时的整型常量</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;ri = temp;  		<span class="hljs-comment">//让ri绑定这个临时量</span><br></code></pre></div></td></tr></table></figure>
+
+<p>ri绑定生成了<strong>临时量</strong>，临时量对象是编译器需要一个空间来暂存表达式的求值结果时临时创建的一个未命名对象。上面的ri若不是常量，则非法。</p>
+<ul>
+<li>const引用引用一个非const</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> i = <span class="hljs-number">42</span>;<br><span class="hljs-keyword">int</span> &amp;r1 = i;  		<span class="hljs-comment">//引用ri绑定对象i</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r2 = i;	<span class="hljs-comment">//r2也绑定对象i，但是不允许通过r2修改i的值</span><br>r1 = <span class="hljs-number">0</span>;				<span class="hljs-comment">//r1并非常量，i的值修改为0</span><br>r2 = <span class="hljs-number">0</span>;				<span class="hljs-comment">//错误，r2是一个常量引用</span><br></code></pre></div></td></tr></table></figure>
+
+<p>r2（常量引用）绑定（非常量）整数i合法，只是<strong>不允许通过r2修改i</strong>，但是i仍然<strong>允许通过其他途径修改。</strong></p>
+<h4 id="指针和常量"><a href="#指针和常量" class="headerlink" title="指针和常量"></a>指针和常量</h4><p>普通指针不能指向常量，指向常量的<strong>常量指针不能用于修改</strong>其所指向对象的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14</span>;		<span class="hljs-comment">//pi是个常量，值不能变</span><br><br><span class="hljs-comment">//普通指针不能指向常量</span><br><span class="hljs-keyword">double</span> *ptr = &amp;pi;			<span class="hljs-comment">//错误，ptr是个普通指针</span><br><br><span class="hljs-comment">//指向常量的常量指针不能用于修改其所指向对象的值</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *cptr = &amp;pi;	<span class="hljs-comment">//正确，cptr可以指向一个双精度常量</span><br>*cptr = <span class="hljs-number">42</span>;					<span class="hljs-comment">//错误，不能给*cptr赋值</span><br></code></pre></div></td></tr></table></figure>
+
+<p>若const修饰的指针指向变量</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">double</span> dval = <span class="hljs-number">3.14</span>;			<span class="hljs-comment">//dval是一个双精度浮点数，它的值可以改变</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *cptr = &amp;dval;	<span class="hljs-comment">//正确，但是不能通过cptr改变dval的值</span><br></code></pre></div></td></tr></table></figure>
+
+<p>指向常量的指针<strong>仅仅要求不能通过该指针改变对象的值，但是那个值可以通过其他途径改变</strong>。</p>
+<ul>
+<li><p>const指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> errNumb = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">int</span> *<span class="hljs-keyword">const</span> curErr = &amp; errNumb;	<span class="hljs-comment">//curErr将一直指向errNumb</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14159</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *<span class="hljs-keyword">const</span> pip = &amp;pi;	<span class="hljs-comment">//pip是一个指向常量对象的常量指针</span><br></code></pre></div></td></tr></table></figure>
+
+<p>从右向左阅读</p>
+<p>常量指针，指针的值不能修改，但是指针指向的变量可以修改</p>
+<p>指向常量的指针，指向的内容不可修改，指针自己可以改。</p>
+</li>
+</ul>
+<p>顶层const，表示指针本身是个常量</p>
+<p>底层const，表示指针所指的对象是一个常量</p>
+<h3 id="常量表达式"><a href="#常量表达式" class="headerlink" title="常量表达式"></a>常量表达式</h3><p><strong>值不会改变</strong>，并且<strong>编译过程中就能得到计算结果</strong>的表达式</p>
+<ol>
+<li>字面值</li>
+<li>常量表达式初始化的const对象</li>
+</ol>
+<p>一个对象/表达式是不是常量表达式，由它的数据类型和初始值共同决定</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> max_files = <span class="hljs-number">20</span>;		<span class="hljs-comment">//max_files是常量表达式</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> limit = max_files+<span class="hljs-number">1</span>;	<span class="hljs-comment">//limit是常量表达式</span><br><br><span class="hljs-keyword">int</span> staff_size = <span class="hljs-number">27</span>;			<span class="hljs-comment">//staff_size不是常量表达式</span><br><span class="hljs-comment">//staff_size的初始值是个字面值常量，但是它的数据类型只是个普通的int，不是const int。</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> sz = get_size();		<span class="hljs-comment">//sz不是常量表达式</span><br><span class="hljs-comment">//sz本身是个常量，但是具体值运行时才能得到</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>使用constexpr，编译器来验证变量的值是否为一个常量表达式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">constexptr <span class="hljs-keyword">int</span> mf = <span class="hljs-number">20</span>;				<span class="hljs-comment">//20是常量表达式</span><br>constexptr <span class="hljs-keyword">int</span> limit = mf+<span class="hljs-number">1</span>;		<span class="hljs-comment">//mf+1是常量表达式</span><br>constemptr <span class="hljs-keyword">int</span> sz = size();<br><span class="hljs-comment">//只有size是一个constexpr函数时，才是一条正确的声明语句</span><br></code></pre></div></td></tr></table></figure>
+
+<p>新标准允许定义一个<strong>constexpr函数</strong>，<strong>足够简单到编译时就能得到计算结果</strong></p>
+<p>常量表达式的值要在编译时就计算，因此对声明contexpr时用到的类型必须有限制，是较为简单的类型，叫做字面值类型</p>
+<p>算术类型，引用和指针都属于字面值类型，自定义类，IO库，string类型不属于字面值类型。</p>
+<p>指针和引用定义为constexpr时初始值受到严格限制，一个constexpr指针的初始值必须是nullptr或者0，或者存于某个固定地址中的对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *p = <span class="hljs-literal">nullptr</span>;   	<span class="hljs-comment">//p是一个指向整型常量的指针</span><br><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> *q =<span class="hljs-literal">nullptr</span>; 	<span class="hljs-comment">//q是一个指向整数的常量指针</span><br></code></pre></div></td></tr></table></figure>
+
+<p>p和q的类型完全不同，<strong>constexpr把q置为了顶层const</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">constexptr <span class="hljs-keyword">int</span> *np = <span class="hljs-literal">nullptr</span>;	<span class="hljs-comment">//np是一个指向整数的常量指针，值为空</span><br><span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;						<br><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> i = <span class="hljs-number">42</span>;			<span class="hljs-comment">//i的类型是整型常量</span><br><span class="hljs-comment">//i和j都不洗定义在函数体外</span><br><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *p = &amp;i;	<span class="hljs-comment">//p是常量指针，指向整型常量i</span><br><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> *pl = &amp;j;			<span class="hljs-comment">//p是常量指针，指向整数j</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="处理类型"><a href="#处理类型" class="headerlink" title="处理类型"></a>处理类型</h3><h4 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h4><p>类型别名是一个名字，是<strong>某种类型的同义词</strong>，使用类型别名可以使复杂的名字简单明了，易于理解和使用，有助于程序员清楚地知道使用该类型的真实目的</p>
+<ol>
+<li><p>传统定义方法 <strong>typedef</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">double</span> wages;		<span class="hljs-comment">//wages是double的同义词</span><br><span class="hljs-keyword">typedef</span> wages base,*p;		<span class="hljs-comment">//base是double的同义词，p是double*的同义词</span><br></code></pre></div></td></tr></table></figure></li>
+<li><p>新标准规定的一种新的方法，使用<strong>别名声明</strong>来定义类型的别名</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">using</span> SI = Sales_items;  	<span class="hljs-comment">//SI是Sales_item的同义词</span><br></code></pre></div></td></tr></table></figure></li>
+</ol>
+<p>类型别名不可以简单替换</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">char</span> *pstring;<br><br><span class="hljs-keyword">const</span> pstring cstr = <span class="hljs-number">0</span>;	<span class="hljs-comment">//cstr是指向char的常量指针，指针本身为常量</span><br><span class="hljs-comment">//不等价于简单替换的句子</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *cstr = <span class="hljs-number">0</span>;  	<span class="hljs-comment">//指向const char的指针，指向的内容是常量</span><br><br><span class="hljs-keyword">const</span> pstring *ps;		<span class="hljs-comment">//ps是一个指针，它的对象是指向char的常量指针</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h4 id="auto语句"><a href="#auto语句" class="headerlink" title="auto语句"></a>auto语句</h4><p>自动判断类型，<strong>编译器</strong>代替程序员去分析表达式所属的类型。</p>
+<p>auto让编译器通过初始值来推算变量的类型，因此auto定义的变量<strong>必须有初始值</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//由a1和a2相加的结果来推断出item的类型</span><br><span class="hljs-keyword">auto</span> b =  a1 + a2;<br></code></pre></div></td></tr></table></figure>
+
+<p>使用auto也可以在一条语句中声明多个变量，因为一条声明语句只能有一个基本数据类型，所以该语句中所有变量的初始基本数据类型都必须一样。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">auto</span> i = <span class="hljs-number">0</span>, *p = &amp;i;		<span class="hljs-comment">//正确，i是整数，p是整型指针</span><br><span class="hljs-keyword">auto</span> sz = <span class="hljs-number">0</span>， pi = <span class="hljs-number">3.14</span>;		<span class="hljs-comment">//错误，sz和pi的类型不一样。</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>忽略顶层的const，即若常量赋给auto，编译器会将其当成变量，但是底层const保留，若指针指向了常量，auto定义的指针还是指向常量</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci = i, &amp;cr = ci;<br><span class="hljs-keyword">auto</span> b = ci;		<span class="hljs-comment">//b是一个整数（ci的顶层const特性被忽略掉了）</span><br><span class="hljs-keyword">auto</span> c = cr;		<span class="hljs-comment">//c是一个整数（cr是ci的别名，ci本身是一个顶层cosnt，</span><br>					<span class="hljs-comment">//即引用被当作初始值的时候，真正参与初始化的是引用对象的值。</span><br><span class="hljs-keyword">auto</span> d = &amp;i;		<span class="hljs-comment">//d是一个整型指针，指向一个整数</span><br><span class="hljs-keyword">auto</span> e =  &amp;ci;		<span class="hljs-comment">//e是一个指向整数常量的指针，&amp;ci是取了一个整数常量的地址。</span><br></code></pre></div></td></tr></table></figure>
+
+<p>若想得到的auto是一个顶层const，需要明确指出</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> f = ci;		<span class="hljs-comment">//ci的推演类型是in，添加const后就是const int了。</span><br></code></pre></div></td></tr></table></figure>
+
+<p>也可以将引用的类型设为auto，此时原来的初始化规则仍然适用</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">auto</span> &amp;g = ci;		<span class="hljs-comment">//g是一个整型常量引用，绑定到ci</span><br><span class="hljs-keyword">auto</span> &amp;h = <span class="hljs-number">42</span>;		<span class="hljs-comment">//错误，不能为非常量引用绑定字面值</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> &amp;j = <span class="hljs-number">42</span>;	<span class="hljs-comment">//正确，可以为常量引用绑定字面值</span><br></code></pre></div></td></tr></table></figure>
+
+<p>要在一条语句中定义多个变量，符号&amp;和*只从属于某个声明符，而非基本数据类型的一部分，因此初始值必须是同一种类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">auto</span> k = ci, &amp;l = i;		<span class="hljs-comment">//忽略顶层const，因此都是整数，k是整数，l是整型引用</span><br><span class="hljs-keyword">auto</span> &amp;m = ci, *p = &amp;ci;		<span class="hljs-comment">//不能忽略底层const，因此m是整形常量的引用，p是指向整型常量的指针。</span><br><br><span class="hljs-comment">//如下错误，一个是整型，一个是不能忽略底层的const，类型不同</span><br><span class="hljs-keyword">auto</span> &amp;n = i, *p2 = &amp;ci;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h4 id="decltype类型指示符"><a href="#decltype类型指示符" class="headerlink" title="decltype类型指示符"></a>decltype类型指示符</h4><p>若希望从表达式的类型推断出要定义的变量的类型，但是不想用该表达式的值初始化变量（auto能自动判断类型,，但是auto需要用该表达式的值初始化变量）</p>
+<p>编译器分析表达式，得到它的类型，但是不实际计算表达式的值。</p>
+<p>如下，编译器不实际调用函数f，而是使用当调用发生时f的返回值类型当作sum的类型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">decltype</span>(f()) sum = x;	<span class="hljs-comment">//sum的类型是函数f的返回类型</span><br></code></pre></div></td></tr></table></figure>
+
+<p>decltype能保留顶层const和引用，上面的auto却不行。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci =<span class="hljs-number">0</span>, &amp;cj=ci;<br><span class="hljs-keyword">decltype</span>(ci) x = <span class="hljs-number">0</span>;		<span class="hljs-comment">//x的类型是const int</span><br><span class="hljs-keyword">decltype</span>(cj) y = x;		<span class="hljs-comment">//y的类型是const int&amp;，y绑定到变量x</span><br><span class="hljs-keyword">decltype</span>(cj) z;			<span class="hljs-comment">//错误，z是个引用，必须初始化</span><br><span class="hljs-comment">//cj是一个引用，decltype(cj)的结果就是引用类型</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/C-%E7%B1%BB%E5%9E%8B%E8%A1%A5%E5%85%85/">C++类型补充</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%BC%95%E7%94%A8/">引用</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B8%B8%E9%87%8F%E8%A1%A8%E8%BE%BE%E5%BC%8F/">常量表达式</a>
+                    
+                      <a class="hover-with-bg" href="/tags/decltype/">decltype</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/07/14/C++%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A5%E5%85%85/">https://trentliu.cn/2021/07/14/C++%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A5%E5%85%85/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E8%BF%AD%E4%BB%A3%E5%99%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++自学——迭代器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">
+                        <span class="hidden-mobile">C++自学——强制类型转换</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>

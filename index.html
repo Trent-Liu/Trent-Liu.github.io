@@ -335,33 +335,30 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/13/C++/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学">
+        <a href="/2021/07/20/C++%E8%87%AA%E5%AD%A6%E7%B1%BB/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——类">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/13/C++/" target="_self">
-          C++自学
+        <a href="/2021/07/20/C++%E8%87%AA%E5%AD%A6%E7%B1%BB/" target="_self">
+          C++自学——类
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/13/C++/" target="_self">
+        <a href="/2021/07/20/C++%E8%87%AA%E5%AD%A6%E7%B1%BB/" target="_self">
           
           
             
           
-          C++与C的不同C大体可以看作C++的一小部分，之前没有选C++的课，因此趁着暑假笔者想自学一下C++，重点在比较C和C++的不同之处。
-输入输出C语言中往往使用习惯printf，scanf，但是C++的输入输出没有定义任何输入输出（IO）语句，而是包含了一个全面的标准库来提供IO机制。
+          类C++中，通过定义一个类，来定义一个新的数据结构，一个类定义了一个类型，以及与其关联的一组操作。类机制是C++最重要的特性之一。
+类定义了行为
+某个类的作者定义了类对象可以执行的所有动作，即，类定义了创建一个此类对象时会发生什么事情，以及对此类对象进行赋值，加法或输入输出运算时会发生什么事情。
 
-iostream库
-
-1#include&lt;iostream&gt;
-
-两个基本类型：istream和o
+对于来自标准库的头文件，应该使用尖括号&lt;&gt;包围头文件名，对于不属于标准库的头文件，则用双
         </a>
       </p>
 
@@ -369,8 +366,8 @@ iostream库
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-13 13:00" pubdate>
-              2021-07-13
+            <time datetime="2021-07-20 14:00" pubdate>
+              2021-07-20
             </time>
           </div>
         
@@ -390,7 +387,7 @@ iostream库
             
               <a href="/tags/C/">C++</a>
             
-              <a href="/tags/%E8%87%AA%E5%AD%A6/">自学</a>
+              <a href="/tags/%E7%B1%BB/">类</a>
             
           </div>
         
@@ -402,31 +399,31 @@ iostream库
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          <img src="/img/Java.png" srcset="/img/loading.gif" lazyload alt="Java装饰者、迭代器模式">
+        <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——函数重载及默认实参">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          Java装饰者、迭代器模式
+        <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" target="_self">
+          C++自学——函数重载及默认实参
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
+        <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" target="_self">
           
           
             
           
-          装饰模式多用组合，少用继承。利用组合，委托同样可以达到继承的目的
-如果有两个类
-123456class A&#123;    public void f()&#123;&#125;&#125;class B&#123;    public void g()&#123;&#125;&#125;
+          函数重载同一作用域内的几个函数名字相同但是形参列表不同，我们称之为重载函数
+比如定义几个print函数
+123void print(const char *p);void print(const int *beg,const int *end);void print(const int ia[],size_t size);
 
-若需要实现一个类，同时具有A和B的行为，但是不能继承（JAVA）。
-可以采用对象组合方式，继承一个类，另
+调用这些函数时，编译器会根据传递的实参类型推断想要的时哪个函数
+1234
         </a>
       </p>
 
@@ -434,8 +431,8 @@ iostream库
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-27 23:00" pubdate>
-              2021-05-27
+            <time datetime="2021-07-18 14:00" pubdate>
+              2021-07-18
             </time>
           </div>
         
@@ -445,7 +442,7 @@ iostream库
             
               <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Java/">Java</a>
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
             
           </div>
         
@@ -453,11 +450,9 @@ iostream库
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Java/">Java</a>
+              <a href="/tags/C/">C++</a>
             
-              <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/">装饰者模式</a>
-            
-              <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">迭代器模式</a>
+              <a href="/tags/%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%EF%BC%8C%E9%BB%98%E8%AE%A4%E5%AE%9E%E5%8F%82/">函数重载，默认实参</a>
             
           </div>
         
@@ -469,31 +464,29 @@ iostream库
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/24/Ubuntu%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/" target="_self">
-          <img src="/img/passage.png" srcset="/img/loading.gif" lazyload alt="虚拟机Ubuntu共享文件夹不显示问题">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——函数传参只传引用参数">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/05/24/Ubuntu%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/" target="_self">
-          虚拟机Ubuntu共享文件夹不显示问题
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
+          C++自学——函数传参只传引用参数
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/05/24/Ubuntu%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9/" target="_self">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
           
           
             
           
-          一个奇葩的问题为了课程要求，下载了VM 16pro，安装了Ubuntu 16.04 32位。
-要设置一个共享文件夹，但是始终不显示，试过了网上的所有方法，都没有用
-最后找到了一个解决方式：
-安装VMware Tools的时候，在最后的询问填no，再回车就可以解决。
-sudo ./wmware-install.pl后，一路回车，直到提示：
-would you like to revover the 
+          函数参数传递之传引用参数C语言中想要改变传入的值，只能传指针，十分麻烦。
+C++中提供了引用，可以直接对实参修改。
+使用引用避免拷贝拷贝大的类类型对象或者容器对象比较低效，甚至有的类类型（包括IO类型在内）根本就不支持拷贝操作。当某种类型不支持拷贝操作时，函数只能通过引用参数访问该类型 的对象
+编写函数比较两个string对象的长度，因为string对象可能会非常长，避免尽量直接拷贝它们，使用引用
         </a>
       </p>
 
@@ -501,8 +494,8 @@ would you like to revover the
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-24 08:00" pubdate>
-              2021-05-24
+            <time datetime="2021-07-15 14:00" pubdate>
+              2021-07-15
             </time>
           </div>
         
@@ -512,7 +505,7 @@ would you like to revover the
             
               <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%9A%8F%E4%BE%BF%E8%AE%B0%E5%BD%95/">随便记录</a>
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
             
           </div>
         
@@ -520,7 +513,9 @@ would you like to revover the
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Ubuntu/">Ubuntu</a>
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/%E4%BC%A0%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0/">传引用参数</a>
             
           </div>
         
@@ -532,27 +527,30 @@ would you like to revover the
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/11/verilog%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%94%B5%E8%B7%AF/" target="_self">
-          <img src="/img/verilog.png" srcset="/img/loading.gif" lazyload alt="Verilog一些简单电路">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——头文件保护符">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/05/11/verilog%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%94%B5%E8%B7%AF/" target="_self">
-          Verilog一些简单电路
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/" target="_self">
+          C++自学——头文件保护符
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/05/11/verilog%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E7%94%B5%E8%B7%AF/" target="_self">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/" target="_self">
           
           
             
           
-          七段数码管模块定义
-123456module _7Seg_Driver_Decode(SW, SEG, AN, LED);	input [15:0] SW;   // 16位拨动开关	output[7:0] SEG;  // 7段数码管驱动，低电平有效	output [7:0] AN;// 7段数码管片选信号，低电平有效	output [15:0] LED;   // 16位LED显示endmod
+          大一的时候C语言程序设计实验中因为不添加头文件保护符扣了不少分
+头文件保护符十分重要，可以防止include的库被多次include等
+头文件保护符为了确保各个文件中类的定义一致，类通常被定义在头文件中，而类所在头文件的名字应与类的名字一致。
+例如 库类型String在名为string的头文件中定义，Sales_data类定义在名为Sales_data.h的头文件中
+头文件通常包含那些只能被定义一
         </a>
       </p>
 
@@ -560,8 +558,8 @@ would you like to revover the
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-11 18:00" pubdate>
-              2021-05-11
+            <time datetime="2021-07-15 14:00" pubdate>
+              2021-07-15
             </time>
           </div>
         
@@ -571,7 +569,7 @@ would you like to revover the
             
               <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Verilog%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%B5%E8%B7%AF/">Verilog及常见电路</a>
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
             
           </div>
         
@@ -579,9 +577,9 @@ would you like to revover the
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Verilog/">Verilog</a>
+              <a href="/tags/C/">C++</a>
             
-              <a href="/tags/%E5%B8%B8%E8%A7%81%E7%94%B5%E8%B7%AF/">常见电路</a>
+              <a href="/tags/%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/">头文件保护符</a>
             
           </div>
         
@@ -593,28 +591,37 @@ would you like to revover the
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/08/win10%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_self">
-          <img src="/img/passage.png" srcset="/img/loading.gif" lazyload alt="win10常用快捷键">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——main处理命令行以及含有可变参数的函数">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/05/08/win10%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_self">
-          win10常用快捷键
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
+          C++自学——main处理命令行以及含有可变参数的函数
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/05/08/win10%E5%BF%AB%E6%8D%B7%E9%94%AE/" target="_self">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
           
           
             
           
-          win10常用快捷键作为一名鼠标重度依赖者，没有鼠标的时候感觉做什么都很别扭
-实际上触控板和键盘快捷键用熟练之后还是很方便的（主要是很装b
-整理一些win10常用的快捷键。
+          main处理命令行选项假定main函数在可执行文件prog之内，可以向程序传递下面的选项：
+1prog -d -o ofile data0
+
+这些命令行选项通过两个可选的形参传递给main函数：
+1int main(int argc,char *argv[])&#123;&#125;
+
+根据上面命令行的输入
+
+argc = 5；
+argv[0] = “prog”;
+argv[1] = “-d”;
+
         </a>
       </p>
 
@@ -622,8 +629,8 @@ would you like to revover the
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-08 18:00" pubdate>
-              2021-05-08
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
             </time>
           </div>
         
@@ -633,7 +640,7 @@ would you like to revover the
             
               <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%9A%8F%E4%BE%BF%E8%AE%B0%E5%BD%95/">随便记录</a>
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
             
           </div>
         
@@ -641,7 +648,11 @@ would you like to revover the
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/win10%E5%BF%AB%E6%8D%B7%E9%94%AE/">win10快捷键</a>
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/main%E5%91%BD%E4%BB%A4%E8%A1%8C/">main命令行</a>
+            
+              <a href="/tags/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">可变参数</a>
             
           </div>
         
@@ -653,26 +664,31 @@ would you like to revover the
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/04/28/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94JAVAFX/" target="_self">
-          <img src="/img/Java.png" srcset="/img/loading.gif" lazyload alt="Java笔记——JavaFx">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6string/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——标准库类型String以及cctype头文件">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/28/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94JAVAFX/" target="_self">
-          Java笔记——JavaFx
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6string/" target="_self">
+          C++自学——标准库类型String以及cctype头文件
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/28/Java%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94JAVAFX/" target="_self">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6string/" target="_self">
           
           
             
           
-          JAVA UI编程经历的三个阶段
+          标准库类型String学习C语言的时候，对于字符串的处理只能使用字符数组，十分麻烦，C++中有了标准库类型String，对于字符串的处理就简单了很多
+使用前提
+12#include&lt;string&gt;using std::string;
+
+初始化字符串的方式
+123456string s1;			//默认初始化，s1是一个空串string s2(s1);		//s2是s1的副本string
         </a>
       </p>
 
@@ -680,8 +696,8 @@ would you like to revover the
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-28 18:00" pubdate>
-              2021-04-28
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
             </time>
           </div>
         
@@ -691,7 +707,7 @@ would you like to revover the
             
               <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Java/">Java</a>
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
             
           </div>
         
@@ -699,9 +715,11 @@ would you like to revover the
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Java/">Java</a>
+              <a href="/tags/C/">C++</a>
             
-              <a href="/tags/JavaFx/">JavaFx</a>
+              <a href="/tags/string/">string</a>
+            
+              <a href="/tags/cctype/">cctype</a>
             
           </div>
         
@@ -713,26 +731,29 @@ would you like to revover the
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/04/25/verilog%E5%B8%B8%E7%94%A8%E7%94%B5%E8%B7%AF/" target="_self">
-          <img src="/img/verilog.png" srcset="/img/loading.gif" lazyload alt="Verilog常见电路">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——vector">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/25/verilog%E5%B8%B8%E7%94%A8%E7%94%B5%E8%B7%AF/" target="_self">
-          Verilog常见电路
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
+          C++自学——vector
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/25/verilog%E5%B8%B8%E7%94%A8%E7%94%B5%E8%B7%AF/" target="_self">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
           
           
             
           
-          选择器2-1选择器1234567891011121314// 2-1 选择器module mux_21(a, b, sel, out);    parameter WIDTH = 8;        input [WIDTH-1:0] a, b;    input sel;    output [WIDTH-1:0] out;        // 三元运算符    assign out = sel
+          标准库类型vector12#include &lt;vector&gt;using std::vector;
+
+标准库类型vector表示对象的集合，其中所有对象的类型都相同。集合中的每个对象都有一个与之对应的索引，索引用于访问对象，因为vector容纳着其他对象，所以也经常被称为容器。
+C++中有类模板和函数模板，其中vector是类模板，模板本身不是类或者函数，但是可以将模板看作为编译器生成类
         </a>
       </p>
 
@@ -740,8 +761,8 @@ would you like to revover the
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-25 18:00" pubdate>
-              2021-04-25
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
             </time>
           </div>
         
@@ -751,7 +772,7 @@ would you like to revover the
             
               <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Verilog%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%B5%E8%B7%AF/">Verilog及常见电路</a>
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
             
           </div>
         
@@ -759,7 +780,9 @@ would you like to revover the
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Verilog%EF%BC%8C%E5%B8%B8%E8%A7%81%E7%94%B5%E8%B7%AF/">Verilog，常见电路</a>
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/vector/">vector</a>
             
           </div>
         
@@ -771,27 +794,27 @@ would you like to revover the
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/04/24/verilog%E5%85%A5%E9%97%A8/" target="_self">
-          <img src="/img/verilog.png" srcset="/img/loading.gif" lazyload alt="Verilog填鸭入门">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——数组">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/04/24/verilog%E5%85%A5%E9%97%A8/" target="_self">
-          Verilog填鸭入门
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
+          C++自学——数组
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/04/24/verilog%E5%85%A5%E9%97%A8/" target="_self">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
           
           
             
           
-          三种描述方式Verilog的基本设计单元为模块
-结构描述（侧重于模块内部结构实现的描述方式，实例化语句进行描述）
+          与C相同的部分不过做赘述，比如多维数组等
+数组数组类似于标准库类型vector的数据结构，但是在性能和灵活性的权衡上与vector不同，与vector相似的是，数组也是存放类型相同的对象的容器，这些对象没有名字，需要通过其所在位置访问。与vector不同的地方是，数组的大小确定不变，不能随意向数组中添加元素，因为数组的大小固定，因此对某些特殊应用来说程序的运行时性能较好，但是相应地也损失了一些灵活
         </a>
       </p>
 
@@ -799,8 +822,8 @@ would you like to revover the
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-04-24 18:00" pubdate>
-              2021-04-24
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
             </time>
           </div>
         
@@ -810,7 +833,7 @@ would you like to revover the
             
               <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Verilog%E5%8F%8A%E5%B8%B8%E8%A7%81%E7%94%B5%E8%B7%AF/">Verilog及常见电路</a>
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
             
           </div>
         
@@ -818,9 +841,9 @@ would you like to revover the
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Verilog/">Verilog</a>
+              <a href="/tags/C/">C++</a>
             
-              <a href="/tags/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">快速入门</a>
+              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
             
           </div>
         
@@ -832,7 +855,7 @@ would you like to revover the
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/#board">5</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

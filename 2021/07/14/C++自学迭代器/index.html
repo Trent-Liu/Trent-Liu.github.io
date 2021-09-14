@@ -1,0 +1,726 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>C++自学——迭代器 - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trentliu.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/TreeHole/">
+                <i class="iconfont icon-wechat-fill"></i>
+                TreeHole
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/C++.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++自学——迭代器">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-14 15:00" pubdate>
+        2021年7月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++自学——迭代器</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年9月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>所有标准库容器都可以使用迭代器，但是其中只有少数几种才同时支持下标运算符。</p>
+<p><strong>类似于指针类型</strong>，迭代器也提供了对对象的间接访问，使用迭代器可以访问容器中的某个元素，也可以从一个元素移动到另一个元素。</p>
+<p>有效迭代器<strong>指向某个元素或者指向容器中尾元素的下一位置</strong>，其他所有情况都属于无效。</p>
+<p>与指针不一样，获取迭代器不是使用取地址符，<strong>拥有迭代器</strong>的类型<strong>同时拥有返回迭代器的成员</strong>，比如，这些类型都拥有名为<strong>begin和end的成员</strong>，其中<strong>begin成员负责返回指向第一个元素的迭代器</strong>，</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//由编译器决定b和e的类型</span><br><span class="hljs-comment">//b表示v的第一个元素，e表示v尾元素的下一个位置</span><br><span class="hljs-keyword">auto</span> b = v.begin() , e = v.end();  <span class="hljs-comment">//b和e的类型相同</span><br></code></pre></div></td></tr></table></figure>
+
+<p>end成员负责返回指向容器<strong>尾元素的下一个位置的迭代器</strong>，是容器一个本不存在的<strong>尾后</strong>，没什么实际含义，仅仅是个标记。end成员返回的迭代器常被称作<strong>尾后迭代器</strong>（尾迭代器）</p>
+<p>若容器为空，begin和end返回的是同一个迭代器</p>
+<h4 id="标准容器迭代器的运算符"><a href="#标准容器迭代器的运算符" class="headerlink" title="标准容器迭代器的运算符"></a>标准容器迭代器的运算符</h4><p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210711142836715.png" srcset="/img/loading.gif" lazyload alt="image-20210711142836715"></p>
+<p>和指针类似，也能通过<strong>解引用迭代器</strong>（-&gt;）来获取它所指示的元素，执行解引用的迭代器必须合法并确实指示某个元素。</p>
+<p>如下程序将string对象的第一个字母改成了大写</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s</span><span class="hljs-params">(<span class="hljs-string">&quot;some string&quot;</span>)</span></span>;<br><span class="hljs-keyword">if</span>(s.begin()!= s.end())&#123;		<span class="hljs-comment">//非空</span><br>    <span class="hljs-keyword">auto</span> it = s.begin();		<span class="hljs-comment">//it表示s的第一个字符</span><br>    *it = <span class="hljs-built_in">toupper</span>(*it);			<span class="hljs-comment">//将当前字符改为大写形式</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>本例和原来的程序一样，首先<strong>检查s是否为空</strong>，显然<strong>通过检查begin和end返回的结果是否一致</strong>就能做到这一点。</p>
+<blockquote>
+<p>输出： Some string</p>
+</blockquote>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210711143627127.png" srcset="/img/loading.gif" lazyload alt="image-20210711143627127"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210711143618835.png" srcset="/img/loading.gif" lazyload></p>
+<p>迭代器使用<strong>递增（++）运算符</strong>来<strong>从一个元素移动到下一个元素</strong>，从逻辑上来说，迭代器的递增和整数的递增类似，整数的递增是在数值上”加1“，迭代器的递增是将迭代器向前移动一个位置</p>
+<blockquote>
+<p>end返回的迭代器并不实际指示某个元素，所以不能对其进行递增或解引用操作。</p>
+</blockquote>
+<p>使用迭代器将第一个单词全部变为大写</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> it = s.begin(); it != s.end() &amp;&amp; !<span class="hljs-built_in">isspace</span>(*it); ++it)<br>    *it = <span class="hljs-built_in">toupper</span>(*it);		<span class="hljs-comment">//将当前字符改为大写形式</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+
+
+<h4 id="迭代器类型"><a href="#迭代器类型" class="headerlink" title="迭代器类型"></a>迭代器类型</h4><p>就像不知道string和vector的size_type成员到底是什么类型一样，一般我们也不知道（无需知道）迭代器的精确类型</p>
+<p><strong>拥有迭代器的标准库类型</strong>使用<strong>iterator和const_iterator</strong>来表示迭代器的类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs vector">vector&lt;int&gt;::iterator it;			&#x2F;&#x2F;it能读写vector&lt;int&gt;的元素<br>string::iterator it2;				&#x2F;&#x2F;it2能读写string对象中的字符<br><br>vector&lt;int&gt;::const_iterator it3;	&#x2F;&#x2F;it3只能读元素，不能写元素<br>string::const_iterator it4;			&#x2F;&#x2F;it4只能读字符，不能写字符<br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>如果vector或string对象<strong>是一个常量</strong>，<strong>只能使用const_iterator</strong></p>
+</blockquote>
+<h4 id="begin-end"><a href="#begin-end" class="headerlink" title="begin end"></a>begin end</h4><p>begin和end的返回的具体类型由对象是否为常量决定，如果对象是常量，begin和end返回const_iterator。如果对象不是常量，返回iterator。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; v;<br><span class="hljs-keyword">const</span> <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; cv;<br><span class="hljs-keyword">auto</span> it1 = v.begin();			<span class="hljs-comment">//it1的类型是vector&lt;int&gt;::iterator</span><br><span class="hljs-keyword">auto</span> it2 = cv.begin();			<span class="hljs-comment">//it2的类型是vector&lt;int&gt;::const_iterator</span><br></code></pre></div></td></tr></table></figure>
+
+<p>专门得到const_iterator类型的返回值，使用cbegin，cend</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">auto</span> it3 = v.cbegin();<span class="hljs-comment">//it3的类型是vector&lt;int&gt;::const_iterator</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<h4 id="结合解引用和成员访问操作"><a href="#结合解引用和成员访问操作" class="headerlink" title="结合解引用和成员访问操作"></a>结合解引用和成员访问操作</h4><p>解引用迭代器可以获得迭代器所指向的对象，如果该对象的类型恰好是类，就可以进一步访问它的成员。</p>
+<p>对于一个字符串组成的vector对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">(*it).empty();			<span class="hljs-comment">//解引用it，然后调用结果对象的empty成员</span><br>*it.empty();			<span class="hljs-comment">//错误，试图访问it的名为empty的成员，但it是个迭代器，没有empty成员</span><br></code></pre></div></td></tr></table></figure>
+
+<p>简化上式，可以使用箭头运算符-&gt;</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//以下两个式子等价</span><br>it-&gt;menu;<br>(*it).menu;<br></code></pre></div></td></tr></table></figure>
+
+<p>text字符串向量存放文本文件中的数据，其中的元素或者一句话或者是以一个用于表示段落分隔的空字符串，以下程序输出text中第一段的内容。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//依次输出text的每一行直到遇到第一个空白行为止</span><br><span class="hljs-keyword">for</span>(<br>    <span class="hljs-keyword">auto</span> it = text.cbegin();<br>    it != text.cend() &amp;&amp; !it-&gt;empty();<br>    ++it<br>   )<br>    <span class="hljs-built_in">cout</span> &lt;&lt; *it &lt;&lt;<span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>初始化it指向text的第一个元素，循环重复执行直至处理完了text的所有元素或者发现某个元素为空，循环从头到尾只是读取text的元素而未向其中写值，所以使用了cbegin和cend来控制整个迭代过程。</p>
+<blockquote>
+<p>凡是使用了迭代器的循环体，都不要向迭代器所属的容器添加元素</p>
+<p>任何一种可能改变vector对象容量的操作，比如push_back，都会使该vector对象的迭代器失效</p>
+<p>无穷增加，迭代器增加指向下一个，尾部又添加新元素</p>
+</blockquote>
+<h4 id="迭代器运算"><a href="#迭代器运算" class="headerlink" title="迭代器运算"></a>迭代器运算</h4><p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210711151859743.png" srcset="/img/loading.gif" lazyload alt="image-20210711151859743"></p>
+<h4 id="迭代器的算术运算"><a href="#迭代器的算术运算" class="headerlink" title="迭代器的算术运算"></a>迭代器的算术运算</h4><p>迭代器和整数值加减，返回值是向前向后移动了若干位置的迭代器</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//计算得到最接近vi中间元素的一个迭代器</span><br><span class="hljs-keyword">auto</span> mid = vi.begin() + vi.size()/<span class="hljs-number">2</span>;<br><span class="hljs-comment">//迭代器的&lt;,&lt;=,&gt;=,&gt;，参与比较的两个迭代器必须合法而且指向的是同一个容器的元素。</span><br><span class="hljs-comment">//比较的是位置的孰前孰后</span><br><span class="hljs-keyword">if</span>(it&lt;mid)<br>    <span class="hljs-comment">//处理vi前半部分的元素</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//使用迭代器完成二分搜索</span><br><span class="hljs-comment">//text必须是有序的，，beg和end表示我们搜索的范围</span><br><span class="hljs-keyword">auto</span> beg = text.begin(),end = text.end();<br><span class="hljs-keyword">auto</span> mid = text.begin() + (end-beg)/<span class="hljs-number">2</span>;		<span class="hljs-comment">//初始状态下的中间点</span><br><span class="hljs-comment">//当还有元素尚未检查并且我们还没有找到sought时执行循环</span><br><span class="hljs-keyword">while</span>(mid != end &amp;&amp; *mid != sought)&#123;<br>    <span class="hljs-keyword">if</span>(sought &lt; *mid)			<span class="hljs-comment">//我们要找的元素在前半部分吗？</span><br>        end = mid;				<span class="hljs-comment">//如果是，调整搜索范围使得忽略掉后半部分</span><br>    <span class="hljs-keyword">else</span><br>        beg = mid + <span class="hljs-number">1</span>;			<span class="hljs-comment">//我们要找到元素在后半部分，在mid后寻找</span><br>    mid = beg + (end-beg)/<span class="hljs-number">2</span>;	<span class="hljs-comment">//新的中间点</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/">迭代器</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6%E8%BF%AD%E4%BB%A3%E5%99%A8/">https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6%E8%BF%AD%E4%BB%A3%E5%99%A8/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%82%E5%B8%B8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++自学——异常</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A5%E5%85%85/">
+                        <span class="hidden-mobile">C++自学——C++类型较C的补充，引用指针常量表达式等</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>

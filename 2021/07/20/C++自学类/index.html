@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>C++自学——类 - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trentliu.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/TreeHole/">
+                <i class="iconfont icon-wechat-fill"></i>
+                TreeHole
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/C++.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++自学——类">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-20 14:00" pubdate>
+        2021年7月20日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++自学——类</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年9月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>C++中，通过定义一个类，来定义一个新的数据结构，一个类定义了一个类型，以及与其关联的一组操作。类机制是C++最重要的特性之一。</p>
+<p><strong>类定义了行为</strong></p>
+<p>某个类的作者定义了类对象可以执行的<strong>所有动作</strong>，即，类定义了创建一个此类对象时会发生什么事情，以及对此类对象进行赋值，加法或输入输出运算时会发生什么事情。</p>
+<blockquote>
+<p>对于来自标准库的头文件，应该使用尖括号&lt;&gt;包围头文件名，对于不属于标准库的头文件，则用双引号“”包围</p>
+</blockquote>
+<p>类的基本思想是数据抽象和封装，数据抽象是一种依赖于接口和实现分裂的编程（以及设计）技术，类的接口包括用户所能执行的操作，类的实现则包括类的数据成员，负责接口实现的函数体以及定义类所需的各种私有函数</p>
+<p>封装实现了类的接口和实现的分离，封装后的类隐藏了它的实现细节，也就是说，类的用户只能使用接口而无法访问实现部分</p>
+<p>类想要实现数据抽象和封装，需要首先定义一个抽象数据类型，在抽象数据类型中，由类的设计者负责考虑类的实现过程，使用该类的程序员则只需要抽象地思考类型做了什么，而无须了解类型的工作细节。</p>
+<p>学习C语言的时候，结构体的作用是把一些具有不同类型的变量组合在一起</p>
+<figure class="highlight c"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">char</span> _name[<span class="hljs-number">20</span>];<br>    <span class="hljs-keyword">char</span> _gender[<span class="hljs-number">3</span>];<br>    <span class="hljs-keyword">int</span> _age;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>而在C++中，其结构体内不仅可以定义变量，还可以定义函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Student</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">char</span> _name[<span class="hljs-number">20</span>];<br>    <span class="hljs-keyword">char</span> _gender[<span class="hljs-number">3</span>];<br>    <span class="hljs-keyword">int</span> _age;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetStudentInfo</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* name,<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* gender,<span class="hljs-keyword">int</span> age)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">strcpy</span>(_name,name);<br>        <span class="hljs-built_in">strcpy</span>(_gender,gender);<br>        _age=age;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    Student s;<br>    s.SetStudentInfo(<span class="hljs-string">&quot;Bob&quot;</span>,<span class="hljs-string">&quot;男&quot;</span>,<span class="hljs-number">18</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;x<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>定义类，Struct可以换成Class</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">classname</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-comment">//成员函数</span><br>    <span class="hljs-comment">//成员变量</span><br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>简单说，类就是属性和方法的集合，属性就是类中的数据，方法就是调用这些数据进行操作的函数</p>
+<h4 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h4><p>全部放到一个文件中 Person.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>//人就是一个类</span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">public</span>:<span class="hljs-comment">//成员函数</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showinfo</span><span class="hljs-params">()</span><span class="hljs-comment">//显示这个人的信息</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>&lt;&lt;_name&lt;&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>&lt;&lt;_gender&lt;&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>&lt;&lt;_age&lt;&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>    &#125;<br>    <span class="hljs-keyword">public</span>:<span class="hljs-comment">//成员变量</span><br>    <span class="hljs-keyword">char</span> *_name;<br>    <span class="hljs-keyword">char</span> *_gender;<br>    <span class="hljs-keyword">int</span> _age;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>定义和声明分开放（推荐）</p>
+<p>Person.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">showInfo</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">char</span> *_name;<br>    <span class="hljs-keyword">char</span> *_gender;<br>    <span class="hljs-keyword">int</span> _age;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>Person.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;Person.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person::showinfo</span><span class="hljs-params">()</span><span class="hljs-comment">//显示这个人的信息</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>&lt;&lt;_name&lt;&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>&lt;&lt;_gender&lt;&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span>&lt;&lt;_age&lt;&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>    &#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>使用之前书店的例子，设计一个Sales_data类</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Sales_data</span>&#123;</span><br>    <span class="hljs-comment">//关于Sales_data对象的操作</span><br>    <span class="hljs-comment">//isbn定义在类内</span><br>    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">isbn</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123;<span class="hljs-keyword">return</span> bookNo;&#125;<br>    <span class="hljs-comment">//conbine,avg_price只声明在类内，定义在类外</span><br>    <span class="hljs-function">Sales_data&amp; <span class="hljs-title">combine</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Sales_data&amp;)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">avg_price</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;<br>    <br>    <span class="hljs-comment">//数据成员</span><br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> bookNo;<br>    <span class="hljs-keyword">unsigned</span> units_sold = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">double</span> revenue = <span class="hljs-number">0.0</span>;<br>&#125;<br><span class="hljs-comment">//Sales_data的非成员接口函数</span><br><span class="hljs-function">Sales_data <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Sales_data&amp;,<span class="hljs-keyword">const</span> Sales_data&amp;)</span></span>;<br><span class="hljs-function"><span class="hljs-built_in">std</span>::ostream &amp;<span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::ostream&amp;,<span class="hljs-keyword">const</span> Sales_data&amp;)</span></span>;<br><span class="hljs-function"><span class="hljs-built_in">std</span>::istream &amp;<span class="hljs-title">read</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::istream&amp;,Sales_data&amp;)</span></span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>所有的函数都必须在类的内部声明，但是成员函数体可以定义在类内也可以定义在类外。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;<br>    Sales_data total;<br>    <span class="hljs-comment">//书店程序</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">isbn</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123;<span class="hljs-keyword">return</span> bookNo;&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>返回值为Sales_data对象的bookNo数据成员。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">total.isbn()<br></code></pre></div></td></tr></table></figure>
+
+<p>使用点运算符来访问total对象的isbn成员，然后调用它。</p>
+<p>调用成员函数的时候，实际上是替某个对象调用它，如果isbn指向Sale_data的成员（例如bookNo），它隐式地指向调用该函数的对象的成员。</p>
+<p>上面的调用，当isbn返回bookNo的时候，实际上它隐式地返回total.bookNo</p>
+<p>成员函数通过this地额外隐式参数来访问调用它地那个对象，我们调用一个成员函数的时候，用请求该函数的对象地址初始化this</p>
+<p>在成员函数的内部，我们可以直接使用调用该函数的对象的成员，而无须通过成员访问符来做到这一点，因为this所指的就是这个对象，它隐式地使用this指向地成员，就像我们书写了this-&gt;bookNo一样。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">isbn</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123;<span class="hljs-keyword">return</span> bookNo;&#125;<br><span class="hljs-comment">//等价于</span><br><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">isbn</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;bookNo;&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>由于编译器分两步处理类：先编译成员的声明，然后才轮到成员函数体，因此成员函数体可以随意使用类中的其他成员而无须在意这些成员出现的次序</p>
+</blockquote>
+<h4 id="在类的外部定义成员函数"><a href="#在类的外部定义成员函数" class="headerlink" title="在类的外部定义成员函数"></a>在类的外部定义成员函数</h4><p>当我们在类的外部定义成员函数的时候，成员函数的定义必须于它的声明匹配，返回类型，参数列表和函数名都要与类内部的声明保持一致</p>
+<p>成员函数被声明成常量成员函数（参数列表后加const，意思是这个成员函数不可以改变类的内容），定义的时候也必须在参数列表后明确指定const属性</p>
+<h4 id="返回this对象的函数"><a href="#返回this对象的函数" class="headerlink" title="返回this对象的函数"></a>返回this对象的函数</h4><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function">Sales_data&amp; <span class="hljs-title">Sales_data::combine</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Sales_data &amp;rhs)</span></span><br><span class="hljs-function"></span>&#123;<br>    units_sold += rhs.units_sold;<br>    revenue += rhs.revenue;<br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">total.conbine(trans);<br></code></pre></div></td></tr></table></figure>
+
+<p>total的地址被绑定到隐式的this参数，ths绑定到了trans上</p>
+<p>最后要返回一个引用类型，返回类型是Sales_data&amp;，因此把调用函数的对象当成一个整体来访问：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>其中，return语句解引用this指针以获得执行该函数的对象，也就是上面这个调用返回total的引用</p>
+<h4 id="定义类相关的非成员函数"><a href="#定义类相关的非成员函数" class="headerlink" title="定义类相关的非成员函数"></a>定义类相关的非成员函数</h4><p>类的作者常常需要定义一些辅助函数，比如add、read、print，这些函数定义的操作从概念上来说属于类的接口的组成部分，但是它们实际上不属于类本身。</p>
+<p>定义非成员函数的方式与定义其他函数一样，通常声明和定义分开，如果函数在概念上术语类但是不定义在类中，则它一般应与类声明在同一个头文件内。</p>
+<p>用户使用接口的任何部分都只需要引入一个文件。</p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>每个类都分别定义了它的对象被初始化的方式，类通过一个或几个特殊的成员函数来控制对象的初始化过程，这些函数叫构造函数。</p>
+<p>构造函数的任务是初始化类对象的数据成员，无论何时只要类的对象被创建，就会执行构造函数</p>
+<p>构造函数名字和类名相同，与其他函数的区别是没有返回类型，不同的构造函数必须在参数数量或参数类型上有所不同</p>
+<p>构造函数不能被声明为const，创建类的一个const对象时，知道构造函数完成初始化过程，对象才能真正取得常量属性，构造函数在const对象的构造过程中可以向其写值。</p>
+<h4 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h4><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">Sales_data total;<br>Sales_data trans;<br></code></pre></div></td></tr></table></figure>
+
+<p>没有为这些对象提供初始值，它们执行了默认初始化，类通过一个特殊的构造函数来控制默认初始化过程，这个函数叫做默认构造函数，默认构造函数无须任何实参。</p>
+<p>如果我们的类没有显式地定义构造函数，那么编译器就会为我们隐式地定义一个默认构造函数。</p>
+<p>编译器创建地构造函数又被称为合成的默认构造函数。</p>
+<ul>
+<li>如果存在类内地初始值，用它来初始化成员</li>
+<li>否则，默认初始化</li>
+</ul>
+<blockquote>
+<p>只有当类没有声明任何构造函数地时候，编译器才会自动地生成默认构造函数。</p>
+</blockquote>
+<blockquote>
+<p>如果类包含有内置类型或者复合类型（数组和指针）的成员，则只有当这些成员全都被赋予了类内的初始值时，这个类才适合于使用合成地默认构造函数。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Sales_data</span>&#123;</span><br>    Sales_data() = <span class="hljs-keyword">default</span>;<br>    Sales_data(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s) : bookNo(s) &#123;&#125;<br>    Sales_data(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s,<span class="hljs-keyword">unsigned</span> n,<span class="hljs-keyword">double</span> p):bookNo(s),units_sold(n),revenue(p*n)&#123;&#125;<br>    Sales_data(<span class="hljs-built_in">std</span>::istream &amp;);<br>    <br>    <br><br>    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">isbn</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123;<span class="hljs-keyword">return</span> bookNo;&#125;<br>    <span class="hljs-function">Sales_data&amp; <span class="hljs-title">combine</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Sales_data&amp;)</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">avg_price</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;<br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> bookNo;<br>    <span class="hljs-keyword">unsigned</span> units_sold = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">double</span> revenue = <span class="hljs-number">0.0</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="default"><a href="#default" class="headerlink" title="=default"></a>=default</h4><p>该构造函数不接受任何实参，所以是一个默认的构造函数，加上=default后，要求编译器生成构造函数，=default可以和声明一起出现在类的内部，也可以作为定义出现在类的外部，</p>
+<h4 id="构造函数初始值列表"><a href="#构造函数初始值列表" class="headerlink" title="构造函数初始值列表"></a>构造函数初始值列表</h4><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">Sales_data(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s) : <br>bookNo(s) <br>&#123;&#125;<br>Sales_data(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s,<span class="hljs-keyword">unsigned</span> n,<span class="hljs-keyword">double</span> p):<br>bookNo(s),units_sold(n),revenue(p*n)<br>&#123;&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>冒号以及冒号和花括号之间的代码，其中花括号定义了空的函数体。</p>
+<p>中间新出现的这部分称为构造函数初始值列表，负责为新创建的对象的一个或几个数据成员赋初始值。构造函数初始值是成员名字的一个列表，每个名字后面紧跟括号括起来（或者花括号内）的成员初始值。不同成员的初始化通过逗号分隔开。</p>
+<p>上面的两个构造函数中函数体都是空的，这是因为这些构造函数的唯一目的就是为数据成员赋初值，一旦没有其他任务需要执行，函数体也就空了</p>
+<h4 id="类的外部定义构造函数"><a href="#类的外部定义构造函数" class="headerlink" title="类的外部定义构造函数"></a>类的外部定义构造函数</h4><p>以istream为参数的构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">Sales_data(<span class="hljs-built_in">std</span>::istream &amp;);<br></code></pre></div></td></tr></table></figure>
+
+<p>需要执行一些实际操作，在它的函数体内，调用了read函数给数据成员赋初值</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">Sales_data::Sales_data(<span class="hljs-built_in">std</span>::istream &amp;is)<br>&#123;<br>    read(is,*<span class="hljs-keyword">this</span>);		<span class="hljs-comment">//read函数的作用是从is中读取一条交易信息然后存入this对象中</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+<h3 id="访问控制与封装"><a href="#访问控制与封装" class="headerlink" title="访问控制与封装"></a>访问控制与封装</h3><h4 id="访问说明符"><a href="#访问说明符" class="headerlink" title="访问说明符"></a>访问说明符</h4><ul>
+<li>定义在public后的成员在整个程序内可以被访问，public成员定义类的接口</li>
+<li>定义在private说明符后的成员可以被类的成员函数访问，但是不能被使用该类的代码访问，private部分封装了（隐藏了）类的实现细节。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sales_data</span>&#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    Sales_data(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s,<span class="hljs-keyword">unsigned</span> n,<span class="hljs-keyword">double</span> p):bookNo(s),units_sold(n),revenue(p*n)&#123;&#125;<br>    Sales_data(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s): bookNo(s)&#123;&#125;<br>    Sales_data(<span class="hljs-built_in">std</span>::istream&amp;);<br>    <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">isbn</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>&#123;<span class="hljs-keyword">return</span> bookNo;&#125;<br>    <span class="hljs-function">Sales_data &amp;<span class="hljs-title">combine</span><span class="hljs-params">()</span></span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%B1%BB/">类</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/07/20/C++%E8%87%AA%E5%AD%A6%E7%B1%BB/">https://trentliu.cn/2021/07/20/C++%E8%87%AA%E5%AD%A6%E7%B1%BB/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/20/%E5%8D%8E%E7%A7%91%E8%90%8C%E6%96%B0%E7%94%9F%E5%AD%98%E6%8C%87%E5%8D%97/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">华科萌新生存指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/">
+                        <span class="hidden-mobile">C++自学——函数重载及默认实参</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>

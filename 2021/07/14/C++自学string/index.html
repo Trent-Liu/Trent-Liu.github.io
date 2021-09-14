@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>C++自学——标准库类型String以及cctype头文件 - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trentliu.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/TreeHole/">
+                <i class="iconfont icon-wechat-fill"></i>
+                TreeHole
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/C++.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++自学——标准库类型String以及cctype头文件">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-14 15:00" pubdate>
+        2021年7月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++自学——标准库类型String以及cctype头文件</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年9月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="标准库类型String"><a href="#标准库类型String" class="headerlink" title="标准库类型String"></a>标准库类型String</h3><p>学习C语言的时候，对于字符串的处理只能使用字符数组，十分麻烦，C++中有了标准库类型String，对于字符串的处理就简单了很多</p>
+<p>使用前提</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>初始化字符串的方式</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> s1;			<span class="hljs-comment">//默认初始化，s1是一个空串</span><br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s2</span><span class="hljs-params">(s1)</span></span>;		<span class="hljs-comment">//s2是s1的副本</span><br><span class="hljs-built_in">string</span> s2 = s1;		<span class="hljs-comment">//等价于s2(s1),s2是s1的副本</span><br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s3</span><span class="hljs-params">(<span class="hljs-string">&quot;value&quot;</span>)</span></span>;	<span class="hljs-comment">//s3是字面值&quot;value&quot;的副本，除了字面值最后的那个空字符外。</span><br><span class="hljs-built_in">string</span> s3 = <span class="hljs-string">&quot;value&quot;</span>;<span class="hljs-comment">//等价于s3(&quot;value&quot;)，s3是字面值&quot;value”的副本</span><br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s4</span><span class="hljs-params">(n,<span class="hljs-string">&#x27;c&#x27;</span>)</span></span>;	<span class="hljs-comment">//把s4初始化为连续n个字符c组成的串</span><br></code></pre></div></td></tr></table></figure>
+
+<h4 id="直接初始化和拷贝初始化"><a href="#直接初始化和拷贝初始化" class="headerlink" title="直接初始化和拷贝初始化"></a>直接初始化和拷贝初始化</h4><p>拷贝初始化，直接用=初始化，编译器将等号右侧的初始值拷贝到新创建的对象</p>
+<p>直接初始化，不使用=</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> s5 = <span class="hljs-string">&quot;hiya&quot;</span>;			<span class="hljs-comment">//拷贝初始化</span><br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s6</span><span class="hljs-params">(<span class="hljs-string">&quot;hiya&quot;</span>)</span></span>;			<span class="hljs-comment">//直接初始化</span><br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s7</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-string">&#x27;c&#x27;</span>)</span></span>;			<span class="hljs-comment">//直接初始化，s7的内容是cccccccccc</span><br></code></pre></div></td></tr></table></figure>
+
+<p>如果一定要用拷贝初始化，需要显式地创建一个临时对象用于拷贝</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> s8 = <span class="hljs-built_in">string</span>(<span class="hljs-number">10</span>,<span class="hljs-string">&#x27;c&#x27;</span>);<br><span class="hljs-comment">//等价于先使用数字10和字符c两个参数创建出一个string对象，然后这个string对象又拷贝给了s8，实质上等价于下面的两条语句</span><br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">temp</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-string">&#x27;c&#x27;</span>)</span></span>;<br><span class="hljs-built_in">string</span> s8 = temp;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="string的基本操作"><a href="#string的基本操作" class="headerlink" title="string的基本操作"></a>string的基本操作</h4><ol>
+<li><p><strong>os &lt;&lt; s</strong></p>
+<p>将s写到输出流os中，返回os</p>
+</li>
+<li><p><strong>is &gt;&gt; s</strong></p>
+<p>从is中读取字符串赋给s，字符串以空白分隔，返回is</p>
+</li>
+<li><p><strong>getline(is, s)</strong></p>
+<p>从is中读取一行，赋给s，并返回is</p>
+</li>
+<li><p><strong>s.empty()</strong></p>
+<p>s为空返回true，否则返回false</p>
+</li>
+<li><p><strong>s.size()</strong></p>
+<p>返回s中字符的个数</p>
+</li>
+<li><p><strong>s[n]</strong></p>
+<p>返回s中第n个字符的引用，位置n从0计起，类似C中的字符数组</p>
+</li>
+<li><p><strong>s1+s2</strong></p>
+<p>返回s1和s2连接后的结果</p>
+</li>
+<li><p><strong>s1=s2</strong></p>
+<p>用s2的<strong>副本</strong>代替s1中原来的字符</p>
+</li>
+<li><p>s1==s2（s1！=s2）</p>
+<p>如果s1和s2中所含的字符<strong>完全一样</strong>，则它们相等，string对象的相等性判断，对字母的<strong>大小写敏感</strong></p>
+</li>
+<li><p>&lt; &lt;= &gt; &gt;=</p>
+<p>利用字符在<strong>字典中的顺序</strong>进行比较，且对字母的<strong>大小写敏感</strong></p>
+</li>
+</ol>
+<h4 id="string的读写"><a href="#string的读写" class="headerlink" title="string的读写"></a>string的读写</h4><p>string的读写很简单，同样可以使用标准库iostream来读写</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> s;				<span class="hljs-comment">//空字符串</span><br><span class="hljs-built_in">cin</span> &gt;&gt; s;<br></code></pre></div></td></tr></table></figure>
+
+<p>若输入”Hello World!”，那么s的内容是”Hello”，不存在后面的部分，在空格部分截断了</p>
+<p>因为在执行<strong>读取操作的时候</strong>，string会<strong>自动忽略开头的空白</strong>(空格符，换行符，制表符)，并从第一个真正的字符开始读起，直到<strong>遇见下一处空白为止</strong>。</p>
+<p>因此若是输入”               Hello World!”，结果还是Hello</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> s1,s2;		<br><span class="hljs-built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2;			<span class="hljs-comment">//把第一个输入读到s1中，第二个输入读到s2中</span><br><span class="hljs-built_in">cout</span> &lt;&lt; s1 &lt;&lt; s2 &lt;&lt; <span class="hljs-built_in">endl</span>;	<span class="hljs-comment">//输出两个string的对象</span><br></code></pre></div></td></tr></table></figure>
+
+<p>若还是输入Hello World！</p>
+<p>s1为”Hello”,s2为”World!”，s2之前的空格忽略</p>
+<p>因此输出为HelloWorld!</p>
+<p>当string当作while的判断条件，比如</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;word)<br></code></pre></div></td></tr></table></figure>
+
+<p>可以读取未知数量的string对象，只有读入文件结束符的时候，才能结束</p>
+<p>getline可以<strong>读取一整行</strong>，<strong>保留输入时的空白符</strong>，直到<strong>遇到换行符</strong>才停止读入内容（换行符也被读取，但是读取的内容存入string的时候，string不保存换行符）。</p>
+<p>getline一遇到换行符就结束，哪怕输入的一开始就是换行符也是这样，只不过这样得到的是空string</p>
+<p>如下是一个每次输出一整行的程序</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> line;<br><span class="hljs-keyword">while</span>(getline(<span class="hljs-built_in">cin</span>,line))<br>    <span class="hljs-built_in">cout</span> &lt;&lt; line &lt;&lt; <span class="hljs-built_in">endl</span>;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>getline中不包含换行，因此要手动地加上换行操作符，使用endl结束当前行并刷新显示缓冲区</p>
+<h4 id="empty和size"><a href="#empty和size" class="headerlink" title="empty和size"></a>empty和size</h4><p>empty用于判断是否为空字符串，size是返回字符串地长度</p>
+<p>如下程序，只有line不为空地时候才输出，因此可以做到只输出非空的行。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">while</span>(getline(<span class="hljs-built_in">cin</span>,line))<br>    <span class="hljs-keyword">if</span>(!line.empty())<br>        <span class="hljs-built_in">cout</span> &lt;&lt; line &lt;&lt;<span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>只有不为空的时候才输出，若为空行则跳过</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">while</span>(getline(<span class="hljs-built_in">cin</span>,line))<br>    <span class="hljs-keyword">if</span>(line.size() &gt; <span class="hljs-number">80</span>)<br>        <span class="hljs-built_in">cout</span> &lt;&lt; line &lt;&lt; <span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>每次读入一整行，输出超过80个字符的行</p>
+<ul>
+<li><p>size函数返回的是一个string::size_type类型的值</p>
+<p>stirng类及其他的大多数标准库类型都定义了几种配套的类型，这些配套类型体现了标准库类型与机器无关的特性，size_type就是一种。</p>
+<p>所有用于存放string类的size函数返回值的变量，都应该是string::size_type类型的。</p>
+</li>
+<li><p>可以使用auto和decltype来推断变量的类型、</p>
+</li>
+</ul>
+<blockquote>
+<p>如果一条表达式中已经有了size()的函数就不要再使用int了，这样可以避免混用int和unsigned可能带来的问题</p>
+<p>比如</p>
+<p>s.size() &lt; n;</p>
+<p>n若是一个负值的int，则上述表达式就为true，负值n会自动地转换成一个较大的无符号值。</p>
+</blockquote>
+<h4 id="比较，赋值，相加"><a href="#比较，赋值，相加" class="headerlink" title="比较，赋值，相加"></a>比较，赋值，相加</h4><ul>
+<li><p>比较是按照字典序排序</p>
+</li>
+<li><p>string的赋值向内置类型看齐，允许把一个对象的值赋给另一个对象</p>
+<p>s1=s2，将s2的副本替换s1的内容</p>
+</li>
+<li><p>相加</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> s1 = <span class="hljs-string">&quot;hello,&quot;</span>,s2 = <span class="hljs-string">&quot;world\n&quot;</span>;<br><span class="hljs-built_in">string</span> s3 = s1 + s2;		<span class="hljs-comment">//s3的内容是hello，world\n</span><br>s1 += s2;					<span class="hljs-comment">//等价于s1 = s1 + s2</span><br></code></pre></div></td></tr></table></figure></li>
+<li><p>字面值与string相加</p>
+<p>字面值 + string -&gt; string</p>
+<p>但是字面值不能与字面值相加</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> s1 = <span class="hljs-string">&quot;hello&quot;</span> , s2 = <span class="hljs-string">&quot;world&quot;</span>;<br><span class="hljs-built_in">string</span> s3 = s1 + <span class="hljs-string">&quot;,&quot;</span> + s2 + <span class="hljs-string">&#x27;\n&#x27;</span>;<br><br><span class="hljs-built_in">string</span> s4 = s1 + <span class="hljs-string">&quot;,&quot;</span>;   				<span class="hljs-comment">//正确，string和字面量相加</span><br><span class="hljs-built_in">string</span> s5 = <span class="hljs-string">&quot;hello&quot;</span> + <span class="hljs-string">&quot;,&quot;</span>;				<span class="hljs-comment">//错误，两个运算对象都不是string</span><br><br><span class="hljs-built_in">string</span> s6 = s1 + <span class="hljs-string">&quot;,&quot;</span> + <span class="hljs-string">&quot;world&quot;</span>;<br><span class="hljs-built_in">string</span> s7 = <span class="hljs-string">&quot;hello&quot;</span> + <span class="hljs-string">&quot;,&quot;</span> + s2;			<span class="hljs-comment">//错误，不能将字面量直接相加</span><br><span class="hljs-comment">//s7这个语句等价于下面</span><br><span class="hljs-built_in">string</span> s7 = (<span class="hljs-string">&quot;hello&quot;</span> + <span class="hljs-string">&quot;,&quot;</span>) + s2;<br></code></pre></div></td></tr></table></figure>
+
+<p>上述标准与Java十分类似。</p>
+</li>
+</ul>
+<h3 id="cctype头文件"><a href="#cctype头文件" class="headerlink" title="cctype头文件"></a>cctype头文件</h3><p>上述头文件中的函数可以用于处理string对象中的字符</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210708163020776.png" srcset="/img/loading.gif" lazyload alt="image-20210708163020776"></p>
+<p>C++版本的C标准库头文件，兼容了C语言的，</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210708164313086.png" srcset="/img/loading.gif" lazyload alt="image-20210708164313086"></p>
+<h4 id="范围for语句修改sting全部字符"><a href="#范围for语句修改sting全部字符" class="headerlink" title="范围for语句修改sting全部字符"></a>范围for语句修改sting全部字符</h4><p>类似java中的增强for语句，处理全部字符的时候，就用基于范围的for语句</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">for</span>(declaration : expression)<br>    statement<br></code></pre></div></td></tr></table></figure>
+
+<p>expression是一个对象，表示一个序列，declaration部分负责定义一个变量，该变量将被用于访问序列中的基础元素，每次迭代，declaration部分的变量会被初始化为expression的下一个元素值</p>
+<p>下面一个简单例子，范围for语句把string对象中的字符每行一个的输出出来</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">str</span><span class="hljs-params">(<span class="hljs-string">&quot;some string&quot;</span>)</span></span>;<br><span class="hljs-comment">//每行输出str中的一个字符</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> c : str)			<span class="hljs-comment">//对于str中的每个字符</span><br>    <span class="hljs-built_in">cout</span> &lt;&lt; c &lt;&lt; <span class="hljs-built_in">endl</span>;		<span class="hljs-comment">//输出当前字符，后面紧跟一个换行符</span><br></code></pre></div></td></tr></table></figure>
+
+<p>上述c的类型是char，通过auto类型让编译器来决定c的类型。</p>
+<p>每次迭代，str的下一个字符被拷贝给c</p>
+<p>统计string对象中标点符号的个数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s</span><span class="hljs-params">(<span class="hljs-string">&quot;Hello World!!!&quot;</span>)</span></span>;<br><span class="hljs-comment">//punct_cnt的类型和s.size的返回类型一样</span><br><span class="hljs-keyword">decltype</span>（s.size()) punct_cnt = <span class="hljs-number">0</span>;<br><span class="hljs-comment">//统计s中标点符号的数量</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> c : s)		<span class="hljs-comment">//对于s中的每一个字符</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">ispunct</span>(c))	<span class="hljs-comment">//如果该字符是标点符号</span><br>        ++punct_cnt;<span class="hljs-comment">//将标点符号的计数值加一</span><br><span class="hljs-built_in">cout</span> &lt;&lt; punct_cnt<br>     &lt;&lt; <span class="hljs-string">&quot; punctuation characters in &quot;</span> &lt;&lt; s &lt;&lt; <span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>程序的输出结果是</p>
+<blockquote>
+<p>3 punctuation characters in Hello World!!!</p>
+</blockquote>
+<p>如果想<strong>改变string对象</strong>中字符的值，需要把循环变量定义成<strong>引用类型</strong>（如果不是引用类型，则值为复制，不能改变string自身的值）</p>
+<p>使用引用作为循环控制变量，这个变量实际上被依次绑定到了序列的每个元素上，使用这个引用，我们就能改变它绑定的字符</p>
+<p>比如下面的让字符串中所有字符都变为大写的程序</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">s</span><span class="hljs-params">(<span class="hljs-string">&quot;Hello Woeld!!!&quot;</span>)</span></span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;c : s)<br>    c = <span class="hljs-built_in">toupper</span>(c);<br><span class="hljs-built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>上述结果输出</p>
+<p>HELLO WORLD!!!</p>
+<h4 id="修改string部分字符"><a href="#修改string部分字符" class="headerlink" title="修改string部分字符"></a>修改string部分字符</h4><p>如果要处理string对象中的每一个字符，使用范围for语句是个好主意，然而有时候我们需要访问的只是其中一个字符，或者访问多个字符，但是遇到某个条件就要停下来。</p>
+<p>两种方法，下标运算符或者迭代器</p>
+<ol>
+<li><p>下标运算符</p>
+<p>[]，接收的输入参数是string::size_type类型</p>
+<p>下列程序为将s中的第一个词改成大写形式</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">sting s = <span class="hljs-string">&quot;some string&quot;</span>;<br><span class="hljs-keyword">for</span>(<br>    <span class="hljs-keyword">decltype</span>(s.size()) index = <span class="hljs-number">0</span>;<br>    index != s.size() &amp;&amp; !<span class="hljs-built_in">isspace</span>(s[index]);<br>    ++index;<br>   )<br></code></pre></div></td></tr></table></figure>
+
+<p>输出结果为SOME string</p>
+</li>
+</ol>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210708165736966.png" srcset="/img/loading.gif" lazyload alt="image-20210708165736966"></p>
+<p>下列程序是将0——15之间的十进制数转换成对应的十六进制形式</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> hexdigits = <span class="hljs-string">&quot;0123456789ABCDEF&quot;</span>;		<span class="hljs-comment">//可能的十六进制数字</span><br><span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Enter a series of numbers between 0 and 15&quot;</span><br>     &lt;&lt; <span class="hljs-string">&quot; separated by spaces. Hit ENTER when finished: &quot;</span><br>     &lt;&lt; <span class="hljs-built_in">endl</span>;<br><span class="hljs-built_in">string</span> result;										<span class="hljs-comment">//用于保存十六进制的字符串</span><br><span class="hljs-built_in">string</span>::size_type n;								<span class="hljs-comment">//用于保存从输入流读取的数</span><br><span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span> &gt;&gt; n)<br>    <span class="hljs-keyword">if</span>(n &lt; hexdigits.size()) 						<span class="hljs-comment">//忽略无效输入</span><br>        result += hexdigits[n];						<span class="hljs-comment">//得到对应的十六进制数字</span><br><span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">&quot;Your hex number is: &quot;</span>&lt;&lt;result &lt;&lt; <span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>输入12 0 5 15 8 15</p>
+<p>输出</p>
+<p>Your hex number is: C05F8F</p>
+<p>无论何时用到字符串的下标，都应该注意检查其合法性，在上面的程序中，下标n是string::size_type类型，也就是无符号类型，所以n可以确保大于或等于0，在实际使用时，还需检查n是否小于hexdigits的长度</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/string/">string</a>
+                    
+                      <a class="hover-with-bg" href="/tags/cctype/">cctype</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6string/">https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6string/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++自学——main处理命令行以及含有可变参数的函数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/">
+                        <span class="hidden-mobile">C++自学——vector</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>

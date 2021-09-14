@@ -1,0 +1,749 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>C++自学——vector - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trentliu.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/TreeHole/">
+                <i class="iconfont icon-wechat-fill"></i>
+                TreeHole
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/C++.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="C++自学——vector">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-07-14 15:00" pubdate>
+        2021年7月14日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      23
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">C++自学——vector</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年9月14日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="标准库类型vector"><a href="#标准库类型vector" class="headerlink" title="标准库类型vector"></a>标准库类型vector</h3><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>;<br></code></pre></div></td></tr></table></figure>
+
+<p>标准库类型vector表示<strong>对象的集合</strong>，其中<strong>所有对象的类型都相同</strong>。集合中的每个对象都有一个与之对应的索引，索引用于访问对象，因为<strong>vector容纳着其他对象</strong>，所以也经常被称为<strong>容器。</strong></p>
+<p>C++中有<strong>类模板和函数模板</strong>，其中vector是类模板，模板本身不是类或者函数，但是可以将模板看作为编译器生成类或函数编写的一份说明，编译器根据模板创建类或函数的过程称为实例化。使用模板的时候，需要指出编译器应该把类或函数实例化成何种类型。</p>
+<p>类模板，需要提供额外信息来指定模板到底实例化成什么样的类，需要提供哪些信息由模板决定，提供信息在模板名字后面跟一对尖括号</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ivec;					<span class="hljs-comment">//ivec保存int类型的对象</span><br><span class="hljs-built_in">vector</span>&lt;Sales_item&gt; Sales_vec;		<span class="hljs-comment">//保存Sales_item类型的对象</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt;&gt; file;		<span class="hljs-comment">//该向量的元素是vector对象</span><br></code></pre></div></td></tr></table></figure>
+
+<p>上面，编译器根据模板生成了三种不同的类型。</p>
+<blockquote>
+<p>vector是模板而不是类型，vector生成的类型必须包括vector中元素的类型，如vector&lt;int&gt;</p>
+</blockquote>
+<p>vector能容纳绝大多数类型的对象作为其元素，但是因为引用不是对象，因此不存在包含引用的vector</p>
+<p>除此之外，其他大多数（非引用）内置类型和类类型都可以构成vector对象，甚至组成vector的元素也可以是vector</p>
+<h3 id="定义和初始化"><a href="#定义和初始化" class="headerlink" title="定义和初始化"></a>定义和初始化</h3><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;T&gt; v1;						<span class="hljs-comment">//v1是一个空vector，它潜在的元素是T类型的，执行默认初始化</span><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;T&gt; <span class="hljs-title">v2</span><span class="hljs-params">(v1)</span></span>;					<span class="hljs-comment">//v2中包含v1所有元素的副本</span><br><span class="hljs-built_in">vector</span>&lt;T&gt; v2 = v1;					<span class="hljs-comment">//等价于v2(v1),v2包含有v1所有元素的副本</span><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;T&gt; <span class="hljs-title">v3</span><span class="hljs-params">(n,val)</span></span>;				<span class="hljs-comment">//v3包含了n个重复的元素，每个元素的值都是val</span><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;T&gt; <span class="hljs-title">v4</span><span class="hljs-params">(n)</span></span>;					<span class="hljs-comment">//v4包含了n个重复地执行了值初始化的对象</span><br><span class="hljs-built_in">vector</span>&lt;T&gt; v5&#123;a,b,c...&#125;;				<span class="hljs-comment">//v5包含了初始值个数的元素，每个元素被赋予相应的初始值。</span><br><span class="hljs-built_in">vector</span>&lt;T&gt; v5=&#123;a,b,c...&#125;				<span class="hljs-comment">//等价于v5&#123;a,b,c...&#125;</span><br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li><p>默认值，如果vector的对象为内置类型，设为0，若是某种类型比如string，则默认初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; svec; 			<span class="hljs-comment">//默认初始化，svec不含任何元素</span><br></code></pre></div></td></tr></table></figure>
+
+<p>空vector可以高效地往vector对象中添加元素，可以先定义一个空的vector，然后当运行时获取到元素的值后再逐一添加</p>
+<p>值初始化</p>
+<p>可以<strong>只提供vector对象容纳的元素数量</strong>而不用略去初始值，此时库会创建一个值初始化的元素初值，并把它赋给容器中的所有元素，这个值由vector对象中的元素类型决定</p>
+<p>比如如果是int这样的内置类型，则元素初始值自动设为0，如果元素是某种类型，比如string，则元素由类默认初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ivec</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;			<span class="hljs-comment">//10个元素，每个都初始化为0</span><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">svec</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;		<span class="hljs-comment">//10个元素，每个都是空string对象</span><br></code></pre></div></td></tr></table></figure>
+
+<p>如果vector对象中元素的不支持默认初始化，我们就必须提供初始的元素值，对这种类型的元素来说，只提供元素的数量而不设定初始值无法完成初始化工作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vi = <span class="hljs-number">10</span>;		<span class="hljs-comment">//错误，必须使用直接初始化的形式指定向量大小</span><br></code></pre></div></td></tr></table></figure>
+
+<p>这里的10是用来说明如何初始化vector对象的，我们用它的本意是想创建含有10个值初始化了的元素的vector对象，而非把数字10拷贝到vector中。因此此时不宜使用拷贝初始化</p>
+</li>
+<li><p>相同类型的vector才可以互相赋值</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ivec;			<span class="hljs-comment">//初始状态为空</span><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ivec2</span><span class="hljs-params">(ivec1)</span></span>;	<span class="hljs-comment">//把ivec的元素拷贝给ivec2</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ivec3 = ivec;	<span class="hljs-comment">//把ivec的元素拷贝给ivec3</span><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">svec</span><span class="hljs-params">(ivec2)</span></span>;	<span class="hljs-comment">//错误，svec的元素是string对象，不是int</span><br></code></pre></div></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p>初始化的真实含义依赖于传递初始值时用的花括号还是圆括号</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">v1</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;		<span class="hljs-comment">//v1有10个元素，每个值都是0</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; v2&#123;<span class="hljs-number">10</span>&#125;;		<span class="hljs-comment">//v2有1个元素，该元素的值是10</span><br><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">v3</span><span class="hljs-params">(<span class="hljs-number">10</span>,<span class="hljs-number">1</span>)</span></span>;	<span class="hljs-comment">//v3有10个元素，每个的值都是1</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; v4&#123;<span class="hljs-number">10</span>,<span class="hljs-number">1</span>&#125;;	<span class="hljs-comment">//v4有2个元素，值分别是10和1</span><br></code></pre></div></td></tr></table></figure>
+
+<p>圆括号，说明是用来构造vector对象</p>
+<p>花括号，则是列表初始化</p>
+<p>但是，若使用了花括号的形式，但是提供的值不能用来列表初始化，那么根据<strong>值的类型</strong>是否与<strong>元素类型</strong>相同来判断。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; v5&#123;<span class="hljs-string">&quot;hi&quot;</span>&#125;;   	<span class="hljs-comment">//列表初始化，v5有一个元素</span><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">v6</span><span class="hljs-params">(<span class="hljs-string">&quot;hi&quot;</span>)</span></span>;	<span class="hljs-comment">//错误，不能使用字符串字面值构建vector对象</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; v7&#123;<span class="hljs-number">10</span>&#125;;		<span class="hljs-comment">//v7有10个默认初始化的元素</span><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; v8&#123;<span class="hljs-number">10</span>,<span class="hljs-string">&quot;hi&quot;</span>&#125;;	<span class="hljs-comment">//v8有10个值为“hi”的元素</span><br></code></pre></div></td></tr></table></figure></li>
+</ul>
+<h4 id="添加元素"><a href="#添加元素" class="headerlink" title="添加元素"></a>添加元素</h4><p>使用成员函数 push_back</p>
+<p>比如想要构造一个0到99的vector对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; v2;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i!= <span class="hljs-number">100</span>; ++i)<br>    v2.push_back(i);<br></code></pre></div></td></tr></table></figure>
+
+<p>或者运行时才知道要输入的数量</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> word;<br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; text;<br><span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;word)&#123;<br>    text.push_back(word);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210708175119686.png" srcset="/img/loading.gif" lazyload alt="image-20210708175119686"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210708175130256.png" srcset="/img/loading.gif" lazyload alt="image-20210708175130256"></p>
+<blockquote>
+<p>如果在循环体内部包含有向vector对象添加元素的语句，则不能使用范围for循环。</p>
+</blockquote>
+<h4 id="vector的一些其他操作"><a href="#vector的一些其他操作" class="headerlink" title="vector的一些其他操作"></a>vector的一些其他操作</h4><ul>
+<li>与string大致差不多</li>
+</ul>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210708175343943.png" srcset="/img/loading.gif" lazyload alt="image-20210708175343943"></p>
+<ul>
+<li>访问方法也差不多，可以使用范围for语句处理vector对象中的所有元素</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; v&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>&#125;;<br><span class="hljs-comment">//求每个元素的平方</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;i : v)<br>    i *= i;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i : v)<br>    <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt;<span class="hljs-string">&quot; &quot;</span>;<br><span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
+
+<ul>
+<li>vector的size的返回值类型为vector定义的size_type，要使用size_type，首先指定它是由哪种类型定义的。<strong>vector对象的类型总是包含着元素的类型</strong></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;::size_type;   	<span class="hljs-comment">//正确</span><br><span class="hljs-built_in">vector</span>::size_type;			<span class="hljs-comment">//错误</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<ul>
+<li>vector的比较也是字典序，但是要求里面元素的值可以比较。</li>
+</ul>
+<ul>
+<li>vector的索引，也是从0开始计下标</li>
+</ul>
+<p>比如以10分为一个分数段统计成绩的数量：0<del>9，10</del>19，……90~99，100</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">unsigned</span>&gt; <span class="hljs-title">scores</span><span class="hljs-params">(<span class="hljs-number">11</span>,<span class="hljs-number">0</span>)</span></span>;	<span class="hljs-comment">//11个分数段，全都初始化为0</span><br><span class="hljs-keyword">unsigned</span> grade;<br><span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span> &gt;&gt; grade)&#123;<br>    <span class="hljs-keyword">if</span>(grade &lt;= <span class="hljs-number">100</span>)<br>        ++scores[grade/<span class="hljs-number">10</span>];<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<ul>
+<li>添加元素一定要用push_back，而不要用下标直接添加，是不对的，一个空的vector是根本不包含任何元素的。</li>
+</ul>
+<p>vector对象（以及string对象）的下标运算符可以用于访问已经存在的元素，而不能用于添加元素</p>
+<p>只能对明确已存在的元素执行下标操作</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ivec;				<span class="hljs-comment">//空vector对象</span><br><span class="hljs-built_in">cout</span> &lt;&lt; ivec[<span class="hljs-number">0</span>];				<span class="hljs-comment">//错误，invc不包含任何元素</span><br><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ivec2</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span></span>;			<span class="hljs-comment">//含有10个元素的vector对象</span><br><span class="hljs-built_in">cout</span> &lt;&lt; ivec2[<span class="hljs-number">10</span>];				<span class="hljs-comment">//错误，ivec元素的合法索引是从0到9</span><br></code></pre></div></td></tr></table></figure>
+
+<p>以下的代码试图为vector对象ivec添加10个元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ivec;		<span class="hljs-comment">//空vector对象</span><br><span class="hljs-keyword">for</span> (<span class="hljs-keyword">decltype</span>(ivec.size()) ix = <span class="hljs-number">0</span>; ix != <span class="hljs-number">10</span>; ++ix)<br>    ivec[ix] = ix;			<span class="hljs-comment">//严重错误，ivec不包含任何元素</span><br></code></pre></div></td></tr></table></figure>
+
+<p>ivec是一个空vector，根本不包含任何元素，当然也就不能通过下标去访问任何元素，正确的方法是使用push_bak</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">decltype</span>(ivec.size()) ix = <span class="hljs-number">0</span>; ix != <span class="hljs-number">10</span>; ++ix)<br>    ivec.push_back(ix);			<span class="hljs-comment">//正确，添加一个新元素，该元素是ix</span><br></code></pre></div></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/C/">C++</a>
+                    
+                      <a class="hover-with-bg" href="/tags/vector/">vector</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/">https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6string/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++自学——标准库类型String以及cctype头文件</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/">
+                        <span class="hidden-mobile">C++自学——数组</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
