@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      319 字
+      931 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      10
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月14日 晚上
+                  本文最后更新于：2021年9月15日 晚上
                 
               </p>
             
@@ -292,9 +292,35 @@
 <p>调用</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">cout</span> &lt;&lt; shorterstring(s1, s2) &lt;&lt; <span class="hljs-built_in">endl</span>;<br></code></pre></div></td></tr></table></figure>
 
-<p>编译过程中展开</p>
+<p>编译过程中展开成类似于下面的形式</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">cout</span> &lt;&lt; (s1.size() &lt; s2.size() ? s1 : s2) &lt;&lt; <span class="hljs-built_in">endl</span><br></code></pre></div></td></tr></table></figure>
 
+<p>从而消除了shorterString函数的运行时开销</p>
+<p>只要在shorterString函数的返回类型前面加上关键字inline，这样就可以将它声明成内联函数了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//内联版本：寻找两个string对象中较短的那个</span><br><span class="hljs-keyword">inline</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;<br>shorterString(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s1, <span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s2)<br>&#123;<br>    <span class="hljs-keyword">return</span> s1.size() &lt;= s2.size() ? s1 : s2;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>内联说明只是向编译器发出的一个请求，编译器可以选择忽略这个请求。</p>
+</blockquote>
+<p>一般来说，内联机制由于优化规模较小，频繁调用的函数，很多编译器都不支持内敛的递归函数。</p>
+<h3 id="constexpr函数"><a href="#constexpr函数" class="headerlink" title="constexpr函数"></a>constexpr函数</h3><p>constexptr函数是指能用于常量表达式的函数，定义constexpr函数的方法与其他函数类似，不过要遵循几项规定：函数的<strong>返回类型及所有形参类型都得是字面值类型</strong>，而且函数体中必须有且<strong>只有一条retrun语句</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> <span class="hljs-title">new_sz</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>; &#125;<br><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> foo = new_sz(); <span class="hljs-comment">//正确：foo是一个常量表达式</span><br></code></pre></div></td></tr></table></figure>
+
+<p>new_sz定义成无参数的constexpr函数，因为编译器能在程序编译时验证new_sz函数返回的是常量表达式，所以可以用new_sz函数初始化contexpr类型的变量foo</p>
+<p>执行初始化任务时，编译器把对constexpr函数的调用替换成其结果值，为了能在编译过程中随时展开，constexpr函数被隐式地指定为内联函数。</p>
+<p>constexpr函数体也可以包含其他语句，只要这些语句运行时不执行任何操作就行，比如空语句，类型别名，using声明。</p>
+<p>我们也允许一个constexpr函数地返回值不是一个常量</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//如果arg是常量表达式，则scale(arg)也是一个常量表达式</span><br><span class="hljs-function">contexpr <span class="hljs-keyword">size_t</span> <span class="hljs-title">scale</span><span class="hljs-params">(<span class="hljs-keyword">size_t</span> cnt)</span> </span>&#123; <span class="hljs-keyword">return</span> new_sz() * cnt;&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>当scale的实参是常量表达式时，它的返回值也是常量表达式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">int</span> arr[scale(<span class="hljs-number">2</span>)];		<span class="hljs-comment">//正确，scale(2)是常量表达式</span><br><span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>;				<span class="hljs-comment">//i不是常量表达式</span><br><span class="hljs-keyword">int</span> a2[scale(i)];		<span class="hljs-comment">//错误，scale(i)不是常量表达式</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+<h3 id="内联函数和constexpr函数应该放在头文件内"><a href="#内联函数和constexpr函数应该放在头文件内" class="headerlink" title="内联函数和constexpr函数应该放在头文件内"></a>内联函数和constexpr函数应该放在头文件内</h3><p>内联函数和constexpr函数可以在程序中多次定义，</p>
+<p>不过对于某个给定的内联函数或者constexpr函数，它的多个定义必须完全一致，因此内联函数和constexpr函数通常定义在头文件。</p>
 
             </div>
             <hr>

@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.5k 字
+      6.4k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      52
+      75
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月14日 晚上
+                  本文最后更新于：2021年9月16日 下午
                 
               </p>
             
@@ -445,11 +445,73 @@
 <p>构建一个新的类，用于探究类的一些特性。</p>
 <p>定义一个新的类型成员</p>
 <p>Screen表示一个显示器的窗口，每个Screen包含一个能用于保存Screen内容的string成员和三个string::size_type的类型的成员，它们分别表示光标的位置以及屏幕的高和宽</p>
-<p>除了定义数据和函数成员之外，类还可以自定义某种类型在类中的别名，由类定义的类型名字和其他成员一样存在访问限制，可以说public或者private的一种。</p>
-<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>::size_type pos;<br>    <span class="hljs-keyword">private</span>:<br>    pos curor ,k<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p>除了定义数据和函数成员之外，类还可以<strong>自定义某种类型在类中的别名</strong>，由类定义的类型名字和其他成员一样存在访问限制，可以说public或者private的一种。</p>
+<h4 id="自定义类中的别名"><a href="#自定义类中的别名" class="headerlink" title="自定义类中的别名"></a>自定义类中的别名</h4><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>::size_type pos;<br>    <span class="hljs-comment">//等价于</span><br>    <span class="hljs-comment">//using pos = std::string::size_type;</span><br>    <span class="hljs-keyword">private</span>:<br>    pos curor = <span class="hljs-number">0</span>;<br>    pos height = <span class="hljs-number">0</span>, width = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">std</span>::stirng contexts;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>在Screen的public部分定义了pos，这样用户就可以使用这个名字。</p>
+<p>Screen的用户不应该知道Screen使用了一个string对象来存放它的数据，因此通过把pos定义成public成员可以隐藏Screen实现的细节。</p>
+<blockquote>
+<p>用来定义类型的成员必须先定义后使用，这一点与普通成员有所区别。</p>
+</blockquote>
+<p>为了使类更加实用，需要添加一个构造函数令用户能够定义屏幕的尺寸和内容，以及其他两个成员，分别负责移动光标和读取给定位置的字符</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-keyword">typedef</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>::size_type pos;<br>    <br>    Screen() = <span class="hljs-keyword">default</span>;		<span class="hljs-comment">//因为Screen有另一个构造函数，本函数是必需的</span><br>    Screen(pos ht, pos wd, <span class="hljs-keyword">char</span> c): height(ht), width(wd), contents(ht * wd, c) &#123;&#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">char</span> <span class="hljs-title">get</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> 					<span class="hljs-comment">//读取光标处的字符</span></span><br><span class="hljs-function">    </span>&#123; <span class="hljs-keyword">return</span> contents[cursor]; &#125;		<span class="hljs-comment">//隐式内联</span><br>    <br>    <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">char</span> <span class="hljs-title">get</span><span class="hljs-params">(pos ht, pos wd)</span> <span class="hljs-keyword">const</span></span>;		<span class="hljs-comment">//显式内联</span><br>    <span class="hljs-function">Screen &amp;<span class="hljs-title">move</span><span class="hljs-params">(pos r,pos c)</span></span>;					<span class="hljs-comment">//能在之后被设为内联</span><br>    <span class="hljs-keyword">private</span>:<br>    pos curor = <span class="hljs-number">0</span>;<br>    pos height = <span class="hljs-number">0</span>, width = <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">std</span>::stirng contexts;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p><strong>定义</strong>在类<strong>内部</strong>的成员函数是<strong>自动inline</strong>的，因此Screen的构造函数和返回光标所指字符的get函数默认是inline函数。</p>
+<p>可以在类的<strong>内部</strong>把inline作为<strong>声明</strong>的一部分显式地声明成员函数，也能在类的<strong>外部</strong>用inline关键字修饰函数的定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">inline</span>								<span class="hljs-comment">//可以在函数的定义处指定inline</span><br><span class="hljs-function">Screen &amp;<span class="hljs-title">Screen::move</span><span class="hljs-params">(pos r,pos c)</span></span><br><span class="hljs-function"></span>&#123;<br>    pos row = r * width;			<span class="hljs-comment">//计算行的位置</span><br>    cursor = row + c;				<span class="hljs-comment">//在行内将光标移动到指定的列</span><br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;					<span class="hljs-comment">//以左值的形式返回对象</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">char</span> <span class="hljs-title">Screen::get</span><span class="hljs-params">(pos r, pos c)</span> <span class="hljs-keyword">const</span> 	<span class="hljs-comment">//在类的内部声明成inline</span></span><br><span class="hljs-function"></span>&#123;<br>    pos row = r * width;		<span class="hljs-comment">//计算行的位置</span><br>    <span class="hljs-keyword">return</span> contents[row + c];	<span class="hljs-comment">//返回给定列的字符</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>虽然我们无须在声明和定义的地方同时说明inline，但是这么做其实是合法的，不过最好只在类的外部定义的地方说明inline，这样可以使类更容易理解。</p>
+<h3 id="重载成员函数"><a href="#重载成员函数" class="headerlink" title="重载成员函数"></a>重载成员函数</h3><p>成员函数也可以被重载，同样只要函数之间参数的数量和/或类型上有所区别就行</p>
+<p>成员函数的匹配过程，同样与非成员函数非常类似</p>
+<h3 id="可变数据成员"><a href="#可变数据成员" class="headerlink" title="可变数据成员"></a>可变数据成员</h3><p>希望能修改类的某个数据成员，即使是在一个const成员函数内，可以通过在变量的声明中加入mutable关键字做到这一点。</p>
+<p>可变数据成员 永远不会是const，即使它是const对象的成员，因此，一个const成员函数可以改变一个可变成员的指。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">some_member</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;<br>    <span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">mutable</span> <span class="hljs-keyword">size_t</span> access_ctr;		<span class="hljs-comment">//即使在一个const对象内也能被修改。</span><br>    <span class="hljs-comment">//其他成员与之前的版本一致</span><br>&#125;;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Screen::some_member</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span><br><span class="hljs-function"></span>&#123;<br>    ++access_ctr;			<span class="hljs-comment">//保存一个计数值，用于记录成员函数被调用的次数</span><br>    <span class="hljs-comment">//该成员需要完成的其他工作。</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>尽管some_memeber是一个const成员函数，它仍能够改变access_ctr的值。该成员是个可变成员，因此任何函数，包括const函数在内都能改变它的值。</p>
+<h3 id="类数据成员的初始值"><a href="#类数据成员的初始值" class="headerlink" title="类数据成员的初始值"></a>类数据成员的初始值</h3><p>继续定义一个窗口管理类，并用它表示显示器上的一组Screen。这个类将包含一个Screen类型的vector，每个元素表示一个特定的Screen，默认情况下，我们希望Window_mgr类开始时总有一个默认初始化的Screen。</p>
+<p>最好把这个默认值声明成一个类内初始值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window_mgr</span> &#123;</span><br>    <span class="hljs-keyword">private</span>:<br>    <span class="hljs-comment">//这个Window_mgr追踪的Screen</span><br>    <span class="hljs-comment">//默认情况下，一个Window_mgr包含一个标准尺寸的空白Screen</span><br>    std::vector&lt;Screen&gt; screens&#123;Screen(24,80,&#x27;&#x27;)&#125;;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>初始化类类型的成员时，需要为构造函数传递一个符合成员类型的实参</p>
+<p>我们使用一个单独的元素值对vector成员执行了列表初始化，这个Screen的值被传递给vector&lt;Screen&gt;的构造函数，从而创建了一个单元素的vector对象。</p>
+<blockquote>
+<p>类内初始化必须使用 <strong>= 的初始化形式</strong>，<strong>或者花括号括起来的直接初始化形式</strong>。</p>
+</blockquote>
+<h4 id="返回-this的成员函数"><a href="#返回-this的成员函数" class="headerlink" title="返回*this的成员函数"></a>返回*this的成员函数</h4><p>继续添加一些函数，负责设置光标所在位置的字符或者其他任一给定位置的字符</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">Screen &amp;<span class="hljs-title">set</span><span class="hljs-params">(<span class="hljs-keyword">char</span>)</span></span>;<br>    <span class="hljs-function">Screen &amp;<span class="hljs-title">set</span><span class="hljs-params">(pos,pos,<span class="hljs-keyword">char</span>)</span></span>;<br>    <span class="hljs-comment">//其他成员和之前的版本一致</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> Screen &amp;<span class="hljs-title">Screen::set</span><span class="hljs-params">(<span class="hljs-keyword">char</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    contents[cursor] = c;			<span class="hljs-comment">//设置当前光标所在位置的新值</span><br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;					<span class="hljs-comment">//将this对象作为左值返回</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> Screen &amp;<span class="hljs-title">Screen::set</span><span class="hljs-params">(pos r, pos col, <span class="hljs-keyword">char</span> ch)</span></span><br><span class="hljs-function"></span>&#123;<br>    contents[r*width + col] = ch;	<span class="hljs-comment">//设置给定位置的新值</span><br>    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;					<span class="hljs-comment">//将this对象作为左值返回</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>和move操作一样，set成员的返回值是调用set对象的引用。</p>
+<p>返回引用的函数是左值的，意味着这些函数返回的是对象本身而非对象的副本</p>
+<p>将一系列这样的操作连接在一条表达式中的话</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//把光标移动到一个指定的位置，然后设置该位置的字符值</span><br>myScreen.move(<span class="hljs-number">4.0</span>).<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;#&#x27;</span>);<br></code></pre></div></td></tr></table></figure>
+
+<p>这些操作都在一个对象上执行，上面的表达式中，首先移动myScreen内的光标，然后设置myScreen的contents成员，上述语句实际上等价于</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">myScreen.move(<span class="hljs-number">4.0</span>);<br>myScreen.<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;#&#x27;</span>);<br></code></pre></div></td></tr></table></figure>
 
 
 
+<p>如果令move和set返回Screen而非Screen&amp;，则上述语句的行为将大不相同</p>
+<p>此例中等价</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//如果move返回Screen而非Screen&amp;</span><br>Screen temp = myScreen.move(<span class="hljs-number">4.0</span>);	<span class="hljs-comment">//对返回值进行拷贝</span><br>temp.<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;#&#x27;</span>);						<span class="hljs-comment">//不会改变myScreen的contents</span><br></code></pre></div></td></tr></table></figure>
+
+<p>假如当初我们定义的返回类型不是引用，则move的返回值将是*this的副本，因此调用set只能改变临时副本，而不能改变myScreen的值</p>
+<h4 id="基于const的重载"><a href="#基于const的重载" class="headerlink" title="基于const的重载"></a>基于const的重载</h4><p>通过区分成员函数是否是const的，我们可以对其进行重载，其原因与我们之前根据指针参数是否指向const而重载函数的原因差不多</p>
+<p>因为<strong>非常量版本的函数对于常量对象是不可用的</strong>，所以我们<strong>只能在一个常量对象上调用const成员函数</strong>，另一方面，虽然可以<strong>在非常量对象上</strong>调用常量版本或非常量版本，但显然此时<strong>非常量版本是一个更好的匹配。</strong></p>
+<p>下面这个例子，定义一个名为do_display的私有成员，由它负责打印Screen的实际工作，所有的display操作都将调用这个函数，然后返回执行操作的对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//根据对象是否是const重载了display函数</span><br>    <span class="hljs-function">Screen &amp;<span class="hljs-title">display</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::ostream &amp;os)</span></span><br><span class="hljs-function">    </span>&#123; do_display(os); <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;&#125;<br>    <span class="hljs-function"><span class="hljs-keyword">const</span> Screen &amp;<span class="hljs-title">display</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::ostream &amp;os)</span> <span class="hljs-keyword">const</span></span><br><span class="hljs-function">    </span>&#123; do_display(os); <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;&#125;<br>    <br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-comment">//该函数负责显示Screen的内容</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">do_display</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::ostream &amp;os)</span> <span class="hljs-keyword">const</span> </span>&#123;os &lt;&lt; contents;&#125;<br>    <span class="hljs-comment">//其他成员与之前的版本一致</span><br>    <br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>当一个成员调用另外一个成员的时候，this指针在其中隐式地传递，</p>
+<p>因此display调用do_display地时候，它的this指针隐式地传递给do_display。</p>
+<p>当display的非常量版本调用do_display的时候，它的this指针隐式的从指向非常量的指针转换成指向常量的指针。</p>
+<p>do_display完成后，display函数各自返回解引用this所得的对象，在非常量版本中，this指向一个非常量对象，因此display返回一个普通的（非常量）引用，而const成员返回一个常量引用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function">Screen <span class="hljs-title">myScreen</span><span class="hljs-params">(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">const</span> Screen <span class="hljs-title">blank</span><span class="hljs-params">(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>)</span></span>;<br>myScreen.<span class="hljs-built_in">set</span>(<span class="hljs-string">&#x27;#&#x27;</span>).display(<span class="hljs-built_in">cout</span>);		<span class="hljs-comment">//调用非常量版本</span><br>blank.display(<span class="hljs-built_in">cout</span>);					<span class="hljs-comment">//调用常量版本</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210916163905922.png" srcset="/img/loading.gif" lazyload alt="image-20210916163905922"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210916163943402.png" srcset="/img/loading.gif" lazyload alt="image-20210916163943402"></p>
 
             </div>
             <hr>
@@ -499,9 +561,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/20/%E5%8D%8E%E7%A7%91%E8%90%8C%E6%96%B0%E7%94%9F%E5%AD%98%E6%8C%87%E5%8D%97/">
+                      <a href="/2021/07/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">华科萌新生存指南</span>
+                        <span class="hidden-mobile">C++自学——类</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
