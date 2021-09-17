@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.7k 字
+      10k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      90
+      116
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月16日 晚上
+                  本文最后更新于：2021年9月17日 下午
                 
               </p>
             
@@ -557,6 +557,113 @@
 <p>即使我们仅仅用声明友元地类的成员调用该友元函数，它也必须是被声明过的</p>
 <figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">X</span> &#123;</span><br>    <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-comment">/*友元函数可以定义在类的内部*/</span>&#125;<br>    <br>    X() &#123;f();&#125;		<span class="hljs-comment">//错误，f还没被声明</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">h</span><span class="hljs-params">()</span></span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">X::g</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> f(); &#125;		<span class="hljs-comment">//错误，f还没被声明</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>;						<span class="hljs-comment">//声明那个定义在X中的函数。</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">X::h</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> f(); &#125;		<span class="hljs-comment">//正确，现在f的声明在作用域中了</span><br></code></pre></div></td></tr></table></figure>
 
+
+
+
+
+<h3 id="类的作用域"><a href="#类的作用域" class="headerlink" title="类的作用域"></a>类的作用域</h3><p>每个类都定义它自己的作用域，一个类就是一个作用域</p>
+<p>类的作用域之外，类的数据和函数成员只能由对象、引用或者指针使用成员访问运算符来访问，对于类类型的成员则使用作用域运算符访问。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">Screen::pos ht = <span class="hljs-number">24</span>, wd = <span class="hljs-number">80</span>;		<span class="hljs-comment">//使用Screen定义的pos类型</span><br><span class="hljs-function">Screen <span class="hljs-title">scr</span><span class="hljs-params">(ht, wd, <span class="hljs-string">&#x27; &#x27;</span>)</span></span>;<br>Screen *p = &amp;scr;<br><span class="hljs-keyword">char</span> c = scr.get();				<span class="hljs-comment">//访问scr对象的get成员</span><br>c = p -&gt; get();					<span class="hljs-comment">//访问p所指对象的get成员</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>一旦遇到类名，定义的剩余部分就在类的作用域之内，剩余部分指的是参数列表和函数体。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Window_mgr::clear</span><span class="hljs-params">(ScreenIndex i)</span></span><br><span class="hljs-function"></span>&#123;<br>    Screen &amp;s = screen[i];<br>    s.contents = <span class="hljs-built_in">string</span>(s.height * s.width, <span class="hljs-string">&#x27; &#x27;</span>);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>在参数列表前，由一个Window_mgr::，让编译器知道函数在Window_mgr作用域中，因此参数列表和函数体可以调用类中的内容</p>
+<p>但是返回类型是出现在函数名之前，返回类型中使用的名字位于类的作用域之外，这时返回类型就必须指明它是哪个类的成员。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window_mgr</span> &#123;</span><br>    <span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//向窗口添加一个Screen，返回它的编号</span><br>    <span class="hljs-function">ScreenIndex <span class="hljs-title">addScreen</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Screen&amp;)</span></span>;<br>    <span class="hljs-comment">//其他成员与之前的版本一致</span><br>&#125;;<br><span class="hljs-comment">//首先处理返回类型，之后我们才进入Window_mgr的作用域</span><br><span class="hljs-function">Window_mgr::ScreenIndex    <span class="hljs-title">Window_mgr::addScreen</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Screen &amp;s)</span></span><br><span class="hljs-function"></span>&#123;<br>    screen.push_back(s);<br>    <span class="hljs-keyword">return</span> screen.size() - <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="构造函数进阶"><a href="#构造函数进阶" class="headerlink" title="构造函数进阶"></a>构造函数进阶</h3><h4 id="构造函数的初始值有时候必不可少"><a href="#构造函数的初始值有时候必不可少" class="headerlink" title="构造函数的初始值有时候必不可少"></a>构造函数的初始值有时候必不可少</h4><p>如果没有在<strong>构造函数的初始值列表中显式地初始化成员</strong>（相当于定义就赋值），则该成员将在构造函数体<strong>之前进行默认初始化</strong>（构造函数中的已经是初始化之后的了）</p>
+<p>如果成员是const或者是引用，必须将其初始化，类似的，当成员属于某种类类型且该类没有定义构造函数时，也必须将这个成员初始化。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConstRef</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    ConstRef(<span class="hljs-keyword">int</span> li);<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">int</span> i;<br>    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci;<br>    <span class="hljs-keyword">int</span> &amp;ri;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>ci是常量，ri是引用，都必须被初始化</p>
+<p>如果我们没有为它们提供构造函数初始值的话将报错</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//错误：ci和ri必须被初始化</span><br>ConstRef::ConstRef(<span class="hljs-keyword">int</span> li)<br>&#123;<br>    i = ii;		<span class="hljs-comment">//正确</span><br>    ci = ii;	<span class="hljs-comment">//错误，不能给const赋值</span><br>    ri = ii;		<span class="hljs-comment">//错误，ri没被初始化</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>随着构造函数体一开始执行，初始化就完成了，我们初始化const或者引用类型的数据成员的唯一机会就是通过构造函数初始值，因此该构造函数的正确形式应该是：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//正确，显式地初始化引用和const成员</span><br>ConstRef::ConstRef(<span class="hljs-keyword">int</span> ii): i(ii), ci(ii), ri(i) &#123;&#125;<br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>如果成员是const，引用，或者属于某种未提供默认构造函数地类类型，我们必须通过构造函数初始值列表为这些成员提供初始值。</p>
+</blockquote>
+<blockquote>
+<p>很多类中，初始化和赋值的区别事关底层效率：初始化直接初始化数据成员，赋值则是先初始化再赋值。</p>
+<p>一些数据成员必须被初始化，因此要养成使用构造函数初始值的习惯。</p>
+</blockquote>
+<h4 id="成员初始化的顺序"><a href="#成员初始化的顺序" class="headerlink" title="成员初始化的顺序"></a>成员初始化的顺序</h4><p>构造函数初始值列表只说明用于初始化成员的值，而不限定初始化的具体执行顺序</p>
+<p>成员的初始化顺序与它们在<strong>类定义中出现的顺序一致</strong>，第一个成员先被初始化，然后第二个，以此类推，构造函数初始值列表中初始值的前后位置关系不会影响实际的初始化顺序。</p>
+<p>只有一个成员是用另一个成员初始化额情况，两个成员的初始化顺序才比较重要</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">X</span> &#123;</span><br>    <span class="hljs-keyword">int</span> i;<br>    <span class="hljs-keyword">int</span> j;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//未定义的，i在j之前被初始化</span><br>    X(<span class="hljs-keyword">int</span> val) : j(val), i(j) &#123;&#125;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>上述例子其实是错误的，从构造函数初始值的形式上看仿佛是先用val初始化了j，再用j初始化i，但实际上由于定义顺序，i先被未定义的j初始化。</p>
+<blockquote>
+<p>最好令构造函数初始值的顺序与成员声明的顺序保持一致，如果可能的话，尽量避免使用某些成员初始化其他成员。</p>
+</blockquote>
+<p>Sales_data的成员中有一个string类型的bookNo，下面两个构造函数，实际上的结果等价。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">Sales_data() = <span class="hljs-keyword">default</span>;<br><br>Sales_data(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s = <span class="hljs-string">&quot;&quot;</span>): bookNo(s) &#123;&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>默认构造函数隐式地使用string的默认构造函数初始化bookNo，接收string实参的构造函数使用这个实参初始化bookNo</p>
+<p>所以实际上，构造函数为我们的类提供了默认构造函数。</p>
+<h3 id="委托构造函数"><a href="#委托构造函数" class="headerlink" title="委托构造函数"></a>委托构造函数</h3><p>C++11新标准扩展了函数初始值的功能，是我们可以自定义<strong>委托构造函数</strong></p>
+<p>一个委托构造函数也有一个成员初始值的列表和一个函数体，其他构造函数使用它的时候参数列表一定要匹配</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sales_data</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//非委托构造函数使用对应的实参初始化成员</span><br>    Sales_data(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s, <span class="hljs-keyword">unsigned</span> cnt, <span class="hljs-keyword">double</span> price): bookNo(s), units_sold(cnt), revenue(cnt*price) &#123; &#125;<br>    <br>    <br>    <span class="hljs-comment">//其余构造函数全部委托给另一个构造函数</span><br>    Sales_data() : Sales_data(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>) &#123;&#125;<br>    Sales_data() : Sales_data(s, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>) &#123;&#125;<br>    Sales_data(<span class="hljs-built_in">std</span>::istream &amp;is) : Sales_data()<br>    &#123; read(is, *<span class="hljs-keyword">this</span>);&#125;<br>    <br>    <span class="hljs-comment">//其他成员与之前的版本一致。</span><br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>三个构造函数都委托了工作。</p>
+<p>第三个接受istream&amp;的构造函数也是委托构造函数，它委托给了默认的构造函数，默认构造函数又接着委托给三参数的构造函数，当这些受委托的构造函数执行完后，接着执行istream&amp;构造函数体的内容。</p>
+<p>一个构造函数委托给另一个构造函数时，受委托的构造函数的初始值和函数体被依次执行。</p>
+<h4 id="使用默认构造函数"><a href="#使用默认构造函数" class="headerlink" title="使用默认构造函数"></a>使用默认构造函数</h4><p>下面能正常编译通过</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function">Sales_data <span class="hljs-title">obj</span><span class="hljs-params">()</span></span>;		<span class="hljs-comment">//正确，定义了一个函数而非对象</span><br><span class="hljs-keyword">if</span>(obj.isbn() == Primer_5th_ed.isbn())   <span class="hljs-comment">//错误，obj是个函数</span><br></code></pre></div></td></tr></table></figure>
+
+<p>如果想定义一个使用默认构造函数进行初始化的对象，正确的方法是去掉对象名之后的空括号对</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//正确，obj是一个默认初始化对象</span><br>Sales_data obj;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h4 id="隐式的类类型转换"><a href="#隐式的类类型转换" class="headerlink" title="隐式的类类型转换"></a>隐式的类类型转换</h4><p>比如Sales_data类，有两个构造函数，分别接受string实参和istream实参</p>
+<p>在需要使用Sales_data的地方，我们可以直接使用String或者istream代替。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">string</span> null_book = <span class="hljs-string">&quot;9-999-99999-9&quot;</span>;<br><span class="hljs-comment">//构造一个临时的Sales_data对象</span><br><span class="hljs-comment">//该对象的units_sold和revenue等于0，bookNo等于null_book</span><br>item.combine(null_book);<br></code></pre></div></td></tr></table></figure>
+
+<p>编译器用给定的string自动创建了一个Sales_data对象，新生成的这个临时的Sales_data对象被传递给了combine。combine的参数是一个常量引用，所以我们可以给该参数传递一个临时量。</p>
+<p>隐式地类类型转换只允许一步</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//错误，需要用户定义的两种转换</span><br><span class="hljs-comment">//1.把&quot;9-999-99999-9&quot;转换为string</span><br><span class="hljs-comment">//2.把临时的string转换成Sales_data</span><br>item.combine(<span class="hljs-string">&quot;9-999-99999-9&quot;</span>);<br></code></pre></div></td></tr></table></figure>
+
+<p>如果想完成如上的调用，可以显式地把字符串转换成string或者Sales_data对象</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//正确：显式地转换成string，隐式地转换成Sales_data</span><br>item.combine(<span class="hljs-built_in">string</span>(<span class="hljs-string">&quot;9-999-99999-9&quot;</span>));<br><span class="hljs-comment">//正确：隐式地转换成string，显式地转换成Sales_data</span><br>item.combine(Sales_data(<span class="hljs-string">&quot;9-999-99999-9&quot;</span>));<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h5 id="抑制构造函数定义的隐式转换"><a href="#抑制构造函数定义的隐式转换" class="headerlink" title="抑制构造函数定义的隐式转换"></a>抑制构造函数定义的隐式转换</h5><p>可以将构造函数声明为explicit来阻止</p>
+<figure class="highlight"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sales_data</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    Sales_data = <span class="hljs-keyword">default</span>;<br>    Sales_data(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s, <span class="hljs-keyword">unsigned</span> n, <span class="hljs-keyword">double</span> p): bookNo(s), units_sold(n), revenue(p*n) &#123; &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Sales_data</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;s)</span> : <span class="hljs-title">bookNo</span><span class="hljs-params">(s)</span> </span>&#123; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-title">Sales_data</span><span class="hljs-params">(istream&amp; is)</span></span><br><span class="hljs-function">    <span class="hljs-comment">//其他成员与之前地版本一致。</span></span><br><span class="hljs-function">    </span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>这样，之前的两种用法就都不对了，直接无法通过编译。</p>
+<ul>
+<li><p>explicit只对一个实参的构造函数有效，多个实参的构造函数也不能进行隐式转换。</p>
+</li>
+<li><p>只能在类内声明函数的时候使用，不能在类外定义的时候出现。</p>
+</li>
+</ul>
+<ul>
+<li><p>explicit构造函数只能用于直接初始化</p>
+<p>发生隐式转换的一种情况是拷贝初始化（=），因此若类被限定explicit，就只能直接初始化而不能拷贝初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function">Sales_data <span class="hljs-title">item1</span><span class="hljs-params">(null_book)</span></span>;		<span class="hljs-comment">//正确，直接初始化</span><br><span class="hljs-comment">//错误，不能将explicit的构造函数用于拷贝形式的初始化</span><br>Sales_data item2 = null_book;<br></code></pre></div></td></tr></table></figure></li>
+</ul>
+<h4 id="强制转换，显式使用构造函数"><a href="#强制转换，显式使用构造函数" class="headerlink" title="强制转换，显式使用构造函数"></a>强制转换，显式使用构造函数</h4><p>如果构造函数被explicit限定了，可以使用显式地强制进行转换</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//正确，实参是一个显式构造的Sales_data对象</span><br>item.combine(Sales_data(null_book));<br><span class="hljs-comment">//正确，static_cast可以使用explicit的构造函数</span><br>item.combine(<span class="hljs-keyword">static_cast</span>&lt;Sales_data&gt;(<span class="hljs-built_in">cin</span>));<br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>接受单参数的const char* 的string的构造函数不是explicit</p>
+<p>接受一个容量参数的vector的构造函数，是explicit的</p>
+<h3 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h3><ul>
+<li>所有的成员都是public</li>
+<li>没有定义任何构造函数</li>
+<li>没有类内初始值</li>
+<li>没有基类和vritual函数</li>
+</ul>
 
             </div>
             <hr>
