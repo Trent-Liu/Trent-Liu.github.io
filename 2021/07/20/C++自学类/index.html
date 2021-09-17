@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      6.4k 字
+      7.7k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      75
+      90
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月16日 下午
+                  本文最后更新于：2021年9月16日 晚上
                 
               </p>
             
@@ -512,6 +512,51 @@
 
 <p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210916163905922.png" srcset="/img/loading.gif" lazyload alt="image-20210916163905922"></p>
 <p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210916163943402.png" srcset="/img/loading.gif" lazyload alt="image-20210916163943402"></p>
+<h3 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h3><p>每个类定义了唯一的类型，对于两个类来说，即使它们的成员完全一样，这两个类也是两个不同的类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">First</span> &#123;</span><br>    <span class="hljs-keyword">int</span> memi;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getMem</span><span class="hljs-params">()</span></span>;<br>&#125;;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Second</span> &#123;</span><br>    <span class="hljs-keyword">int</span> memi;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getMem</span><span class="hljs-params">()</span></span>;<br>&#125;;<br>First obj1;<br>Second obj2;		<span class="hljs-comment">//错误：obj1和obj2的类型不同</span><br></code></pre></div></td></tr></table></figure>
+
+<blockquote>
+<p>即使两个类的成员列表完全一致，它们也是不同的类型，对于一个类来说，它的成员和任何其他类的成员都不是一回事。</p>
+</blockquote>
+<p>类可以只声明而不定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span>;</span>			<span class="hljs-comment">//Screen类的声明</span><br></code></pre></div></td></tr></table></figure>
+
+<p>这种声明有时被称为 <strong>前向声明</strong>，它向程序中引入了名字Screen并指明Screen是一种类类型。</p>
+<p>但是它在声明后，定义前，是一个<strong>不完全类型</strong>。只知道它是类，但是不知道它到底包含哪些成员。</p>
+<p>这种不完全类型，只能定义这种类型的指针或引用，也可以声明 以不完全类型作为参数或者返回类型的函数。</p>
+<h3 id="友元进阶"><a href="#友元进阶" class="headerlink" title="友元进阶"></a>友元进阶</h3><p>类还可以把其他的类定义成友元，也可以把其他类（已经定义过的）的成员函数定义成友元。</p>
+<p>友元函数能定义在类的内部，这样的函数隐式内联。</p>
+<h4 id="定义类为友元"><a href="#定义类为友元" class="headerlink" title="定义类为友元"></a>定义类为友元</h4><p>Window_mgr类的某些成员需要访问它管理的Screen类的内部数据，比如一个clear的新成员，负责把指定的Screen的内容设为空白。clear需要访问Screen的私有成员。</p>
+<p>要令这种访问合法，Screen需要把Window_mgr指定成它的友元。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-comment">//Window_mgr的成员可以访问Screen类的私有部分</span><br>    <span class="hljs-keyword">friend</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window_mgr</span>;</span><br>    <span class="hljs-comment">//Screen类的剩余部分</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>一旦一个类制定了友元类，友元类的成员函数可以访问此类包括非公有成员在内的所有成员。</p>
+<p>此时Window_mgr的clear成员就能写成如下形式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Window_mgr</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//窗口中每个屏幕的编号</span><br>    <span class="hljs-keyword">using</span> ScreenIndex = <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;Screen&gt;::size_type;<br>    <span class="hljs-comment">//按照编号将指定的Screen重置为空白</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">clear</span><span class="hljs-params">(ScreenIndex)</span></span>;<br>    <br><span class="hljs-keyword">private</span>:<br>    std::vector&lt;Screen&gt; screens&#123;Screen(24,80,&#x27;&#x27;)&#125;;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Window_mgr::clear</span><span class="hljs-params">(ScreenIndex i)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//s是一个Screen的引用，指向我们想清空的那个屏幕</span><br>    Screen &amp;s = screen[i];<br>    <span class="hljs-comment">//将那个选定的Screen重置为空白</span><br>    s.contents = string(s.height * s.width, &#x27;&#x27;);<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>如果clear不是Screen的友元，上面的代码将无法通过编译，因为此时clear将不能访问Screen的height、width和contents成员。</p>
+<p>友元关系不存在传递性，Window_mgr有自己的友元，这些友元不能理所当然地访问Screen</p>
+<h4 id="成员函数作为友元"><a href="#成员函数作为友元" class="headerlink" title="成员函数作为友元"></a>成员函数作为友元</h4><p>除了令整个Window_mgr作为友元之外，Screen还可以只为clear提供访问权限。</p>
+<p>当把一个成员函数声明成友元时，我们必须明确指出该成员函数属于哪个类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-comment">//Window_mgr::clear必须在Screen类之前被声明</span><br>    <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Window_mgr::clear</span><span class="hljs-params">(ScreenIndex)</span></span>;<br>    <span class="hljs-comment">//Screen类的剩余部分</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>要令某个成员函数作为友元，我们必须仔细组织程序的结构以满足声明和定义的彼此依赖关系。</p>
+<p>这个例子我们要按照如下方式</p>
+<ul>
+<li>首先定义Window_mgr类，其中声明clear函数，但是不能定义它。在clear使用Screen的成员之前必须线声明Screen。</li>
+<li>接下来定义Screen，包括对于clear的友元声明</li>
+<li>最后定义clear，此时它才可以使用Screen成员</li>
+</ul>
+<h4 id="函数重载和友元"><a href="#函数重载和友元" class="headerlink" title="函数重载和友元"></a>函数重载和友元</h4><p>尽管函数重载的名字相同，但它们仍然是不同的函数，因此如果一个类想把一组重载函数声明成它的友元，它需要对这组函数中的每一个分别声明</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//重载的storeOn函数</span><br><span class="hljs-function"><span class="hljs-keyword">extern</span> <span class="hljs-built_in">std</span>::ostream&amp; <span class="hljs-title">storeOn</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::ostream &amp;, Screen &amp;)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">extern</span> BigMap&amp; <span class="hljs-title">storeOn</span><span class="hljs-params">(BitMap &amp;, Screen &amp;)</span></span>;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br>    <span class="hljs-comment">//storeOn的ostream版本能访问Screen对象的私有部分</span><br>    <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-built_in">std</span>::ostream&amp; <span class="hljs-title">storeOn</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::ostream &amp;, Screen &amp;)</span></span>;<br>    <span class="hljs-comment">//</span><br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>Screen类把接收ostream&amp;的storeOn函数声明成它的友元，但是接收BitMap&amp;作为参数的版本仍然不能访问Screen</p>
+<h4 id="友元声明和作用域"><a href="#友元声明和作用域" class="headerlink" title="友元声明和作用域"></a>友元声明和作用域</h4><p>类和非成员函数的声明不是必须在它们的友元声明之前。</p>
+<p>当一个名字第一次出现在一个友元声明中时，我们隐式地假定该名字在当前作用域中是可见的，然而友元本身并不一定真的声明在当前作用域中。</p>
+<p>就算是再类的内部定义该函数，我们也必须再类的外部提供相应地声明从而使得函数可见。</p>
+<p>即使我们仅仅用声明友元地类的成员调用该友元函数，它也必须是被声明过的</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">X</span> &#123;</span><br>    <span class="hljs-function"><span class="hljs-keyword">friend</span> <span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>&#123;<span class="hljs-comment">/*友元函数可以定义在类的内部*/</span>&#125;<br>    <br>    X() &#123;f();&#125;		<span class="hljs-comment">//错误，f还没被声明</span><br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span></span>;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">h</span><span class="hljs-params">()</span></span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">X::g</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> f(); &#125;		<span class="hljs-comment">//错误，f还没被声明</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span></span>;						<span class="hljs-comment">//声明那个定义在X中的函数。</span><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">X::h</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> f(); &#125;		<span class="hljs-comment">//正确，现在f的声明在作用域中了</span><br></code></pre></div></td></tr></table></figure>
+
 
             </div>
             <hr>
