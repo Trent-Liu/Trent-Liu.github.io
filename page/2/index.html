@@ -210,6 +210,198 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——函数重载及默认实参">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" target="_self">
+          C++自学——函数重载及默认实参
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" target="_self">
+          
+          
+            
+          
+          函数重载同一作用域内的几个函数名字相同但是形参列表不同，我们称之为重载函数
+比如定义几个print函数
+123void print(const char *p);void print(const int *beg,const int *end);void print(const int ia[],size_t size);
+
+调用这些函数时，编译器会根据传递的实参类型推断想要的时哪个函数
+1234
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-18 14:00" pubdate>
+              2021-07-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD%EF%BC%8C%E9%BB%98%E8%AE%A4%E5%AE%9E%E5%8F%82/">函数重载，默认实参</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——函数传参之传引用参数">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
+          C++自学——函数传参之传引用参数
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" target="_self">
+          
+          
+            
+          
+          函数参数传递之传引用参数C语言中想要改变传入的值，只能传指针，十分麻烦。
+C++中提供了引用，可以直接对实参修改。
+使用引用避免拷贝拷贝大的类类型对象或者容器对象比较低效，甚至有的类类型（包括IO类型在内）根本就不支持拷贝操作。当某种类型不支持拷贝操作时，函数只能通过引用参数访问该类型 的对象
+编写函数比较两个string对象的长度，因为string对象可能会非常长，避免尽量直接拷贝它们，使用引用
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-15 14:00" pubdate>
+              2021-07-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/%E4%BC%A0%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0/">传引用参数</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——头文件保护符">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/" target="_self">
+          C++自学——头文件保护符
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/" target="_self">
+          
+          
+            
+          
+          大一的时候C语言程序设计实验中因为不添加头文件保护符扣了不少分
+头文件保护符十分重要，可以防止include的库被多次include等
+头文件保护符为了确保各个文件中类的定义一致，类通常被定义在头文件中，而类所在头文件的名字应与类的名字一致。
+例如 库类型String在名为string的头文件中定义，Sales_data类定义在名为Sales_data.h的头文件中
+头文件通常包含那些只能被定义一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-15 14:00" pubdate>
+              2021-07-15
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/">头文件保护符</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
           <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——vector">
         </a>
@@ -262,6 +454,79 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
               <a href="/tags/C/">C++</a>
             
               <a href="/tags/vector/">vector</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——main处理命令行以及含有可变参数的函数">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
+          C++自学——main处理命令行以及含有可变参数的函数
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
+          
+          
+            
+          
+          main处理命令行选项假定main函数在可执行文件prog之内，可以向程序传递下面的选项：
+1prog -d -o ofile data0
+
+这些命令行选项通过两个可选的形参传递给main函数：
+1int main(int argc,char *argv[])&#123;&#125;
+
+根据上面命令行的输入
+
+argc = 5；
+argv[0] = “prog”;
+argv[1] = “-d”;
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/main%E5%91%BD%E4%BB%A4%E8%A1%8C/">main命令行</a>
+            
+              <a href="/tags/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">可变参数</a>
             
           </div>
         
@@ -329,69 +594,6 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
               <a href="/tags/string/">string</a>
             
               <a href="/tags/cctype/">cctype</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%82%E5%B8%B8/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——异常">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%82%E5%B8%B8/" target="_self">
-          C++自学——异常
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%82%E5%B8%B8/" target="_self">
-          
-          
-            
-          
-          try语句块和异常处理异常是指存在于运行时的反常行为，这些行为超出了函数正常功能的范围，典型的异常包括失去数据库连接以及遇到意外输入等。
-当程序的某部分检测到一个它无法处理的问题时，需要用到异常处理。
-如果程序中含有可能引发异常的代码，那么通常也会有专门的代码处理问题。例如：如果程序的问题是输入无效，则异常处理部分可能会要求用户重新输入正确的数据；如果丢失了数据库连接，会发出报警信息。
-异常处理机
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-14 15:00" pubdate>
-              2021-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C/">C++</a>
-            
-              <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
             
           </div>
         
@@ -527,6 +729,69 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%82%E5%B8%B8/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——异常">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%82%E5%B8%B8/" target="_self">
+          C++自学——异常
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%82%E5%B8%B8/" target="_self">
+          
+          
+            
+          
+          try语句块和异常处理异常是指存在于运行时的反常行为，这些行为超出了函数正常功能的范围，典型的异常包括失去数据库连接以及遇到意外输入等。
+当程序的某部分检测到一个它无法处理的问题时，需要用到异常处理。
+如果程序中含有可能引发异常的代码，那么通常也会有专门的代码处理问题。例如：如果程序的问题是输入无效，则异常处理部分可能会要求用户重新输入正确的数据；如果丢失了数据库连接，会发出报警信息。
+异常处理机
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/%E5%BC%82%E5%B8%B8/">异常</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/07/14/C++%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%A1%A5%E5%85%85/" target="_self">
           <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——C++类型较C的补充，引用指针常量表达式等">
         </a>
@@ -592,276 +857,6 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
               <a href="/tags/%E5%B8%B8%E9%87%8F%E8%A1%A8%E8%BE%BE%E5%BC%8F/">常量表达式</a>
             
               <a href="/tags/decltype/">decltype</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——强制类型转换">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
-          C++自学——强制类型转换
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" target="_self">
-          
-          
-            
-          
-          C++的强制类型转换形式
-1cast-name&lt;type&gt;(expression);
-
-cast-name是static_cast, dynamic_cast, const_cast, reinterpret_cast中的一种
-
-static_cast
-任何具有明确定义的类型转换，只要不包含底层const，都可以使用static_cast
-
-基本类型的转换
-
-1double slope
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-14 14:00" pubdate>
-              2021-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C/">C++</a>
-            
-              <a href="/tags/%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/">强制类型转换</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/13/C++%E8%87%AA%E5%AD%A6%E5%9F%BA%E6%9C%AC%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%BB%A5%E5%8F%8A%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——输入输出以及命名空间">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/13/C++%E8%87%AA%E5%AD%A6%E5%9F%BA%E6%9C%AC%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%BB%A5%E5%8F%8A%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" target="_self">
-          C++自学——输入输出以及命名空间
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/13/C++%E8%87%AA%E5%AD%A6%E5%9F%BA%E6%9C%AC%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E4%BB%A5%E5%8F%8A%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" target="_self">
-          
-          
-            
-          
-          C大体可以看作C++的一小部分，之前没有选C++的课，因此趁着暑假笔者想自学一下C++，重点在比较C和C++的不同之处。
-输入输出C语言中往往使用习惯printf，scanf，但是C++的输入输出没有定义任何输入输出（IO）语句，而是包含了一个全面的标准库来提供IO机制。
-
-iostream库
-
-1#include&lt;iostream&gt;
-
-两个基本类型：istream和ostream，分
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-13 14:00" pubdate>
-              2021-07-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C/">C++</a>
-            
-              <a href="/tags/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">输入输出</a>
-            
-              <a href="/tags/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">命名空间</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/13/C++%E8%87%AA%E5%AD%A6%E8%8C%83%E5%9B%B4for%E5%BE%AA%E7%8E%AF/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——范围for循环">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/13/C++%E8%87%AA%E5%AD%A6%E8%8C%83%E5%9B%B4for%E5%BE%AA%E7%8E%AF/" target="_self">
-          C++自学——范围for循环
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/13/C++%E8%87%AA%E5%AD%A6%E8%8C%83%E5%9B%B4for%E5%BE%AA%E7%8E%AF/" target="_self">
-          
-          
-            
-          
-          范围for循环12for(declaration : expression)    statement
-
-expression表示的必须是一个序列，比如用花括号括起来的初始值列表，或者vector或string等类型的对象，这些类型的共同点是拥有能返回迭代器的begin和end成员
-如果要修改元素，则使用引用，如下程序将vector中的每一个整数值翻倍。
-1234vector&lt;int&gt;
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-13 14:00" pubdate>
-              2021-07-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C/">C++</a>
-            
-              <a href="/tags/%E8%8C%83%E5%9B%B4for%E5%BE%AA%E7%8E%AF/">范围for循环</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          <img src="/img/Java.png" srcset="/img/loading.gif" lazyload alt="Java装饰者、迭代器模式">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          Java装饰者、迭代器模式
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          
-          
-            
-          
-          装饰模式多用组合，少用继承。利用组合，委托同样可以达到继承的目的
-如果有两个类
-123456class A&#123;    public void f()&#123;&#125;&#125;class B&#123;    public void g()&#123;&#125;&#125;
-
-若需要实现一个类，同时具有A和B的行为，但是不能继承（JAVA）。
-可以采用对象组合方式，继承一个类，另
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-27 23:00" pubdate>
-              2021-05-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Java/">Java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">Java</a>
-            
-              <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/">装饰者模式</a>
-            
-              <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">迭代器模式</a>
             
           </div>
         

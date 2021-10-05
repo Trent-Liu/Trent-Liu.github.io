@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.4k 字
+      7k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      74
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月17日 下午
+                  本文最后更新于：2021年9月20日 下午
                 
               </p>
             
@@ -361,6 +361,140 @@
 <p>多数Web页面含有一个<strong>HTML基本文件</strong>，以及几个引用对象，比如一个Web页面包含HTML文本和5个JEPG图形，这个Web页面就有6个对象。</p>
 <p>HTML基本文件通过对象的URL地址引用页面中的其他对象，每个URL地址由两部分组成：存放对象的服务器主机名和对象的路径名。</p>
 <p>Web浏览器实现了HTTP的客户端，Web服务器实现了HTTP的服务器端。</p>
+<h3 id="DNS：因特网的目录服务"><a href="#DNS：因特网的目录服务" class="headerlink" title="DNS：因特网的目录服务"></a>DNS：因特网的目录服务</h3><p>人类能以很多中方式标识，比如出生证书，社会保险号，驾驶执照号码等，尽管都可以标识一个人，但是特定环境下某种识别方式比另一种更适合。</p>
+<p>当然人和人之间更喜欢用姓名来标识对方，而不是说对方的驾驶证号码</p>
+<p>主机的也有很多种方式进行标识，比如主机名，之前讲过的<a href="http://www.facebook.com这种，但是这种标识没有提供主机在因特网中的位置，并且主机名的长短不一，还是字母和数字一起组合，因此路由器难以处理，主机就可以用IP地址进行标识。？">www.facebook.com这种，但是这种标识没有提供主机在因特网中的位置，并且主机名的长短不一，还是字母和数字一起组合，因此路由器难以处理，主机就可以用IP地址进行标识。？</a></p>
+<h4 id="DNS提供的服务"><a href="#DNS提供的服务" class="headerlink" title="DNS提供的服务"></a>DNS提供的服务</h4><p>人喜欢便于记忆的主机名标识，但是路由器喜欢定长的，有层次结构的IP地址，为了折中这两种偏好，我们就需要一种能进行主机名到IP地址转换的目录服务，这就是域名系统（DNS）的主要任务。</p>
+<p>DNS概述：1. 一个由分层的DNS服务器实现的分布式数据库，2. 一个使得主机能够查询分布式数据库的应用层协议</p>
+<p>DNS服务器通常是运行BIND软件的UNIX机器，DNS协议运行在UDP上，使用53号端口</p>
+<p>DNS也是应用层协议，是使用客户—服务器模式运行在通信的端系统之间，并且在通信的端系统之间通过下面的端到端运输协议来传送DNS报文。</p>
+<p>但是它不同于另外的一些协议，DNS不是一个直接和用户打交道的应用，而是为因特网上的用户应用程序以及其他软件提供一种核心功能——将主机名转换为背后的IP地址。</p>
+<p>DNS 通常由其他应用层协议所使用，包括HTTP，SMTP和FIP，将用户的主机名解析为IP地址。</p>
+<p>比如一个运行在某用户主机上的一个浏览器（HTTP客户），请求URL <a target="_blank" rel="noopener" href="http://www.someschool.edu/omdex.html%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%B8%BA%E4%BA%86%E8%AE%A9%E7%94%A8%E6%88%B7%E7%9A%84%E4%B8%BB%E6%9C%BA%E5%B0%86%E4%B8%80%E4%B8%AAHTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87%E5%8F%91%E9%80%81%E5%88%B0Web%E6%9C%8D%E5%8A%A1%E5%99%A8www.someschool.edu,%E8%AF%A5%E7%94%A8%E6%88%B7%E4%B8%BB%E6%9C%BA%E5%BF%85%E9%A1%BB%E8%8E%B7%E5%BE%97www.someschool.edu%E7%9A%84IP%E5%9C%B0%E5%9D%80%E3%80%82">www.someschool.edu/omdex.html页面的时候，为了让用户的主机将一个HTTP请求报文发送到Web服务器www.someschool.edu,该用户主机必须获得www.someschool.edu的IP地址。</a></p>
+<p>过程为</p>
+<ol>
+<li>这台用户主机上运行着DNS应用的客户端</li>
+<li>浏览器从上述URL中抽取出主机名<a target="_blank" rel="noopener" href="http://www.someschool.edu,并将这台主机传给dns应用的客户端/">www.someschool.edu，并将这台主机传给DNS应用的客户端</a></li>
+<li>DNS客户端向DNS服务器发送一个包含主机名的请求</li>
+<li>DNS客户最终会收到一份回答报文，其中含有对应于该主机名的IP地址。</li>
+<li>一旦浏览器接收到来自DNS的该IP地址，它能够向位于该IP地址80端口的HTTP服务器进程发起一个TCP连接。</li>
+</ol>
+<p>DNS给使用它的因特网带来了额外的时延。</p>
+<p>DNS除了进行主机名到IP地址的转换，还提供了一些其他重要的服务</p>
+<ol>
+<li><p>主机别名</p>
+<p>有着复杂主机名的主机能拥有一个或者多个别名，正常特别长的是规范主机名，主机别名存在的时候比规范主机名更容易记忆，DNS除了获得主机对应的IP地址，还可以获得主机别名对应的规范主机名</p>
+</li>
+<li><p>邮件服务器别名</p>
+<p>同样，人们也非常希望电子邮件地址好记忆，但是邮件服务器的主机名比常用的邮件地址复杂得多，因此电子邮件程序可以调用DNS，对提供的主机名别名进行解析，以获得该主机的规范主机名以及其IP地址</p>
+</li>
+<li><p>负载分配</p>
+<p>DNS也用于在冗余的服务器（如冗余的Web服务器）之间进行负载分配，繁忙的站点（cnn.com）被冗余分布在多台服务器上，每台服务器均运行在不同的端系统上，每个都有着不同的IP地址，由于这些冗余的Web服务器，一个IP地址集合因此同一个规范主机名相联系，DNS数据库中存储着这些IP地址集合，</p>
+</li>
+</ol>
+<h4 id="DNS工作机理概述"><a href="#DNS工作机理概述" class="headerlink" title="DNS工作机理概述"></a>DNS工作机理概述</h4><p>主机名到IP地址的转换</p>
+<p>假设运行在用户主机上的某些程序（如Web浏览器或者邮件阅读器）需要将主机名转换为IP地址，这些应用程序将调用DNS客户端，并指明需要被转换的主机名。</p>
+<p>用户主机上的DNS接收到后，向网络中发送一个DNS查询报文，所有的DNS请求和回答报文使用UDP数据报经端口53发送。</p>
+<p>经过若干毫秒到若干名秒的时延后，用户主机上的DNS接收到一个提供所希望映射的DNS回答报文。</p>
+<p>这个映射结果被传递到调用DNS的应用程序。</p>
+<p>因此，从用户主机上调用应用程序的角度看，DNS是一个提供简单的、直接的转换服务的黑盒子。但事实上，实现这个服务的黑盒子非常复杂，它由分布于全球的大量DNS服务器以及定义了DNS服务器与查询主机通信方式的应用层协议组成</p>
+<h4 id="DNS一种最简单的设计"><a href="#DNS一种最简单的设计" class="headerlink" title="DNS一种最简单的设计"></a>DNS一种最简单的设计</h4><p>DNS的一种最简单的设计——因特网上只使用一个DNS服务器，该服务器包含所有的映射，</p>
+<p>这种集中式设计中，客户直接将所有查询直接发往单一的DNS服务器，同时该DNS服务器直接对所有的查询客户做出响应。</p>
+<p>不适用于今日的互联网，互联网有着数量巨大并持续增长的主机，集中式的问题包括</p>
+<ul>
+<li>单点故障，如果该DNS服务器崩溃，整个因特网随之瘫痪</li>
+<li>通信容量，单个DNS服务器不得不处理所有的DNS查询（用于为上亿台主机产生的所有HTTP请求报文和电子邮件报文服务）</li>
+<li>远距离的集中式数据库，单个DNS服务器不可能临近所有查询客户</li>
+<li>维护，单个DNS服务器不得不为所有的因特网主机保留记录，这不仅将使这个中央数据库庞大，而且它还不得不为解决每个新添加的主机而频繁更新。</li>
+</ul>
+<h4 id="分布式数据库"><a href="#分布式数据库" class="headerlink" title="分布式数据库"></a>分布式数据库</h4><p>单一DNS服务器上运行集中式数据库完全没有可扩展能力，DNS是一个在因特网上实现分布式数据库的精彩范例</p>
+<h5 id="分布式、层次数据库"><a href="#分布式、层次数据库" class="headerlink" title="分布式、层次数据库"></a>分布式、层次数据库</h5><p>大量DNS服务器以层次方式组织，并且分布在全世界范围内，没有一台DNS服务器拥有因特网上所有主机的映射。</p>
+<p>由三种类型的DNS服务器：根DNS服务器，顶级域（TLD）DNS服务器和权威DNS服务器</p>
+<p>假定一个DNS客户要决定主机名<a target="_blank" rel="noopener" href="http://www.amazon.com的ip地址,将发生如下流程/">www.amazon.com的IP地址，将发生如下流程</a></p>
+<p>客户首先与根服务器之一联系，它将返回顶级域名com的TLD服务器的IP地址</p>
+<p>该客户则与这些TLD服务器之一联系，它将为amazon.com返回权威服务器的IP地址。</p>
+<p>最后，该客户与amazon.com的权威服务之一联系，它将为主机名<a target="_blank" rel="noopener" href="http://www.amazon.com返回其ip地址./">www.amazon.com返回其IP地址。</a></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210920131339366.png" srcset="/img/loading.gif" lazyload alt="image-20210920131339366" style="zoom:50%;">
+
+<ul>
+<li><p>根DNS服务</p>
+<p>有400多个根名字服务器遍及全世界，由13个不同的组织管理</p>
+<p>根名字服务器提供TLD服务器的IP地址</p>
+</li>
+<li><p>顶级域DNS服务器</p>
+<p>对于每个顶级域（com、org、net、edu和gov）和所有国家的顶级域（uk、fr、ca、jp）都有TLD服务器（服务器集群）</p>
+<p>不同的公司维护不同的顶级域TLD服务器</p>
+<p>TLD服务器提供了权威DNS服务器的IP地址</p>
+</li>
+<li><p>权威DNS服务器</p>
+<p>因特网上具有公共可访问主机（如Web服务器和邮件服务器）的每个组织机构必须提供公共可访问的DNS记录，这些记录将这些主机名字映射为IP地址</p>
+</li>
+</ul>
+<h4 id="本地DNS服务器"><a href="#本地DNS服务器" class="headerlink" title="本地DNS服务器"></a>本地DNS服务器</h4><p>本地DNS服务器不属于该服务器的层次结构，但它对DNS层次结构是至关重要的。</p>
+<p>每个ISP（一个居民区或者一个机构的ISP）都有一台本地DNS服务器（也叫默认名字服务器），当主机与某个ISP连接时，该ISP提供这台主机的IP地址，该主机具有一台或多台其本地DNS服务器的IP地址。</p>
+<p>主机的本地DNS服务器通常邻近本主机，对于某机构的ISP来说，本地DNS服务器可能就与主机在同一个局域网中，对于某居民区ISP来说，本地DNS服务器通常与主机相隔不超过几台路由器。</p>
+<p>主机发出DNS请求时，该请求被发往本地DNS服务器，起着代理的作用。</p>
+<p>假设主机cse.nyu.edu想知道主机gaia.cs.umass.edu的IP地址，同时假设纽约大学（NYU）的cse.nyu.edu主机的本地DNS服务器为dns.nyu.edu，并且gaia.cs.umsaa.edu的权威DNS服务器为dns.umass.edu。</p>
+<p>主机cse.nyu.edu首先向它的本地DNS服务器dns.nuy.edu发送一个DNS查询报文，该查询报文含有被转换的主机名gaia.cs.umass.edu。</p>
+<p>本地DNS服务器将报文转发到根DNS服务器，该根DNS服务器注意到其edu前缀并向本地DNS服务器返回负责edu的TLD的IP地址列表。</p>
+<p>该本地DNS服务器则再次向这些TLD服务器之一发送查询报文，该TLD服务器注意到umass前缀，并用权威DNS服务器的IP地址进行相应，该权威DNS服务器是负责马萨诸塞大学的dns.umass.edu。（TLD并不一定知道用于主机的权威DNS服务器的IP地址，TLD只知道中间的某个DNS服务器，该中间DNS服务器依次才能知道用于该主机的权威DNS服务器）</p>
+<p>最后，本地DNS服务器直接向dns.umass.edu重发查询报文，dns.umass.edu用gaia.cs.umass.edu的IP地址进行响应。</p>
+<p>本例中，为了获得一台主机名的映射，共发送了8份DNS报文：4份查询报文和4份回答报文。</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210920144140492.png" srcset="/img/loading.gif" lazyload alt="image-20210920144140492" style="zoom: 33%;"><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210920142551531.png" srcset="/img/loading.gif" lazyload alt="image-20210920142551531" style="zoom: 33%;"></p>
+<p>左图的查询过程维阿递归查询和迭代查询，从cse.nyu.edu到dns.nyu.edu发出的查询是递归查询，因为该查询以自己的名义请求dns.nyu.edu来获得映射，而后继的三个查询是迭代查询，因为所有回答都是直接返回给dns.nyu.edu</p>
+<p>右图的所有的查询就是递归的。</p>
+<p>实践中的查询都是左图的形式，从请求主机到本地DNS服务器的查询是递归的，其余的查询是迭代的。</p>
+<h4 id="DNS缓存"><a href="#DNS缓存" class="headerlink" title="DNS缓存"></a>DNS缓存</h4><p>为了改善时延性能并减少在因特网上到处传输的DNS报文数量，DNS广泛使用了缓存技术。</p>
+<p>DNS缓存的原理：在一个请求链中，当某DNS服务器接收一个DNS回答时，他能将映射缓存在本地存储器中。</p>
+<p>上面左图中，当本地DNS服务器dns.nyu.edu从某个DNS服务器接收到一个回答，它能够缓存包含在该回答中的恶人和信息，如果在DNS服务器中缓存了同一台主机名/IP地址对，另一个对相同主机名的查询到达该DNS服务器时，该DNS服务器就能够提供所要求的IP地址，即使它不是该主机名的权威服务器。</p>
+<p>由于主机名和IP地址间的映射不是永久的，DNS服务器一段时间后将丢弃缓存的信息。</p>
+<h3 id="DNS记录和报文"><a href="#DNS记录和报文" class="headerlink" title="DNS记录和报文"></a>DNS记录和报文</h3><p>共同实现了DNS分布式数据库的所有DNS服务器存储了资源记录（RR），RR提供了主机名到IP地址的映射。</p>
+<p>每个DNS回答报文包含了一条到多条资源记录</p>
+<h4 id="资源记录"><a href="#资源记录" class="headerlink" title="资源记录"></a>资源记录</h4><p>包含了下列字段的4元组</p>
+<p>(Name, Value, Type, TTL)</p>
+<p>TTL该记录的生存时间，它决定了资源记录应当从缓存中删除的时间。</p>
+<p>Name和Value的值取决于Type</p>
+<ul>
+<li><p>如果Type = A，则Name是主机名，Value是该主机名对应的IP地址，因此一条类型为A的资源记录提供了标准的主机名到IP地址的映射</p>
+<p>例如(relay1.bar.foo.com, 145.37.93.126, A)就是一条A记录</p>
+</li>
+<li><p>如果Type = NS，则Name是个域（如foo.com），而Value是个知道如何获得该域中主机IP地址的权威DNS服务器的主机名，这个记录用于沿着查询链来路由DNS查询</p>
+<p>例如(foo.com. dns.foo.com, NS)就是一条类型为NS的记录。</p>
+</li>
+<li><p>如果Type = CNAME，则Value是别名为Name的主机对应的规范主机名。该记录能够向查询的主机提供一个主机名对应的规范主机名</p>
+<p>例如(foo.com, relay1.bar.foo.com, CNAME) 就是一条CNAME类型的记录</p>
+</li>
+<li><p>如果Type = MX， 则Value是个别名为Name的邮件服务器的规范主机名。</p>
+<p>比如(foo.com, mail.bar.foo.com, MX)就是一条MX记录，MX记录允许邮件服务器主机名具有简单的别名。</p>
+<p>一个公司的邮件服务器和其他服务器（如它的Web服务器）可以使用相同的别名，为了获得邮件服务器的规范主机名，DNS客户应当请求一条MX记录，而为了获得其他服务器的规范主机名，DNS客户应当请求CNAME记录。</p>
+</li>
+</ul>
+<p>如果一台DNS服务器是用于特定主机名的权威DNS服务器，那么该DNS服务器会有一条包含于该主机名的类型A记录（即使该DNS服务器不是其权威DNS服务器，它也可能在缓存中包含有一条类型A记录。</p>
+<p>如果服务器不是用于某主机名的权威服务器，那么该服务器将包含有一条类型NS记录，该记录对应于包含该主机名的域，它还将包括一条类型A记录，该记录提供了在NS记录的Value字段中的DNS服务器的IP地址。</p>
+<p>假设一台edu TLD服务器不是主机gaia.cs.umass.edu的权威edu服务器，则该服务器将包含一条包括主机cs.umass.edu的域记录，如（umass.edu, dns.umass.edu, NS); 该edu TLD服务器还将包含一条类型A记录，如(dns.umass, 128.119.40.111, A)该记录将名字dns.umass.edu映射为一个IP地址。</p>
+<h4 id="DNS报文"><a href="#DNS报文" class="headerlink" title="DNS报文"></a>DNS报文</h4><p>DNS只有DNS查询和回答报文，并且查询报文与回答报文有相同的格式。</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210920152729532.png" srcset="/img/loading.gif" lazyload alt="image-20210920152729532"></p>
+<h5 id="前12个字节是首部区域"><a href="#前12个字节是首部区域" class="headerlink" title="前12个字节是首部区域"></a>前12个字节是首部区域</h5><p>第一个标识符字段是一个16比特的数，用于标识该查询。这个标识符会被复制到对查询的回答报文中，以便让客户用它来匹配发送的请求和接收收到的回答。</p>
+<p>标志字段中含有若干标志，</p>
+<p>1比特的“查询/回答”标志位指出报文是查询报文（0）还是回答报文（1），</p>
+<p>当某DNS服务器是所请求名字的权威DNS服务器时，1比特的“权威的”标志位被置在回答报文中</p>
+<p>如果客户（主机或者DNS服务器）在该服务器没有某记录时希望它执行递归查询，将设置1比特的“希望递归”标志位</p>
+<p>如果该DNS服务器支持递归查询，则它的回答报文中会对1比特的“递归可用”标志位置位。</p>
+<p>在该首部中，还有4个有关数量的字段，这些字段指出了在首部后的4类数据区域出现的数量。</p>
+<p>问题区域包含着正在进行的查询信息。</p>
+<p>该区域包括</p>
+<p>名字字段，包含正在被查询的主机名字</p>
+<p>类型字段，指出有关该名字的整备询问的问题类型，例如主机地址是与一个名字相关联（类型A）还是与某个名字的邮件服务器相关联（类型MX）</p>
+<p>在来自DNS服务器的回答中，回答区域包含了对最初请求的名字的资源记录，前面讲过每个资源记录中有Type字段，Value字段和TTL字段，在回答保温的回答区域可以包含多条RR，因此一个主机名能够有多个IP地址</p>
+<p>权威区域包含了其他权威服务器的记录</p>
+<p>附加区域包含了其他有帮助的记录，例如，对于一个MX请求的回答报文的回答区域包含了一条资源记录，该记录提供了邮件服务器的规范主机名，该附加区域包含了一个类型A记录，该记录提供了用于该邮件服务器的规范主机名的IP地址。</p>
+<h4 id="在DNS数据库中插入记录"><a href="#在DNS数据库中插入记录" class="headerlink" title="在DNS数据库中插入记录"></a>在DNS数据库中插入记录</h4><p>刚刚创建的一个公司（Network Utopia），第一件事情是在注册机构注册域名（nerworkutopia.com），注册登记机构是一个商业实体，它验证该域名的唯一性，将该域名输入DNS数据库，对提供的服务收取少量费用</p>
+<p>当我们向某些注册登记机构注册域名networkuptoia.com的时候，需要向该机构提供你的基本和辅助权威DNS服务器的名字和IP地址，假定该名字和IP地址是dns1.networkutopia.com和dns2.networkutopia.com以及212.212.212.1和212.212.212.2</p>
+<p>对这两个权威DNS服务器中的每一个，该注册登记机构确保将一个类型NS和一个类型Adequate记录输入TLD com服务器，特别是对于用于networkutopia.com的基本权威服务器，该注册登记机构将下列两条资源记录插入该DNS系统中。</p>
+<p>(networkutopia.com, dns1.networkutopia.com, NS)</p>
+<p>(dns1.networkutopia.com, 212.212.212.1, A)</p>
+<p>必须确保用于Web服务器<a target="_blank" rel="noopener" href="http://www.networkutopia.com的类型a资源记录和用于邮件服务器mail.networkutopia.com的类型资源记录被输入到你的权威dns服务器中/">www.networkutopia.com的类型A资源记录和用于邮件服务器mail.networkutopia.com的类型资源记录被输入到你的权威DNS服务器中</a></p>
+<p>一旦完成所有这些步骤，人们能访问你的Web站点，并向你的公司雇员发送电子邮件。</p>
 
             </div>
             <hr>
@@ -409,6 +543,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/09/25/C++%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++自学——文件操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

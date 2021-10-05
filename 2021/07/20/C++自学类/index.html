@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      10k 字
+      11.8k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      116
+      137
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月17日 下午
+                  本文最后更新于：2021年9月18日 下午
                 
               </p>
             
@@ -658,12 +658,92 @@
 
 <p>接受单参数的const char* 的string的构造函数不是explicit</p>
 <p>接受一个容量参数的vector的构造函数，是explicit的</p>
-<h3 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h3><ul>
+<h3 id="聚合类"><a href="#聚合类" class="headerlink" title="聚合类"></a>聚合类</h3><p>聚合类，用户可以直接访问其成员，并且具有特殊的初始化语法形式。</p>
+<p>特征如下</p>
+<ul>
 <li>所有的成员都是public</li>
 <li>没有定义任何构造函数</li>
 <li>没有类内初始值</li>
 <li>没有基类和vritual函数</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Data</span> &#123;</span><br>    <span class="hljs-keyword">int</span> ival;<br>    <span class="hljs-built_in">string</span> a;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>初始化形式：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//vali.ival = 0; vali.s = stirng(&quot;Anna&quot;);</span><br>Data vali = &#123; <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Anna&quot;</span>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>初始值的顺序必须与声明的顺序一致，第一个成员的初始值要放在第一个，然后是第二个，依次类推。</p>
+<p>存在三个明显的缺点</p>
+<ol>
+<li>要求类的所有成员都是public</li>
+<li>将正确初始化每个对象每个成员的重任交给了类的用户，而不是类的作者。</li>
+<li>添加或删除一个成员之后，所有初始化语句都要重新更新</li>
+</ol>
+<h3 id="字面值常量类"><a href="#字面值常量类" class="headerlink" title="字面值常量类"></a>字面值常量类</h3><p>constexptr函数的参数和返回值必须是字面值类型，除了算术类型，引用和指针外，某些类也是字面值类型，和其他类不同，字面值类型的类可能含有constexptr函数成员，这样的成员必须符合constexptr函数的所有要求，它们是隐式const的。</p>
+<p>。。。。。</p>
+<h3 id="类的静态成员"><a href="#类的静态成员" class="headerlink" title="类的静态成员"></a>类的静态成员</h3><p>有时候类需要它的一些成员与类本身直接相关，而不是与类的各个对象保持关联。</p>
+<p>比如银行账户类的基准利率。</p>
+<h4 id="声明静态成员"><a href="#声明静态成员" class="headerlink" title="声明静态成员"></a>声明静态成员</h4><p>成员的声明之前加上关键字static，就可以将成员与类关联在一起。</p>
+<p>和其他成员一样，静态成员可以是public或者private的，静态数据成员的类型可以是常量，引用，指针，类等等。</p>
+<p>举个例子，定义银行的账户类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span> &#123;</span><br><span class="hljs-keyword">public</span>：<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">calculate</span><span class="hljs-params">()</span> </span>&#123; amount += amount * interserRate; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">rate</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> interesRate; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rate</span><span class="hljs-params">(<span class="hljs-keyword">double</span>)</span></span>;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> owner;<br>    <span class="hljs-keyword">double</span> amount;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> interestRate;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">initRate</span><span class="hljs-params">()</span></span>;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>类的静态成员存在于任何对象之外，对象中不包含任何与静态数据成员有关的数据。</p>
+<p>因此每个Account对象将包含两个数据成员：owner和amount</p>
+<p>只存在一个interestRate对象，并且它被所有Account对象共享。</p>
+<p>静态成员也不与任何对象绑定在一起，它们不包含this指针，</p>
+<p>作为结果，静态成员函数不能声明成const的，</p>
+<p>而且我们也不能在static函数体内使用this指针，这一限制既使用用于this的显式使用，也对调用非静态成员的隐式使用有效。</p>
+<h4 id="使用类的静态成员"><a href="#使用类的静态成员" class="headerlink" title="使用类的静态成员"></a>使用类的静态成员</h4><p>使用作用域符，直接访问静态成员</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">double</span> r;<br>r = Account::rate();		<span class="hljs-comment">//使用作用域运算符访问静态成员</span><br></code></pre></div></td></tr></table></figure>
+
+<p>使用对象访问</p>
+<p>虽然静态成员不属于类的某个对象，但是我们仍然可以使用类的对象、引用或者指针来访问静态成员。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">Account ac1;<br>Account *ac2 = &amp;ac1;<br><span class="hljs-comment">//调用静态成员函数rate的等价形式</span><br>r = ac1.rate();		<span class="hljs-comment">//通过Account的对象或引用</span><br>r = ac2-&gt;rate();	<span class="hljs-comment">//通过指向Account对象的指针</span><br></code></pre></div></td></tr></table></figure>
+
+<p>成员函数不通过作用域运算符就能直接使用静态成员：</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">calculate</span><span class="hljs-params">()</span> </span>&#123; amount += amount * interestRate; &#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> interestRate;<br>    <span class="hljs-comment">//其他成员与之前的版本一致。</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<h4 id="定义静态成员"><a href="#定义静态成员" class="headerlink" title="定义静态成员"></a>定义静态成员</h4><p>和其他成员函数一样，我们既可以在类的内部也可以在类的外部定义静态成员函数，当在类的外部定义静态成员时，不能重复static关键字，<strong>该关键字只能出现在类内部的声明语句</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Account::rate</span><span class="hljs-params">(<span class="hljs-keyword">double</span> newRate)</span></span><br><span class="hljs-function"></span>&#123;<br>    interestRate = newRate;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<p>静态数据成员不属于类的任何一个对象，所以它们并不是在创建类的对象时被定义的。</p>
+<p>也就是说它们不是由类的构造函数初始化。</p>
+<p>一般来说，不能在类的内部初始化静态成员，相反，必须在类的外部定义和初始化每个静态成员，和其他对象一样，一个静态数据成员只能定义一次。</p>
+<p>类似于全局变量，静态数据成员定义在任何函数之外，因为它一旦被定义，就将一致存在于程序的整个生命周期中。</p>
+<p>我们定义静态数据成员的方式和在类的外部定义成员函数差不多，我们需要指定对象的类型名，然后是类名，作用域运算符以及成员自己的名字。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-comment">//定义并初始化一个静态成员</span><br><span class="hljs-keyword">double</span> Account::interestRate = initRate();<br></code></pre></div></td></tr></table></figure>
+
+<p>这条语句定义了名为interestRate的对象，该对象是类Account的静态成员，其类型是double。</p>
+<h4 id="静态成员的类内初始化"><a href="#静态成员的类内初始化" class="headerlink" title="静态成员的类内初始化"></a>静态成员的类内初始化</h4><p>通常情况下，类的静态成员不应该在类的内部初始化，然而我们可以为静态成员提供const整数类型的类内初始值，不过要求静态成员必须是字面值常量类型的constexpr，初始值必须是常量表达式</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Account</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">rate</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> interestRate; &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">rate</span><span class="hljs-params">(<span class="hljs-keyword">double</span>)</span></span>;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> period = <span class="hljs-number">30</span>;		<span class="hljs-comment">//period是常量表达式</span><br>    <span class="hljs-keyword">double</span> daily_tbl[period];<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>period的唯一用途就是定义daily_tbl的维度，不需要在Account外面专门定义period，此时如果忽略了这条定义，那么对程序非常微小的改动也可能造成编译错误，因为程序找不到该成员的定义语句</p>
+<p>比如把Account::period传递给一个接受一个const int&amp;的函数的时候，必须定义period</p>
+<blockquote>
+<p>即使一个常量静态数据成员在类内部被初始化了，通常情况下也应该在类的外部定义一下该成员</p>
+</blockquote>
+<p>如果在类的内部提供了一个初始值，那么成员的定义不能再指定一个初始值了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">constexptr <span class="hljs-keyword">int</span> Account::period;		<span class="hljs-comment">//初始值在类的定义内提供</span><br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+
+
+<p>类声明之后定义之前是一个<strong>不完全类型</strong>，也就是说，此时A是一个类类型，但是不清楚它到底包含哪些成员。</p>
+<p><strong>不完全类型只能在非常有限的情景下使用：可以定义指向这种类型的指针和或引用，也可以声明（但不是定义）以不完全类型作为参数或者返回类型的函数。</strong></p>
+<p>类的成员：</p>
+<p>因为只有当类全部完成后类才算被定义，所以一个类的成员类型不能是它自己，然而，一旦一个类的名字出现后，它就被认为是声明过了（但未定义），因此类允许包含指向自身类型的引用或指针。</p>
+<p>静态数据成员可以是不完全类型,特别的，静态数据成员的类型可以是它所属的类类型，而非静态数据成员则受到限制，只能声明它所属类的指针或引用</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bar</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//</span><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">static</span> Bar mem1;		<span class="hljs-comment">//正确，静态成员可以是不完全类型</span><br>    Bar *mem2;				<span class="hljs-comment">//正确，指针成员可以是不完全类型</span><br>    Bar mem3;				<span class="hljs-comment">//错误，数据成员必须是完全类型</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>可以使用静态成员作为默认实参，但是非静态成员不行</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Screen</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//bkground表示一个在类中稍后定义的静态成员</span><br>    <span class="hljs-function">Screen&amp; <span class="hljs-title">clear</span><span class="hljs-params">(<span class="hljs-keyword">char</span> = bkground)</span></span>;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> bkground;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+<p>非静态成员不能作为默认实参，因为它的值本身属于对象的一部分，这么做的结果是无法真正提供一个对象以便从总获取成员的值。</p>
 
             </div>
             <hr>
