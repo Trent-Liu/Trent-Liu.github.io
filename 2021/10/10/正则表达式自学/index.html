@@ -18,9 +18,25 @@
   <meta name="author" content="Trent-Liu">
   <meta name="keywords" content="分享在HUST中的一些学习经历">
   
-  <title>分类 - C++ - Pigsty</title>
+  <title>正则表达式自学 - Pigsty</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -53,7 +69,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
@@ -172,14 +188,64 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/wallhaven-45xvp3_3840x2160.png') no-repeat center center;
+         style="background: url('/img/wallhaven-dgkmpo_3840x2160.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类 - C++">
+            <span class="h2" id="subtitle" title="正则表达式自学">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-10-10 08:00" pubdate>
+        2021年10月10日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      663 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -192,100 +258,192 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 18 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/10/10/C++%E7%9A%84regex%E7%B1%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++的regex类</span>
-      <time style="float: right;">10-10</time>
-    </a>
-  
-    
-    <a href="/2021/09/25/C++%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——文件操作</span>
-      <time style="float: right;">09-25</time>
-    </a>
-  
-    
-    <a href="/2021/09/11/C++%E8%87%AA%E5%AD%A6%E9%A1%BA%E5%BA%8F%E5%AE%B9%E5%99%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——顺序容器</span>
-      <time style="float: right;">09-11</time>
-    </a>
-  
-    
-    <a href="/2021/07/20/C++%E8%87%AA%E5%AD%A6%E7%B1%BB/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——类</span>
-      <time style="float: right;">07-20</time>
-    </a>
-  
-    
-    <a href="/2021/07/19/C++%E8%87%AA%E5%AD%A6%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0%E4%BB%A5%E5%8F%8Aconstexpr%E5%87%BD%E6%95%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——内敛函数以及constexpr函数</span>
-      <time style="float: right;">07-19</time>
-    </a>
-  
-    
-    <a href="/2021/07/18/C++%E8%87%AA%E5%AD%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——函数重载及默认实参</span>
-      <time style="float: right;">07-18</time>
-    </a>
-  
-    
-    <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E4%BC%A0%E5%8F%82%E5%BC%95%E7%94%A8/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——函数传参之传引用参数</span>
-      <time style="float: right;">07-15</time>
-    </a>
-  
-    
-    <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——头文件保护符</span>
-      <time style="float: right;">07-15</time>
-    </a>
-  
-    
-    <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——vector</span>
-      <time style="float: right;">07-14</time>
-    </a>
-  
-    
-    <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">C++自学——main处理命令行以及含有可变参数的函数</span>
-      <time style="float: right;">07-14</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">正则表达式自学</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年10月10日 晚上
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://regex101.com/">regex101: build, test, and debug regex</a></p>
+<p>一个测试正则表达式的网站</p>
+<h3 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h3><h4 id><a href="#" class="headerlink" title="?"></a>?</h4><p>?前面的字符 <strong>不出现</strong> 或 <strong>出现一次</strong>，</p>
+<p>比如 Trent?  则会寻找Tren 和 Trent</p>
+<h4 id="-1"><a href="#-1" class="headerlink" title="*"></a>*</h4><p>*前面的字符可以<strong>不出现</strong>，<strong>出现一次</strong>也可以<strong>出现多次</strong></p>
+<p>比如 ab*c</p>
+<p>可以匹配 ac abc  abbbc 但是不能匹配adc</p>
+<h4 id="-2"><a href="#-2" class="headerlink" title="+"></a>+</h4><p>+前面的字符<strong>出现一次</strong>或<strong>多次</strong></p>
+<h4 id="-3"><a href="#-3" class="headerlink" title="{}"></a>{}</h4><p>{范围}</p>
+<p>ab{2,6}c    b出现2到6次</p>
+<p>ab{2,}        b出现2次以上</p>
+<p>如果要匹配多个字符，则用()括起来</p>
+<p>(ab){2,6}c</p>
+<h3 id="或运算符"><a href="#或运算符" class="headerlink" title="或运算符"></a>或运算符</h3><p>a （cat|dog)</p>
+<p>匹配 a cat或者a dog，括号必不可少</p>
+<p>如果a cat|dog</p>
+<p>则匹配的是a cat或者dog</p>
+<h3 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h3><p>[abc]匹配a或b，与[a-c]等价</p>
+<p>如果想匹配由abc这几个字母构成的单词，可以写作[abc]+</p>
+<p>方括号内的内容要求匹配的字符只能取自于它们</p>
+<p>如 abc   aabbcc   aaaaaabc等</p>
+<p>[a-z]表示所有的小写英文字符</p>
+<p>[a-zA-Z]代表所有的英文字符</p>
+<p>[a-zA-Z0-9]代表所有的英文字符和数字</p>
+<p>方括号内的内容前加一个尖号（脱字符），则要求匹配除了尖号后面列出的[以外]的字符</p>
+<p>比如[^0-9]代表所有的非数字字符（包括换行）</p>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><p>大部分元字符都是以反斜杠开头</p>
+<p>\d表示数字字符，等同于之前写的[0-9]</p>
+<p>\w代表“单词”字符，也就是所有的英文字符，数字，下划线</p>
+<p>\s代表空白符，同时包括Tab字符以及换行符</p>
+<p>\D代表非数字字符</p>
+<p>\W非单词字符</p>
+<p>\S非空白字符</p>
+<p>.代表除了换行符的任意字符</p>
+<p>^ 匹配行首，$匹配行尾</p>
+<p>^a匹配行首的a     a$匹配行尾的a</p>
+<p>\b\bword 标注字符的边界（全字匹配）</p>
+<h3 id="贪婪与懒惰匹配"><a href="#贪婪与懒惰匹配" class="headerlink" title="贪婪与懒惰匹配"></a>贪婪与懒惰匹配</h3><p>贪婪匹配，比如&lt;.+&gt;，.表示匹配所有字符，+表示匹配尽可能多的，因此代表匹配整个字符串</p>
+<p><strong>&lt;span&gt;&lt;b&gt;This is a sample text&lt;/b&gt;&lt;/span&gt;</strong></p>
+<p>&lt;.+?&gt;，加号后加一个?，将正则表达式中默认的贪婪匹配切换为懒惰匹配，这在实际使用中经常被用到</p>
+<p><strong>&lt;span&gt;&lt;b&gt;<strong>This is a sample text</strong>&lt;/b&gt;&lt;/span&gt;</strong></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="十六进制RGB颜色值"><a href="#十六进制RGB颜色值" class="headerlink" title="十六进制RGB颜色值"></a>十六进制RGB颜色值</h4><p>#号开头，6个十六进制数</p>
+<p>#[a-fA-F0-9]{6}\b</p>
+<h4 id="IP地址的匹配"><a href="#IP地址的匹配" class="headerlink" title="IP地址的匹配"></a>IP地址的匹配</h4><p>四段数字，句点隔开</p>
+<p>\d+\.\d+\.\d+\.\d+</p>
+<p>但是要求匹配的每段数字都要小于等于255</p>
+<p>\b((25[0-5] | 2[0-4]\d | [01]?\d\d?)\.){3}(25[0-5] | 2[0-4]\d | [01]?\d\d?)\b</p>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/page/2/#board">2</a><a class="extend next" rel="next" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%9A%8F%E4%BE%BF%E8%AE%B0%E5%BD%95/">随便记录</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">正则表达式</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/10/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%87%AA%E5%AD%A6/">https://trentliu.cn/2021/10/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%87%AA%E5%AD%A6/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/10/C++%E7%9A%84regex%E7%B1%BB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++的regex类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/04/vi%E8%87%AA%E5%AD%A6/">
+                        <span class="hidden-mobile">Linux-vim自学</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -468,9 +626,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
