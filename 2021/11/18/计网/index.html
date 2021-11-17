@@ -1,0 +1,1094 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>计网复习 - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trentliu.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/TreeHole/">
+                <i class="iconfont icon-wechat-fill"></i>
+                TreeHole
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/wallhaven-dgkmpo_3840x2160.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="计网复习">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-11-18 08:00" pubdate>
+        2021年11月18日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计网复习</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年11月18日 凌晨
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="第一章-计算机网络和因特网"><a href="#第一章-计算机网络和因特网" class="headerlink" title="第一章 计算机网络和因特网"></a>第一章 计算机网络和因特网</h3><ol>
+<li><p><strong>网络构成：端系统 通信链路 分组交换设备</strong></p>
+</li>
+<li><p><strong>通信链路：点到点链路、广播链路</strong></p>
+<p>点对点信道。这种信道使用一对一的点对点通信方式。</p>
+<p>广播信道。这种信道使用一对多的广播通信方式</p>
+</li>
+<li><p><strong>分组交换机：路由器，以太网交换机</strong></p>
+</li>
+<li><p><strong>路径和跳</strong></p>
+<p>过一个路由器算一跳</p>
+</li>
+<li><p><strong>ICP和ISP</strong></p>
+<p>因特网服务提供者ISP，比如中国电信联通移动 </p>
+<p>ISP三层结构</p>
+<p>ICP 内容服务商</p>
+</li>
+<li><p><strong>因特网提供的服务</strong></p>
+<p>因特网是为应用程序提供网络服务的基础设施。</p>
+<p>为网络应用提供应用程序接口。</p>
+</li>
+<li><p><strong>协议三要素：语法 语义 同步</strong></p>
+</li>
+<li><p><strong>C/S和P2P</strong></p>
+</li>
+<li><p><strong>DSL HFC FTTH 以太网 无线局域网 无线广域网 个域网</strong></p>
+<p>广域网 WAN 城域网 MAN 局域网 LAN 个域网 PAN</p>
+</li>
+<li><p><strong>物理介质：导向和非导向</strong></p>
+<p>导引型传输媒体 双绞线 同轴电缆 光纤</p>
+<p>非导引型传输媒体 微波通信（2~40GHz）比如2.4GHz和5.8Ghz频段的WiFi</p>
+<p>物理层 解决各种传输媒体上传输比特0和1的问题，进而给数据链路层提供透明传输比特流的服务</p>
+</li>
+<li><p><strong>双绞线 同轴电缆 光纤 无线电</strong></p>
+</li>
+<li><p><strong>电路交换 报文交换 分组交换</strong></p>
+<p>按交换技术分类，将网络分成这三种</p>
+<p>电路交换</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114161831591.png" srcset="/img/loading.gif" lazyload alt="image-20211114161831591" style="zoom:33%;">
+
+<p>分组交换</p>
+<p>通信双方以分组为单位，使用存储-转发机制实现数据交互的通信方式，被称为分组交换</p>
+<p>存储转发机制：指交换机在能开始向输出链路传输分组的第一个比特之前，必须结受到整个分组</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114161917984.png" srcset="/img/loading.gif" lazyload alt="image-20211114161917984"></li>
+<li><p><strong>TDM FDM 虚电路 数据报</strong></p>
+<p>时分复用 频分复用</p>
+</li>
+<li><p><strong>时延、吞吐量、流量强度</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114162746326.png" srcset="/img/loading.gif" lazyload alt="image-20211114162746326" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114162836365.png" srcset="/img/loading.gif" lazyload alt="image-20211114162836365" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114163544530.png" srcset="/img/loading.gif" lazyload alt="image-20211114163544530" style="zoom:33%;"></li>
+<li><p><strong>传输时延 传播时延 处理时延 排队时延 往返时延（RTT）</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114163106443.png" srcset="/img/loading.gif" lazyload alt="image-20211114163106443" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114163221608.png" srcset="/img/loading.gif" lazyload alt="image-20211114163221608" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114163331887.png" srcset="/img/loading.gif" lazyload alt="image-20211114163331887" style="zoom: 33%;">
+
+<p>排队时延：。一个特定分组的排队时延将取决于先期到达的、正在排队等待向链路传输的分组的数量。如果该队列是空的，并且当前没有其他分组在传输，则该分组的排队时延为0。另一方面，如果流量很大，并且许多其他分组也在等待传输，该排队时延将很大。到达组的分组数量是到达该队列的流量强度和性质的函数。实际的排队时延通常在毫秒到微秒级。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114163432168.png" srcset="/img/loading.gif" lazyload alt="image-20211114163432168" style="zoom:33%;"></li>
+<li><p><strong>丢包和排队时延产生的原因</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114163655800.png" srcset="/img/loading.gif" lazyload alt="image-20211114163655800" style="zoom:33%;"></li>
+<li><p><strong>协议的层次结构：ISO OSI/RM七层模型、TCP/IP四层模型、Internet五层模型</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114170557547.png" srcset="/img/loading.gif" lazyload alt="image-20211114170557547" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114171127244.png" srcset="/img/loading.gif" lazyload alt="image-20211114171127244" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116124000487.png" srcset="/img/loading.gif" lazyload alt="image-20211116124000487" style="zoom:50%;"></li>
+<li><p><strong>对等层、对等体、服务、协议、服务访问点、服务原语、SDU、PDU、网络体系结构、协议栈</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114172309810.png" srcset="/img/loading.gif" lazyload alt="image-20211114172309810" style="zoom:67%;"></li>
+<li><p><strong>报文、报文段、数据报、帧、比特流</strong></p>
+</li>
+<li><p><strong>封装、解封装</strong></p>
+</li>
+</ol>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114162622859.png" srcset="/img/loading.gif" lazyload alt="image-20211114162622859" style="zoom: 50%;">
+
+
+
+<h3 id="第二章-应用层"><a href="#第二章-应用层" class="headerlink" title="第二章 应用层"></a>第二章 应用层</h3><ol>
+<li><strong>套接字</strong></li>
+<li><strong>应用层协议</strong></li>
+<li><strong>Web构成:浏览器 web服务器 协议</strong></li>
+<li><strong>HTML、HTTP</strong></li>
+<li><strong>web对象 URL</strong></li>
+<li><strong>非持续连接（HTTP1.0） 持续连接（HTTP1.1）</strong></li>
+<li><strong>HTTP请求报文 响应报文格式</strong></li>
+<li><strong>HTTP命令：Get、Post、Head、Put、Delete</strong></li>
+<li><strong>Cookie、web缓存工作原理、条件Get</strong></li>
+<li><strong>邮件系统构成:用户代理、邮件服务器、SMTP协议</strong></li>
+<li><strong>SMTP工作原理(7位ASCII码) MIME</strong></li>
+<li><strong>POP3 IMAP</strong></li>
+<li><strong>域名系统的层次结构</strong></li>
+<li><strong>根域名服务器、顶级域服务器、权威域名服务器</strong></li>
+<li><strong>两种DNS解析方法</strong></li>
+<li><strong>四种DNS资源记录</strong></li>
+<li><strong>P2P文件分发的基本原理(与C/S对比)</strong></li>
+<li><strong>BitTorrent的工作原理 最稀缺优先 4+1</strong></li>
+</ol>
+<h3 id="第三章-运输层"><a href="#第三章-运输层" class="headerlink" title="第三章 运输层"></a>第三章 运输层</h3><ol>
+<li><strong>运输层和网络层的功能对比</strong></li>
+<li><strong>多路复用和多路分解</strong></li>
+<li><strong>端口和套接字</strong></li>
+<li><strong>UDP数据包结构</strong></li>
+<li><strong>检查和的计算</strong></li>
+<li><strong>数据可靠传输的基本要求：不丢包、不出错</strong></li>
+<li><strong>差错检测、相应（ACK）、序号、检错重传、超时重传</strong></li>
+<li><strong>流水线技术、滑动窗口 GBN SR</strong></li>
+<li><strong>序号位数k和滑动窗口大小两者之间的关系公式</strong></li>
+<li><strong>累计确认、选择确认、稍待确认</strong></li>
+<li><strong>TCP报文段首部结构</strong></li>
+<li><strong>TCP序号、确认号</strong></li>
+<li><strong>TCP流量控制—— 通知窗口、可变滑动窗口</strong></li>
+<li><strong>TCP三次握手、四步连接撤销机制</strong></li>
+<li><strong>TCP超时时间间隔计算公式——卡恩公式及其修正公式</strong></li>
+<li><strong>拥塞、拥塞控制的方法</strong></li>
+<li><strong>Reno算法和Tahoe算法</strong></li>
+<li><strong>TCP的公平性</strong></li>
+</ol>
+<h3 id="第四章-网络层"><a href="#第四章-网络层" class="headerlink" title="第四章 网络层"></a>第四章 网络层</h3><ol>
+<li><p><strong>网络层的功能：转发、路由</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211117231618864.png" srcset="/img/loading.gif" lazyload alt="image-20211117231618864" style="zoom:50%;"></li>
+<li><p><strong>虚电路 vs 数据报</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211117235125078.png" srcset="/img/loading.gif" lazyload alt="image-20211117235125078" style="zoom:50%;"></li>
+<li><p><strong>路由器结构：输入端口、交换结构、路由选择处理机、输出端口</strong></p>
+</li>
+<li><p><strong>线头阻塞</strong></p>
+</li>
+<li><p><strong>三种交换结构</strong></p>
+</li>
+<li><p><strong>输出端口分组调度策略和丢包策略</strong></p>
+</li>
+<li><p><strong>IPv4、IPv6数据报首部结构</strong></p>
+</li>
+<li><p><strong>IP分片与重组</strong></p>
+</li>
+<li><p><strong>IPv4、IPv6地址</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211117235919995.png" srcset="/img/loading.gif" lazyload alt="image-20211117235919995" style="zoom:50%;"></li>
+<li><p><strong>IPv4地址的传统分类法：ABCDE</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211118000020832.png" srcset="/img/loading.gif" lazyload alt="image-20211118000020832" style="zoom:50%;"></li>
+<li><p><strong>子网划分、CIDR</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211118000107048.png" srcset="/img/loading.gif" lazyload alt="image-20211118000107048" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211118000141664.png" srcset="/img/loading.gif" lazyload alt="image-20211118000141664" style="zoom:50%;"></li>
+<li><p><strong>网络号 子网号 主机号 网络前缀 子网掩码</strong></p>
+</li>
+<li><p><strong>DHCP</strong></p>
+</li>
+<li><p><strong>NAT</strong></p>
+</li>
+<li><p><strong>ICMP</strong></p>
+</li>
+<li><p><strong>IPv4向IPv6迁移的方法</strong></p>
+</li>
+<li><p><strong>层次路由、AS、IGP、EGP</strong></p>
+</li>
+<li><p><strong>链路状态选路算法 OSFP 层次OSPF</strong></p>
+</li>
+<li><p><strong>距离向量选路算法 RIP</strong></p>
+</li>
+<li><p><strong>BGP-4 边界路由器 热土豆选路 路由选择策略</strong></p>
+</li>
+</ol>
+<h3 id="第五章-链路层：链路-接入网-局域网"><a href="#第五章-链路层：链路-接入网-局域网" class="headerlink" title="第五章 链路层：链路 接入网 局域网"></a>第五章 链路层：链路 接入网 局域网</h3><ol>
+<li><p><strong>结点，链路，数据链路，网络适配器</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114215345365.png" srcset="/img/loading.gif" lazyload alt="image-20211114215345365" style="zoom:50%;"></li>
+<li><p><strong>奇偶校验 检查和 CRC</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114220608060.png" srcset="/img/loading.gif" lazyload alt="image-20211114220608060" style="zoom: 50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114220628236.png" srcset="/img/loading.gif" lazyload alt="image-20211114220628236" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114220655459.png" srcset="/img/loading.gif" lazyload alt="image-20211114220655459" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114220749209.png" srcset="/img/loading.gif" lazyload alt="image-20211114220749209" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114220807178.png" srcset="/img/loading.gif" lazyload style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114221703096.png" srcset="/img/loading.gif" lazyload alt="image-20211114221703096" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114222028875.png" srcset="/img/loading.gif" lazyload alt="image-20211114222028875" style="zoom:50%;">
+
+
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114222130522.png" srcset="/img/loading.gif" lazyload alt="image-20211114222130522" style="zoom:50%;">
+
+
+
+<p>停止—等待协议</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114223605615.png" srcset="/img/loading.gif" lazyload alt="image-20211114223605615"></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114223623661.png" srcset="/img/loading.gif" lazyload alt="image-20211114223623661"></p>
+<p>回退N帧协议GBN</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114225038800.png" srcset="/img/loading.gif" lazyload alt="image-20211114225038800"></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114225012109.png" srcset="/img/loading.gif" lazyload alt="image-20211114225012109" style="zoom:50%;">
+
+
+
+<p>选择重传协议</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114231058988.png" srcset="/img/loading.gif" lazyload alt="image-20211114231058988" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114231050974.png" srcset="/img/loading.gif" lazyload alt="image-20211114231050974" style="zoom:50%;"></li>
+<li><p><strong>点到点链路 广播链路</strong></p>
+<p><img src="C:/Users/Trent/AppData/Roaming/Typora/typora-user-images/image-20211114232000494.png" srcset="/img/loading.gif" lazyload alt="image-20211114232000494"></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115110945687.png" srcset="/img/loading.gif" lazyload alt="image-20211115110945687" style="zoom: 50%;">
+
+<img src="C:/Users/Trent/AppData/Roaming/Typora/typora-user-images/image-20211114232335476.png" srcset="/img/loading.gif" lazyload alt="image-20211114232335476" style="zoom:50%;"></li>
+<li><p><strong>信道划分协议:TDM FDM CDMA</strong></p>
+  <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115111708667.png" srcset="/img/loading.gif" lazyload alt="image-20211115111708667" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115111748826.png" srcset="/img/loading.gif" lazyload alt="image-20211115111748826" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115111823433.png" srcset="/img/loading.gif" lazyload alt="image-20211115111823433" style="zoom:50%;">
+
+<p> 波分复用就是光的频分复用</p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115112116071.png" srcset="/img/loading.gif" lazyload alt="image-20211115112116071" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115112210721.png" srcset="/img/loading.gif" lazyload alt="image-20211115112210721" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115112318566.png" srcset="/img/loading.gif" lazyload alt="image-20211115112318566" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115112822479.png" srcset="/img/loading.gif" lazyload alt="image-20211115112822479" style="zoom:67%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115112913965.png" srcset="/img/loading.gif" lazyload alt="image-20211115112913965" style="zoom:67%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115113037779.png" srcset="/img/loading.gif" lazyload alt="image-20211115113037779" style="zoom:50%;"></li>
+<li><p><strong>随机接入协议 Aloha CSMA CSMA/CD</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115114617072.png" srcset="/img/loading.gif" lazyload alt="image-20211115114617072" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115114724172.png" srcset="/img/loading.gif" lazyload alt="image-20211115114724172" style="zoom: 50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115115112358.png" srcset="/img/loading.gif" lazyload alt="image-20211115115112358" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115115316848.png" srcset="/img/loading.gif" lazyload alt="image-20211115115316848" style="zoom:50%;">
+
+<p> <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115115421357.png" srcset="/img/loading.gif" lazyload alt="image-20211115115421357" style="zoom:50%;"><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115132408418.png" srcset="/img/loading.gif" lazyload alt="image-20211115132408418" style="zoom:50%;"></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115132512618.png" srcset="/img/loading.gif" lazyload alt="image-20211115132512618" style="zoom:50%;">
+
+<p> <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115132647385.png" srcset="/img/loading.gif" lazyload alt="image-20211115132647385"></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115132854063.png" srcset="/img/loading.gif" lazyload alt="image-20211115132854063" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115133038231.png" srcset="/img/loading.gif" lazyload alt="image-20211115133038231" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115133534252.png" srcset="/img/loading.gif" lazyload alt="image-20211115133534252" style="zoom:50%;">
+
+<p> 指数退避算法**（见5)</p>
+</li>
+<li><p><strong>征用期</strong></p>
+</li>
+<li><p><strong>MAC地址，ARP</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116112734267.png" srcset="/img/loading.gif" lazyload alt="image-20211116112734267" style="zoom:50%;">
+
+  <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116112939365.png" srcset="/img/loading.gif" lazyload alt="image-20211116112939365" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116113025702.png" srcset="/img/loading.gif" lazyload alt="image-20211116113025702" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116113112064.png" srcset="/img/loading.gif" lazyload alt="image-20211116113112064" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116113157136.png" srcset="/img/loading.gif" lazyload alt="image-20211116113157136" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116113950948.png" srcset="/img/loading.gif" lazyload alt="image-20211116113950948" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116114201473.png" srcset="/img/loading.gif" lazyload alt="image-20211116114201473" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116114751018.png" srcset="/img/loading.gif" lazyload alt="image-20211116114751018" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116114828040.png" srcset="/img/loading.gif" lazyload alt="image-20211116114828040" style="zoom:50%;">
+
+<p> <img src="C:/Users/Trent/AppData/Roaming/Typora/typora-user-images/image-20211116115223870.png" srcset="/img/loading.gif" lazyload alt="image-20211116115223870"></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116115257768.png" srcset="/img/loading.gif" lazyload alt="image-20211116115257768" style="zoom: 50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116124257198.png" srcset="/img/loading.gif" lazyload alt="image-20211116124257198" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116124334305.png" srcset="/img/loading.gif" lazyload alt="image-20211116124334305" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116125920277.png" srcset="/img/loading.gif" lazyload alt="image-20211116125920277" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116130030923.png" srcset="/img/loading.gif" lazyload alt="image-20211116130030923" style="zoom:50%;">
+
+<p> <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116130459501.png" srcset="/img/loading.gif" lazyload alt="image-20211116130459501"></p>
+</li>
+<li><p><strong>以太网帧结构</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114215847274.png" srcset="/img/loading.gif" lazyload alt="image-20211114215847274" style="zoom: 33%;"></li>
+<li><p><strong>MTU vs MSS</strong></p>
+</li>
+<li><p><strong>以太网的物理层</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114205609678.png" srcset="/img/loading.gif" lazyload alt="image-20211114205609678" style="zoom:50%;"></li>
+<li><p><strong>链路层交换机工作原理</strong></p>
+</li>
+<li><p><strong>集线器 vs 交换机 vs 路由器</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116165832967.png" srcset="/img/loading.gif" lazyload alt="image-20211116165832967" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116171214292.png" srcset="/img/loading.gif" lazyload alt="image-20211116171214292" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116171634889.png" srcset="/img/loading.gif" lazyload alt="image-20211116171634889" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116171432683.png" srcset="/img/loading.gif" lazyload alt="image-20211116171432683" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116172531640.png" srcset="/img/loading.gif" lazyload alt="image-20211116172531640" style="zoom:50%;">
+
+</li>
+<li><p><strong>VLAN</strong></p>
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116172750447.png" srcset="/img/loading.gif" lazyload alt="image-20211116172750447" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116173601147.png" srcset="/img/loading.gif" lazyload alt="image-20211116173601147" style="zoom:50%;">
+
+</li>
+</ol>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114211830050.png" srcset="/img/loading.gif" lazyload alt="image-20211114211830050" style="zoom:67%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114211841469.png" srcset="/img/loading.gif" lazyload alt="image-20211114211841469" style="zoom:67%;">
+
+
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114211857338.png" srcset="/img/loading.gif" lazyload alt="image-20211114211857338" style="zoom:67%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114211907684.png" srcset="/img/loading.gif" lazyload alt="image-20211114211907684" style="zoom:67%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114212942133.png" srcset="/img/loading.gif" lazyload alt="image-20211114212942133" style="zoom: 50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114212949530.png" srcset="/img/loading.gif" lazyload alt="image-20211114212949530" style="zoom:50%;">
+
+
+
+
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114212544633.png" srcset="/img/loading.gif" lazyload alt="image-20211114212544633" style="zoom: 50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114212629073.png" srcset="/img/loading.gif" lazyload alt="image-20211114212629073" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114212725253.png" srcset="/img/loading.gif" lazyload alt="image-20211114212725253" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114212809269.png" srcset="/img/loading.gif" lazyload alt="image-20211114212809269" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211114212923433.png" srcset="/img/loading.gif" lazyload alt="image-20211114212923433" style="zoom:50%;">
+
+
+
+<h3 id="第六章-无线网络和移动网络"><a href="#第六章-无线网络和移动网络" class="headerlink" title="第六章 无线网络和移动网络"></a>第六章 无线网络和移动网络</h3><ol>
+<li><p><strong>无线网构件: 无线主机、无线链路、基站</strong></p>
+</li>
+<li><p><strong>有基础设施无线网、无基础设施无线网（AdHoc）</strong></p>
+</li>
+<li><p><strong>无线链路特征</strong></p>
+</li>
+<li><p><strong>比特差错率 传输率和信噪比</strong></p>
+</li>
+<li><p><strong>隐蔽站问题 暴露站问题</strong></p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115232710094.png" srcset="/img/loading.gif" lazyload alt="image-20211115232710094"></p>
+</li>
+<li><p><strong>CDMA</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115232620196.png" srcset="/img/loading.gif" lazyload alt="image-20211115232620196" style="zoom:50%;"></li>
+<li><p><strong>802.11系列协议</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115232800793.png" srcset="/img/loading.gif" lazyload alt="image-20211115232800793" style="zoom:50%;">
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115232900173.png" srcset="/img/loading.gif" lazyload alt="image-20211115232900173"></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115233024877.png" srcset="/img/loading.gif" lazyload alt="image-20211115233024877" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115234726659.png" srcset="/img/loading.gif" lazyload alt="image-20211115234726659" style="zoom:50%;">
+
+ <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115234849987.png" srcset="/img/loading.gif" lazyload alt="image-20211115234849987" style="zoom:50%;">
+
+
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115234950207.png" srcset="/img/loading.gif" lazyload alt="image-20211115234950207" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115235258354.png" srcset="/img/loading.gif" lazyload alt="image-20211115235258354" style="zoom:50%;">
+
+
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115235706556.png" srcset="/img/loading.gif" lazyload alt="image-20211115235706556" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115235803756.png" srcset="/img/loading.gif" lazyload alt="image-20211115235803756" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115235855648.png" srcset="/img/loading.gif" lazyload alt="image-20211115235855648" style="zoom:50%;">
+
+
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211115235955234.png" srcset="/img/loading.gif" lazyload alt="image-20211115235955234" style="zoom:50%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116000032330.png" srcset="/img/loading.gif" lazyload alt="image-20211116000032330" style="zoom:50%;">
+
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20211116000045462.png" srcset="/img/loading.gif" lazyload alt="image-20211116000045462"></p>
+</li>
+<li><p><strong>BSS</strong></p>
+</li>
+<li><p><strong>信道 关联</strong></p>
+</li>
+<li><p><strong>CSMA/CA 帧间间隔 CTS RTS</strong></p>
+</li>
+<li><p><strong>802.11速率自适应</strong></p>
+</li>
+<li><p><strong>归属网络 归属代理 外部网络 外部代理 锚代理 永久地址 转交地址</strong></p>
+</li>
+<li><p><strong>移动节点的路由选择方法</strong></p>
+</li>
+</ol>
+<p>考试范围</p>
+<p>见公告</p>
+<p>题型： 全部为大题， 8——10题</p>
+<p>第二层 以太网交换机  Mac地址 栈表  自学习</p>
+<p> 第一层 hub集线器</p>
+<p>  第三层 路由器  IP 转发表， 路由表  选路算法</p>
+<p>每经过一个路由器称为一跳</p>
+<p>ICP 网络内容提供商 ISP 网络服务提供商</p>
+<p>缩写要背</p>
+<p>因特网提供的服务  </p>
+<p>SDK 供应用程序调用，使用服务,以协议的形式存在 ，语法语义同步 </p>
+<p>提供运行平台，供应用程序运行</p>
+<p>因特网构成</p>
+<p>边缘  应用进程通信的模型</p>
+<p>家庭接入 DSL HFC FTTH</p>
+<p>企业接入 以太网</p>
+<p>无线接入  局域网，城域网 广域网 个域网</p>
+<p>电路交换（多路复用TDM FDM CDM，面向连接，可靠性高，独占电路）    报文交换   分组交换（虚电路（引入电路级交换的能力）） 数据报）</p>
+<p>四种时延的计算   往返时延RTT</p>
+<p>绝大多数丢包，缓冲区溢出，流量强度大于1</p>
+<p>层次模型  三大模型，  要知道TCP/IP 四层模型</p>
+<p>浏览器没有过多的care，服务器讲了html，web对象，url</p>
+<p>重点Http协议  1.0版本 客户机服务器通信非持久连接 事先建立连接才可传输，2RTT，性能较差，断开连接   三种不同模式</p>
+<p>请求报文 GET POST ……五个命令 </p>
+<p>请求状态， 404等</p>
+<p>SMTP协议工作原理  7位ASCII码， base64拓展</p>
+<p>接受邮件的两种方法，POP3，IMAP</p>
+<p>P2P与CS对比</p>
+<p>BitTorrent的工作原理 最缺优先，4+1</p>
+<p>网络层运输层的题占50%</p>
+<p>多路复用 多路分解   最基本的原理和方法，从整本书整个体系来考虑，很多层都有</p>
+<p>Rdt的多个版本</p>
+<p>引入各种机制</p>
+<p>RDT3.0性能很差，引入滑动窗口，进一步GBN　SR  序号位数和滑动窗口大小的关系公式</p>
+<p>三种确认方式</p>
+<p>TCP报文段首部结构，20字节必选，………………面向字节流的可变滑动窗口机制</p>
+<p>滑动窗口基于通知窗口，拥塞窗口……用通知窗口进行流量控制</p>
+<p>三次握手，四次连接撤销</p>
+<p>拥塞、拥塞控制的方法</p>
+<p>Reno算法，Tahoe算法</p>
+<p>TCP重传机制两种，timeout，快速重传</p>
+<p>第六版就没这个话题了，TCP拥塞对时延的影响</p>
+<p>网络层，转发，路由</p>
+<p>网络地址，广播地址，IP地址</p>
+<p>IP地址分配时这两个地址不能分给主机使用</p>
+<p>层次路由</p>
+<p>AS 自治系统的概念</p>
+<p>路由选择策略</p>
+<p>路由器结构</p>
+<p>路由选择处理机</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%9A%8F%E4%BE%BF%E8%AE%B0%E5%BD%95/">随便记录</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%BD%91/">计网</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/11/18/%E8%AE%A1%E7%BD%91/">https://trentliu.cn/2021/11/18/%E8%AE%A1%E7%BD%91/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/20/Rdt3.0,GBN,SR,Tcp%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8EC++%E5%AE%9E%E7%8E%B0/">
+                        <span class="hidden-mobile">rdt3.0,GBN,SR,Tcp的理解与C++实现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
