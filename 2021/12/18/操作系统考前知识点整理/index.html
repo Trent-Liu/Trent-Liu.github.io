@@ -1,0 +1,1431 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="个人博客">
+  <meta name="author" content="Trent-Liu">
+  <meta name="keywords" content="分享在HUST中的一些学习经历">
+  
+  <title>操作系统考前知识点整理 - Pigsty</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/a11y-dark.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"trentliu.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Pigsty</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/TreeHole/">
+                <i class="iconfont icon-wechat-fill"></i>
+                TreeHole
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/wallhaven-dgkmpo_3840x2160.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统考前知识点整理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Trent-Liu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-18 08:00" pubdate>
+        2021年12月18日 早上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      9.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      101
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统考前知识点整理</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022年1月5日 下午
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h3><h4 id="操作系统在计算机系统中的位置及作用⭐"><a href="#操作系统在计算机系统中的位置及作用⭐" class="headerlink" title="操作系统在计算机系统中的位置及作用⭐"></a>操作系统在计算机系统中的位置及作用⭐</h4><p>介于裸机（硬件）和用户程序（软件）之间</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220102223554469.png" srcset="/img/loading.gif" lazyload alt="image-20220102223554469" style="zoom: 50%;">
+
+<ol>
+<li><p>OS对于两层的管理和控制</p>
+<ol>
+<li>对硬件：控制CPU工作，访问存储器，设备驱动，中断处理（向下控制裸机资源）</li>
+<li>对软件：控制、管理，提供方便的用户界面，提供优质的服务（向上应用程序管理控制支持）</li>
+</ol>
+</li>
+<li><p>两层对于OS的制约和影响</p>
+<ol>
+<li>硬件：提供OS运行环境，限制了OS的功能实现</li>
+<li>软件：用户需求，提供优质的服务，方便的用户界面</li>
+</ol>
+</li>
+</ol>
+<h4 id="存储程序式计算机的结构与特点⭐⭐⭐"><a href="#存储程序式计算机的结构与特点⭐⭐⭐" class="headerlink" title="存储程序式计算机的结构与特点⭐⭐⭐"></a>存储程序式计算机的结构与特点⭐⭐⭐</h4><ol>
+<li><p>基本部件：CPU，存储器，I/O设备</p>
+</li>
+<li><p>特点：</p>
+<p>集中顺序过程控制</p>
+<ol>
+<li>过程性：模拟人们手工操作</li>
+<li>集中控制：由CPU集中管理</li>
+<li>顺序性：程序计数器</li>
+</ol>
+</li>
+</ol>
+<h4 id="操作系统的定义与特征⭐⭐⭐"><a href="#操作系统的定义与特征⭐⭐⭐" class="headerlink" title="操作系统的定义与特征⭐⭐⭐"></a>操作系统的定义与特征⭐⭐⭐</h4><ol>
+<li><p>定义：</p>
+<p>操作系统是一个大型的程序系统，它负责计算机系统软硬件资源的分配；控制和协调并发活动；提供用户接口。使用户获得良好的工作环境</p>
+</li>
+<li><p>操作系统的特征</p>
+<ol>
+<li>并发 能处理多个同时性活动的能力。</li>
+<li>共享 多个计算任务对系统资源的共同享用。</li>
+<li>不确定性 操作系统能处理大量的、随机的事件序列，使各用户的计算任务正确地完成。</li>
+</ol>
+</li>
+</ol>
+<h4 id="操作系统的基本功能⭐"><a href="#操作系统的基本功能⭐" class="headerlink" title="操作系统的基本功能⭐"></a>操作系统的基本功能⭐</h4><ol>
+<li><p>处理机管理</p>
+<ol>
+<li>提出进程调度策略</li>
+<li>给出进程调度算法</li>
+<li>进行处理机的分派</li>
+</ol>
+</li>
+<li><p>存储器管理</p>
+<ol>
+<li>存储分配和存储无关性</li>
+<li>存储保护</li>
+<li>存储扩充</li>
+</ol>
+</li>
+<li><p>设备管理</p>
+<ol>
+<li>设备无关性</li>
+<li>设备分配</li>
+<li>设备的传输控制</li>
+</ol>
+</li>
+<li><p>信息管理（文件系统）</p>
+</li>
+<li><p>操作系统的资源管理观点</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220102225252777.png" srcset="/img/loading.gif" lazyload alt="image-20220102225252777" style="zoom:33%;"></li>
+</ol>
+<h4 id="操作系统的基本技术：多道程序设计技术⭐⭐⭐⭐⭐"><a href="#操作系统的基本技术：多道程序设计技术⭐⭐⭐⭐⭐" class="headerlink" title="操作系统的基本技术：多道程序设计技术⭐⭐⭐⭐⭐"></a>操作系统的基本技术：多道程序设计技术⭐⭐⭐⭐⭐</h4><ol>
+<li><p>概念</p>
+<p>在计算机<strong>主存</strong>中同时存放<strong>几道</strong>相互独立的程序，这些程序在<strong>管理程序控制</strong>之下，<strong>相互穿插地运行</strong>。当某道程序因某种原因不能继续运行下去时（如等待外部设备传输数据），管理程序便将<strong>另一道程序</strong>投入运行。</p>
+</li>
+<li><p>特征</p>
+<p>多道、宏观上并行、微观上串行</p>
+</li>
+<li><p>应用在脱机批处理系统</p>
+<ol>
+<li>联机批处理 特点是监督程序，作业自动过渡，主机负责计算与I/O，有CPU高速与I/O慢速的矛盾，由此引出脱机批处理</li>
+<li>脱机批处理 特点是主机与卫星机并行操作，问题是调度不灵活与保护问题，通过硬件解决：通道技术（DMA）、中断技术，主机负责计算，卫星机负责I/O，主机与卫星机可以并行操作</li>
+</ol>
+</li>
+</ol>
+<h4 id="操作系统的基本技术：分时技术⭐⭐⭐⭐"><a href="#操作系统的基本技术：分时技术⭐⭐⭐⭐" class="headerlink" title="操作系统的基本技术：分时技术⭐⭐⭐⭐"></a>操作系统的基本技术：分时技术⭐⭐⭐⭐</h4><ol>
+<li><p>概念</p>
+<p>所谓分时技术，是把处理机时间划分成很短的时间片（如几百毫秒）轮地分配给各个应用程程序使用，如果某个程序在分配时间片用完之前计算还未完成，该程序就暂时中断，等待下一轮继续计算。</p>
+</li>
+<li><p>分时处理</p>
+<p>一台计算机与许多终端设备连接，终端用户以联机方式使用计算机。</p>
+</li>
+<li><p>应用在分时系统</p>
+</li>
+</ol>
+<h4 id="操作系统的基本类型⭐⭐⭐"><a href="#操作系统的基本类型⭐⭐⭐" class="headerlink" title="操作系统的基本类型⭐⭐⭐"></a>操作系统的基本类型⭐⭐⭐</h4><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220102225350198.png" srcset="/img/loading.gif" lazyload alt="image-20220102225350198" style="zoom:67%;">
+
+<ul>
+<li><p>批量操作系统</p>
+<ul>
+<li><p>批量操作系统是操作系统的一种类型。该系统把用户提交的程序组织成作业形式。作业成批送入计算机，然后由作业调度程序自动选择作业，在系统内多道运行。早期计算机一般都配置批量操作系统。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>系统吞吐量高：脱机操作，多道运行，合理搭配作业</li>
+<li>作业周转时间长，用户使用不方便</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>分时操作系统</p>
+<ul>
+<li><p>分时操作系统是操作系统的另一种类型。它一般采用时间</p>
+<p>片轮转的办法，使一台计算机同时为多个终端用户服务。</p>
+<p>该系统对每个用户都能保证足够快的响应时间，并提供交</p>
+<p>互会话功能。</p>
+</li>
+<li><p>特点</p>
+<ul>
+<li>并行性</li>
+<li>独占性</li>
+<li>交互性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>实时操作系统</p>
+<ul>
+<li> 实时操作系统对外部输入的信息，能够在规定的时间内处理完毕并作出反应。</li>
+<li>特点<ul>
+<li>可靠性和安全性</li>
+<li>及时响应</li>
+</ul>
+</li>
+<li>类型<ul>
+<li>实时控制</li>
+<li>实时信息处理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>个人计算机操作系统</p>
+</li>
+<li><p>多处理机系统</p>
+<ul>
+<li>也称并行系统或紧耦合系统</li>
+</ul>
+</li>
+<li><p>网络操作系统</p>
+</li>
+<li><p>分布式系统</p>
+</li>
+</ul>
+<p>​    </p>
+<h3 id="操作系统的结构和硬件支持"><a href="#操作系统的结构和硬件支持" class="headerlink" title="操作系统的结构和硬件支持"></a>操作系统的结构和硬件支持</h3><h4 id="什么是操作系统虚拟机⭐"><a href="#什么是操作系统虚拟机⭐" class="headerlink" title="什么是操作系统虚拟机⭐"></a>什么是操作系统虚拟机⭐</h4><p>在裸机上配置了操作系统程序后就构成了操作系统虚拟机</p>
+<ul>
+<li>OS对裸机进行了包装，使应用在包装后的平台上运行，仿佛独占这个计算机一样。</li>
+</ul>
+<h4 id="操作系统的结构⭐"><a href="#操作系统的结构⭐" class="headerlink" title="操作系统的结构⭐"></a>操作系统的结构⭐</h4><ul>
+<li><p>操作系统的设计方法</p>
+<ul>
+<li><p>单体结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103190103662.png" srcset="/img/loading.gif" lazyload alt="image-20220103190103662" style="zoom:50%;"></li>
+<li><p>模块化结构（逻辑结构各部分换成模块，模块仍在操作系统内）</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103190235098.png" srcset="/img/loading.gif" lazyload alt="image-20220103190235098" style="zoom:50%;"></li>
+<li><p>可扩展内核结构（操作系统其他功能是可加载模块</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103191050203.png" srcset="/img/loading.gif" lazyload alt="image-20220103191050203" style="zoom:50%;"></li>
+<li><p>层次结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103191118028.png" srcset="/img/loading.gif" lazyload alt="image-20220103191118028" style="zoom:50%;"></li>
+</ul>
+</li>
+<li><p>内核</p>
+<ul>
+<li><p>单一大内核（Monolithic Kernel），也叫宏内核，宏内核里内存，文件，IO，网络这些模块都是集成在一起，运行在内核进程，模块之间的交互直接通过方法调用</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103193303003.png" srcset="/img/loading.gif" lazyload alt="image-20220103193303003" style="zoom: 33%;"></li>
+<li><p>微内核（Microkernel） 内核只提供最核心的功能，比如任务调度和内存管理等，其他模块移除内核运行在不同的进程中，即使某一个模块出现问题，只要重启这个模块的进程即可，不会影响到其他模块，稳定性大大增加。甚至可以在系统运行过程中替换现有模块的实现。而且由于模块独立的性质，可以做到模块的按需加载。但是模块间的相互调用需要通过进程间通信，通信效率相对较低。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103195423711.png" srcset="/img/loading.gif" lazyload alt="image-20220103195423711" style="zoom:33%;"></li>
+<li><p>混合内核：解决效率问题</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="区分处理机的态的目的⭐⭐⭐"><a href="#区分处理机的态的目的⭐⭐⭐" class="headerlink" title="区分处理机的态的目的⭐⭐⭐"></a>区分处理机的态的目的⭐⭐⭐</h4><p>保护操作系统</p>
+<ul>
+<li>两类程序<ul>
+<li>管理程序：管理系统资源；控制程序运行</li>
+<li>用户程序：使用资源，提出申请；被控制。</li>
+</ul>
+</li>
+</ul>
+<h4 id="管态、用户态二者的区别⭐⭐⭐⭐"><a href="#管态、用户态二者的区别⭐⭐⭐⭐" class="headerlink" title="管态、用户态二者的区别⭐⭐⭐⭐"></a>管态、用户态二者的区别⭐⭐⭐⭐</h4><p>处理机的态，又称处理机的特权级，是中央处理机的工作状态，当前处理机正在执行哪类程序，决定处理机的态。</p>
+<ul>
+<li><p><strong>管态（supervisor mode）</strong></p>
+<p>操作系统的管理程序执行时机器所处的状态，又称处理机的特权级。</p>
+<p>在此状态下<strong>处理机可以使用全部指令</strong>（包括一组特权指令）；<strong>使用全部系统资源</strong>（包括整个存储区域）</p>
+</li>
+<li><p><strong>用户态（user mode）</strong></p>
+<p>用户程序执行时机器所处的状态成为用户态。在此状态下<strong>禁止使用特权指令</strong>，<strong>不能直接取用资源与改变机器状态</strong>，并且只允许用户程序<strong>访问自己的存储区域</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>管态</th>
+<th>用户态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>操作系统的程序执行</td>
+<td>用户程序执行</td>
+</tr>
+<tr>
+<td>使用全部指令</td>
+<td>禁止使用特权指令</td>
+</tr>
+<tr>
+<td>使用全部系统资源（包括整个存储区域）</td>
+<td>只允许用户程序访问自己的存储区域（主存中）</td>
+</tr>
+</tbody></table>
+<p>处理机状态的特权指令集包括：1. 涉及外部设备的输入输出指令 2. 修改特殊寄存器的指令 3. 改变机器状态的指令</p>
+</li>
+</ul>
+<h4 id="中断的定义、类型⭐⭐⭐"><a href="#中断的定义、类型⭐⭐⭐" class="headerlink" title="中断的定义、类型⭐⭐⭐"></a>中断的定义、类型⭐⭐⭐</h4><p>Intel定义：</p>
+<p>异常（Exception）与中断（IRQ）都是 受保护的控制转换，会导致处理器从用户态切换到内核态，而不会给用户态任何机会干扰内核或者其他环境。</p>
+<p>中断（IRQ）是一种受保护的控制转移，通常由<strong>处理器外部</strong>的<strong>异步</strong>事件引起，例如外部设备I/O活动的通知。</p>
+<p>异常（Exception）是由<strong>当前运行的代码同步</strong>引起的受保护的控制转移，例如除零或者无效的内存访问</p>
+<p><strong>类型</strong></p>
+<p><strong>中断（IRQ）</strong>是指某个事件（例如键盘输入、IO传输结束等）发生时，系统<strong>中止现行程序的运行</strong>、引出<strong>处理事件程序</strong>对该事件进行处理，处理完毕后返回<strong>现行程序的下一条指令</strong>，继续执行。处理的时机是在<strong>指令的间隙</strong>，当前指令执行完毕后会检测是否有中断到达，并由系统决定是否进入中断处理。</p>
+<p><strong>异常（Exception）</strong>是由于程序的行为（如除0错，缺页等）导致的<strong>同步事件</strong>，必须由计算机<strong>立刻处理</strong>。处理完成后，<strong>回到程序发生异常处</strong>继续执行。</p>
+<p><strong>syscall（系统中断）</strong></p>
+<h4 id="中断响应的定义、实质、所需的硬件支持⭐⭐⭐"><a href="#中断响应的定义、实质、所需的硬件支持⭐⭐⭐" class="headerlink" title="中断响应的定义、实质、所需的硬件支持⭐⭐⭐"></a>中断响应的定义、实质、所需的硬件支持⭐⭐⭐</h4><p><strong>定义</strong>：中断响应是当中央处理机发现已有中断请求时，中止现行程序执行，并自动引出中断处理程序的过程。</p>
+<p><strong>实质</strong>：受保护的控制转移，交换指令地址及处理机的状态信息</p>
+<p><strong>需要的硬件支持</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103204608854.png" srcset="/img/loading.gif" lazyload alt="image-20220103204608854" style="zoom:50%;">
+
+<p>正在执行的程序是低优先态，中断处理程序是高优先态，中断进入只能由硬件完成</p>
+<h4 id="软件中断处理过程⭐⭐⭐"><a href="#软件中断处理过程⭐⭐⭐" class="headerlink" title="软件中断处理过程⭐⭐⭐"></a>软件中断处理过程⭐⭐⭐</h4><p>当硬件完成了中断进入过程（保存程序断点及处理机有关信息，自动转入相应的中断处理程序执行）后，由相应的中断处理程序得到控制权，进入了软件的中断处理过程。</p>
+<p>过程如下</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103205121261.png" srcset="/img/loading.gif" lazyload alt="image-20220103205121261" style="zoom:50%;">
+
+
+
+
+
+<h4 id="必要的硬件支持，PIT、DMA等⭐"><a href="#必要的硬件支持，PIT、DMA等⭐" class="headerlink" title="必要的硬件支持，PIT、DMA等⭐"></a>必要的硬件支持，PIT、DMA等⭐</h4><ul>
+<li><p>主存储器（主存、内存）：</p>
+<p>处理机能直接访问的存储器称为主存储器，用来存放正在或将要执行的系统和用户程序和数据以及程序执行时要求的临时存储空间。</p>
+<p>只读存储器ROM(Read-only memory)： ROM称为BIOS，用来存放基本的I/O程序。</p>
+</li>
+</ul>
+<p>​        随机访问存储器 RAM（random access memory)</p>
+<ul>
+<li><p>辅存储器（辅存、外存）：</p>
+<p>处理机不能直接访问的存储器，如磁盘、磁带、光盘等，用来存放大量的数据信息。</p>
+</li>
+</ul>
+<p>可编程间隔定时器（Programmable Interval Timer，PIT)</p>
+<p>略</p>
+<h3 id="操作系统的用户接口"><a href="#操作系统的用户接口" class="headerlink" title="操作系统的用户接口"></a>操作系统的用户接口</h3><h4 id="用户程序的步骤以及各步骤之间的关系⭐"><a href="#用户程序的步骤以及各步骤之间的关系⭐" class="headerlink" title="用户程序的步骤以及各步骤之间的关系⭐"></a>用户程序的步骤以及各步骤之间的关系⭐</h4><ol>
+<li><p><strong>编辑</strong></p>
+<p>建立一个新文件，或对已有的文件中的错误进行修改</p>
+</li>
+<li><p><strong>编译</strong></p>
+<p>将源程序翻译成浮动的目标代码（没有逻辑地址）</p>
+</li>
+<li><p><strong>连接</strong></p>
+<p>主程序和其他所需要的子程序和例行程序连接装配在一起，使之成为一个可执行的，完整的主存映像文件。（每个语句对应的逻辑地址固定）</p>
+</li>
+<li><p><strong>运行</strong></p>
+<p>将主存映像文件调入主存，启动运行，得出计算结果</p>
+</li>
+</ol>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103223826452.png" srcset="/img/loading.gif" lazyload alt="image-20220103223826452" style="zoom:50%;">
+
+
+
+<h4 id="静态连接和动态链接的区别⭐⭐⭐"><a href="#静态连接和动态链接的区别⭐⭐⭐" class="headerlink" title="静态连接和动态链接的区别⭐⭐⭐"></a>静态连接和动态链接的区别⭐⭐⭐</h4><ol>
+<li>静态连接是<strong>将所有的外部调用函数都连接到目标文件中形成一个完整的主存映像文件</strong>。</li>
+<li>当有多个应用程序都需要调用同一个库函数时，这<strong>多个应用程序的目标文件中都将包含这个外部函数对应的代码，这将造成主存的极大浪费</strong>，不能支持有效的共享。</li>
+<li>如果静态库有更新的话，所有可执行文件都要重新链接才能用上新的静态库。</li>
+<li>程序发布时不需要依赖库，也就是不需要再带着库一起发布。</li>
+<li>静态连接运行速度快。</li>
+</ol>
+<ol>
+<li><p>动态链接时将这一连接工作延迟到程序运行的时候进行，所需要的支持是动态链接库DLL，动态链接<strong>不需要将应用程序所需要的外部函数代码从库中提取出来并连接到目标文件中，而是在应用程序需要调用外部函数的地方做记录，并说明要使用的外部函数名和引用入口号，形成调用链表。</strong></p>
+</li>
+<li><p>当所需的动态链接库DLL在主存时，就可以正确地引用这个外部函数了，多个程序执行时共享一份副本，节省空间。</p>
+</li>
+<li><p>动态库更新方便。</p>
+</li>
+<li><p>发布需要依赖库。</p>
+</li>
+<li><p>动态链接由于执行程序需要进行链接，有性能损失。</p>
+</li>
+</ol>
+<h4 id="操作系统提供哪两个接口，使用场合⭐⭐⭐"><a href="#操作系统提供哪两个接口，使用场合⭐⭐⭐" class="headerlink" title="操作系统提供哪两个接口，使用场合⭐⭐⭐"></a>操作系统提供哪两个接口，使用场合⭐⭐⭐</h4><p><strong>命令接口</strong>（操作命令，不能叫操作界面，因为不一定有操作界面）</p>
+<ul>
+<li>用户通过这个操作接口来组织自己的工作流程和控制程序的运行</li>
+</ul>
+<p><strong>程序接口</strong>（系统调用）</p>
+<ul>
+<li>任何一个用户在其运行过程中，可以使用操作系统提供的功能调用来请求操作系统的服务（如申请主存，使用各种外设，创建进程或线程）</li>
+</ul>
+<h4 id="系统调用的概念及实现方法⭐⭐⭐"><a href="#系统调用的概念及实现方法⭐⭐⭐" class="headerlink" title="系统调用的概念及实现方法⭐⭐⭐"></a>系统调用的概念及实现方法⭐⭐⭐</h4><p><strong>系统功能调用</strong>是用户在程序一级请求操作系统服务的一种手段，它不是一条简单的硬指令，而是带有一定功能号的访管指令，它的功能并非由硬件直接提供，而是由操作系统中的一段程序完成的，即由软件方法实现的。但是特权级的切换与恢复现场是由硬件完成。</p>
+<p><strong>实现方法</strong></p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220103234946938.png" srcset="/img/loading.gif" lazyload alt="image-20220103234946938" style="zoom: 33%;">
+
+<p>采用统一进管方式——系统提供访管指令与访管中断</p>
+<p>访管指令又叫自愿进管指令，svc n（svc表示机器访管指令的操作码记忆符，n为地址码（功能号））</p>
+<p>在用户程序中，需要请求操作系统服务的地方安排一条系统调用，这样，当程序执行到这一条命令时，就会发生中断，系统由用户态转为管态，操作系统的访问中断处理程序得到控制权，它将按系统调用的功能号，借助例行子程序入口地址表转到相应的例行程序去执行，在完成了用户所需的服务功能后，退出中断，返回到用户程序的断点继续执行。</p>
+<h3 id="进程及进程管理"><a href="#进程及进程管理" class="headerlink" title="进程及进程管理"></a>进程及进程管理</h3><h4 id="进程引入⭐⭐⭐"><a href="#进程引入⭐⭐⭐" class="headerlink" title="进程引入⭐⭐⭐"></a>进程引入⭐⭐⭐</h4><p>进程是Time sharing分时方面的概念，与多道要进行区分</p>
+<h5 id="程序的顺序执行-定义-特点"><a href="#程序的顺序执行-定义-特点" class="headerlink" title="程序的顺序执行 定义 特点"></a>程序的顺序执行 定义 特点</h5><p>顺序执行一般指单道，若是多道系统，一般不存在顺序执行</p>
+<p><strong>定义</strong>：一个计算的<strong>若干操作</strong>必须按照<strong>严格</strong>的<strong>先后次序顺序地</strong>执行，而且中间不会被任何事件或程序所打断（<strong>单道</strong>），这类计算过程就是程序地顺序执行<strong>过程</strong></p>
+<p><strong>特点：</strong></p>
+<ol>
+<li><strong>顺序性</strong> —— 处理机的操作严格按照程序所规定的顺序执行。</li>
+<li><strong>封闭性</strong> —— 程序一旦开始执行，其计算结果不受外界因素的影响，不可被打断，包括OS。</li>
+<li><strong>可再现性</strong> —— 程序执行的结果与它的执行速度无关 (即与时间无关)，而只与初始条件有关。（放在不同地机器上，初始条件一致，结果相同） </li>
+</ol>
+<p>​                            <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104160210404.png" srcset="/img/loading.gif" lazyload alt="image-20220104160210404" style="zoom:33%;"></p>
+<p>同一时间只能存在一道程序                                        </p>
+<h5 id="程序的并发执行-定义-特点"><a href="#程序的并发执行-定义-特点" class="headerlink" title="程序的并发执行 定义 特点"></a>程序的并发执行 定义 特点</h5><p>并发并未强调处理部件的数量</p>
+<p><strong>定义</strong>：若干个程序段同时在系统中运行，这些程序段的执行在<strong>时间上是重叠的</strong>，一个程序段的执行尚未结束，另一个程序段的执行已经开始，即使这种重叠时很小的一部分，也称这几个程序是并发执行的</p>
+<p><strong>特点：</strong></p>
+<ol>
+<li>（可能）失去程序的封闭性和可再现性</li>
+<li>程序与计算不再一一对应</li>
+<li>程序并发执行的相互制约</li>
+</ol>
+<h4 id="进程定义⭐⭐⭐⭐⭐"><a href="#进程定义⭐⭐⭐⭐⭐" class="headerlink" title="进程定义⭐⭐⭐⭐⭐"></a>进程定义⭐⭐⭐⭐⭐</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>所谓进程，就是一个程序在给定的<strong>活动空间</strong>和<strong>初始环境</strong>下在一个处理机上的<strong>执行过程</strong>。</p>
+<p>（不是程序实体，而是实体的执行过程）</p>
+<h5 id="进程与程序的区别"><a href="#进程与程序的区别" class="headerlink" title="进程与程序的区别"></a>进程与程序的区别</h5><ol>
+<li>程序是静态的概念（磁盘上的一个文件），而进程是动态的概念</li>
+<li>进程是一个独立运行的活动单位</li>
+<li>进程是竞争系统资源的基本单位，资源只可能分配给进程</li>
+<li>一个程序可以对应多个进程（一个程序可以多开），一个进程至少包含一个程序</li>
+</ol>
+<h4 id="进程状态⭐⭐⭐"><a href="#进程状态⭐⭐⭐" class="headerlink" title="进程状态⭐⭐⭐"></a>进程状态⭐⭐⭐</h4><h5 id="三个基本状态、状态变迁图"><a href="#三个基本状态、状态变迁图" class="headerlink" title="三个基本状态、状态变迁图"></a>三个基本状态、状态变迁图</h5><ol>
+<li>运行状态（running） 该进程以获得运行所必需的资源，它的程序正在处理机上执行</li>
+<li>等待状态(wait)  进程正等待着某一事件的发生而暂时停止执行。这时,即使给它CPU控制权，它也无法执行。</li>
+<li>就绪状态（ready） 进程已获得除CPU之外的运行所必需的资源，一旦得到CPU控制权，立即可以运行。    </li>
+</ol>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104162609157.png" srcset="/img/loading.gif" lazyload alt="image-20220104162609157"></p>
+<p>等待-&gt;运行不可能发生，等待完后一定到就绪状态，等待运行</p>
+<p>运行-&gt;等待，只要就绪队列非空，就可以</p>
+<p>运行-&gt;就绪，一定会发生，当前运行进程自身就能完成</p>
+<h5 id="不同操作系统类型的进程状态变迁"><a href="#不同操作系统类型的进程状态变迁" class="headerlink" title="不同操作系统类型的进程状态变迁"></a>不同操作系统类型的进程状态变迁</h5><ul>
+<li><p>三程序（排序，只使用CPU）在不同的操作系统环境中的执行结果</p>
+<ul>
+<li>不支持多进程的操作系统 单道顺序执行 T = T1 + T2 + T3</li>
+</ul>
+</li>
+<li><p>支持多进程的操作系统</p>
+<ul>
+<li>单核，有调度开销 T &gt;= T1 + T2 + T3</li>
+</ul>
+</li>
+<li><p>两程序（打印与计算，不同设备）</p>
+<ul>
+<li>不支持多进程 T = T1 + T2</li>
+<li>支持多进程 T = max{T1, T2} 占用不同设备</li>
+</ul>
+</li>
+</ul>
+<h4 id="进程描述⭐⭐⭐⭐"><a href="#进程描述⭐⭐⭐⭐" class="headerlink" title="进程描述⭐⭐⭐⭐"></a>进程描述⭐⭐⭐⭐</h4><h5 id="PCB（进程控制块）的定义与作用"><a href="#PCB（进程控制块）的定义与作用" class="headerlink" title="PCB（进程控制块）的定义与作用"></a>PCB（进程控制块）的定义与作用</h5><p>定义：描述进程与其他进程、系统资源的关系以及进程在各个不同时期所处的状态的<em>数据结构</em>，称为<strong>进程控制块</strong> </p>
+<h5 id="进程的组成"><a href="#进程的组成" class="headerlink" title="进程的组成"></a>进程的组成</h5><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104194224638.png" srcset="/img/loading.gif" lazyload alt="image-20220104194224638" style="zoom: 50%;">
+
+<ol>
+<li>程序与数据：描述进程本身所应完成的功能</li>
+<li>PCB：进程的动态特征，该进程与其他进程和系统资源的关系</li>
+</ol>
+<h4 id="线程定义⭐⭐⭐"><a href="#线程定义⭐⭐⭐" class="headerlink" title="线程定义⭐⭐⭐"></a>线程定义⭐⭐⭐</h4><p>定义：线程是比进程更小的活动单位，它是进程中的一个执行路径。</p>
+<h4 id="进程控制⭐"><a href="#进程控制⭐" class="headerlink" title="进程控制⭐"></a>进程控制⭐</h4><h5 id="进程控制原语"><a href="#进程控制原语" class="headerlink" title="进程控制原语"></a>进程控制原语</h5><ul>
+<li><p>基本进程控制原语</p>
+<p>创建原语、撤消原语、阻塞原语、唤醒原语</p>
+</li>
+<li><p>进程控制原语的执行与进程状态的变化</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104231715636.png" srcset="/img/loading.gif" lazyload alt="image-20220104231715636" style="zoom: 50%;"></li>
+</ul>
+<h5 id="进程创建、进程撤销原语的功能"><a href="#进程创建、进程撤销原语的功能" class="headerlink" title="进程创建、进程撤销原语的功能"></a>进程创建、进程撤销原语的功能</h5><ul>
+<li><p>进程创建原语</p>
+<p>create (name，priority) </p>
+<ul>
+<li>name为被创建进程的标识符</li>
+<li>priority为进程的优先级</li>
+</ul>
+<p>功能：创建一个具有指定标识符的进程，建立进程的PCB结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104231959148.png" srcset="/img/loading.gif" lazyload alt="image-20220104231959148" style="zoom:50%;"></li>
+<li><p>进程撤销原语</p>
+<p>当进程完成任务后希望终止自己时使用进程撤销原语kill或者exit（kill可能导致内存泄漏，只释放了PCB资源，没有释放allocated资源</p>
+<p>功能：撤消当前运行的进程。将该进程的PCB结构归还到PCB资源池，所占用的资源归还给父进程，从总链队列中摘除它，然后转进程调度程序。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104232113727.png" srcset="/img/loading.gif" lazyload alt="image-20220104232113727" style="zoom:50%;"></li>
+</ul>
+<h5 id="进程等待、进程唤醒原语的功能"><a href="#进程等待、进程唤醒原语的功能" class="headerlink" title="进程等待、进程唤醒原语的功能"></a>进程等待、进程唤醒原语的功能</h5><ul>
+<li><p>进程等待原语</p>
+<p>当进程需要等待某一事件完成时，它可以调用等待原语挂起自己 susp(chan) 入口参数chan：进程等待的原因</p>
+<p>功能：中止调用进程的执行，并加入到等待chan的等待队列中，最后使控制转向进程调度</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104232333020.png" srcset="/img/loading.gif" lazyload alt="image-20220104232333020" style="zoom:50%;"></li>
+<li><p>进程唤醒原语</p>
+<p>当处于等待状态的进程所期待的事件来到时，由发现者进程使用唤醒原语唤醒它。 wakeup(chan) 入口参数chan：进程唤醒的原因</p>
+<p>功能：当进程等待的事件发生时，唤醒等待该事件的进程。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104232617155.png" srcset="/img/loading.gif" lazyload alt="image-20220104232617155" style="zoom:50%;"></li>
+</ul>
+<h4 id="进程的相互制约关系⭐⭐⭐⭐⭐"><a href="#进程的相互制约关系⭐⭐⭐⭐⭐" class="headerlink" title="进程的相互制约关系⭐⭐⭐⭐⭐"></a>进程的相互制约关系⭐⭐⭐⭐⭐</h4><p>互斥与同步都是相互制约关系，但是互斥是相互排斥，一定有临界资源，同步是互相等待，互通消息，不一定有临界资源。</p>
+<h5 id="进程互斥"><a href="#进程互斥" class="headerlink" title="进程互斥"></a>进程互斥</h5><ul>
+<li><p>临界资源（critical resource）</p>
+<p>定义：一次仅允许一个进程使用的资源称为临界资源</p>
+<p>硬件：输入机、打印机、磁带机等</p>
+<p>软件：公用变量，数据，表格，队列等。</p>
+</li>
+<li><p>互斥</p>
+<p>在操作系统中，当某一进程正在访问同一临界资源所在的临界区时，就不允许其他进程来读出或者修改临界区的内容，否则，就会产生后果无法估计的错误。进程间的这种相互制约关系称为互斥。</p>
+</li>
+<li><p>临界区</p>
+<p>临界区是进程中对公共变量 (或存储区)进行<strong>审查与修改</strong>（即使用临界资源）的程序段，称为相对于该公共变量的临界区。 </p>
+<p>临界区越小越好，意味着系统并发度高，效率高。</p>
+</li>
+</ul>
+<h5 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h5><ul>
+<li><p>进程同步的概念</p>
+<p>并发进程在一些关键点上可能需要互相等待与互通消息，这种相互制约的等待与互通消息称为进程同步。</p>
+</li>
+<li><p>进程同步的例</p>
+<ul>
+<li>病员就医</li>
+<li>共享缓冲区的计算进程与打印进程的同步</li>
+</ul>
+</li>
+</ul>
+<h4 id="进程同步机构⭐⭐⭐⭐⭐"><a href="#进程同步机构⭐⭐⭐⭐⭐" class="headerlink" title="进程同步机构⭐⭐⭐⭐⭐"></a>进程同步机构⭐⭐⭐⭐⭐</h4><h5 id="锁、上锁原语、开锁原语⭐⭐"><a href="#锁、上锁原语、开锁原语⭐⭐" class="headerlink" title="锁、上锁原语、开锁原语⭐⭐"></a>锁、上锁原语、开锁原语⭐⭐</h5><p>用变量w代表某种资源的状态，w称为锁，一般用于多核，使用锁会有风险（关中断）</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220104234756022.png" srcset="/img/loading.gif" lazyload alt="image-20220104234756022" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105003212164.png" srcset="/img/loading.gif" lazyload alt="image-20220105003212164" style="zoom:33%;">
+
+<h5 id="信号灯及P、V操作"><a href="#信号灯及P、V操作" class="headerlink" title="信号灯及P、V操作"></a>信号灯及P、V操作</h5><p>信号灯是一个确定的二元组（s，q），s是一个具有非负初值的整形变量，q是一个初始状态为空的队列，操作系统利用信号灯的状态对并发进程和共享资源进行控制和管理。</p>
+<p>信号灯是整型变量</p>
+<p>变量值&gt;=0时，表示绿灯，进程执行</p>
+<p>变量值&lt;0时，表示红灯，进程停止执行</p>
+<p>注：创建信号灯时，应准确说明信号灯s的意义和初值，这个初值绝不能为负值。</p>
+<ul>
+<li><p>P操作，又称wait</p>
+<p>对信号灯s的 p操作记为 p(s)。p(s)是一个不可分割的<strong>原语操作</strong>，即取信号灯值减1，<strong>若相减结果为负，则调用p(s)的进程被阻，并插入到该信号灯的等待队列中，否则可以继续执行</strong>。</p>
+</li>
+<li><p>V操作，又称signed</p>
+<p>对信号灯s的 v操作记为 v(s)。v(s)是一个不可分割的原语操作，即取信号灯值加1，若<strong>相加结果大于零，进程继续执行，否则，要帮助唤醒在信号灯等待队列上的一个进程。</strong></p>
+</li>
+</ul>
+<h4 id="进程同步与互斥的实现⭐⭐⭐⭐⭐"><a href="#进程同步与互斥的实现⭐⭐⭐⭐⭐" class="headerlink" title="进程同步与互斥的实现⭐⭐⭐⭐⭐"></a>进程同步与互斥的实现⭐⭐⭐⭐⭐</h4><p>锁与PV操作是两种机制，锁通过busy polling实现进程互斥，PV是通过进程状态转换实现进程互斥，但是在状态切换频繁时，会有额外开销，运用于大临界区。</p>
+<h5 id="用信号灯的P、V操作实现进程互斥"><a href="#用信号灯的P、V操作实现进程互斥" class="headerlink" title="用信号灯的P、V操作实现进程互斥"></a>用信号灯的P、V操作实现进程互斥</h5><h5 id="两类同步问题的解答"><a href="#两类同步问题的解答" class="headerlink" title="两类同步问题的解答"></a>两类同步问题的解答</h5><ul>
+<li>合作进程的执行次序</li>
+<li>共享缓冲区的合作进程的同步</li>
+</ul>
+<h5 id="生产者——消费者问题及解答"><a href="#生产者——消费者问题及解答" class="headerlink" title="生产者——消费者问题及解答"></a>生产者——消费者问题及解答</h5><h4 id="操作系统的并发控制机制⭐"><a href="#操作系统的并发控制机制⭐" class="headerlink" title="操作系统的并发控制机制⭐"></a>操作系统的并发控制机制⭐</h4><h5 id="创建进程、创建线程-及其使用"><a href="#创建进程、创建线程-及其使用" class="headerlink" title="创建进程、创建线程 及其使用"></a>创建进程、创建线程 及其使用</h5><h5 id="等待进程、线程的终止及其使用"><a href="#等待进程、线程的终止及其使用" class="headerlink" title="等待进程、线程的终止及其使用"></a>等待进程、线程的终止及其使用</h5><h5 id="信号量与使用方法"><a href="#信号量与使用方法" class="headerlink" title="信号量与使用方法"></a>信号量与使用方法</h5><h5 id="共享内存与使用方法"><a href="#共享内存与使用方法" class="headerlink" title="共享内存与使用方法"></a>共享内存与使用方法</h5><h4 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h4><h5 id="进程调度的功能⭐⭐⭐⭐"><a href="#进程调度的功能⭐⭐⭐⭐" class="headerlink" title="进程调度的功能⭐⭐⭐⭐"></a>进程调度的功能⭐⭐⭐⭐</h5><ol>
+<li>进程管理的数据结构</li>
+<li>决定调度策略<ol>
+<li>优先调度 就绪队列按进程优先级高低排序 会产生低优先级饿死的问题</li>
+<li>先来先服务 就绪队列按进程阿里到的先后次序排序 没有照顾高优先级服务</li>
+</ol>
+</li>
+<li>实施处理机的分配和回收</li>
+</ol>
+<h5 id="调度方式-非剥夺方式-剥夺方式⭐⭐⭐"><a href="#调度方式-非剥夺方式-剥夺方式⭐⭐⭐" class="headerlink" title="调度方式 非剥夺方式 剥夺方式⭐⭐⭐"></a>调度方式 非剥夺方式 剥夺方式⭐⭐⭐</h5><p><strong>调度方式</strong>： 当一进程正在处理机上执行时，若有某个更为“重要而紧迫”的进程需要运行，系统如何分配处理机</p>
+<p><strong>非剥夺方式</strong>：当“重要而紧迫”的进程来到时，让正在执行的进程继续执行，直到该进程完成或发生某事件而进入“完成”或“阻塞”状态时，才把处理机分配给“重要而紧迫”的进程。</p>
+<p>不抢占，剥夺方式的开销大，因此计算服务器这种速度更重要的使用非剥夺方式</p>
+<p><strong>剥夺方式</strong>：当“重要而紧迫”的进程来到时，便暂停正在执行的进程，立即把处理机分配给优先级更高的进程。</p>
+<p>手机平板PC，速度不重要，响应重要，进程切换次数频繁，花在进程切换的开销大。</p>
+<h5 id="常用的进程调度算法⭐⭐⭐⭐"><a href="#常用的进程调度算法⭐⭐⭐⭐" class="headerlink" title="常用的进程调度算法⭐⭐⭐⭐"></a>常用的进程调度算法⭐⭐⭐⭐</h5><ul>
+<li><p>进程优先数调度算法</p>
+<p>预先确定各进程的优先数，系统把处理机的使用权赋予就绪队列中具备最高优先权 (优先数和一定的优先级相对应)的就绪进程。</p>
+</li>
+<li><p>循环轮转调度算法</p>
+<p>当CPU空闲时，选取就绪队列首元素，赋予一个时间片，当时间片用完时，该进程转为就绪态并进入就绪队列末端。</p>
+</li>
+</ul>
+<h5 id="调度用的进程状态变迁图的分析⭐⭐⭐"><a href="#调度用的进程状态变迁图的分析⭐⭐⭐" class="headerlink" title="调度用的进程状态变迁图的分析⭐⭐⭐"></a>调度用的进程状态变迁图的分析⭐⭐⭐</h5><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105010927340.png" srcset="/img/loading.gif" lazyload alt="image-20220105010927340" style="zoom:50%;">
+
+<p>   <strong>优先调度与时间片调度相结合的调度算法</strong></p>
+<ol>
+<li>当CPU空闲时，若高优先就绪队列非空，则从高优先就绪队列中选择一个进程运行，分配时间片为100ms。</li>
+<li>当CPU空闲时，若高优先就绪队列为空，则从低优先就绪队列中选择一个进程运行，分配时间片为500ms。</li>
+</ol>
+<p>​    优先照顾了IO量大的进程，适当照顾计算量大的进程</p>
+<h3 id="资源分配与调度"><a href="#资源分配与调度" class="headerlink" title="资源分配与调度"></a>资源分配与调度</h3><h4 id="资源管理功能⭐"><a href="#资源管理功能⭐" class="headerlink" title="资源管理功能⭐"></a>资源管理功能⭐</h4><p>   <strong>(1)</strong> <strong>资源数据结构的描述</strong></p>
+<p>​       包含资源的物理名、逻辑名、类型、地址、分配状态等信息。</p>
+<p>   <strong>(2)</strong> <strong>确定资源的分配原则</strong> (调度原则)</p>
+<p>​        决定资源应分给谁，何时分配，分配多少等问题。</p>
+<p>   <strong>(3)</strong> <strong>实施资源分配</strong></p>
+<p>​       执行资源分配；资源收回工作。</p>
+<p>   <strong>(4)</strong> <strong>存取控制和安全保护</strong></p>
+<p>​        对资源的存取进行控制并对资源实施安全保护措施。</p>
+<h4 id="资源分配策略⭐"><a href="#资源分配策略⭐" class="headerlink" title="资源分配策略⭐"></a>资源分配策略⭐</h4><h5 id="先请求先服务"><a href="#先请求先服务" class="headerlink" title="先请求先服务"></a>先请求先服务</h5><p>每一个新产生的请求均排在队尾</p>
+<p>当资源可用时，取队首元素，并满足其需要</p>
+<p>排序原则：按请求的先后次序排列</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105012058727.png" srcset="/img/loading.gif" lazyload alt="image-20220105012058727" style="zoom:50%;">
+
+<h5 id="优先调度"><a href="#优先调度" class="headerlink" title="优先调度"></a>优先调度</h5><p>对每一个进程指定一个优先级</p>
+<p>每一个新产生的请求，按照其优先级的高低插到相应的位置</p>
+<p>当资源可用时，取队首元素，并满足其需要</p>
+<p>排序原则：按优先级的高低排序</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105012222895.png" srcset="/img/loading.gif" lazyload alt="image-20220105012222895" style="zoom:50%;">
+
+<h5 id="针对设备特性的调度"><a href="#针对设备特性的调度" class="headerlink" title="针对设备特性的调度"></a>针对设备特性的调度</h5><h4 id="死锁⭐⭐⭐⭐⭐"><a href="#死锁⭐⭐⭐⭐⭐" class="headerlink" title="死锁⭐⭐⭐⭐⭐"></a>死锁⭐⭐⭐⭐⭐</h4><h5 id="定义-举例"><a href="#定义-举例" class="headerlink" title="定义 举例"></a>定义 举例</h5><p>在两个或多个并发进程中，如果每个进程持有某种资源而有都等待着别的进程释放它或它们现在保持着的资源，所有进程都是等待态否则就不能向前推进，此时，称这一组进程产生了死锁。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105013150128.png" srcset="/img/loading.gif" lazyload alt="image-20220105013150128" style="zoom:50%;">
+
+<h5 id="产生死锁的原因"><a href="#产生死锁的原因" class="headerlink" title="产生死锁的原因"></a>产生死锁的原因</h5><ol>
+<li>系统资源不足</li>
+<li>进程推进顺序非法</li>
+</ol>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105013356382.png" srcset="/img/loading.gif" lazyload alt="image-20220105013356382" style="zoom: 33%;">
+
+<h5 id="产生死锁的必要条件"><a href="#产生死锁的必要条件" class="headerlink" title="产生死锁的必要条件"></a>产生死锁的必要条件</h5><p>发生死锁必然会有的条件</p>
+<ul>
+<li><p>互斥条件</p>
+<p>涉及的资源是非共享的，即为临界资源</p>
+</li>
+<li><p>不剥夺条件</p>
+<p>进程所获得的资源在未使用完毕之前，不能被其他进程强行夺走</p>
+</li>
+<li><p>部分分配</p>
+<p>进程每次申请它所需要的一部分资源，在等待一新资源的同时，进程继续占用已分配到的资源</p>
+</li>
+<li><p>环路条件</p>
+<p>存在一种进程的循环连，链中的每个一进程已获得的资源同时被链中下一个进程所请求。</p>
+<p>这个条件是充要条件，存在环路也一定有死锁</p>
+</li>
+</ul>
+<h4 id="解决死锁问题"><a href="#解决死锁问题" class="headerlink" title="解决死锁问题"></a>解决死锁问题</h4><p>破坏产生死锁的四个必要条件之一</p>
+<p>预防死锁——采用静态资源分配</p>
+<p>避免死锁——有控资源分配方法</p>
+<h5 id="死锁预防"><a href="#死锁预防" class="headerlink" title="死锁预防"></a>死锁预防</h5><ul>
+<li><p>静态预防死锁的方法</p>
+<p>在作业调度时为选中的作业分配它所需要的所有资源，当资源一旦分配给该作业后，在其整个运行期间这些资源为它独占。</p>
+</li>
+</ul>
+<h5 id="死锁避免"><a href="#死锁避免" class="headerlink" title="死锁避免"></a>死锁避免</h5><ul>
+<li><p>有序资源分配方法（动态预防死锁的方法）</p>
+<p>系统中所有资源都给定一个唯一的编号，所有分配请求必须以上升的次序进行。当遵守上升次序的规则时，若资源可用，则予以分配；否则，请求者等待。</p>
+</li>
+<li><p>银行家算法</p>
+<p>申请者事先说明对各类资源的最大需求量。在进程活动期间动态申请某类资源时，由系统审查现有该类资源的数目是否能满足当前进程的最大需求量，如能满足就予以分配，否则拒绝。</p>
+<p>安全状态：如果系统存在一条资源分配路径，使系统不发生死锁。</p>
+</li>
+</ul>
+<h3 id="处理机调度⭐⭐"><a href="#处理机调度⭐⭐" class="headerlink" title="处理机调度⭐⭐"></a>处理机调度⭐⭐</h3><h4 id="处理机的二级调度"><a href="#处理机的二级调度" class="headerlink" title="处理机的二级调度"></a>处理机的二级调度</h4><p>只有内存中的程序才能在CPU上运行。因此，处理机的调度通常分为两层</p>
+<p>宏观：作业调度</p>
+<p>对存放在辅存设备上的大量作业，以一定的策略进行挑选，分配主存等必要的资源，建立作业对应的进程，使其投入运行。</p>
+<p>微观上：进程调度</p>
+<p>对进入主存的所有进程，确定哪个进程在什么时候获得处理机，使用多长时间。</p>
+<h4 id="作业调度"><a href="#作业调度" class="headerlink" title="作业调度"></a>作业调度</h4><h5 id="作业的状态"><a href="#作业的状态" class="headerlink" title="作业的状态"></a>作业的状态</h5><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105113204143.png" srcset="/img/loading.gif" lazyload style="zoom:50%;">
+
+<p>作业由磁盘调度到主存时，就创建了进程，进行进程的三态转换。</p>
+<h5 id="作业控制块"><a href="#作业控制块" class="headerlink" title="作业控制块"></a>作业控制块</h5><p>作业控制块（JCB），记录进入系统的作业情况（类型、状态、资源请求与分配等）</p>
+<h5 id="作业调度的功能"><a href="#作业调度的功能" class="headerlink" title="作业调度的功能"></a>作业调度的功能</h5><ol>
+<li><p>确定数据结构（JCB）</p>
+</li>
+<li><p>确定调度策略与调度算法</p>
+</li>
+<li><p>分配资源</p>
+</li>
+<li><p>善后处理</p>
+</li>
+</ol>
+<h5 id="周转时间、带权周转时间：定义、物理意义"><a href="#周转时间、带权周转时间：定义、物理意义" class="headerlink" title="周转时间、带权周转时间：定义、物理意义"></a>周转时间、带权周转时间：定义、物理意义</h5><p><strong>周转时间</strong>：各作业<strong>提交给计算机系统</strong>到该<strong>作业的结果返回给用户</strong>所需要的时间。注意不是执行时间，包括后备状态（等待）时间，不是提交就能运行。</p>
+<p>ti：作业周转时间        tci：作业完成时间       tsi：作业提交时间</p>
+<p>ti = tci - tsi</p>
+<ul>
+<li>意义：说明作业i在系统中停留的时间长短</li>
+<li>平均周转时间</li>
+</ul>
+<p><strong>带权周转时间</strong>：一个作业的周转时间与其运行时间的比值 wi = ti/tr &gt;=1</p>
+<ul>
+<li>意义：说明作业i在系统中的相对等待时间</li>
+<li>平均带权周转时间 </li>
+<li>精确度高于周转时间和平均周转时间</li>
+</ul>
+<h5 id="常用的作业调度算法"><a href="#常用的作业调度算法" class="headerlink" title="常用的作业调度算法"></a>常用的作业调度算法</h5><ul>
+<li><p>先来先服务（FCFS）</p>
+<p>策略：按照作业到来的先后次序进行调度，先来先服务，效率较低</p>
+<p>特点：</p>
+<ol>
+<li>每次选择等待时间最久的作业，而不考虑作业运行时间的长短</li>
+<li>实现简单，效率较低，在一些实际的系统和一般应用程序中应用较多。</li>
+</ol>
+</li>
+<li><p>短作业优先</p>
+<p>策略：考虑作业的运行时间，每次总选择一个请求运行时间最小的作业调入内存（系统）</p>
+<p>特点：</p>
+<ol>
+<li>易实现，系统吞吐量高</li>
+<li>只考虑短作业，而没有考虑长作业的利益</li>
+<li>相对先来先服务调度算法实现要困难些，如果作业的到来顺序以及运行时间不合适，会出现饿死现象</li>
+</ol>
+</li>
+</ul>
+<p>解题时表格格式如下</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105153555407.png" srcset="/img/loading.gif" lazyload alt="image-20220105153555407" style="zoom:33%;">
+
+<h4 id="进程调度-1"><a href="#进程调度-1" class="headerlink" title="进程调度"></a>进程调度</h4><h5 id="进程调度的功能"><a href="#进程调度的功能" class="headerlink" title="进程调度的功能"></a>进程调度的功能</h5><ol>
+<li><p>记录和保持系统中所有进程的有关情况和状态特征</p>
+</li>
+<li><p>决定分配（处理机）策略</p>
+<p>调度策略的不同，组织就绪进程队列的方式也不同。</p>
+<ul>
+<li>先来先服务调度：就绪进程按等待时间大小的顺序排队</li>
+<li>优先数调度：就绪进程按优先数的先后次序排队</li>
+</ul>
+</li>
+<li><p>实施处理机的分配和回收</p>
+</li>
+</ol>
+<h5 id="调度方式：非剥夺方式-剥夺方式"><a href="#调度方式：非剥夺方式-剥夺方式" class="headerlink" title="调度方式：非剥夺方式 剥夺方式"></a>调度方式：非剥夺方式 剥夺方式</h5><ul>
+<li>非剥夺方式（来了一个紧急任务，就让它等待，先运行当前的程序，不能剥夺当前正在运行的系统的控制权）<ul>
+<li>优点： 实现简单，系统开销小</li>
+<li>缺点：难以满足紧急任务的要求</li>
+</ul>
+</li>
+<li>剥夺方式（目前的桌面系统都是剥夺方式）<ul>
+<li>优点：及时响应紧急任务</li>
+<li>缺点：增加了系统开销</li>
+</ul>
+</li>
+</ul>
+<h5 id="常用的进程调度算法"><a href="#常用的进程调度算法" class="headerlink" title="常用的进程调度算法"></a>常用的进程调度算法</h5><ul>
+<li><p>优先数调度</p>
+<p>按照优先数调度</p>
+</li>
+<li><p>循环轮转调度</p>
+<p>系统的响应时间分成大小相等（或不等）的时间片。每个进程被调度到后，占用一个时间片，时间片用完后，该进程让出CPU，排在就绪队列的队尾。多个进程循环轮转。</p>
+<p>T(响应时间)=N(进程数目)*q(时间片)</p>
+</li>
+</ul>
+<h5 id="调度用的进程状态变迁图（多种进程状态及变迁）"><a href="#调度用的进程状态变迁图（多种进程状态及变迁）" class="headerlink" title="调度用的进程状态变迁图（多种进程状态及变迁）"></a>调度用的进程状态变迁图（多种进程状态及变迁）</h5><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105010927340.png" srcset="/img/loading.gif" lazyload style="zoom:33%;">
+
+
+
+
+
+<h3 id="主存管理"><a href="#主存管理" class="headerlink" title="主存管理"></a>主存管理</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><h5 id="虚实分离⭐⭐⭐⭐⭐"><a href="#虚实分离⭐⭐⭐⭐⭐" class="headerlink" title="虚实分离⭐⭐⭐⭐⭐"></a>虚实分离⭐⭐⭐⭐⭐</h5><ul>
+<li><p>逻辑地址 作业地址空间</p>
+<p>又叫相对地址或者虚地址，用户的程序地址（指令地址或操作数地址）均为逻辑地址。</p>
+<p>程序地址空间是用户程序所有的逻辑地址集合对应的空间。</p>
+</li>
+<li><p>物理地址 存储空间</p>
+<p>又叫逻辑地址或者实地址，时计算机主存单元的真实地址，又称为绝对地址或实地址</p>
+<p>物理地址的集合所对应的空间组成了主存空间</p>
+</li>
+</ul>
+<h5 id="地址映射⭐⭐⭐⭐"><a href="#地址映射⭐⭐⭐⭐" class="headerlink" title="地址映射⭐⭐⭐⭐"></a>地址映射⭐⭐⭐⭐</h5><ul>
+<li><p>定义</p>
+<p>将程序地址空间中使用的逻辑地址变换成主存中的物理地址的过程，称为地址映射</p>
+</li>
+<li><p>类型——静态地址重定位的定义和实现</p>
+<p>程序装入过程中随机进行的地址变换方式称为静态地址映射，目标代码不可浮动</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105160529766.png" srcset="/img/loading.gif" lazyload alt="image-20220105160529766" style="zoom:50%;"></li>
+<li><p>类型——动态地址重定位的定义和实现</p>
+<p>在程序执行期间，随着每条指令和数据的访问自动地连续地进行地址映射，这种地址变换方式称为动态地址映射。（需要硬件的支持）</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105160639958.png" srcset="/img/loading.gif" lazyload alt="image-20220105160639958" style="zoom: 50%;"></li>
+</ul>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105160757857.png" srcset="/img/loading.gif" lazyload alt="image-20220105160757857" style="zoom:50%;">
+
+<h5 id="虚存⭐⭐⭐⭐"><a href="#虚存⭐⭐⭐⭐" class="headerlink" title="虚存⭐⭐⭐⭐"></a>虚存⭐⭐⭐⭐</h5><p>由操作系统和硬件相配合来完成主存和辅存之间的信息的动态调度。这样的计算机系统好像为用户提供了一个其存储容量比实际主存大得多的存储器，这个存储器称为虚拟存储器。</p>
+<p>核心：</p>
+<ol>
+<li>逻辑地址与物理地址分开</li>
+<li>存储空间与虚地址空间分开</li>
+<li>提供地址变换机构</li>
+</ol>
+<p>物质基础是要有相当容量地辅存，有一定容量的主存，以及地址变换机构。</p>
+<h5 id="存储保护⭐⭐⭐⭐"><a href="#存储保护⭐⭐⭐⭐" class="headerlink" title="存储保护⭐⭐⭐⭐"></a>存储保护⭐⭐⭐⭐</h5><ul>
+<li><p>定义</p>
+<p>在多用户环境中，主存储器按区分配给各用户程序使用。为了互不影响，必须由硬件 (软件配合)保证各用户程序只能在给定的存储区域内活动，这种措施叫做存储保护。</p>
+</li>
+<li><p>界地址保护的实现方法</p>
+<ul>
+<li><p>上下界防护</p>
+<p>设置上下界寄存器</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105163318040.png" srcset="/img/loading.gif" lazyload alt="image-20220105163318040" style="zoom:50%;"></li>
+<li><p>基地址，限长防护</p>
+<p>设置基址寄存器和限长寄存器</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105163421358.png" srcset="/img/loading.gif" lazyload alt="image-20220105163421358" style="zoom:50%;"></li>
+</ul>
+</li>
+</ul>
+<h4 id="分区存储管理"><a href="#分区存储管理" class="headerlink" title="分区存储管理"></a>分区存储管理</h4><h5 id="分区分配中的数据结构⭐⭐⭐⭐"><a href="#分区分配中的数据结构⭐⭐⭐⭐" class="headerlink" title="分区分配中的数据结构⭐⭐⭐⭐"></a>分区分配中的数据结构⭐⭐⭐⭐</h5><ul>
+<li><p>空闲区队列(自由主存队列)结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105164315437.png" srcset="/img/loading.gif" lazyload alt="image-20220105164315437" style="zoom:50%;"></li>
+</ul>
+<h5 id="放置策略⭐⭐⭐⭐"><a href="#放置策略⭐⭐⭐⭐" class="headerlink" title="放置策略⭐⭐⭐⭐"></a>放置策略⭐⭐⭐⭐</h5><ul>
+<li><p>首次适应算法</p>
+<p>首次适应算法是将输入的程序放置到主存里<strong>第一个</strong>足够装下它的地址最低的空闲区中。</p>
+<ul>
+<li><p>空闲区队列结构：空闲区地址由低到高排序</p>
+</li>
+<li><p>特点</p>
+<p>尽可能地利用存储器中低地址地空闲区，而尽量保存高地址的空闲区</p>
+</li>
+</ul>
+</li>
+<li><p>最佳适应算法（最佳匹配）</p>
+<p>最佳适应算法是将输入的程序放置到主存中与它所需<strong>大小最接近</strong>的空闲区中</p>
+<ul>
+<li><p>空闲区队列结构：空闲区大小由小到大排序</p>
+</li>
+<li><p>特点</p>
+<p>尽可能地利用存储器中小地空闲区，而尽量保存大的空闲区</p>
+</li>
+</ul>
+</li>
+<li><p>最坏适应算法（最坏匹配）</p>
+<p>最坏适应算法是将输入的程序放置到主存中与它所需大小差距最大的空闲区中。</p>
+<ul>
+<li><p>空闲区队列结构：空闲区大小由大到小排序</p>
+</li>
+<li><p>特点</p>
+<p>尽可能地利用存储器中大的空闲区</p>
+</li>
+</ul>
+</li>
+<li><p>三种策略的讨论</p>
+</li>
+</ul>
+<h5 id="分区的缺点及解决⭐⭐⭐⭐"><a href="#分区的缺点及解决⭐⭐⭐⭐" class="headerlink" title="分区的缺点及解决⭐⭐⭐⭐"></a>分区的缺点及解决⭐⭐⭐⭐</h5><ul>
+<li><p>碎片与拼接</p>
+<p>在已分配区之间存在着的一些没有被充分利用的空闲区</p>
+<p>所谓的拼接技术是指移动存储器中某些已分配区中的信息，使本来分散的空闲区连成一个大的空闲区</p>
+</li>
+</ul>
+<h4 id="页式存储管理"><a href="#页式存储管理" class="headerlink" title="页式存储管理"></a>页式存储管理</h4><h5 id="页式地址变换⭐⭐⭐⭐"><a href="#页式地址变换⭐⭐⭐⭐" class="headerlink" title="页式地址变换⭐⭐⭐⭐"></a>页式地址变换⭐⭐⭐⭐</h5><ul>
+<li><p>页表 虚地址结构</p>
+<p>为了实现从逻辑地址空间到物理主存的映像，系统建立的虚页与实页之间的对应关系的地址变换的机构称为页面映像表，简称页表。</p>
+<p>页表的组成</p>
+<ul>
+<li>高速缓冲存储器，地址变换速度快，但是成本高</li>
+<li>主存区域，地址变换速度比硬件慢，成本较低</li>
+</ul>
+</li>
+<li><p>页式地址变换过程</p>
+<p>虚地址结构，举例</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105165942501.png" srcset="/img/loading.gif" lazyload alt="image-20220105165942501" style="zoom:50%;">
+
+<p>变换步骤：</p>
+<p>   ⅰ CPU给出操作数地址 (为2500) ；</p>
+<p>   ⅱ 由分页机构自动地把逻辑地址分为两部分，得到页号p</p>
+<p>​      和页内相对位移w (p =2， w =452)；</p>
+<p>   ⅲ 根据页表始址寄存器指示的页表始地址，以页号为索</p>
+<p>​       引，找到第2页所对应的块号 (为7) ；</p>
+<p>   ⅳ 将块号b和页内位移量w拼接在一起，就形成了访问主</p>
+<p>​       存的物理地址 (7´1024+452=7620)</p>
+</li>
+<li><p>使用联想存储器（缓冲存储器），存放正在运行的进程当前用到的页号和对应的块号，又称为快表。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105170215352.png" srcset="/img/loading.gif" lazyload alt="image-20220105170215352" style="zoom: 33%;"></li>
+</ul>
+<h5 id="请调策略⭐⭐⭐⭐"><a href="#请调策略⭐⭐⭐⭐" class="headerlink" title="请调策略⭐⭐⭐⭐"></a>请调策略⭐⭐⭐⭐</h5><ul>
+<li><p>扩充页表功能——中断位 辅存地址</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105170259706.png" srcset="/img/loading.gif" lazyload alt="image-20220105170259706" style="zoom:33%;">
+
+<p>中断位i，标识该页是否在主存，若i=1，表示此页不在主存，若i=0，表示该页在主存</p>
+<p>辅存地址：该页面在辅存的位置。</p>
+</li>
+<li><p>缺页处理</p>
+<p>若主存中有空白块，且n &lt; m(程序消耗内存中的块的个数小于可以给程序的块的个数)，则直接调入</p>
+<p>若主存中无空白块，或n &gt;= m，则需淘汰该程序在主存中的一页。</p>
+</li>
+</ul>
+<h5 id="淘汰策略⭐⭐⭐⭐"><a href="#淘汰策略⭐⭐⭐⭐" class="headerlink" title="淘汰策略⭐⭐⭐⭐"></a>淘汰策略⭐⭐⭐⭐</h5><p>用来选择淘汰哪一页的规则叫做置换策略，或称淘汰算法。</p>
+<ul>
+<li><p>扩充页表功能——引用位  改变位</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105170709056.png" srcset="/img/loading.gif" lazyload alt="image-20220105170709056" style="zoom:33%;">
+
+<p>引用位——标识该页最近是否被访问，为0没有，为1有</p>
+<p>改变位——标识该页是否被修改，为0没有，为1有</p>
+</li>
+<li><p>抖动</p>
+<p>导致系统效率急剧下降的主存和辅存之间的频繁页面置换现象</p>
+</li>
+<li><p>置换算法</p>
+<ul>
+<li><p>理想中的最佳算法，淘汰的那一页都是以后不再 要用的</p>
+</li>
+<li><p>先进先出淘汰算法FIFO</p>
+<p>总是选择在主存中居留时间最长（即最早进入主存）的一页淘汰。</p>
+</li>
+<li><p>最久未使用淘汰算法（LRU算法）</p>
+<p>总是选择最长时间未被使用的那一页淘汰。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h4><h5 id="段式系统的二维地址结构"><a href="#段式系统的二维地址结构" class="headerlink" title="段式系统的二维地址结构"></a>段式系统的二维地址结构</h5><h5 id="段页式系统中段表、页表与主存的关系"><a href="#段页式系统中段表、页表与主存的关系" class="headerlink" title="段页式系统中段表、页表与主存的关系"></a>段页式系统中段表、页表与主存的关系</h5>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/%E9%9A%8F%E4%BE%BF%E8%AE%B0%E5%BD%95/">随便记录</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+              </div>
+
+              <!--
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+-->
+<p class="note note-warning">
+  <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/12/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%80%83%E5%89%8D%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">https://trentliu.cn/2021/12/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%80%83%E5%89%8D%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/</a> <br>
+  <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+     </p>
+     
+
+
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/18/%E8%AE%A1%E7%BD%91/">
+                        <span class="hidden-mobile">计网复习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#valine",
+          app_id: "kln923ignpAig6tMBYCNQLi4-gzGzoHsz",
+          app_key: "rxzdxPz6ABf8lCQH2OOo6WH9",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+<div class="text-center py-1">  
+  <div>
+    <span id="timeDate1">载入天数...</span>
+    <span id="times1">载入时分秒...</span>
+    <script>
+    var now1 = new Date();
+    function createtime1(){
+        var grt1= new Date("07/21/2018 23:00");//此处修改你的建站时间或者网站上线时间
+        now1.setTime(now1.getTime()+250);
+        days1 = (now1 - grt1 ) / 1000 / 60 / 60 / 24;
+        dnum1 = Math.floor(days1);
+        hours1 = (now1 - grt1 ) / 1000 / 60 / 60 - (24 * dnum1);
+        hnum1 = Math.floor(hours1);
+        if(String(hnum1).length ==1 ){
+            hnum1 = "0" + hnum1;
+        }
+        minutes1 = (now1 - grt1 ) / 1000 /60 - (24 * 60 * dnum1) - (60 * hnum1);
+        mnum1 = Math.floor(minutes1);
+        if(String(mnum1).length ==1 ){
+                  mnum1 = "0" + mnum1;
+        }
+        
+        document.getElementById("timeDate1").innerHTML = "💓 ysm&lyk&nbsp"+dnum1+"&nbspdays";  //此次自定义显示内容
+        document.getElementById("times1").innerHTML = hnum1 + "&nbsphr&nbsp" + mnum1 + "&nbspmin&nbsp";
+    }  //此次自定义显示内容
+    setInterval("createtime1()",250);
+    </script>
+  </div>
+
+<div class="text-center py-1">  
+<div>
+  <span id="timeDate">载入天数...</span>
+  <span id="times">载入时分秒...</span>
+  <script>
+  var now = new Date();
+  function createtime(){
+      var grt= new Date("03/20/2021 17:25:00");//此处修改你的建站时间或者网站上线时间
+      now.setTime(now.getTime()+250);
+      days = (now - grt ) / 1000 / 60 / 60 / 24;
+      dnum = Math.floor(days);
+      hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum);
+      hnum = Math.floor(hours);
+      if(String(hnum).length ==1 ){
+          hnum = "0" + hnum;
+      }
+      minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+      mnum = Math.floor(minutes);
+      if(String(mnum).length ==1 ){
+                mnum = "0" + mnum;
+      }
+      /*
+      seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+      snum = Math.round(seconds);
+      if(String(snum).length ==1 ){
+                snum = "0" + snum;
+      }
+      */
+      document.getElementById("timeDate").innerHTML = "🏡pigsty for&nbsp"+dnum+"&nbspdays";  //此次自定义显示内容
+      document.getElementById("times").innerHTML = hnum + "&nbsphr&nbsp" + mnum + "&nbspmin&nbsp" /*+ snum + "&nbspsec"*/;
+  }  //此次自定义显示内容
+  setInterval("createtime()",250);
+  </script>
+</div>
+
+<div class="text-center py-1">   
+  <div>
+    <span>Copyright © 2021</span></a>
+    <a href="https://erenspace.cool/" target="_blank" rel="nofollow noopener">
+     <span>Trent-Liu‘s Pigsty</span></a>    <br>
+  </div>
+
+
+<!--
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+-->
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
+
+<!--动态线条背景-->
+<script type="text/javascript"
+color="220,220,220" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
