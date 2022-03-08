@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      9.9k 字
+      14.6k 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      101
+      148
        分钟
     </span>
   
@@ -272,7 +272,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2022年1月5日 下午
+                  本文最后更新于：2022年1月6日 下午
                 
               </p>
             
@@ -1058,10 +1058,352 @@
 <li><p>最久未使用淘汰算法（LRU算法）</p>
 <p>总是选择最长时间未被使用的那一页淘汰。</p>
 </li>
+<li><p>LRU近似淘汰算法</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105212021886.png" srcset="/img/loading.gif" lazyload alt="image-20220105212021886" style="zoom: 33%;"></li>
 </ul>
 </li>
 </ul>
-<h4 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h4><h5 id="段式系统的二维地址结构"><a href="#段式系统的二维地址结构" class="headerlink" title="段式系统的二维地址结构"></a>段式系统的二维地址结构</h5><h5 id="段页式系统中段表、页表与主存的关系"><a href="#段页式系统中段表、页表与主存的关系" class="headerlink" title="段页式系统中段表、页表与主存的关系"></a>段页式系统中段表、页表与主存的关系</h5>
+<h4 id="段页式存储管理"><a href="#段页式存储管理" class="headerlink" title="段页式存储管理"></a>段页式存储管理</h4><h5 id="段式系统的二维地址结构"><a href="#段式系统的二维地址结构" class="headerlink" title="段式系统的二维地址结构"></a>段式系统的二维地址结构</h5><p>分段是程序中自然划分的一组逻辑意义完整的信息集合。</p>
+<p>程序地址空间由若干个逻辑分段组成，每个分段有自己的名字，对于一个分段而言，它是一个连续的地址区</p>
+<p>地址结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105213033369.png" srcset="/img/loading.gif" lazyload alt="image-20220105213033369" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105213418055.png" srcset="/img/loading.gif" lazyload alt="image-20220105213418055" style="zoom:50%;">
+
+<p>页式系统中用户地址空间是一维地址空间，而段式系统中用户地址空间是二维地址空间</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105213644848.png" srcset="/img/loading.gif" lazyload alt="image-20220105213644848" style="zoom:50%;">
+
+<h5 id="段页式系统中段表、页表与主存的关系"><a href="#段页式系统中段表、页表与主存的关系" class="headerlink" title="段页式系统中段表、页表与主存的关系"></a>段页式系统中段表、页表与主存的关系</h5><p>在段式存储管理中结合分页存储管理技术，在一个分段内划分页面，就形成了段页式存储管理。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105213839725.png" srcset="/img/loading.gif" lazyload alt="image-20220105213839725" style="zoom:50%;">
+
+<p>段页式系统中段表、页表与主存的关系</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105213925390.png" srcset="/img/loading.gif" lazyload alt="image-20220105213925390" style="zoom:50%;">
+
+
+
+
+
+
+
+<h3 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h3><h4 id="设备管理的基本概念"><a href="#设备管理的基本概念" class="headerlink" title="设备管理的基本概念"></a>设备管理的基本概念</h4><h5 id="设备管理的功能"><a href="#设备管理的功能" class="headerlink" title="设备管理的功能"></a>设备管理的功能</h5><ol>
+<li>状态跟踪 动态地记录各种设备的状态</li>
+<li>设备分配与回收<ol>
+<li>静态分配——应用程序级，程序进入系统时分配，退出系统时收回全部资源</li>
+<li>动态分配——进程级，进程提出设备申请时进行分配，使用完毕后立即收回</li>
+</ol>
+</li>
+<li>设备控制 实施设备驱动和中断处理的工作</li>
+</ol>
+<h5 id="设备独立性-定义-优点⭐⭐⭐⭐"><a href="#设备独立性-定义-优点⭐⭐⭐⭐" class="headerlink" title="设备独立性 定义 优点⭐⭐⭐⭐"></a>设备独立性 定义 优点⭐⭐⭐⭐</h5><p>定义：用户在程序中使用的设备与实际使用的设备无关，也就是在用户程序中仅使用逻辑设备名</p>
+<ul>
+<li>逻辑设备名是用户自己指定的设备名（或设备号），是暂时的、可更改的。</li>
+<li>物理设备名是系统提供的设备的标准名称，它是永久的，不可更改的。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>方便用户</li>
+<li>改善设备利用率</li>
+<li>提高系统的可扩展性和可适应性</li>
+</ul>
+<h5 id="设备控制块-定义"><a href="#设备控制块-定义" class="headerlink" title="设备控制块 定义"></a>设备控制块 定义</h5><p>系统为每一台设备都配置了一个用来记录设备的硬件特性、链接和使用情况的一组数据，称为设备控制块。</p>
+<h4 id="缓冲技术⭐⭐⭐⭐"><a href="#缓冲技术⭐⭐⭐⭐" class="headerlink" title="缓冲技术⭐⭐⭐⭐"></a>缓冲技术⭐⭐⭐⭐</h4><h5 id="什么是缓冲，引入缓冲的目的"><a href="#什么是缓冲，引入缓冲的目的" class="headerlink" title="什么是缓冲，引入缓冲的目的"></a>什么是缓冲，引入缓冲的目的</h5><p>缓冲是两种不同速度的设备之间传输信息时平滑传输过程的常用手段。</p>
+<p>目的：</p>
+<ol>
+<li>处理数据流的生产者与消费者间的速度差异</li>
+<li>协调传输数据大小不一致的设备</li>
+<li>应用程序的拷贝语义</li>
+</ol>
+<h5 id="常用的缓冲技术"><a href="#常用的缓冲技术" class="headerlink" title="常用的缓冲技术"></a>常用的缓冲技术</h5><p>双缓冲、环形缓冲、缓冲池</p>
+<h5 id="双缓冲技术"><a href="#双缓冲技术" class="headerlink" title="双缓冲技术"></a>双缓冲技术</h5><p>在双缓冲方案下，为输入或输出分配两个缓冲区buf1，buf2</p>
+<ul>
+<li><p>双缓冲输入数据</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105221740963.png" srcset="/img/loading.gif" lazyload alt="image-20220105221740963" style="zoom: 50%;"></li>
+<li><p>双缓冲输出数据</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105221808539.png" srcset="/img/loading.gif" lazyload alt="image-20220105221808539" style="zoom:50%;"></li>
+<li><p>双缓冲同时用于输入/输出数据的操作</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105222315689.png" srcset="/img/loading.gif" lazyload alt="image-20220105222315689" style="zoom:50%;"></li>
+</ul>
+<p>单缓冲的效率      1/((1/x)+(1/y)) = xy/(x+y)</p>
+<p>双缓冲的效率       y</p>
+<p>双缓冲效率 &gt; 单缓冲效率</p>
+<h5 id="UNIX缓冲管理中的空闲缓冲区的淘汰算法"><a href="#UNIX缓冲管理中的空闲缓冲区的淘汰算法" class="headerlink" title="UNIX缓冲管理中的空闲缓冲区的淘汰算法"></a>UNIX缓冲管理中的空闲缓冲区的淘汰算法</h5><p>精确的最久未使用淘汰算法LRU</p>
+<h4 id="设备分配⭐⭐⭐⭐"><a href="#设备分配⭐⭐⭐⭐" class="headerlink" title="设备分配⭐⭐⭐⭐"></a>设备分配⭐⭐⭐⭐</h4><h5 id="常用的设备分配技术"><a href="#常用的设备分配技术" class="headerlink" title="常用的设备分配技术"></a>常用的设备分配技术</h5><p>独享分配、共享分配、虚拟分配</p>
+<h5 id="独享设备-独享分配-定义"><a href="#独享设备-独享分配-定义" class="headerlink" title="独享设备 独享分配 定义"></a>独享设备 独享分配 定义</h5><p>独占设备就只有独享分配，相当于临界资源</p>
+<ul>
+<li><p><strong>独享设备</strong>：</p>
+<p>让一个作业在整个运行期间独占使用的设备</p>
+</li>
+<li><p><strong>特点</strong>：1. 临界资源 2.费时的I/O操作或需人工干预</p>
+</li>
+<li><p><strong>独享分配</strong>：</p>
+<p>在一个作业执行前，将它所要使用的设备分配给它，当它结束撤离时，将分配给它的这类设备收回。</p>
+</li>
+</ul>
+<h5 id="共享设备-共享分配-定义"><a href="#共享设备-共享分配-定义" class="headerlink" title="共享设备 共享分配 定义"></a>共享设备 共享分配 定义</h5><p>如果把内存当作共享设备，若是多字节内存，可以当作共享设备，若是单字节，则是独占设备</p>
+<p>空分复用：不同的作业放在不同位置才可以共享</p>
+<ul>
+<li><p><strong>共享设备</strong>：</p>
+<p>由多个作业、进程共同使用的设备称为共享设备</p>
+</li>
+<li><p><strong>特点</strong>：1. 旋转设备，可直接或随机访问 2.便于共享，转接简单，耗费较少</p>
+</li>
+<li><p><strong>共享分配</strong>：</p>
+<p>在一个作业执行并发出设备申请时，将它所要使用的设备分配给它，当作业释放设备或结束撤离时，将分配给它的设备收回。</p>
+</li>
+</ul>
+<h5 id="虚拟设备-虚拟技术-定义"><a href="#虚拟设备-虚拟技术-定义" class="headerlink" title="虚拟设备 虚拟技术 定义"></a>虚拟设备 虚拟技术 定义</h5><ul>
+<li><p><strong>虚拟技术</strong>：所谓虚拟技术，是在一类<strong>物理设备上模拟另一类物理设备</strong>的技术，是将独占设备转化为共享设备的技术。</p>
+</li>
+<li><p><strong>虚拟设备</strong>：通常把用来代替独占型设备的那部分外村空间（包括有关的控制表格）称为虚拟设备</p>
+</li>
+</ul>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105224937347.png" srcset="/img/loading.gif" lazyload alt="image-20220105224937347" style="zoom:33%;">
+
+<p>输入井是外存构成的，并发时就像同时使用输入机一样。</p>
+<p>当进程需要与独占型设备交换信息时，系统将分配磁盘空间，并建立相应的数据结构，这种分配方法称为设备的虚拟分配。</p>
+<h5 id="Spooling系统-定义"><a href="#Spooling系统-定义" class="headerlink" title="Spooling系统 定义"></a>Spooling系统 定义</h5><p>是虚拟设备技术的实现与落地</p>
+<p>利用<strong>通道</strong>和<strong>中断</strong>技术，在<strong>主机控制之下</strong>（不需要CPU），由通道完成输入输出工作。系统提供一个<strong>软件系统</strong>（对Σ井进行管理） (包括预输入程序、缓输出程序、井管理程序、预输入表、缓输出表)。它提供输入收存和输出发送的功能，使外部设备可以并行操作。这一软件系统称为SPOOLING系统。</p>
+<h4 id="I-O控制⭐⭐"><a href="#I-O控制⭐⭐" class="headerlink" title="I/O控制⭐⭐"></a>I/O控制⭐⭐</h4><p>循环测试I/O方式，I/O中断方式，DMA方式</p>
+<h5 id="I-O控制的主要功能"><a href="#I-O控制的主要功能" class="headerlink" title="I/O控制的主要功能"></a>I/O控制的主要功能</h5><ol>
+<li>解释用户的I/O系统调用</li>
+<li>设备驱动</li>
+<li>中断处理</li>
+</ol>
+<h5 id="请求I-O的进程、I-O过程、设备处理进程、中断处理"><a href="#请求I-O的进程、I-O过程、设备处理进程、中断处理" class="headerlink" title="请求I/O的进程、I/O过程、设备处理进程、中断处理"></a>请求I/O的进程、I/O过程、设备处理进程、中断处理</h5><h5 id="程序之间的同步关系"><a href="#程序之间的同步关系" class="headerlink" title="程序之间的同步关系"></a>程序之间的同步关系</h5><h3 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h3><h4 id="文件系统基本概念"><a href="#文件系统基本概念" class="headerlink" title="文件系统基本概念"></a>文件系统基本概念</h4><h5 id="文件、文件系统、定义⭐⭐"><a href="#文件、文件系统、定义⭐⭐" class="headerlink" title="文件、文件系统、定义⭐⭐"></a>文件、文件系统、定义⭐⭐</h5><p>文件是在逻辑上具有完整意义的信息集合，它由一个名字以供表示，文件名是字母开头的字母数字串</p>
+<p>文件系统是操作系统中负责管理和存取文件信息的软件机构</p>
+<h4 id="文件结构"><a href="#文件结构" class="headerlink" title="文件结构"></a>文件结构</h4><h5 id="文件的逻辑结构⭐⭐"><a href="#文件的逻辑结构⭐⭐" class="headerlink" title="文件的逻辑结构⭐⭐"></a>文件的逻辑结构⭐⭐</h5><ul>
+<li><p>流式文件</p>
+<p>流式文件是相关的有序字符的集合，是无结构的（比如.txt，.c），存取是按信息的个数或以特殊字符为界进行存取。</p>
+</li>
+<li><p>记录式文件</p>
+<p>记录式文件是一种有结构的文件，这种文件在逻辑上总是被看成一组连续顺序的记录的集合（如数据库文件）</p>
+</li>
+</ul>
+<h5 id="文件的存取方法⭐⭐"><a href="#文件的存取方法⭐⭐" class="headerlink" title="文件的存取方法⭐⭐"></a>文件的存取方法⭐⭐</h5><ul>
+<li><p>顺序存取</p>
+<p>后一次存取总是在前一次存取的基础上进行的，顺序存取时不必给出具体的存取位置</p>
+</li>
+<li><p>随机存取</p>
+<p>用户以任意次序请求某个记录，随机存取时要指出起始存取位置（例如记录号）</p>
+</li>
+</ul>
+<h5 id="文件的物理结构⭐⭐⭐⭐"><a href="#文件的物理结构⭐⭐⭐⭐" class="headerlink" title="文件的物理结构⭐⭐⭐⭐"></a>文件的物理结构⭐⭐⭐⭐</h5><ul>
+<li><p>连续文件定义、结构、特点</p>
+<ul>
+<li><p>连续文件是由一组分配在磁盘连续区域的物理块组成的。</p>
+</li>
+<li><p>结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105234712735.png" srcset="/img/loading.gif" lazyload alt="image-20220105234712735" style="zoom:33%;"></li>
+<li><p>特点：</p>
+<ul>
+<li>结构简单，实现容易，连续存取时速度较快</li>
+<li>创建文件时要给出文件大小，文件长度一经固定便不易改变，动态增加和修改不易</li>
+<li>存储空间利用率不高</li>
+</ul>
+<p>​                                                                                                                                                                                                                                    </p>
+</li>
+</ul>
+</li>
+<li><p>串联文件定义、结构、特点</p>
+<ul>
+<li><p>串联文件结构是按顺序由串联的块组成的，即文件的信息存于若干块物理块中，每个物理块的最末一个字作为链接字，它指出后继块的物理地址。文件的最后一块的链接字为结束标记“Ù”，它表示文件至本块结束。</p>
+</li>
+<li><p>结构</p>
+<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105234949459.png" srcset="/img/loading.gif" lazyload alt="image-20220105234949459" style="zoom:50%;">、</p>
+</li>
+<li><p>串联文件的特点</p>
+<ul>
+<li>能较好地利用辅存空间，提高利用率</li>
+<li>不必事先知道文件长度，易于对文件进行修改和扩充</li>
+<li>连续存取时速度较快，随机存取效率太低</li>
+<li>连接指针占用一定空间</li>
+<li>可靠性问题，指针容易出错</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>  串联文件的变形：文件分配表FAT</p>
+<ul>
+<li><p>整个磁盘设置一张FAT表，每个盘块对应一个表目，存放连接文件各物理块的指针。</p>
+</li>
+<li><p>链接指针按顺序集中存放，构成盘文件映照表/文件分配表（FAT）</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220105235759796.png" srcset="/img/loading.gif" lazyload alt="image-20220105235759796" style="zoom:50%;"></li>
+<li><p>索引文件定义、结构、特点、一级简介索引结构、二级简介索引结构</p>
+<ul>
+<li><p>系统为每个文件建立逻辑块号与物理块号的对照表。这张表称为该文件的索引表。文件由数据文件和索引表构成。这种文件称为索引文件。</p>
+</li>
+<li><p>结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106000019945.png" srcset="/img/loading.gif" lazyload alt="image-20220106000019945" style="zoom: 50%;"></li>
+<li><p>特点</p>
+<ul>
+<li>易于文件的增删</li>
+<li>直接读写任意记录</li>
+<li>没有碎片</li>
+<li>索引表带来的开销</li>
+</ul>
+</li>
+<li><p>直接索引</p>
+<p>文件目录项中有一组表项用于索引。每一个表项登记的是逻辑记录所在的磁盘块号。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106000302210.png" srcset="/img/loading.gif" lazyload alt="image-20220106000302210" style="zoom:50%;"></li>
+<li><p>一级间接索引</p>
+<p>文件目录项中有一组表项，其内容登记的是第一级索引表块的块号。第一级索引表块中的索引表项登记的是文件逻辑记录所在的磁盘块号。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106000503883.png" srcset="/img/loading.gif" lazyload alt="image-20220106000503883" style="zoom: 50%;"></li>
+<li><p>二级简介索引</p>
+<p>文件目录项中有一组表项，其内容登记的是第二级索引表块的块号。第二级索引表块中的索引表项登记的第一级索引表块的块号，第一级索引表项中登记的是文件逻辑记录所在的磁盘块号。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106000542437.png" srcset="/img/loading.gif" lazyload alt="image-20220106000542437" style="zoom:50%;"></li>
+</ul>
+</li>
+<li><p>物理结构比较</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106000625488.png" srcset="/img/loading.gif" lazyload alt="image-20220106000625488" style="zoom:50%;"></li>
+</ul>
+<h4 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h4><p>文件目录是记录文件的名字、存放地址以及其他有关文件的说明信息和控制信息的数据结构</p>
+<h5 id="文件目录项内容"><a href="#文件目录项内容" class="headerlink" title="文件目录项内容"></a>文件目录项内容</h5><p>​    <strong>①</strong> <strong>文件名</strong></p>
+<p>​    <strong>②</strong> <strong>文件逻辑结构</strong></p>
+<p>​       说明该文件的记录是否定长、记录长度及记录个数等。 </p>
+<p>​    <strong>③</strong> <strong>文件物理结构：记录文件的物理结构形式</strong></p>
+<p>​           连续文件——指出文件第一块的物理地址、文件所占块数</p>
+<p>​           串联文件——指出该文件第一块的物理地址 </p>
+<p>​           索引文件——指出索引表地址</p>
+<p>​    <strong>④</strong> <strong>存取控制信息</strong></p>
+<p>​        文件主具有的存取权限、核准的其他用户及其相应的存取权限 </p>
+<p>​    <strong>⑤</strong> <strong>管理信息</strong></p>
+<p>​        文件建立日期、时间，上一次存取时间、要求文件保留的时间等</p>
+<p>​    <strong>⑥</strong> <strong>文件类型</strong></p>
+<p>​        文件的类型，例如可分为数据文件、目录文件、块存储设备文件、 字符设备文件</p>
+<h5 id="重名问题，解决办法"><a href="#重名问题，解决办法" class="headerlink" title="重名问题，解决办法"></a>重名问题，解决办法</h5><p>所谓重名，是指不同用户对不同文件起了相同的名字，即两个或多个文件只有一个相同的符号名，又称为命名冲突</p>
+<p>为了解决命名冲突，获得更灵活的命名能力，文件系统必须采用多级目录结构（如果一级文件目录结构，按名存取，很容易命名冲突）</p>
+<h5 id="树形文件目录"><a href="#树形文件目录" class="headerlink" title="树形文件目录"></a>树形文件目录</h5><p>在多级目录系统中（除最末一级外），任何一级目录的目录项可以描述一个目录文件，也可以描述一个非目录文件（数据文件），而数据文件一定在树叶上。这样，就构成了一个树形层次结构。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106162926455.png" srcset="/img/loading.gif" lazyload alt="image-20220106162926455" style="zoom:50%;">
+
+<p>上述的文件目录结构中，就有a目录中还有a目录，别的目录中也有称为a的文件，树形文件目录中，只有同级的文件不可以重名</p>
+<p>使用文件路径名就可以解决重名问题，比如id为13的文件与id为20的文件有相同的文件名，都是a</p>
+<p>id为13的文件的文件路径名是 /a/a/a</p>
+<p>id为20的文件的文件路径名是  /b/d/a</p>
+<h5 id="文件路径名，当前目录"><a href="#文件路径名，当前目录" class="headerlink" title="文件路径名，当前目录"></a>文件路径名，当前目录</h5><p>多级目录中，文件的路径名是由根目录到该文件的通路上所有目录文件符号名和该文件的符号名组成的字符串，相互之间用分隔符分隔。 </p>
+<h4 id="文件共享与安全"><a href="#文件共享与安全" class="headerlink" title="文件共享与安全"></a>文件共享与安全</h4><h5 id="文件共享"><a href="#文件共享" class="headerlink" title="文件共享"></a>文件共享</h5><ul>
+<li><p>文件共享定义</p>
+<p>文件共享是指某一个或某一部分文件可以让事先规定的某些用户共同使用。</p>
+<p>共享的目的：节省存储空间、进程间交换信息</p>
+</li>
+<li><p>存取权限验证方法</p>
+<p>ⅰ 访问控制矩阵</p>
+<p>ⅱ 存取控制表</p>
+<p>ⅲ 用户权限表</p>
+<p>ⅳ 口令</p>
+<p>ⅴ 密码（编解码）</p>
+</li>
+</ul>
+<h5 id="文件安全的定义"><a href="#文件安全的定义" class="headerlink" title="文件安全的定义"></a>文件安全的定义</h5><p>所谓文件安全，就是文件的保护问题。文件的保护是指文件本身不得被未经文件主授权的任何用户存取，而对于授权用户也只能在允许的存取权限内使用文件。</p>
+<h5 id="用文件名加快文件的查找"><a href="#用文件名加快文件的查找" class="headerlink" title="用文件名加快文件的查找"></a>用文件名加快文件的查找</h5><ul>
+<li><p>建立当前目录（值班目录）</p>
+<p>当前目录是当前用户正在使用的文件所在的目录。当指定当前目录后，用户对文件的所有访问都是相对于 “当前目录”进行的。这时，文件路径名是由“当前目录”到信息文件的通路上所有各级目录的符号名加上该信息文件的符号名组成。</p>
+</li>
+<li><p>链接技术</p>
+<p>所谓“链接”，就是在相应目录表目之间进行链接，即一个目录中的表目直接指向另一个目录表目所在的物理位置。</p>
+<p>注意，这种链接不是直接指向文件，而是指向相应的目录表目。这种办法也称为连访，被共享的文件称为连访文件。</p>
+</li>
+</ul>
+<p>​        </p>
+<h4 id="文件操作与文件备份⭐"><a href="#文件操作与文件备份⭐" class="headerlink" title="文件操作与文件备份⭐"></a>文件操作与文件备份⭐</h4><h5 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h5><ul>
+<li>常用的文件操作命令</li>
+<li>打开文件与关闭文件定义、目录</li>
+</ul>
+<h5 id="文件备份"><a href="#文件备份" class="headerlink" title="文件备份"></a>文件备份</h5><ul>
+<li>文件备份的必要性</li>
+<li>常用的两种文件备份方法：周期性备份、增量存储</li>
+</ul>
+<h4 id="UNIX文件系统的主要结构及实现"><a href="#UNIX文件系统的主要结构及实现" class="headerlink" title="UNIX文件系统的主要结构及实现"></a>UNIX文件系统的主要结构及实现</h4><h5 id="UNIX文件系统的特点"><a href="#UNIX文件系统的特点" class="headerlink" title="UNIX文件系统的特点"></a>UNIX文件系统的特点</h5><ol>
+<li>树型文件目录结构</li>
+<li>可安装拆卸的文件系统</li>
+<li>文件是无结构的字符流式文件</li>
+<li>将外部设备与文件一样对待</li>
+</ol>
+<h5 id="UNIX文件系统的索引文件结构"><a href="#UNIX文件系统的索引文件结构" class="headerlink" title="UNIX文件系统的索引文件结构"></a>UNIX文件系统的索引文件结构</h5><ul>
+<li><p>文件目录项组成</p>
+<p>在<strong>目录项</strong>中只有<strong>文件的名字</strong>和<strong>对应i节点的编号</strong>。</p>
+<p>UNIX系统把文件目录项中除了名字以外的信息全部存放到一个磁盘的数据块上，这种数据块就是文件索引节点(indexnode)，简称i节点，又称为磁盘索引节点。</p>
+<p>两个不同的文件不可能由相同的i节点编号</p>
+</li>
+<li><p>文件索引节点（磁盘索引节点）的结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106001909270.png" srcset="/img/loading.gif" lazyload alt="image-20220106001909270" style="zoom: 33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106001932154.png" srcset="/img/loading.gif" lazyload alt="image-20220106001932154" style="zoom:33%;"></li>
+<li><p>UNIX7版本文件索引结构⭐⭐⭐⭐</p>
+<ul>
+<li><p>小型文件结构、大型文件结构、巨型文件结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106002117456.png" srcset="/img/loading.gif" lazyload alt="image-20220106002117456" style="zoom:33%;">
+
+<p>文件 &lt;= 4KB</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106002347598.png" srcset="/img/loading.gif" lazyload alt="image-20220106002347598" style="zoom:33%;">
+
+<p>一个磁盘块号两字节，一个块512B，因此可以放256个地址块 </p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106002544609.png" srcset="/img/loading.gif" lazyload alt="image-20220106002544609" style="zoom:33%;">
+
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106002619685.png" srcset="/img/loading.gif" lazyload alt="image-20220106002619685" style="zoom:33%;"></li>
+<li><p>在此三种结构下，系统能支持的文件最大的字节数的计算</p>
+</li>
+</ul>
+</li>
+<li><p>UNIX system V的文件索引结构⭐⭐⭐⭐</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106002735985.png" srcset="/img/loading.gif" lazyload alt="image-20220106002735985" style="zoom:50%;">
+
+<p>UNIX系统采用多级间接索引结构，对小型文件采用直接索引，对大型文件采用间接索引，从而，既保证绝大多数的文件有高的存取效率，又能适应存取一些大型文件（既保证了文件系统的高效率，又使其有很宽的适应面）。</p>
+</li>
+</ul>
+<h5 id="UNIX系统文件目录结构"><a href="#UNIX系统文件目录结构" class="headerlink" title="UNIX系统文件目录结构"></a>UNIX系统文件目录结构</h5><p>每个目录表为一个目录文件，目录文件由目录项组成</p>
+<p>每个目录项包含16个字节（UNIX系统老版本），在目录项中，第1、2字节为相应文件的辅存i节点号，后14个字节为文件名，一个辅存磁盘块（512B）包含32个目录项。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106164330015.png" srcset="/img/loading.gif" lazyload alt="image-20220106164330015" style="zoom:50%;">
+
+<ul>
+<li><p>UNIX属树形目录结构</p>
+<p><strong>①</strong> 每个文件系统都有一个根目录文件，它的辅存i节点是相应文件存储设备上辅存索引区中的第一个。</p>
+<p><strong>②</strong> 打开某个文件时，从根目录的i节点可以找到根目录文件的索引结构，得到根目录文件的每个数据块。</p>
+<p><strong>③</strong> 将待打开文件的路径信息与目录文件中的目录项逐一比较，可以得到下级目录的i节点号，并最终得到目标文件的i节点号。从i节点号中的索引表，得到数据文件的存储块号，实现对目标文件的随机存取。 </p>
+</li>
+<li><p>便于随机存取的文件目录结构</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106165004716.png" srcset="/img/loading.gif" lazyload alt="image-20220106165004716" style="zoom: 50%;">
+
+<p>目录文件对应磁盘中的一个文件，只是用户看不到。</p>
+<p>目录文件一旦建立，就有.(当前目录)和..(上一级文件)</p>
+<p>如果要访问/A0/B31</p>
+<p>先获取/根目录的i节点，读出/的目录文件找到A0，读出A0的i节点，读A0的目录文件找B31，读B31的i节点，访问i_addr对应的磁盘块</p>
+</li>
+<li><p>目录结构中的勾链，支持不同文件目录名共享一个文件</p>
+<p>UNIX文件目录结构中带有交叉勾链。用户可以用不同的文件路径名共享一个文件。</p>
+<p>文件勾链在用户看来是为一个已存在的文件另起一个路径名。</p>
+<p>文件勾链的结果表现为一个文件由多个目录项所指向。</p>
+<p>UNIX只允许对非目录文件实行勾链。</p>
+<ul>
+<li><p>例：一个文件有两个名字</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106170129532.png" srcset="/img/loading.gif" lazyload alt="image-20220106170129532" style="zoom: 50%;"></li>
+</ul>
+</li>
+</ul>
+<h5 id="UNIX系统的打开文件结构"><a href="#UNIX系统的打开文件结构" class="headerlink" title="UNIX系统的打开文件结构"></a>UNIX系统的打开文件结构</h5><ul>
+<li><p>设置打开文件机构的必要性</p>
+<p>为了提高系统效率，减少主存空间的占用，系统设置了打开文件和关闭文件操作。当打开一个文件时，建立用户与该文件的联系。</p>
+</li>
+<li><p>打开文件机构的组成</p>
+<p>活动i节点表、系统打开文件表、用户文件描述符表</p>
+</li>
+</ul>
+<h5 id="文件存储器空闲块的管理"><a href="#文件存储器空闲块的管理" class="headerlink" title="文件存储器空闲块的管理"></a>文件存储器空闲块的管理</h5><ul>
+<li><p>UNIX文件系统磁盘存储区（文件卷）的结构</p>
+<p>一个文件系统就是逻辑设备，每个逻辑设备占用一片连续的磁盘存储空间。 文件卷上存放UNIX文件系统。文件卷结构图如下。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106172428907.png" srcset="/img/loading.gif" lazyload alt="image-20220106172428907" style="zoom:50%;">
+
+<ol>
+<li>引导块 大小为一个磁盘块，包含引导程序</li>
+<li>索引节点区 索引节点结构组成</li>
+<li>数据区 数据文件占用的区域</li>
+</ol>
+</li>
+<li><p>空闲磁盘块的管理：成组链接法</p>
+<p>即将空闲表和空闲链两种方法相结合。系统初启时，文件存储区是空闲。将空闲块从尾倒向前，每100块分为一组 (注：最后一组为99块)，每一组的最后一块作为索引表，用来登记下一组100块的物理块号和块数。那么，最前面的一组可能不足100块，这一组的物理块号和块数存放在管理块的s_free[100]和s_nfree中。</p>
+<img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220106172641925.png" srcset="/img/loading.gif" lazyload alt="image-20220106172641925" style="zoom:50%;"></li>
+</ul>
+
             </div>
             <hr>
             <div>
@@ -1107,6 +1449,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/03/03/C++%E5%89%91%E6%8C%87offer2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++剑指offer2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

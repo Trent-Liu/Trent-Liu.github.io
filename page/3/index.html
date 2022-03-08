@@ -210,29 +210,31 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——vector">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6string/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——标准库类型String以及cctype头文件">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
-          C++自学——vector
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6string/" target="_self">
+          C++自学——标准库类型String以及cctype头文件
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6string/" target="_self">
           
           
             
           
-          标准库类型vector12#include &lt;vector&gt;using std::vector;
+          标准库类型String学习C语言的时候，对于字符串的处理只能使用字符数组，十分麻烦，C++中有了标准库类型String，对于字符串的处理就简单了很多
+使用前提
+12#include&lt;string&gt;using std::string;
 
-标准库类型vector表示对象的集合，其中所有对象的类型都相同。集合中的每个对象都有一个与之对应的索引，索引用于访问对象，因为vector容纳着其他对象，所以也经常被称为容器。
-C++中有类模板和函数模板，其中vector是类模板，模板本身不是类或者函数，但是可以将模板看作为编译器生成类
+初始化字符串的方式
+123456string s1;			//默认初始化，s1是一个空串string s2(s1);		//s2是s1的副本string
         </a>
       </p>
 
@@ -261,7 +263,9 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
             
               <a href="/tags/C/">C++</a>
             
-              <a href="/tags/vector/">vector</a>
+              <a href="/tags/string/">string</a>
+            
+              <a href="/tags/cctype/">cctype</a>
             
           </div>
         
@@ -336,6 +340,67 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——数组">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
+          C++自学——数组
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
+          
+          
+            
+          
+          与C相同的部分不过做赘述，比如多维数组等
+数组数组类似于标准库类型vector的数据结构，但是在性能和灵活性的权衡上与vector不同，与vector相似的是，数组也是存放类型相同的对象的容器，这些对象没有名字，需要通过其所在位置访问。与vector不同的地方是，数组的大小确定不变，不能随意向数组中添加元素，因为数组的大小固定，因此对某些特殊应用来说程序的运行时性能较好，但是相应地也损失了一些灵活
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E8%BF%AD%E4%BB%A3%E5%99%A8/" target="_self">
           <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——迭代器">
         </a>
@@ -388,67 +453,6 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
               <a href="/tags/C/">C++</a>
             
               <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/">迭代器</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——数组">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
-          C++自学——数组
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6%E6%95%B0%E7%BB%84/" target="_self">
-          
-          
-            
-          
-          与C相同的部分不过做赘述，比如多维数组等
-数组数组类似于标准库类型vector的数据结构，但是在性能和灵活性的权衡上与vector不同，与vector相似的是，数组也是存放类型相同的对象的容器，这些对象没有名字，需要通过其所在位置访问。与vector不同的地方是，数组的大小确定不变，不能随意向数组中添加元素，因为数组的大小固定，因此对某些特殊应用来说程序的运行时性能较好，但是相应地也损失了一些灵活
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-14 15:00" pubdate>
-              2021-07-14
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/C/">C++</a>
-            
-              <a href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
             
           </div>
         
