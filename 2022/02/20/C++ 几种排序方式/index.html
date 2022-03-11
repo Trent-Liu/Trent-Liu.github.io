@@ -18,7 +18,7 @@
   <meta name="author" content="Trent-Liu">
   <meta name="keywords" content="分享在HUST中的一些学习经历">
   
-  <title>C++自学——main处理命令行以及含有可变参数的函数 - Pigsty</title>
+  <title>C++几种排序方式 - Pigsty</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -188,12 +188,12 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/C++.png') no-repeat center center;
+         style="background: url('/img/wallhaven-dgkmpo_3840x2160.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="C++自学——main处理命令行以及含有可变参数的函数">
+            <span class="h2" id="subtitle" title="C++几种排序方式">
               
             </span>
 
@@ -208,8 +208,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-14 15:00" pubdate>
-        2021年7月14日 下午
+      <time datetime="2022-02-20 08:00" pubdate>
+        2022年2月20日 早上
       </time>
     </span>
   
@@ -220,7 +220,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      334 字
+      576 字
     </span>
   
 
@@ -230,7 +230,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        分钟
     </span>
   
@@ -268,49 +268,46 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">C++自学——main处理命令行以及含有可变参数的函数</h1>
+            <h1 style="display: none">C++几种排序方式</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月14日 下午
+                  本文最后更新于：2022年3月10日 晚上
                 
               </p>
             
             <div class="markdown-body">
-              <h3 id="main处理命令行选项"><a href="#main处理命令行选项" class="headerlink" title="main处理命令行选项"></a>main处理命令行选项</h3><p>假定main函数在可执行文件prog之内，可以向程序传递下面的选项：</p>
-<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++">prog -d -o ofile data0<br></code></pre></div></td></tr></table></figure>
+              <img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20220310202649537.png" srcset="/img/loading.gif" lazyload alt="image-20220310202649537" style="zoom:50%;">
 
-<p>这些命令行选项通过两个可选的形参传递给main函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span> *argv[])</span></span>&#123;&#125;<br></code></pre></div></td></tr></table></figure>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><iframe height="270" width="600" src="https://img-blog.csdnimg.cn/235434e6bb014d3a8d892aa5156ced09.gif">
 
-<p>根据上面命令行的输入</p>
-<blockquote>
-<p>argc = 5；</p>
-<p>argv[0] = “prog”;</p>
-<p>argv[1] = “-d”;</p>
-<p>argv[2] = “-o”;</p>
-<p>argv[3] = “ofile”;</p>
-<p>argv[4] = “data0”;</p>
-<p>argv[5] = “0”;</p>
-</blockquote>
-<p>第一个一定为程序名，最后一个为0</p>
-<h3 id="含有可变参数的函数"><a href="#含有可变参数的函数" class="headerlink" title="含有可变参数的函数"></a>含有可变参数的函数</h3><p>C++11有两种主要的方法</p>
-<ol>
-<li>所有实参类型相同，可以传递一个名为initializer_list的标准库类型。</li>
-<li>实参的类型不同，我们可以编写一种特殊的函数。可变参数模板</li>
-</ol>
-<p>initializer_list形参</p>
-<p><img src="https://gitee.com/Trent-Liuy/blogimage/raw/master/img/image-20210712150241433.png" srcset="/img/loading.gif" lazyload alt="image-20210712150241433"></p>
-<p>与vector一样，initializer_list也是一种模板类型，定义initializer_list对象时，必须说明列表中所含元素的类型</p>
-<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-built_in">initializer_list</span>&lt;<span class="hljs-built_in">string</span>&gt; ls;<br><span class="hljs-built_in">initializer_list</span>&lt;<span class="hljs-keyword">int</span>&gt; li;<br></code></pre></div></td></tr></table></figure>
-
-<p>与vector不一样，initializer_list对象中的元素永远是常量值，无法改变initializer_list对象中元素的值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">error_msg</span><span class="hljs-params">(<span class="hljs-built_in">initializer_list</span>&lt;<span class="hljs-built_in">string</span>&gt; il)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> beg = il.begin();beg != il.end(); ++beg)<br>        <span class="hljs-built_in">cout</span> &lt;&lt; *beg &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-
-<p>调用时若想传递一个值的序列，就必须把序列放在一对花括号内</p>
-<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-keyword">if</span>(expected!=actual)<br>    error_msg(&#123;<span class="hljs-string">&quot;functionX&quot;</span>,expected,actual&#125;);<br><span class="hljs-keyword">else</span><br>    error_msg(&#123;<span class="hljs-string">&quot;functionX&quot;</span>,<span class="hljs-string">&quot;okay&quot;</span>&#125;);<br></code></pre></div></td></tr></table></figure>
+<p>冒泡排序的思想是遍历数组长度遍，比如升序排序，如果右边的数比左边的大，则交换</p>
+<p>下面的版本做一定的优化，避免不必要的排序</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">Bubble_Sort</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> length = nums.size();<br>    <span class="hljs-keyword">bool</span> flag = <span class="hljs-literal">true</span>;<br>    <br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n<span class="hljs-number">-1</span> &amp;&amp; flag; ++i) &#123;<br>        flag = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; n-i<span class="hljs-number">-1</span>; j++) &#123;<br>            <span class="hljs-keyword">if</span> (nums[j] &gt; nums[j+<span class="hljs-number">1</span>]) &#123;<br>                <span class="hljs-keyword">int</span> tmp = nums[j];<br>                nums[j] = nums[j+<span class="hljs-number">1</span>];<br>                nums[j+<span class="hljs-number">1</span>] = tmp;<br>                <span class="hljs-comment">//flag的作用是直到这次循环有修改，设为true。</span><br>               	<span class="hljs-comment">//如果一次循环没有修改，则排序完成，无需继续。</span><br>                flag = <span class="hljs-literal">true</span>; <br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 
 
+
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><iframe height="270" width="600" src="https://img-blog.csdnimg.cn/884945969c82467a9e0c7f0aee850d52.gif">
+
+<p>选择排序是每次选出最小/最大的数，排在首位，再选第二小/大的数，放在第二位。</p>
+<p>性能略高于冒泡排序</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">Selection_Sort</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;nums)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> length = nums.size();<br>    <span class="hljs-keyword">int</span> min;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) &#123;<br>        min = i;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j &lt; length; j++) &#123;<br>            <span class="hljs-keyword">if</span> (nums[j] &lt; nums[min]) &#123;<br>                min = j;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">int</span> tmp = nums[i];<br>        nums[i] = nums[min];<br>        nums[min] = tmp;<br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><iframe height="270" width="600" src="https://img-blog.csdnimg.cn/3670a545effc46f895bfa2b2c71b6eca.gif">
+
+<p>从索引1开始，逐渐向前插入，插入到当前索引之前的有序数组中</p>
+<p>最好的情况：所有数据是正序，每次排序都不用移动元素，此时为O(N)；<br>最坏的情况：所有数据都是倒序，每次都要将前面的元素后移，此时为O(N^2);</p>
+<figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">InsertSort</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; nums.size(); i++) &#123;<br>        <span class="hljs-keyword">int</span> tmp = nums[i];<br>        <span class="hljs-keyword">int</span> j = i - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (j; j &gt;= <span class="hljs-number">0</span> &amp;&amp; nums[j] &gt; tmp; j--) &#123;<br>            nums[j+<span class="hljs-number">1</span>] = nums[j];<br>        &#125;<br>        nums[j+<span class="hljs-number">1</span>] = tmp; <br>    &#125;<br>    <span class="hljs-keyword">return</span> nums;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+
+
+
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><figure class="highlight c++"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs C++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp;nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span> (left &lt; right) &#123;<br>            <span class="hljs-keyword">int</span> base = partition(nums, left, right);<br>            quickSort(nums, left, base<span class="hljs-number">-1</span>);<br>            quickSort(nums, base+<span class="hljs-number">1</span>, right);<br>        &#125;<br>        <span class="hljs-keyword">return</span>;<br><br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">partition</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span> </span>&#123;<br>        <br>        <span class="hljs-keyword">int</span> ran = rand() % (right-left+<span class="hljs-number">1</span>) + left;<br>        swap(nums[left], nums[ran]);<br>        <span class="hljs-keyword">int</span> base = nums[left];<br>        <span class="hljs-keyword">while</span> (left &lt; right) &#123;<br>            <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; nums[right] &gt;= base) &#123;<br>                right--;<br>            &#125;<br>            nums[left] = nums[right];<br>            <span class="hljs-keyword">while</span> (left &lt; right &amp;&amp; nums[left] &lt; base) &#123;<br>                left++;<br>            &#125;<br>            nums[right] = nums[left];<br>        &#125;<br>        nums[left] = base;<br>        <span class="hljs-keyword">return</span> left;<br>    &#125;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">sortArray</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        srand((<span class="hljs-keyword">int</span>)time(<span class="hljs-number">0</span>));<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> right = nums.size() - <span class="hljs-number">1</span>;<br>        quickSort(nums, left, right);<br>        <span class="hljs-keyword">return</span> nums;<br>    &#125;<br>&#125;;<br></code></pre></div></td></tr></table></figure>
+
+</iframe></iframe></iframe>
             </div>
             <hr>
             <div>
@@ -331,10 +328,6 @@
                     
                       <a class="hover-with-bg" href="/tags/C/">C++</a>
                     
-                      <a class="hover-with-bg" href="/tags/main%E5%91%BD%E4%BB%A4%E8%A1%8C/">main命令行</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">可变参数</a>
-                    
                   </div>
                 
               </div>
@@ -350,7 +343,7 @@
 -->
 <p class="note note-warning">
   <strong>本文作者: </strong><a href="/">Trent-Liu</a> <br>
-  <strong>本文链接: </strong><a href="https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">https://trentliu.cn/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/</a> <br>
+  <strong>本文链接: </strong><a href="https://trentliu.cn/2022/02/20/C++%20%E5%87%A0%E7%A7%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E5%BC%8F/">https://trentliu.cn/2022/02/20/C++%20%E5%87%A0%E7%A7%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E5%BC%8F/</a> <br>
   <strong>版权声明: </strong>本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
      </p>
      
@@ -361,9 +354,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/15/C++%E8%87%AA%E5%AD%A6%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%E7%AC%A6/">
+                      <a href="/2022/03/03/C++%E5%89%91%E6%8C%87offer2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">C++自学——头文件保护符</span>
+                        <span class="hidden-mobile">C++剑指offer2</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -371,8 +364,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/">
-                        <span class="hidden-mobile">C++自学——vector</span>
+                      <a href="/2021/12/18/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%80%83%E5%89%8D%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/">
+                        <span class="hidden-mobile">操作系统考前知识点整理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
