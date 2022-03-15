@@ -210,29 +210,37 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
-          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——vector">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——main处理命令行以及含有可变参数的函数">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
-          C++自学——vector
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
+          C++自学——main处理命令行以及含有可变参数的函数
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6main%E5%A4%84%E7%90%86%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A5%E5%8F%8A%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/" target="_self">
           
           
             
           
-          标准库类型vector12#include &lt;vector&gt;using std::vector;
+          main处理命令行选项假定main函数在可执行文件prog之内，可以向程序传递下面的选项：
+1prog -d -o ofile data0
 
-标准库类型vector表示对象的集合，其中所有对象的类型都相同。集合中的每个对象都有一个与之对应的索引，索引用于访问对象，因为vector容纳着其他对象，所以也经常被称为容器。
-C++中有类模板和函数模板，其中vector是类模板，模板本身不是类或者函数，但是可以将模板看作为编译器生成类
+这些命令行选项通过两个可选的形参传递给main函数：
+1int main(int argc,char *argv[])&#123;&#125;
+
+根据上面命令行的输入
+
+argc = 5；
+argv[0] = “prog”;
+argv[1] = “-d”;
+
         </a>
       </p>
 
@@ -261,7 +269,9 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
             
               <a href="/tags/C/">C++</a>
             
-              <a href="/tags/vector/">vector</a>
+              <a href="/tags/main%E5%91%BD%E4%BB%A4%E8%A1%8C/">main命令行</a>
+            
+              <a href="/tags/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/">可变参数</a>
             
           </div>
         
@@ -329,6 +339,69 @@ C++中有类模板和函数模板，其中vector是类模板，模板本身不�
               <a href="/tags/string/">string</a>
             
               <a href="/tags/cctype/">cctype</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
+          <img src="/img/C++.png" srcset="/img/loading.gif" lazyload alt="C++自学——vector">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
+          C++自学——vector
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/14/C++%E8%87%AA%E5%AD%A6vector/" target="_self">
+          
+          
+            
+          
+          标准库类型vector12#include &lt;vector&gt;using std::vector;
+
+标准库类型vector表示对象的集合，其中所有对象的类型都相同。集合中的每个对象都有一个与之对应的索引，索引用于访问对象，因为vector容纳着其他对象，所以也经常被称为容器。
+C++中有类模板和函数模板，其中vector是类模板，模板本身不是类或者函数，但是可以将模板看作为编译器生成类
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-14 15:00" pubdate>
+              2021-07-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
+            
+              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/C/">C++</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/C/">C++</a>
+            
+              <a href="/tags/vector/">vector</a>
             
           </div>
         
@@ -795,73 +868,6 @@ expression表示的必须是一个序列，比如用花括号括起来的初始�
               <a href="/tags/C/">C++</a>
             
               <a href="/tags/%E8%8C%83%E5%9B%B4for%E5%BE%AA%E7%8E%AF/">范围for循环</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          <img src="/img/Java.png" srcset="/img/loading.gif" lazyload alt="Java装饰者、迭代器模式">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          Java装饰者、迭代器模式
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/05/27/JAVA%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_self">
-          
-          
-            
-          
-          装饰模式多用组合，少用继承。利用组合，委托同样可以达到继承的目的
-如果有两个类
-123456class A&#123;    public void f()&#123;&#125;&#125;class B&#123;    public void g()&#123;&#125;&#125;
-
-若需要实现一个类，同时具有A和B的行为，但是不能继承（JAVA）。
-可以采用对象组合方式，继承一个类，另
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-05-27 23:00" pubdate>
-              2021-05-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/Java/">Java</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Java/">Java</a>
-            
-              <a href="/tags/%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F/">装饰者模式</a>
-            
-              <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/">迭代器模式</a>
             
           </div>
         
